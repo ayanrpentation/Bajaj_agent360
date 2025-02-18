@@ -1,0 +1,423 @@
+.form-control {
+    min-width: 130px; 
+    height: 45px; 
+    border: 2px solid #b9acff; 
+    overflow: hidden; 
+    border-radius: 10px; 
+    font-size: 16px; 
+    color: rgb(51, 51, 51); 
+    background-color: #f8f9fa; 
+    text-align: center;
+}
+
+
+
+
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+  
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+  }
+  
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+    
+  }
+
+  .tooltiptext1 {
+    /* display: none; */
+    visibility: hidden;
+  }
+
+  .tooltip1:hover .tooltiptext1 {
+    /* display: block; */
+    visibility: visible;
+  }
+
+
+
+
+
+
+  .agentInfoGap{
+    height: 40px;
+    font-size: 16px;
+    font-weight: bold; 
+    text-align: center;   
+    /* background-color:  rgb(226, 226, 226);  */
+    /* background-color:  #d1cfe2;  */
+    /* background-color: #d7cfff; */
+
+    background-color: #fed8b1;
+    /* word-break: break-word;  */
+    /* border: 3px solid white; */
+    margin: 3px 0px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.agentInfoGapValue{
+    /* margin-left: 10px; */
+    height: 40px;
+    font-size: 16px;
+    /* background-color:  rgb(226, 226, 226); */
+    /* background-color: #f3f1ff; */
+    background-color: #f1f1f1;
+    background: linear-gradient(45deg, #c2c2c2, white);
+    
+    
+    text-align: center; 
+    /* word-break: break-word;  */
+    /* border-left: 5px solid rgb(235, 235, 235);
+    border-right: 5px solid rgb(235, 235, 235); */
+    margin: 3px 0px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.agentInfoGapValue1{
+    /* margin-left: 10px; */
+    height: 40px;
+    font-size: 16px;
+    /* background-color:rgb(235, 235, 235); */
+    margin: 3px 0px;
+    text-align: center; 
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+/* .tooltip1[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  top: -100%;
+  left: 0;
+  padding: 20px!important;
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* laggard details section */
+.tableEachBox{
+  padding: 15px;
+  text-align: center; 
+  vertical-align: middle;  
+  border: 1px solid #c6baff; 
+  border-top: none;
+}
+/* .tableEachBox:hover{
+  background-color: #fff;
+  font-size: 18px!important;
+} */
+.tableEachBox_num{
+  padding: 15px;
+  text-align: center; 
+  vertical-align: middle;  
+  border: 1px solid #c6baff; 
+  border-top: none;
+  cursor: pointer;
+}
+.tableEachBox_num:hover{
+  background-color: #fff;
+  font-size: 18px!important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Custom class for 90vh and 90vw modal */
+.custom-modal-class .modal-dialog {
+  width: 90vw;
+  max-width: 90vw;
+  height: 90vh;
+  max-height: 90vh;
+}
+
+.custom-modal-class .modal-content {
+  height: 100%; /* Fill entire modal height */
+  display: flex;
+  flex-direction: column; /* Ensure content doesn't overflow */
+}
+
+.custom-modal-class .modal-body {
+  flex-grow: 1; /* Make body take up remaining space */
+  overflow-y: auto; /* Scroll body content if necessary */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+mat-card {
+  padding: 0px; 
+  margin-bottom: 10px; 
+  /* height: 120px;  */
+  height: 80px; 
+  box-shadow: 5px 5px 5px rgb(78 114 143)!important;
+  border: 1px solid rgba(78, 114, 143, 0.39);
+  border-radius: 10px;
+  /* border-top-right-radius: 10px!important;
+  border-bottom-left-radius: 10px!important;
+  border-top-left-radius: 0px!important;
+  border-bottom-right-radius: 0px!important; */
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
+
+.chartBoxPad {
+  padding: 0px; 
+  margin-bottom: 10px; 
+  /* height: 360px;  */
+  height: 460px; 
+  /* box-shadow: 5px 5px 5px rgb(78 114 143)!important; */
+  border: 1px solid rgba(78, 114, 143, 0.39);
+  border-radius: 10px;
+  /* border-top-right-radius: 10px!important;
+  border-bottom-left-radius: 10px!important;
+  border-top-left-radius: 0px!important;
+  border-bottom-right-radius: 0px!important; */
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
+
+.writtenParameterBox{
+  width: 100%;
+  border: 1px solid rgba(78, 114, 143, 0.39);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 1366px) {
+  
+  .vpHeight{
+    zoom: 1.25!important;
+    height: 100vh!important;
+    /* background-color: red; */
+  }
+  .segmantationOverviewTable{
+    zoom: .75
+  }
+  .pentaHeader {
+    top: -20px!important;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[data-title]:hover:after {
+  opacity: 1;
+  transition: all 0.1s ease 0.5s;
+  visibility: visible;
+}
+[data-title]:after {
+  content: attr(data-title);
+  background-color: #ffebd0;
+  color: #111;
+  /* font-size: 150%; */
+  font-size: 18px;
+  position: absolute;
+  padding: 1px 5px 2px 5px;
+  bottom: -6.6em;
+  /* top: -6.6em; */
+  left: 0;
+  /* white-space: nowrap; */
+  word-wrap: break-word;
+  box-shadow: 1px 1px 3px #222222;
+  opacity: 0;
+  border: 1px solid #111111;
+  z-index: 99999;
+  visibility: hidden;
+  padding: 40px;
+  border-radius: 10px;
+}
+[data-title] {
+  position: relative;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* th, td {
+  padding: 8px;
+  border: 1px solid #ddd;
+} */
+
+/* Freezing the first column */
+.freeze-first-column th:first-child,
+.freeze-first-column td:first-child {
+  position: sticky;
+  left: 0;
+  background-color: #d7cfff;
+  z-index: 1; /* Keeps it on top while scrolling */
+}
+
+/* .freeze-first-column th:first-child{
+  background-color: #d7cfff;
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.deep-green {
+  background: rgb(1, 175, 1)!important;
+}
+.green {
+  background: rgb(32, 255, 32)!important;
+}
+
+.light-green {
+  background: rgb(171, 255, 171)!important;
+}
+
+.yello {
+  background-position: #ffff00!important;
+}
+
+.light-orange {
+  background: rgb(255, 202, 104)!important;
+}
+
+.orange {
+  background: orange!important;
+}
+
+.light-red {
+  background: lightcoral!important;
+}
+.red {
+  background: red!important;
+}
+.white {
+  background: #ffffff!important;
+}

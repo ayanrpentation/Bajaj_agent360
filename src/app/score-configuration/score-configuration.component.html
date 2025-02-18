@@ -1,0 +1,577 @@
+<!-- the below commented part is the common template for all the pages which have a side nav -->
+
+<!-- <ng-container>
+    <div class="row">
+        <div class="sidenav">
+        </div>
+        <div class="mainArea">           
+        </div>
+    </div>
+</ng-container> -->
+
+<!-- <mat-spinner></mat-spinner> -->
+
+<ng-container>
+    <div class="row">
+        <div class="sidenav" style="padding-top: 0;">
+            <!-- <div class="row">
+
+                <div class="col-12 agentPad highlightpad" style="padding-left: 5px !important;"> <span style="color:white"><mat-icon>filter_list</mat-icon></span> &nbsp;&nbsp;&nbsp;
+                <span style="    position: absolute;
+                bottom: 8px;">  FILTERS </span></div>
+            </div> -->
+
+            <div class="row filterButtonArea" style=" width:100%!important;height: 80%; overflow-y: scroll;">
+
+                <div class="col-12 mainMenu"
+                    style="background-color: #e8e3ff; color: #ffffff; padding:15px;padding-bottom: 10px; font-size: 12px;">
+
+
+
+
+                    <div class="multiselectFilter">
+                        <!-- <span class="filterLabel" >METRICS HEAD</span> -->
+                        <ng-multiselect-dropdown [placeholder]="'Metrics Head'" [settings]="mt_head_dropdownSettings"
+                            [data]="mt_head_dropdownList" [(ngModel)]="mt_head_selectedItems"
+                            (onSelect)="getBifurcationList();" (onSelectAll)="getBifurcationList();"
+                            (onDeSelect)="getBifurcationList();" (onDeSelectAll)="getBifurcationList();">
+                        </ng-multiselect-dropdown>
+                    </div>
+
+                    <div class="multiselectFilter">
+                        <!-- <span class="filterLabel" >BIFURCATION</span> -->
+                        <ng-multiselect-dropdown [placeholder]="'Bifurcation'" [settings]="bifurcation_dropdownSettings"
+                            [data]="bifurcation_dropdownList" [(ngModel)]="bifurcation_selectedItems">
+                        </ng-multiselect-dropdown>
+                    </div>
+
+                    <div class="multiselectFilter">
+                        <!-- <span class="filterLabel" >AGENT TYPE</span> -->
+                        <ng-multiselect-dropdown [placeholder]="'Agent Type'" [settings]="agent_type_dropdownSettings"
+                            [data]="agent_type_dropdownList" [(ngModel)]="agent_type_selectedItems">
+                        </ng-multiselect-dropdown>
+                    </div>
+
+                    <br>
+                    <!-- <br> -->
+                    <div class="row">
+                        <!-- <div class="col-6" style="background: #3c3c3c52 !important;">
+                                <span class="filterLabel">Old Agent</span>
+                            </div>
+                            <div class="col-6" style="background: #3c3c3c !important;" >
+                                <span class="filterLabel">{{old_totalScore}}</span>
+
+                            </div> -->
+
+
+                        <div style="width: 100%">
+                            <span style="font-size: 11pt;font-weight: bold;padding-bottom: 3px; color: black;">OLD
+                                AGENT</span>
+                        </div>
+
+                        <div style="width: 100%">
+                            <div class="row">
+                                <div class="col-6" style="background: #3c3c3c52 !important;">
+                                    <span class="filterLabel">METRICS HEAD</span>
+                                </div>
+                                <!-- <div class="col-6" style="background: #3c3c3c !important;" > -->
+                                <div class="col-6" style="background: #d7cfff !important;">
+                                    <span class="filterLabel" style="color: black!important;">TOTAL</span>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+                        <ng-container *ngFor="let eachhd of old_maxScoreConfig">
+                            <div class="col-6"
+                                style="background: #d7cfff !important;    word-wrap: break-word; border-bottom:solid #505050  1px ;">
+                                <span class="filterLabel" style="color: black">{{eachhd.head}}</span>
+
+                            </div>
+                            <div class="col-6"
+                                style="background: #3c3c3c52 !important;border-bottom:solid #505050  1px">
+                                <span class="filterLabel">{{eachhd.maxScore}}</span>
+
+                            </div>
+                        </ng-container>
+
+                        <div class="col-6" style="background: #3c3c3c52 !important;">
+                            <span class="filterLabel">TOTAL SCORE</span>
+                        </div>
+                        <div class="col-6" style="background: #d7cfff !important;">
+                            <span class="filterLabel" style="color: black">{{old_totalScore}}</span>
+
+                        </div>
+
+                    </div>
+                    <div class="row mt-3" style="padding-top: 20px!important;">
+                        <!-- <div class="col-6" style="background: #3c3c3c52 !important;">
+                                <span class="filterLabel">Old Agent</span>
+                            </div>
+                            <div class="col-6" style="background: #3c3c3c !important;" >
+                                <span class="filterLabel">{{old_totalScore}}</span>
+
+                            </div> -->
+                        <div style="width: 100%">
+                            <span style="font-size: 11pt;font-weight: bold;padding-bottom: 3px; color: black;">NEW
+                                AGENT</span>
+                        </div>
+
+                        <div style="width: 100%">
+                            <div class="row">
+                                <div class="col-6" style="background: #3c3c3c52 !important;">
+                                    <span class="filterLabel">METRICS HEAD</span>
+                                </div>
+                                <div class="col-6" style="background: #d7cfff !important;">
+                                    <span class="filterLabel" style="color: black!important;">TOTAL</span>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- <span style="font-size: 11pt;font-weight: bold;padding-bottom: 3px;">NEW AGENT</span>
+                            
+
+                            <div class="col-6" style="background: #3c3c3c52 !important;">
+                                <span class="filterLabel">METRICS HEAD</span>
+                            </div>
+                            <div class="col-6" style="background: #3c3c3c !important;" >
+                                <span class="filterLabel">TOTAL</span>
+
+                            </div> -->
+
+                        <ng-container *ngFor="let eachhd of new_maxScoreConfig">
+                            <div class="col-6"
+                                style="background: #d7cfff !important;    word-wrap: break-word; border-bottom:solid #505050  1px ;">
+                                <span class="filterLabel" style="color: black">{{eachhd.head}}</span>
+
+                            </div>
+                            <div class="col-6"
+                                style="background: #3c3c3c52 !important;border-bottom:solid #505050  1px">
+                                <span class="filterLabel">{{eachhd.maxScore}}</span>
+
+                            </div>
+                        </ng-container>
+
+                        <div class="col-6" style="background: #3c3c3c52 !important;">
+                            <span class="filterLabel">TOTAL SCORE</span>
+                        </div>
+                        <div class="col-6" style="background: #d7cfff !important;">
+                            <span class="filterLabel" style="color: black">{{new_totalScore}}</span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row mt-3" style="padding-top: 20px!important;">
+                        <!-- <div class="col-6" style="background: #3c3c3c52 !important;">
+                                <span class="filterLabel">Old Agent</span>
+                            </div>
+                            <div class="col-6" style="background: #3c3c3c !important;" >
+                                <span class="filterLabel">{{old_totalScore}}</span>
+
+                            </div> -->
+                        <span style="font-size: 11pt;font-weight: bold;padding-bottom: 3px; color: black;">JUST JOINED
+                            AGENT</span>
+
+
+                        <div class="col-6" style="background: #3c3c3c52 !important;">
+                            <span class="filterLabel">METRICS HEAD</span>
+                        </div>
+                        <div class="col-6" style="background: #d7cfff !important; ">
+                            <span class="filterLabel" style="color: black!important;">TOTAL</span>
+
+                        </div>
+
+                        <ng-container *ngFor="let eachhd of just_joined_maxScoreConfig">
+                            <div class="col-6"
+                                style="background: #d7cfff !important;    word-wrap: break-word; border-bottom:solid #505050  1px ;">
+                                <span class="filterLabel" style="color: black">{{eachhd.head}}</span>
+
+                            </div>
+                            <div class="col-6"
+                                style="background: #3c3c3c52 !important;border-bottom:solid #505050  1px">
+                                <span class="filterLabel">{{eachhd.maxScore}}</span>
+
+                            </div>
+                        </ng-container>
+
+                        <div class="col-6" style="background: #3c3c3c52 !important;">
+                            <span class="filterLabel">TOTAL SCORE</span>
+                        </div>
+                        <div class="col-6" style="background: #d7cfff !important;">
+                            <span class="filterLabel" style="color: black">{{just_joined_totalScore}}</span>
+
+                        </div>
+
+                    </div>
+
+
+
+
+
+
+
+                </div>
+
+
+
+            </div>
+
+            <div class="row" style="position: fixed; left:0; bottom:0; width:280px; ">
+                <div class="col-6" style="padding:0">
+                    <button class="filterApplyButton" style=" background-color: rgb(238, 99, 99);" (click)="resetAll()">
+                        <span>Reset All</span>
+                    </button>
+
+                </div>
+
+                <div class="col-6" style="padding:0">
+                    <button class="filterApplyButton" style="background-color: rgb(0, 95, 204);" (click)="
+                    getScoreConfig();
+                     ">
+                        <!-- <button  class="filterApplyButton"  style="background-color: rgb(0, 95, 204);" (click)=" callFilterResult('details', 0, 0)">                     -->
+                        <span>Filter</span>
+                    </button>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="mainArea">
+            <!-- <div class="row " >
+                <div class="col-6 agentPad" [ngClass]="agentScoreCard == true ? 'highlightpad':''" (click)="agentScoreCard = true">AGENT SCORE CARD</div>
+                <div class="col-6 agentPad" [ngClass]="agentScoreCard == false ? 'highlightpad':''" (click)="agentScoreCard = false">AGENT SEGMENTATION</div>
+
+            </div> -->
+            <div class="row mainAreaPad" *ngIf="agentScoreCard == true">
+                <!-- <div class="row" style="padding:15px !important; width:100%">
+
+                        </div> -->
+                <div class="row"
+                    style="padding-left:15px !important; padding-right:15px !important;padding-top:15px !important;width:100% ; ">
+                    <div class="col-6">
+                        <div class="row" style="padding: 0;">
+
+                            <div class="col-3" style="padding-left: 0px;">
+                                <span style="font-weight: bold;color: #343434;">Operation</span>
+                            </div>
+                            <div class="col-3" *ngIf="confType != 'Between'">
+                                <span style="font-weight: bold;color: #343434;">Value</span>
+
+                            </div>
+                            <div class="col-3" *ngIf="confType == 'Between'">
+                                <span style="font-weight: bold;color: #343434;">Lower Range</span>
+                            </div>
+
+                            <div class="col-3" *ngIf="confType == 'Between'">
+                                <span style="font-weight: bold;color: #343434;">Upper Range</span>
+                            </div>
+
+                            <div class="col-3">
+                                <span style="font-weight: bold; color: #343434;">Score</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row"
+                    style="padding-left:15px !important; padding-right:15px !important;padding-top:5px !important;padding-bottom: 15px !important; width:100% ; ">
+
+
+                    <!-- <div class="col-2">
+                        
+
+                                <select class="form-control" name="" id="" [(ngModel)]="confHead" > Select Head
+                                    <option *ngFor="let hd of mt_head_dropdownList" value="{{hd.head}}"> {{hd.head}}</option>
+
+
+                                    
+                                </select>
+                         </div>
+
+                         <div class="col-2">
+                           
+
+                            <select class="form-control" name="" id="" [(ngModel)]="metric_id" > Select Bifurcation
+                                <option *ngFor="let bif of bifurcation_dropdownList" value="{{bif.id}}"> {{bif.bifurcation}}</option>
+
+                                
+                            </select>
+                     </div> -->
+
+                    <div class="col-6">
+                        <div class="row" style="padding: 0;">
+                            <div class="col-3" style="padding-left: 0px;">
+                                <!-- Add Lower Range -->
+                                <!-- <input type="number" placeholder="Lower Range" class="form-control" name="" id=""> -->
+
+                                <select class="form-control" name="" id="" [(ngModel)]="confType"
+                                    style="font-size: 14px !important;"> Select Operation
+                                    <option value="Between">Between</option>
+
+                                    <option value="&#60;"> &#60;</option>
+                                    <option value="&#62;"> &#62;</option>
+                                    <option value="&#60;="> &#60;=</option>
+                                    <option value="&#62;="> &#62;=</option>
+
+                                    <option value="="> =</option>
+
+
+
+
+                                    <!-- <option value="V"> Value</option> -->
+                                </select>
+                            </div>
+                            <div class="col-3" *ngIf="confType != 'Between'">
+
+                                <input type="text" placeholder="Value" [(ngModel)]="confVal" class="form-control"
+                                    style="font-size: 14px !important;" name="" id="">
+                            </div>
+
+                            <div class="col-3" *ngIf="confType == 'Between'">
+                                <!-- Add Lower Range -->
+                                <input type="number" placeholder="Lower Range" [(ngModel)]="confLowerRange"
+                                    class="form-control" style="font-size: 14px !important;" name="" id="">
+                            </div>
+
+
+
+                            <div class="col-3" *ngIf="confType == 'Between'">
+                                <!-- Add Upper Range -->
+                                <input type="number" placeholder="Upper Range" class="form-control"
+                                    [(ngModel)]="confUpperRange" style="font-size: 14px !important;" name="" id="">
+
+                            </div>
+
+                            <div class="col-3">
+                                <!-- Add Score -->
+                                <input type="number" placeholder="Score" class="form-control" [(ngModel)]="confScore"
+                                    name="" style="font-size: 14px !important;" id="">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6" style="padding-left: 0px;">
+                        <div class="row" style="padding: 0;">
+
+
+
+                            <div class="col-4" style="padding: 0px 3px; font-size: 12px;">
+                                <button class="filterApplyButton" style="background-color: rgb(0, 95, 204);"
+                                    (click)="addConfiguration()">
+
+                                    <span>Add Configuration</span>
+                                </button>
+                            </div>
+
+                            <div class="col-4" style="padding: 0px 3px; font-size: 12px;">
+                                <button class="filterApplyButton" style="background-color: rgb(0, 95, 204);"
+                                    [disabled]="disableGenScore" (click)="generateScore()">
+
+                                    <span>Generate MoM Score</span>
+                                </button>
+                            </div>
+                            <div class="col-4" style="padding: 0px 3px; font-size: 12px;">
+                                <button class="filterApplyButton" style="background-color: rgb(0, 95, 204);"
+                                    [disabled]="disableGenScore" (click)="generateScoreYTD()">
+
+                                    <span>Generate YTD Score</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <br><br>
+
+                    <div class="col-12 mt-3">
+                        <table class="table table-hover" style="text-align: center; justify-items: center;">
+
+
+                            <thead>
+                                <!-- <tr class="" style="background: #bbd4e9;"> -->
+                                <tr class="" style="background: #d7cfff;">
+                                    <th class="tableColumnStyle" style="padding: 0;">Head</th>
+                                    <th class="tableColumnStyle" style="padding: 0;">Bifurcation</th>
+                                    <th class="tableColumnStyle" style="padding: 0;">Agent Type</th>
+                                    <!-- <th class="tableColumnStyle" style="padding: 0;">Operation</th> -->
+                                    <th class="tableColumnStyle" style="padding: 0;">Value</th>
+                                    <th class="tableColumnStyle" style="padding: 0;">Lower Range</th>
+                                    <th class="tableColumnStyle" style="padding: 0;">Upper Range</th>
+                                    <th class="tableColumnStyle" style="padding: 0;">Score</th>
+                                    <th class="tableColumnStyle" style="padding: 0;">Edit/ Delete</th>
+
+
+
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+                                <ng-container *ngFor="let score of scoreConfigList; let i=index;">
+                                    <tr [ngClass]="i%2 == 0? 'highlighRow':''" style="padding: 0;">
+                                        <!-- <td>1111111</td> -->
+                                        <td class="tableColumnStyle">{{score.head}}</td>
+
+                                        <td class="tableColumnStyle">{{score.bifurcation}}</td>
+                                        <td class="tableColumnStyle">{{score.agent_type.toUpperCase()}}</td>
+
+                                        <!-- <td class="tableColumnStyle">{{score.conf_type}}</td> -->
+                                        <td class="tableColumnStyle" *ngIf="score.conf_type != 'Between'">
+                                            {{score.conf_type}}&nbsp;{{score.conf_val}}</td>
+                                        <td class="tableColumnStyle" *ngIf="score.conf_type == 'Between'">
+                                            {{score.conf_type}}</td>
+
+                                        <td class="tableColumnStyle">
+                                            <span *ngIf="score.conf_type != 'Between'">-</span>
+                                            <span *ngIf="score.conf_type == 'Between'">
+                                                {{score.lower_range}}
+                                            </span>
+
+
+                                        </td>
+                                        <td class="tableColumnStyle">
+                                            <span *ngIf="score.conf_type != 'Between'">-</span>
+                                            <span *ngIf="score.conf_type == 'Between'">
+                                                {{score.upper_range}}
+                                            </span>
+                                        </td>
+                                        <td class="tableColumnStyle">
+                                            <span
+                                                *ngIf="(editScore == 0) || (score.id != editconfid)">{{score.score_val}}</span>
+                                            <input *ngIf="(editScore == 1) && (score.id == editconfid)" type="number"
+                                                class="form-control" name="" id="" [(ngModel)]="score.score_val">
+
+                                        </td>
+                                        <td class="tableColumnStyle">
+                                            <mat-icon style="font-size: 15px !important ; cursor: pointer;"
+                                                *ngIf="(editScore == 0) || (score.id != editconfid)"
+                                                (click)="openEditSection(score.id)" title="edit">edit</mat-icon>
+                                            <mat-icon style="font-size: 15px !important ; cursor: pointer;"
+                                                *ngIf="(editScore == 1) && (score.id == editconfid)"
+                                                (click)="cancelEdit()" title="cancel">close</mat-icon>
+                                            &nbsp;
+                                            <mat-icon style="font-size: 15px !important ; cursor: pointer;"
+                                                *ngIf="(editScore == 1) && (score.id == editconfid)"
+                                                (click)="saveEdit(score.id, score.score_val, score.metric_id, score.agent_type)"
+                                                title="save">save</mat-icon>
+                                            &nbsp;
+                                            <mat-icon style="font-size: 15px !important ; color:red; cursor: pointer;"
+                                                (click)="openDeleteModal(deleteBox, score.id)"
+                                                title="delete">delete</mat-icon>
+                                        </td>
+
+
+
+                                    </tr>
+
+
+
+
+
+
+
+
+
+
+                                </ng-container>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+
+        </div>
+    </div>
+</ng-container>
+
+
+
+
+
+
+
+<ng-template #deleteBox>
+
+
+    <div style="padding:15px!important;">
+
+        <div class="row" style="text-align: left;">
+            <!-- <img width="35px;" src="assets/image/graphrecommendation.png" alt="">    -->
+            <!-- &nbsp; &nbsp; -->
+
+            <span style="font-weight: bold; font-size: 16pt; position: relative; top: 5px;"> Delete Configuration</span>
+
+            &nbsp;
+            <span style="position: absolute; right: 20px;">
+                <mat-icon (click)="closeModal()" style="cursor: pointer;">close</mat-icon>
+
+            </span>
+
+        </div>
+
+        <hr class="solid">
+
+
+
+
+
+        <div class="row" style="font-size: 13pt;">
+
+            Are you sure? This process can not be undone.
+
+
+
+        </div>
+
+        <div class="row" style="font-size: 13pt; font-weight: bold; margin-top: 30px !important; ">
+
+
+
+            <div class="col-6" style="margin: 0% !important; padding: 0% !important;font-weight: bold; "><button
+                    class="filterApplyButton" style=" background-color: rgb(0, 95, 204);" (click)="closeModal()">
+                    <span>Cancel</span>
+                </button></div>
+            <div class="col-6" style="margin: 0% !important;padding: 0% !important;font-weight: bold; "><button
+                    class="filterApplyButton" style=" background-color: rgb(238, 99, 99);"
+                    (click)="deleteConfiguration()">
+                    <span>Yes</span>
+                </button></div>
+
+
+        </div>
+
+    </div>
+
+
+</ng-template>

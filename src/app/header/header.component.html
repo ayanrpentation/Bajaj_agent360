@@ -1,0 +1,297 @@
+<ng-container style="height: 100%">
+  <mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="side"  [opened]="true">
+      
+      <img *ngIf="navOpen==true" src="assets/images/bajaj_logo.svg" alt="" style="width: 215px; margin-bottom: 60px; cursor: pointer;" />
+
+      <!-- <div class="row" [ngClass]="(openedPageName =='performance')?'openedPage':''"   style="height: 42px; margin-bottom: 10px!important; border-radius: 5px; cursor: pointer; padding-left: 10px!important; padding-right: 10px!important;">
+        <div class="col"  style="height: 100%; padding: 0%!important; margin: 0%!important; font-size: 14px; display: flex; align-items: center;" (click)="goToPerformance()">Overall Performance Old</div>
+                                
+      </div> -->
+
+      <div class="row" [ngClass]="(openedPageName =='OverallPerformance')?'openedPage':''"   style="height: 42px; margin-bottom: 10px!important; border-radius: 5px; cursor: pointer; padding-left: 10px!important; padding-right: 10px!important;">
+        <div class="col"  style="height: 100%; padding: 0%!important; margin: 0%!important; font-size: 14px; display: flex; align-items: center;" (click)="goTo_overallPerformance()">Overall Performance</div>
+                                
+      </div>
+
+      <div class="row" [ngClass]="(openedPageName =='agentInsight')?'openedPage':''" style="height: 42px; margin-bottom: 10px!important; border-radius: 5px; cursor: pointer; padding-left: 10px!important; padding-right: 10px!important;">
+        <div class="col"  style="height: 100%; padding: 0%!important; margin: 0%!important; font-size: 14px; display: flex; align-items: center;"   (click)="goToInsights()">Insights</div>
+      </div>
+
+      <div class="row"  [ngClass]="(openedPageName =='segmentation')?'openedPage':''"   style="height: 42px; margin-bottom: 10px!important; border-radius: 5px; cursor: pointer; padding-left: 10px!important; padding-right: 10px!important;">
+        <div class="col"  style="height: 100%; padding: 0%!important; margin: 0%!important; font-size: 14px; display: flex; align-items: center;" (click)="goToSegmentation()">Existing Agent Segmentation</div>
+      </div>
+
+      <!-- <div class="row" [ngClass]="(openedPageName =='segmentation_newAgentPerformance')?'openedPage':''"  style="height: 42px; margin-bottom: 10px!important; border-radius: 5px; cursor: pointer; padding-left: 10px!important; padding-right: 10px!important;">
+        <div class="col"  style="height: 100%; padding: 0%!important; margin: 0%!important; font-size: 14px; display: flex; align-items: center;"  (click)="goToSegmentation_new()">New Agent Performance</div>
+      </div> -->
+
+      <div class="row"  [ngClass]="(openedPageName =='scorecard')?'openedPage':''" style="height: 42px; margin-bottom: 10px!important; border-radius: 5px; cursor: pointer; padding-left: 10px!important; padding-right: 10px!important;">
+        <div class="col"  style="height: 100%; padding: 0%!important; margin: 0%!important; font-size: 14px; display: flex; align-items: center;"   (click)="goToScoreCard()">Scorecard</div>
+      </div>
+
+      <!-- <div class="row" [ngClass]="(openedPageName =='triggerTracker')?'openedPage':''"  style="height: 42px; margin-bottom: 10px!important; border-radius: 5px; cursor: pointer; padding-left: 10px!important; padding-right: 10px!important;">
+        <div class="col"  style="height: 100%; padding: 0%!important; margin: 0%!important; font-size: 14px; display: flex; align-items: center;"   (click)="goToTriggerTracker()">Trigger Tracker</div>
+      </div> -->
+
+
+
+    </mat-drawer>
+
+
+    <div class="example-sidenav-content">
+
+        <mat-toolbar style="height: 60px; font-weight: 600; position: sticky; top: 0; background-color: #f1f1f1;">
+            <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"  (click)="drawer.toggle(); navOpen = !navOpen"> -->
+              <mat-icon  (click)="drawer.toggle();sidenavTogle();">menu</mat-icon>
+            <!-- </button> -->
+            <span>
+                <img *ngIf="navOpen==false"
+                    src="assets/images/bajaj_logo.svg"
+                    alt=""
+                    style="width: 215px;  margin-left: 20px;"
+                />
+            </span>
+            <span *ngIf="lastUpdatedOn.length!=0"  style=" font-size: 14px;">
+                &nbsp;
+                Last updated: {{lastUpdatedOn}}
+            </span>
+
+            <span class="example-spacer"></span>
+
+            <span style="font-size: 13pt">{{userName}}</span>
+
+            <img
+                src="assets/images/avatar.svg"
+                alt="Avatar"
+                style="
+                width: 25px;
+                border-radius: 50%;
+                margin-left: 20px;
+                cursor: pointer;
+                "
+                (click)="showtopRightOptn = !showtopRightOptn"
+            />
+            
+
+            <!-- <div *ngIf="showtopRightOptn" class="topRightBtn">
+                <div
+                    class="topRightOptn"
+                    (click)="goToUpload(); showtopRightOptn = false"
+                >
+                    Upload
+                </div>
+                <div
+                    class="topRightOptn"
+                    (click)="goToConfiguration(); showtopRightOptn = false"
+                >
+                    Scoring
+                </div>
+                <div
+                    class="topRightOptn"
+                    (click)="goToInsights(); showtopRightOptn = false"
+                >
+                    Dashboard
+                </div>
+                <div
+                    class="topRightOptn"
+                    (click)="downloadScoreCardAll(); showtopRightOptn = false"
+                >
+                    Download Scorecard
+                </div>
+                <div
+                    class="topRightOptn"
+                    (click)="logout(); showtopRightOptn = false"
+                >
+                    Logout
+                </div>
+            </div> -->
+        </mat-toolbar>
+
+
+        <!-- <div class="upHeader">
+            <div style="width:80%; padding-bottom: 10px; padding-top: 10px;">
+                <mat-icon style="margin-top: 10px" (click)="drawer.toggle(); navOpen = !navOpen">menu</mat-icon>
+
+                <img *ngIf="navOpen==false"
+                    src="assets/images/bajaj_logo.svg"
+                    alt=""
+                    style="width: 215px; margin-top: -14px; margin-left: 20px"
+                />
+            </div>
+
+            <div style="width: 20%;">
+                <span style="font-size: 13pt">{{userName}}</span>
+            </div>
+        </div> -->
+      
+
+        <!-- <div class="  upHeader">
+            <div class="col-8" style="padding-bottom: 10px; padding-top: 10px;">
+                <mat-icon style="margin-top: 10px" (click)="drawer.toggle(); navOpen = !navOpen">menu</mat-icon>
+
+                <img *ngIf="navOpen==false"
+                    src="assets/images/bajaj_logo.svg"
+                    alt=""
+                    style="width: 215px; margin-top: -14px; margin-left: 20px"
+                />
+            </div>
+
+            <div class="col-4 loginDetails">
+                <div class="" style="width: 100%">
+                    <div class="col-8">
+
+                        <span style="position: relative; float: right; font-size: 13pt">{{userName}}</span>
+
+                    </div>
+
+                    <div class="col-4">
+                        <img
+                            src="assets/images/avatar.svg"
+                            alt="Avatar"
+                            style="
+                            width: 25px;
+                            border-radius: 50%;
+                            position: absolute;
+                            right: 15px;
+                            top: 0px;
+                            cursor: pointer;
+                            "
+                            (click)="showtopRightOptn = !showtopRightOptn"
+                        />
+                    </div>
+
+                    <div *ngIf="showtopRightOptn" class="topRightBtn">
+                        <div
+                            class="topRightOptn"
+                            (click)="goToUpload(); showtopRightOptn = false"
+                        >
+                            Upload
+                        </div>
+                        <div
+                            class="topRightOptn"
+                            (click)="goToConfiguration(); showtopRightOptn = false"
+                        >
+                            Scoring
+                        </div>
+                        <div
+                            class="topRightOptn"
+                            (click)="goToInsights(); showtopRightOptn = false"
+                        >
+                            Dashboard
+                        </div>
+                        <div
+                            class="topRightOptn"
+                            (click)="downloadScoreCardAll(); showtopRightOptn = false"
+                        >
+                            Download Scorecard
+                        </div>
+                        <div
+                            class="topRightOptn"
+                            (click)="logout(); showtopRightOptn = false"
+                        >
+                            Logout
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+        </div> -->
+
+
+
+        <div style="width: 100%; height: calc(100% - 60px); overflow-y: auto; overflow-x: hidden;">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+  </mat-drawer-container>
+
+
+</ng-container>
+
+
+<div *ngIf="showtopRightOptn" class="topRightBtn">
+  <div
+      class="topRightOptn"
+      (click)="goToUpload(); showtopRightOptn = false"
+  >
+      Upload
+  </div>
+  <div
+      class="topRightOptn"
+      (click)="goToConfiguration(); showtopRightOptn = false"
+  >
+      Scoring
+  </div>
+  <div
+      class="topRightOptn"
+      (click)="goToInsights(); showtopRightOptn = false"
+  >
+      Dashboard
+  </div>
+  <div
+      class="topRightOptn"
+      (click)="downloadScoreCardAll(); showtopRightOptn = false"
+  >
+      Download Scorecard
+  </div>
+  <div
+      class="topRightOptn"
+      (click)="logout(); showtopRightOptn = false"
+  >
+      Logout
+  </div>
+</div>
+
+<!-- <span style="font-size: 10pt; color: rgb(0, 0, 0); position: fixed; top: 28!important; right:77!important; cursor: pointer; z-index: 99;">{{currentDate}}</span> -->
+
+<ng-template #generatescore>
+  <div style="padding: 30px !important">
+    <div class="row" style="text-align: center">
+      <span style="font-weight: bold; font-size: 18pt">
+        Agent Score Generation
+      </span>
+      <span style="position: absolute; right: 33px">
+        <mat-icon (click)="closeModal()" style="cursor: pointer"
+          >close</mat-icon
+        >
+      </span>
+    </div>
+
+    <hr class="solid" />
+
+    <div class="row" style="font-weight: bold; font-size: 17px">
+      <div class="col-2">
+        <img width="40px" src="assets/image/calendar.png" alt="" />
+      </div>
+      <div class="col-7">
+        <ng-multiselect-dropdown
+          style="font-weight: lighter"
+          [placeholder]="'MONTH YEAR'"
+          [settings]="month_dropdownSettings"
+          [data]="month_dropdownList"
+          [(ngModel)]="month_selectedItems"
+        >
+        </ng-multiselect-dropdown>
+      </div>
+
+      <div class="col-3" style="padding: 0 !important">
+        <button
+          class="filterApplyButton"
+          style="background-color: rgb(0 74 139); height: 42px"
+          (click)="generatescoreMonth()"
+        >
+          <span>Generate</span>
+        </button>
+      </div>
+    </div>
+
+    <br />
+
+    <hr class="solid" />
+  </div>
+</ng-template>
+
+

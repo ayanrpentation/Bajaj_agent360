@@ -1,0 +1,71 @@
+
+<!-- <div
+    style="text-align: center; padding:2%;box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 0px; top:80px;position: relative; background-color: rgb(236, 236, 236); height: auto;">
+
+    
+    <div class="row" style="margin-bottom: 30px!important; margin-left: 28px!important;">
+
+        <button  [ngClass]="vinLess1yr == 1?'highlightpad1':'buttonbg'" (click)="this.vinLess1yr = 1">Vintage &#60; 1 Year</button>
+        <button  [ngClass]="vinLess1yr == 2?'highlightpad1':'buttonbg'" (click)="this.vinLess1yr = 2;"> Vintage &gt; 1 Year</button>
+        <button  [ngClass]="vinLess1yr == 3?'highlightpad1':'buttonbg'" (click)="this.vinLess1yr = 3;"> Single LOB</button>
+        
+        
+        
+    </div>
+
+    <div class="row" *ngIf="vinLess1yr == 1">
+        <app-vintage-less-than-one  style="width: 100%"></app-vintage-less-than-one>
+    </div>
+
+    <div class="row" *ngIf="vinLess1yr == 2">
+        <app-vintage-greater-than-one  style="width: 100%"></app-vintage-greater-than-one>
+    </div>
+
+    <div class="row" *ngIf="vinLess1yr == 3">
+        <app-single-lob  style="width: 100%"></app-single-lob>
+    </div>
+   
+
+</div> -->
+
+
+
+
+
+
+
+
+
+<div style="text-align: center;  height: auto;">
+
+    
+    <div class="row topNav_filterSection" style=" display: flex; gap:10px;">
+
+        <button  [ngClass]="vinLess1yr == 1?'highlightpad1':'buttonbg'" (click)="this.vinLess1yr = 1">Vintage &#60; 1 Year</button>
+        <button  [ngClass]="vinLess1yr == 2?'highlightpad1':'buttonbg'" (click)="this.vinLess1yr = 2;"> Vintage &gt; 1 Year</button>
+        <!-- <button  [ngClass]="vinLess1yr == 3?'highlightpad1':'buttonbg'" (click)="this.vinLess1yr = 3;"> Single LOB</button> -->
+    </div>
+
+
+    <div style="width: 100%; padding-top: 20px;">
+
+        <div class="row" *ngIf="vinLess1yr == 1">
+            <app-vintage-less-than-one  style="width: 100%"></app-vintage-less-than-one>
+        </div>
+    
+        <div class="row" *ngIf="vinLess1yr == 2">
+            <app-vintage-greater-than-one  style="width: 100%"></app-vintage-greater-than-one>
+        </div>
+    
+        <div class="row" *ngIf="vinLess1yr == 3">
+            <app-single-lob  style="width: 100%"></app-single-lob>
+        </div>
+    </div>
+
+   
+
+</div>
+
+
+
+

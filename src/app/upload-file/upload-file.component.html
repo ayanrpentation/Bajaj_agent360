@@ -1,0 +1,281 @@
+<!-- the below commented part is the common template for all the pages which have a side nav -->
+
+<!-- <ng-container>
+    <div class="row">
+        <div class="sidenav">
+        </div>
+        <div class="mainArea">           
+        </div>
+    </div>
+</ng-container> -->
+
+<!-- <mat-spinner></mat-spinner> -->
+
+<ng-container>
+    <div class="row">
+        <div class="sidenav" style="padding-top: 0;">
+            <div class="row">
+
+                <div class="col-12 agentPad highlightpad" style="padding-left: 5px !important; background-color: #e8e3ff;"> <span style="color:black"><mat-icon>file_copy</mat-icon></span> &nbsp;&nbsp;&nbsp;
+                <span style="color:black;    position: absolute;
+                bottom: 8px;">  UPLOAD FILE </span></div>
+            </div>
+
+            <div class="row filterButtonArea" style=" width:100%!important;height: 82%; overflow-y: scroll;">
+
+                    <div class="col-12 mainMenu" style="background-color: #e8e3ff; color: #ffffff; padding:15px;padding-bottom: 10px; font-size: 12px;">
+
+                        
+
+
+                        <div class="multiselectFilter">
+                            <span class="filterLabel" >FILE TYPE</span>
+                            <ng-multiselect-dropdown
+                                [placeholder]="'FILE TYPE'"
+                                [settings]="filetype_dropdownSettings"
+                                [data]="filetype_dropdownList"
+                                [(ngModel)]="filetype_selectedItems"
+                                (onSelect)="getUploadedFileList();"
+                                
+                                (onDeSelect)="getUploadedFileList();"
+                                
+                                >
+                            </ng-multiselect-dropdown>
+                        </div>
+<br>
+                        <div class="multiselectFilter">
+                            <span class="filterLabel" >APPEND/REPLACE</span>
+                            <br>
+                            <br>
+
+                            <input  type="radio" id="append" name="ar"  value="append" [(ngModel)]="uploadtype">
+                            <label for="append">Append</label><br>
+                            <input  type="radio" id="replace" name="ar" value="replace" [(ngModel)]="uploadtype">
+                            <label for="replace" >Replace</label><br>
+
+                            <!-- <ng-multiselect-dropdown
+                                [placeholder]="'FILE TYPE'"
+                                [settings]="filetype_dropdownSettings"
+                                [data]="filetype_dropdownList"
+                                [(ngModel)]="filetype_selectedItems"
+                                (onSelect)="getUploadedFileList();"
+                                
+                                (onDeSelect)="getUploadedFileList();"
+                                
+                                >
+                            </ng-multiselect-dropdown> -->
+                        </div>
+                        <!-- <br> -->
+
+                        <div class="multiselectFilter">
+                            <span class="filterLabel" >CHOOSE FILE</span>
+                            <input accept=".xlsx, .csv" type="file" #file id="fileUp" [multiple]="false" (change)="saveFile($event)"
+                    />
+                            <!-- <input type="file" id="myFile" name="filename" (change)="saveFile($event)"> -->
+                            <!-- <ng-multiselect-dropdown
+                                [placeholder]="'BIFURCATION'"
+                                [settings]="bifurcation_dropdownSettings"
+                                [data]="bifurcation_dropdownList"
+                                [(ngModel)]="bifurcation_selectedItems"
+                                
+                                >
+                            </ng-multiselect-dropdown> -->
+                        </div>
+
+                        
+                   
+                       
+
+                        
+
+                    </div>
+                    
+
+                   
+            </div>
+
+            <div class="row" style="position: fixed; left:0; bottom:0; width:280px; ">
+                <!-- <div class="col-6" style="padding:0">
+                    <button  class="filterApplyButton" style=" background-color: rgb(238, 99, 99);" (click)="resetAll()">
+                        <span>Reset All</span>
+                    </button>
+                    
+                </div> -->
+
+                <div class="col-12" style="padding:0">
+                    <button  class="filterApplyButton"  style="background-color: rgb(0, 95, 204);" (click)="
+                    uploadFile();
+                     ">
+                    <!-- <button  class="filterApplyButton"  style="background-color: rgb(0, 95, 204);" (click)=" callFilterResult('details', 0, 0)">                     -->
+                        <span>Upload File</span>
+                    </button>
+                    
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="mainArea">
+            <div class="row " >
+                <div class="col-12 agentPad" style="background: transparent; margin-top: 25px; color:black" [ngClass]="agentScoreCard == true ? 'highlightpad':''" (click)="agentScoreCard = true">UPLOADED FILES</div>
+                <!-- <div class="col-6 agentPad" [ngClass]="agentScoreCard == false ? 'highlightpad':''" (click)="agentScoreCard = false">AGENT SEGMENTATION</div> -->
+
+            </div>
+            <div class="row mainAreaPad" >    
+                        <!-- <div class="row" style="padding:15px !important; width:100%">
+
+                        </div> -->
+               
+
+                         <div class="row" style="padding-left:15px !important; padding-right:15px !important;padding-top:5px !important;padding-bottom: 15px !important; width:100% ; "> 
+                           
+
+
+
+                           
+                         <br><br>
+
+                         <div class="col-12 mt-3" >
+                            <table  class="table table-hover" style="text-align: center; justify-items: center;">
+
+                            
+                                <thead>
+                                    <tr class="" style="background: #d7cfff;">
+                                            <th class="tableColumnStyle" style="padding: 0;">File Name</th>
+                                            <th class="tableColumnStyle" style="padding: 0;">File Type</th>
+                                            <!-- <th class="tableColumnStyle" style="padding: 0;">Operation</th> -->
+                                            <th class="tableColumnStyle" style="padding: 0;">Uploaded At</th>
+                                            <!-- <th class="tableColumnStyle" style="padding: 0;">Lower Range</th>
+                                            <th class="tableColumnStyle" style="padding: 0;">Upper Range</th>
+                                            <th class="tableColumnStyle" style="padding: 0;">Score</th> -->
+                                            <!-- <th class="tableColumnStyle" style="padding: 0;">View/  Delete</th> -->
+
+
+
+                                        
+                                    </tr>
+                                    
+                                </thead>
+    
+                                <tbody>
+                                    <ng-container *ngFor="let score of fileList; let i=index;" >
+                                        <tr [ngClass]="i%2 == 0? 'highlighRow':''" style="padding: 0;">
+                                            <!-- <td>1111111</td> -->
+                                            <td class="tableColumnStyle">{{score.fileName}}</td>
+                                           
+                                            <td class="tableColumnStyle">{{score.fileType}}</td>
+                                            <td class="tableColumnStyle">{{score.uploadedAt.split("GMT")[0]}}</td>
+                                            <!-- <td class="tableColumnStyle">{{score.conf_type}}</td> -->
+                                            <!-- <td></td> -->
+                                            <!-- <td  class="tableColumnStyle" >
+                                                <mat-icon style="font-size: 15px !important ; cursor: pointer;" *ngIf="(editScore == 0) || (score.id != editconfid)" (click)="openEditSection(score.id)" title="edit">remove_red_eye</mat-icon>
+                                                
+                                                &nbsp;
+                                                <mat-icon style="font-size: 15px !important ; color:red; cursor: pointer;" (click)="openDeleteModal(deleteBox, score.id)" title="delete">delete</mat-icon>
+                                            </td> -->
+
+
+
+                                        </tr>
+    
+                                        
+    
+                                            
+                
+                
+                                         
+            
+                                          
+    
+                                    </ng-container>                  
+                                  
+                                </tbody>
+                              </table>
+                         </div>
+                         </div>
+
+                
+                
+
+            </div>
+            
+           
+        </div>
+    </div>
+</ng-container>
+
+
+
+
+
+
+
+<ng-template #deleteBox>
+
+    
+    <div style="padding:15px!important;">
+
+        <div class="row" style="text-align: left;">
+            <!-- <img width="35px;" src="assets/image/graphrecommendation.png" alt="">    -->
+            <!-- &nbsp; &nbsp; -->
+
+            <span style="font-weight: bold; font-size: 16pt; position: relative; top: 5px;"> Delete Configuration</span>
+
+            &nbsp;
+            <span style="position: absolute; right: 20px;">
+                <mat-icon (click)="closeModal()" style="cursor: pointer;">close</mat-icon>
+        
+                 </span>
+
+        </div>
+
+        <hr class="solid">
+        
+       
+        
+
+
+            <div class="row"  style="font-size: 13pt;">
+
+                Are you sure? This process can not be undone.
+
+
+    
+            </div>
+
+            <div class="row"  style="font-size: 13pt; font-weight: bold; margin-top: 30px !important; ">
+
+                
+
+                <div class="col-6" style="margin: 0% !important; padding: 0% !important;font-weight: bold; "><button  class="filterApplyButton" style=" background-color: rgb(0, 95, 204);" (click)="closeModal()">
+                    <span>Cancel</span>
+                </button></div>
+                <div class="col-6" style="margin: 0% !important;padding: 0% !important;font-weight: bold; "><button  class="filterApplyButton" style=" background-color: rgb(238, 99, 99);" (click)="deleteFile()">
+                    <span>Yes</span>
+                </button></div>
+
+    
+            </div>
+        
+    </div>
+   
+
+</ng-template>

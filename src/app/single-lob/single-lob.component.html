@@ -1,0 +1,602 @@
+<div class="fullBody" style="height: auto; " >
+
+
+    <div class="row">
+
+        <div class="col-2">
+            <mat-card style="height: 130px; margin-bottom: 30px;">
+                <div class="row" style="height: 100%; padding: 0;">
+                    <div class="col-12" style="padding:0">
+                        <div class="row" style=" padding:0">
+                            <div class="col-9" style="padding:0; padding-top:20px;padding-left:20px; font-size:12px ; font-weight: 500; color: rgb(0, 69, 116); text-align: left; ">
+                                Overall {{projectName}}
+
+                                
+                            </div>
+
+                            <!-- <div class="col-9" style="padding:0; padding-top:20px;padding-left:20px; font-size:12px ; font-weight: 500; color: rgb(0, 0, 0); text-align: left; ">
+                                Overall IMDs
+
+                                
+                            </div> -->
+
+                            <div class="col-3" style="padding:5px; display: flex; justify-content: right;">
+
+                                <div style="background-color: #037cde28;width:38px; height: 38px;padding-top: 8px;padding-left: 2px; border-radius: 50%;">
+                                    <i class="fa fa-user-plus fa-lg" style="font-size: 25px;color: rgb(0, 69, 116) "></i>
+                                </div>
+
+
+                                <!-- <div style="background-color: #e8e3ff;width:38px; height: 38px;padding-top: 8px;padding-left: 2px; border-radius: 50%;">
+                                    <i class="fa fa-user-plus fa-lg" style="font-size: 25px;color: rgb(0, 0, 0) "></i>
+                                </div> -->
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-9" style="display: flex; justify-content: left; padding-top: 5px; padding-left: 60px;font-weight: 500;color: rgb(0, 69, 116)">
+                        <h1>
+                            {{countSlobDict.overall}}
+                        </h1>
+                        
+                    </div>
+
+
+
+                    <!-- <div class="col-9" style="display: flex; justify-content: left; padding-top: 5px; padding-left: 60px;font-weight: 500;color: rgb(0, 0, 0)">
+                        <h1>
+                            {{countSlobDict.overall}}
+                        </h1>
+                        
+                    </div> -->
+
+
+
+                    <!-- previous color was : rgb(0, 69, 116) -->
+
+                    <div class="col-3" style="display: flex; justify-content: left; padding-top: 10px;font-weight: 500;color: rgb(0, 69, 116)">
+                        
+                        
+                    </div>
+                    
+                </div>
+            </mat-card> 
+
+            <mat-card style="height: 130px;">
+                <div class="row" style="height: 100%; padding: 0;">
+                    <div class="col-12" style="padding:0">
+                        <div class="row" style=" padding:0">
+
+                            <!-- previous color was : rgb(0, 69, 116) -->
+                            <div class="col-9" style="padding:0; padding-top:20px;padding-left:20px; font-size:12px ; font-weight: 500; color: rgb(0, 69, 116); text-align: left; ">
+                                Single LOB
+
+                                
+                            </div>
+
+                            <div class="col-3" style="padding:5px; display: flex; justify-content: right;">
+
+                                <div style="background-color: #037cde28;width:38px; height: 38px;padding-top: 8px;padding-left: 2px; border-radius: 50%;">
+                                    <i class="fa fa-user-times fa-lg" style="font-size: 25px;color: rgb(0, 69, 116) "></i>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-9" style="display: flex; justify-content: left; padding-top: 5px; padding-left: 60px;font-weight: 500;color: rgb(0, 69, 116)">
+                        <h1>
+                            {{countSlobDict.slobImd}}
+                        </h1>
+                        
+                    </div>
+
+                    <div class="col-3" style="display: flex; justify-content: left; padding-top: 10px;font-weight: 500;color: rgb(0, 69, 116)">
+                        
+                        
+                    </div>
+                    
+                </div>
+            </mat-card>
+        </div>
+        
+
+        <div class="col-3" *ngIf="designationType == 'NH'">
+            
+            <mat-card style="height: 290px; text-align: center;" >
+
+                <div class="row">
+                    <div class="col-12" style="padding:0; padding-top:20px;padding-left:20px; font-size:14px ; font-weight: 500; color: rgb(0, 69, 116); text-align: left; ">
+                        Subchannelwise Contribution
+
+                        
+                    </div>
+                </div>
+                
+                   
+                <canvas id="subChannelwiseContriPieChart" width=200px  height="200" style="margin-top: -40px!important;padding: 10px"></canvas>
+
+                <!-- <div id="getStateWiseLOBDistPie_highchart" style="margin-top: -0px!important;"></div> -->
+                    
+                
+                
+            </mat-card>
+        </div>
+
+
+
+        <div class="col-3" *ngIf="designationType != 'NH'">
+            
+            <mat-card style="height: 290px; text-align: center;" >
+
+                <div class="row">
+                    <div class="col-12" style="padding:0; padding-top:20px;padding-left:20px; font-size:14px ; font-weight: 500; color: rgb(0, 69, 116); text-align: left; ">
+                        Team Contribution
+
+                        
+                    </div>
+                </div>
+                
+                   
+                <canvas id="teamContributionPieChart" width=200px  height="200" style="margin-top: -40px!important;padding: 10px"></canvas>
+                    
+                
+                
+            </mat-card>
+        </div>
+
+
+
+        <div class="col-3">
+            
+            <mat-card style="height: 290px; text-align: center;" >
+
+                <div class="row">
+                    <div class="col-12" style="padding:0; padding-top:20px;padding-left:20px; font-size:14px ; font-weight: 500; color: rgb(0, 69, 116); text-align: left; ">
+                        LOBwise Contribution
+
+                        
+                    </div>
+                </div>
+                
+                   
+                <canvas id="lobWisePiechart" width=200px  height="200" style="margin-top: -40px!important; padding: 10px;"></canvas>
+
+                <!-- <div id="lobWisePiechart"></div> -->
+                    
+                
+                
+            </mat-card>
+        </div>
+
+
+
+
+
+        
+
+        <div class="col-4">
+
+            <mat-card style="height: 290px; text-align: center;" >
+
+                <div class="row">
+                    <div class="col-12" style="padding:0; padding-top:20px;padding-left:20px; font-size:14px ; font-weight: 500; color: rgb(0, 0, 0); text-align: left; ">
+                        <span> Actionable Highlights: &nbsp;</span>
+
+                        <span style="color: red;font-size: 14px;">No Improvements </span>
+
+                        
+                    </div>
+                </div>
+                <div class="row" style="padding: 20px !important;">
+                    <table class="table-striped" style="width: 100%!important; height: 210px;">
+                        <thead
+                            style="background-color: rgb(0, 69, 116); border-bottom: 1px solid black!important; color:#ffffff">
+                            <tr>
+                                <th style="width: 20%!important; font-size: 12px; ">
+                                    Priority</th>
+                                <th style="width: 20%!important;font-size: 12px;">Count</th>
+                                <th style="width: 60%!important;font-size: 12px;">
+                                    Insights</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="background-color: rgba(255, 0, 0, 0.70); font-weight: 500;"> P1</td>
+                                <td> {{p1}}</td>
+                                <td>Consistently highlighted for the last 3 months &nbsp;&nbsp;<i class="fa fa-download" title="Download"
+                                        (click)="downloadThreeMonthImds()"></i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="background-color: rgba(241, 170, 103, 0.70); font-weight: 500;">P2</td>
+                                <td>{{p2}}</td>
+                                <td>Consistently highlighted for the last 2 month &nbsp;&nbsp;
+                                    <i class="fa fa-download" title="Download" (click)="downloadTwoMonthImds()"></i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="background-color: rgba(255, 192, 203, 0.70); font-weight: 500;">P3</td>
+                                <td>{{p3}}</td>
+                                <td>Consistently highlighted for the last 1 month &nbsp;&nbsp;
+                                    <i class="fa fa-download" title="Download" (click)="downloadOneMonthImds()"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+            </mat-card>
+
+        </div>
+
+        <!-- <div class="col-3">
+
+            <mat-card style="height: 290px; text-align: center;" >
+                <div class="row">
+                    <div class="col-10" style="padding:0; padding-top:20px;padding-left:20px; font-size:12px ; font-weight: 500; color: rgb(0, 69, 116); text-align: left; ">
+                        Previous 3 Months GWP   
+                        
+                    </div>
+
+                    <div class="col-2"  style="display: flex; align-items: center; justify-content: right; padding:0; padding-top:15px;padding-right:20px; font-size:12px ; font-weight: 500;">
+                        <mat-icon  title="Download" (click)="chart16Download()" style="color: rgb(0, 69, 116);">download</mat-icon>
+                    </div>
+                </div>
+
+                <div class="row" style="padding-left: 15px!important; padding-right: 15px!important;">
+                    <canvas id="threeMonthsGwpGraph" height='240' style="width:100%" ></canvas> 
+                </div>
+
+                
+
+            </mat-card>
+        </div> -->
+
+
+
+        <div class="col-12">
+            
+            <mat-card style="height: 450px; text-align: center;margin-top: 20px;" >
+
+                <div class="row">
+                    <div class="col-10" style="padding:0; padding-top:20px;padding-left:20px; font-size:16px ; font-weight: 500; color: rgb(0, 0, 0); text-align: left; ">
+                        LOB & Subchannelwise Contribution
+
+                        
+                    </div>
+                    <div class="col-2"  style="display: flex; align-items: center; justify-content: right; padding:0; padding-top:15px;padding-right:20px; font-size:12px ; font-weight: 500;">
+                        <mat-icon  title="Download" (click)="lob_subchannel_wise_ChartDownload()" style="color: rgb(0, 69, 116);">download</mat-icon>
+                    </div>
+                </div>
+
+
+                <div class="row" style="padding-left: 35px!important; padding-right: 35px!important; display: flex; justify-content: center;">
+                    <canvas id="lob_subchannel_wise_Chart" height='400' style="width: 100%" ></canvas> 
+                </div>
+                    
+                
+            
+            </mat-card>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-12" style="display: flex; align-items: center;justify-content: left; padding-left: 15px!important; padding-right: 0px!important;margin-top: 10px;">
+            
+                <select class="form-control" [(ngModel)]="subChannel" (change)="getsubChannel()" style="max-width: 250px; height: 35px;">
+                    <option value="all">Select Sub Channel</option>
+                    <option value="{{subChannel.SUB_CHANNEL}}" *ngFor="let subChannel of subChannelList">{{subChannel.SUB_CHANNEL}}</option>
+                </select>
+            
+        </div>
+    </div>
+
+
+
+
+
+
+    <div class="row"   *ngIf="designationType == 'NH'"   style="padding:15px!important; padding-top: 5px!important;">
+        <div class="col-12" style="height: auto; text-align: center; background-color: #ffffff; margin-top: 0px; border: 1px solid rgba(114, 114, 114, 0.753); border-radius: 10px; padding-bottom: 20px;" >
+
+
+            <div class="row">
+                <div  class="col-12" *ngIf="Zh_drillDownStat==false">
+                    <div class="row" >
+                        <div class="col-10" style="padding:0; padding-top:20px;padding-left:0px; font-size:16px ; font-weight: bold; color: rgb(0, 0, 0); text-align: left; ">
+                            <span>Degrowing {{projectName_plural}} Zonal Wise</span>    
+                            
+                        </div>
+        
+                        <div class="col-2"  style="display: flex; align-items: center; justify-content: right; padding:0; padding-top:15px;padding-right:20px; font-size:12px ; font-weight: 500;">
+                            <mat-icon  title="Download" (click)="chart2Download()" style="color: rgb(0, 69, 116);">download</mat-icon>
+                        </div>
+                    </div>
+        
+                    <div class="row" style="padding-left: 15px!important; padding-right: 15px!important;">
+                        <canvas id="sLobGraphZh"  style="width:100%" ></canvas>  
+                    </div>  
+                </div>
+
+                <!-- <div class="col-7"  *ngIf="Zh_drillDownStat==true">
+                    <div class="row" >
+                        <div class="col-10" style="padding:0; padding-top:20px;padding-left:0px; font-size:12px ; font-weight: bold; color: rgb(0, 69, 116); text-align: left; ">
+                            <span>Degrowing Agents Zonal Wise</span>    
+                            
+                        </div>
+        
+                        <div class="col-2"  style="display: flex; align-items: center; justify-content: right; padding:0; padding-top:15px;padding-right:20px; font-size:12px ; font-weight: 500;">
+                            <mat-icon  title="Download" (click)="chart2Download()" style="color: rgb(0, 69, 116);">download</mat-icon>
+                        </div>
+                    </div>
+        
+                    <div class="row" style="padding-left: 15px!important; padding-right: 15px!important;">
+                        <canvas id="sLobGraphZh"  style="width:100%" ></canvas>  
+                    </div>  
+                </div> -->
+
+                <div *ngIf="Zh_drillDownStat==true" class="col-12">
+                    <div style=" text-align: center; max-height: 550px;" >
+    
+                        <div class="row">
+                            <div class="col-10" style="padding:0; padding-top:20px;padding-left:20px; font-size:16px ; font-weight: bold; color: rgb(0, 0, 0); text-align: left; ">
+                                <span>LOBwise Contribution for Zonal Head: </span> <span style="color: blue;">{{zh_name}}</span>
+                                
+                            </div>
+                            <div class="col-2"  style="display: flex; align-items: center; justify-content: right; padding:0; padding-top:15px;padding-right:20px; font-size:12px ; font-weight: 500;">
+                                <!-- <mat-icon  title="Download" (click)="vanishZhDrilldown()" style="color: rgb(0, 69, 116);">download</mat-icon> -->
+                                <span  (click)="vanishZhDrilldown()" style="color: rgb(0, 69, 116); font-size: 18px; font-weight: bold; cursor: pointer;">X </span>
+                            </div>
+                        </div>
+                        
+                           
+                        <canvas id="zh_lobAndLevelwisePieChart"   ></canvas>
+                            
+                        
+                        
+                    </div>
+    
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+            
+
+            
+                     
+
+        </div>
+
+
+    </div>
+
+    <!-- <div class="row">
+        <div *ngIf="designationType == 'NH'"  class="col-12" style="display: flex; justify-content: center; padding: 10px!important; padding-left: 15px!important; padding-right: 15px!important; height: 450px!important; margin-top: 20px; ">
+    
+            <div  style="width:100%; ">
+                <div class="row big_chart_Namepad" >
+                    <div class="col-6" style="display: flex; align-items: center;">
+                        <span>Degrowing Agents Zonal Wise</span> 
+                    &nbsp;&nbsp;
+                    </div>
+                    <div class="col-5" style="display: flex; align-items: center;justify-content: right;">
+                        
+                    </div>
+
+
+                    <div class="col-1"  style="display: flex; align-items: center; justify-content: right;">
+                        <mat-icon  title="Download" (click)="chart2Download()" style="color: rgb(0, 69, 116);">download</mat-icon>
+                    </div>
+    
+                </div>
+
+                <div class="row" style="padding-left: 35px!important; padding-right: 35px!important;">
+                    <canvas id="underPerZh" height='400' style="width:100%" ></canvas> 
+                </div>
+
+            </div>
+
+    
+        </div>
+    </div> -->
+
+
+    <div class="row"   *ngIf="designationType == 'NH' || designationType == 'ZH'"   style="padding:15px!important">
+        <div class="col-12" *ngIf="ch_drillDownStat==false" style="height: auto; text-align: center; background-color: #ffffff; margin-top: 20px; border: 1px solid rgba(114, 114, 114, 0.753); border-radius: 10px; padding-bottom: 20px;" >
+            <div class="row">
+                <div class="col-10" style="padding:0; padding-top:20px;padding-left:0px; font-size:16px ; font-weight: bold; color: rgb(0, 0, 0); text-align: left; ">
+                    <span>Degrowing {{projectName_plural}} Circle Wise</span>    
+                    
+                </div>
+
+                <div class="col-2"  style="display: flex; align-items: center; justify-content: right; padding:0; padding-top:15px;padding-right:20px; font-size:12px ; font-weight: 500;">
+                    <mat-icon  title="Download" (click)="chart3Download()" style="color: rgb(0, 69, 116);">download</mat-icon>
+                </div>
+            </div>
+
+            <div class="row" style="padding-left: 15px!important; padding-right: 15px!important;">
+                <canvas id="sLobGraphCh" height='400' style="width:100%" ></canvas>  
+            </div>
+
+            
+
+        </div>
+
+
+        <div class="col-12" *ngIf="ch_drillDownStat==true" style="max-height: 550px; text-align: center; background-color: #ffffff; margin-top: 20px; border: 1px solid rgba(114, 114, 114, 0.753); border-radius: 10px; padding-bottom: 20px;" >
+            <div class="row">
+                <div class="col-10" style="padding:0; padding-top:20px;padding-left:0px; font-size:16px ; font-weight: bold; color: rgb(0, 0, 0); text-align: left; ">
+                    <span>LOBwise Contribution for Circle Head: </span> <span style="color: blue;">{{ch_name}}</span>   
+                    
+                </div>
+
+                <div class="col-2"  style="display: flex; align-items: center; justify-content: right; padding:0; padding-top:15px;padding-right:20px; font-size:12px ; font-weight: 500;">
+                    <span  (click)="vanishChDrilldown()" style="color: rgb(0, 69, 116); font-size: 18px; font-weight: bold; cursor: pointer;">X </span>
+                </div>
+            </div>
+
+            <!-- <div class="row" style="padding-left: 15px!important; padding-right: 15px!important;">
+                 
+            </div> -->
+
+            <canvas id="ch_lobAndLevelwisePieChart"   ></canvas>
+
+            
+
+        </div>
+
+
+
+        <!-- <div *ngIf="ch_drillDownStat==true" class="col-12">
+            <div style=" text-align: center; max-height: 350px;" >
+
+                <div class="row">
+                    <div class="col-10" style="padding:0; padding-top:20px;padding-left:20px; font-size:12px ; font-weight: bold; color: rgb(0, 69, 116); text-align: left; ">
+                        <span>Subchannelwise Contribution for Circle Head: </span> <span style="color: blue;">{{ch_name}}</span>
+                        
+                    </div>
+                    <div class="col-2"  style="display: flex; align-items: center; justify-content: right; padding:0; padding-top:15px;padding-right:20px; font-size:12px ; font-weight: 500;">
+                        <span  (click)="vanishChDrilldown()" style="color: rgb(0, 69, 116); font-size: 18px; font-weight: bold; cursor: pointer;">X </span>
+                    </div>
+                </div>
+                
+                   
+                <canvas id="ch_lobAndLevelwisePieChart"   ></canvas>
+                    
+                
+                
+            </div>
+
+        </div> -->
+
+
+
+
+    </div>
+
+
+    <!-- <div class="row">
+        <div  *ngIf="designationType == 'NH' || designationType == 'ZH'"  class="col-12" style=" padding: 10px!important; margin-top: 20px; padding-left: 30px!important; padding-right: 15px!important; overflow: hidden;">
+    
+            <div style="width:100%; ">
+                <div class="row big_chart_Namepad" >
+                    <div class="col-11" style="display: flex; align-items: center;">
+                        <span >Degrowing Agents Circle Wise</span> 
+                    
+                    </div>
+                    <div class="col-1"  style="display: flex; align-items: center; justify-content: right;">
+                        <mat-icon  title="Download" (click)="chart3Download()" style="color: rgb(0, 69, 116);">download</mat-icon>
+                    </div>
+    
+                </div>
+    
+                <div class="row chart_table_display_pad" style="border: 1px solid rgba(114, 114, 114, 0.753);  padding-bottom: 20px!important; overflow: hidden;">
+    
+                    <div class="col-12" style="width: 90%; overflow: hidden; display: flex; justify-content: center;">
+                        <canvas id="underPerCh"  height="400" style="width:100%" ></canvas>
+                    </div>
+                    
+                </div>
+            </div>
+    
+        </div>
+    </div> -->
+
+
+    <div class="row"   *ngIf="designationType == 'NH' || designationType == 'ZH' || designationType == 'CH'"   style="padding:15px!important">
+        <div class="col-12" *ngIf="rm_drillDownStat==false" style="height: auto; text-align: center; background-color: #ffffff; margin-top: 20px; border: 1px solid rgba(114, 114, 114, 0.753); border-radius: 10px; padding-bottom: 20px;" >
+            <div class="row">
+                <div class="col-10" style="padding:0; padding-top:20px;padding-left:0px; font-size:16px ; font-weight: bold; color: rgb(0, 0, 0); text-align: left; ">
+                    <span>Degrowing {{projectName_plural}} Relationship Manager Wise</span>    
+                    
+                </div>
+
+                <div class="col-2"  style="display: flex; align-items: center; justify-content: right; padding:0; padding-top:15px;padding-right:20px; font-size:12px ; font-weight: 500;">
+                    <mat-icon  title="Download" (click)="chart4Download()" style="color: rgb(0, 69, 116);">download</mat-icon>
+                </div>
+            </div>
+
+            <div class="row" style="padding-left: 15px!important; padding-right: 15px!important;">
+                <canvas id="sLobGraphRm" height='400' style="width:100%" ></canvas>  
+            </div>
+
+            
+
+        </div>
+
+
+
+        <div class="col-12" *ngIf="rm_drillDownStat==true" style="max-height: 550px; text-align: center; background-color: #ffffff; margin-top: 20px; border: 1px solid rgba(114, 114, 114, 0.753); border-radius: 10px; padding-bottom: 20px;" >
+            <div class="row">
+                <div class="col-10" style="padding:0; padding-top:20px;padding-left:0px; font-size:16px ; font-weight: bold; color: rgb(0, 0, 0); text-align: left; ">
+                    <span>LOBwise Contribution for Regional Manager: </span> <span style="color: blue;">{{rm_name}}</span>   
+                    
+                </div>
+
+                <div class="col-2"  style="display: flex; align-items: center; justify-content: right; padding:0; padding-top:15px;padding-right:20px; font-size:12px ; font-weight: 500;">
+                    <span  (click)="vanishRmDrilldown()" style="color: rgb(0, 69, 116); font-size: 18px; font-weight: bold; cursor: pointer;">X </span>
+                </div>
+            </div>
+
+            <!-- <div class="row" style="padding-left: 15px!important; padding-right: 15px!important;">
+                
+            </div> -->
+
+            <canvas id="rm_lobAndLevelwisePieChart"   ></canvas> 
+
+            
+
+        </div>
+    </div>
+
+
+
+
+
+    <!-- <div  *ngIf="designationType == 'NH' || designationType == 'ZH' || designationType == 'CH'"  class="col-12" style="display: flex; justify-content: center; padding: 10px!important; margin-top: 20px; padding-left: 30px!important; padding-right: 15px!important;">
+    
+        <div style="width:100%; ">
+            <div class="row big_chart_Namepad" >
+                <div class="col-6" style="display: flex; align-items: center;">
+                    <span >Degrowing Agents Relationship Manager Wise</span> 
+                &nbsp;&nbsp;
+                </div>
+                <div class="col-5" style="display: flex; align-items: center;justify-content: right;">
+                    
+                </div>
+
+
+                <div class="col-1"  style="display: flex; align-items: center; justify-content: right;">
+                    <mat-icon  title="Download" (click)="chart4Download()" style="color: rgb(0, 69, 116);">download</mat-icon>
+                </div>
+
+            </div>
+
+            <div class="row chart_table_display_pad" style="border: 1px solid rgba(114, 114, 114, 0.753);  padding-bottom: 20px!important; overflow: hidden;">
+
+                <div class="col-12" style="width: 90%; overflow: hidden; display: flex; justify-content: center;">
+                    <canvas id="underPerRm"  height="400" style="width:100%" ></canvas>
+                </div>
+                
+            </div>
+        </div>
+
+    </div> -->
+
+
+    
+
+</div>
+
+

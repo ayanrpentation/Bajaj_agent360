@@ -1,0 +1,35 @@
+<div class="container-fluid" style="padding: 40px; padding-top: 0px">
+
+    <div class="row" style="width: 100%!important;">
+
+        <div class="col-lg-6 p-1">
+            <div
+              class="row pageNameButton"
+              (click)="openedSection = 'gwp'"
+              [ngClass]="openedSection == 'gwp' ? 'openedPage' : ''"
+            >
+              GWP Performances
+            </div>
+          </div>
+        
+          <div class="col-lg-6 p-1">
+            <div
+              class="row pageNameButton"
+              (click)="openedSection = 'imd'"
+              [ngClass]="openedSection == 'imd' ? 'openedPage' : ''"
+            >
+              IMD Performances
+            </div>
+          </div>
+
+    </div>
+
+
+    <div class="row" style="width: 100%!important;">
+        <app-gwp-performances *ngIf="openedSection === 'gwp'" style="width: 100%;"></app-gwp-performances>
+        <app-imd-performances *ngIf="openedSection === 'imd'" style="width: 100%;"></app-imd-performances>
+    </div>
+
+  
+
+</div>

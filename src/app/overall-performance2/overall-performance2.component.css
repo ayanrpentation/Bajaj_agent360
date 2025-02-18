@@ -1,0 +1,16 @@
+.pageNameButton {
+  background-color: #fff4f4;
+  color: #0000006e;
+  font-size: 20px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  border-radius: 10px;
+}
+
+.openedPage {
+  background-color: #ffc3c3;
+  color: #000000;
+}

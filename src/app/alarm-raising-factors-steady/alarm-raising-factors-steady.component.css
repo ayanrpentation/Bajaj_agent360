@@ -1,0 +1,39 @@
+mat-card {
+    padding: 0px; 
+    margin-bottom: 10px; 
+    /* height: 120px;  */
+    height: 80px; 
+    box-shadow: 5px 5px 5px rgb(78 114 143)!important;
+    border: 1px solid rgba(78, 114, 143, 0.39);
+    border-radius: 10px;
+    /* border-top-right-radius: 10px!important;
+    border-bottom-left-radius: 10px!important;
+    border-top-left-radius: 0px!important;
+    border-bottom-right-radius: 0px!important; */
+    overflow: hidden;
+    background-color: #ffffff;
+}
+
+
+.chartBoxPad {
+    padding: 0px; 
+    margin-bottom: 10px; 
+    height: 480px; 
+    /* box-shadow: 5px 5px 5px rgb(78 114 143)!important; */
+    border: 1px solid rgba(78, 114, 143, 0.39);
+    border-radius: 10px;
+    /* border-top-right-radius: 10px!important;
+    border-bottom-left-radius: 10px!important;
+    border-top-left-radius: 0px!important;
+    border-bottom-right-radius: 0px!important; */
+    overflow: hidden;
+    background-color: #ffffff;
+}
+
+
+.writtenParameterBox{
+    width: 100%;
+    border: 1px solid rgba(78, 114, 143, 0.39);
+    font-size: 15px;
+    font-weight: 600;
+}

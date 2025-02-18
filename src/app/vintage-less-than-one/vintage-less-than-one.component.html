@@ -1,0 +1,1111 @@
+<div class="fullBody" >
+
+    <div class="row">
+
+        <div class="col-9 left_side_pad" >
+            <div class="row">
+                <div class="col-3">
+                    
+                    <mat-card>
+                        
+
+
+                        <div class="row" style="height: 100%; padding: 0;">
+                            <div class="col-12" style="padding:0">
+                                <div class="row" style=" padding:0">
+                                    <div class="col-8" style="padding:0; padding-top:20px;padding-left:20px; font-size:12px ; font-weight: 500; color: rgb(0, 69, 116); text-align: left; ">
+                                        Overall {{projectName}}
+                                    </div>
+
+                                    <div class="col-4" style="padding:5px; display: flex; justify-content: right;">
+
+                                        <div style="background-color: #037cde28;width:38px; height: 38px;padding-top: 8px;padding-left: 2px; border-radius: 50%;">
+                                            <i class="fa fa-user-plus fa-lg" style="font-size: 25px;color: rgb(0, 69, 116) "></i>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12" style="display: flex; justify-content: left; padding-top: 5px; padding-left: 60px;font-weight: 500;color: rgb(0, 69, 116)">
+                                <h1>
+                                    <!-- {{totalCountList.overallImds}} -->
+                                    {{overAllAgents | indianNumber}}
+                                </h1>
+                                
+                            </div>
+                            
+                        </div>
+                    </mat-card>
+                </div>
+    
+                <div class="col-3">
+                    <mat-card>
+                        
+
+                        <div class="row" style="height: 100%; padding: 0;">
+                            <div class="col-12" style="padding:0">
+                                <div class="row" style=" padding:0">
+                                    <div class="col-9" style="padding:0; padding-top:20px;padding-left:20px; font-size:12px ; font-weight: 500; color: rgb(0, 69, 116); text-align: left; ">
+                                        Degrowing {{projectName_plural}}
+
+                                        
+                                    </div>
+
+                                    <div class="col-3" style="padding:5px; display: flex; justify-content: right;">
+
+                                        <div style="background-color: #037cde28;width:38px; height: 38px;padding-top: 8px;padding-left: 2px; border-radius: 50%;">
+                                            <i class="fa fa-user-times fa-lg" style="font-size: 25px;color: rgb(0, 69, 116) "></i>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-9" style="display: flex; justify-content: left; padding-top: 5px; padding-left: 60px;font-weight: 500;color: rgb(0, 69, 116)">
+                                <h1>
+                                    <!-- {{totalCountList.degrowingImds}} -->
+                                     {{degrowingAgents | indianNumber}}
+                                </h1>
+                                
+                            </div>
+
+                            <div class="col-3" style="display: flex; justify-content: left; padding-top: 27px;font-weight: 500;color: rgb(0, 69, 116)">
+                                <mat-icon class="downloadImdDetails" title="Download" (click)="actImdsDownload()" style="font-size:18px">download</mat-icon>
+                                
+                            </div>
+                            
+                        </div>
+                    </mat-card>
+                    
+                </div>
+
+                <div class="col-3">
+                    <mat-card>
+                        
+
+
+                        <div class="row" style="height: 100%; padding: 0;">
+                            <div class="col-12" style="padding:0">
+                                <div class="row" style=" padding:0">
+                                    <div class="col-9" style="padding:0; padding-top:20px;padding-left:20px; font-size:12px ; font-weight: 500; color: rgb(0, 69, 116); text-align: left; ">
+                                        CYLMTD
+
+                                        
+                                    </div>
+
+                                    <div class="col-3" style="padding:5px; display: flex; justify-content: right;">
+
+                                        <div style="background-color: #037cde28;width:38px; height: 38px;padding-top: 8px;padding-left: 2px; border-radius: 50%;">
+                                            <i class="fa fa-bar-chart fa-lg" style="font-size: 22px;color: rgb(0, 69, 116) "></i>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-11" style="display: flex; justify-content: left; padding-top: 5px; padding-left: 60px;font-weight: 500;color: rgb(0, 69, 116)">
+                                <h1>
+                                    <!-- {{totalCountList.clyMtd}} -->
+                                     {{cylmtd | indianNumber}}
+                                </h1>
+                                
+                            </div>
+
+                            <div class="col-1" style="display: flex; justify-content: left; padding-top: 10px;font-weight: 500;color: rgb(0, 69, 116)">
+                                
+                                
+                            </div>
+                            
+                        </div>
+                    </mat-card>
+                </div>
+    
+                <div class="col-3">
+                    <mat-card>
+                       
+                        <div class="row" style="height: 100%; padding: 0;">
+                            <div class="col-12" style="padding:0">
+                                <div class="row" style=" padding:0">
+                                    <div class="col-9" style="padding:0; padding-top:20px;padding-left:20px; font-size:12px ; font-weight: 500; color: rgb(0, 69, 116); text-align: left; ">
+                                        MTD
+
+                                        
+                                    </div>
+
+                                    <div class="col-3" style="padding:5px; display: flex; justify-content: right;">
+
+                                        <div style="background-color: #037cde28;width:38px; height: 38px;padding-top: 8px;padding-left: 2px; border-radius: 50%;">
+                                            <i class="bi bi-graph-down" style="font-size: 22px;color: rgb(0, 69, 116) "></i>
+
+                                            <!-- <img src="assets/images/graph_down_3.png" style="width: 22px; height: 22px;color: rgb(0, 69, 116)"> -->
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-9" style="display: flex; justify-content: left; padding-top: 5px; padding-left: 60px;font-weight: 500;color: rgb(0, 69, 116)">
+                                <h1>
+                                    <!-- {{totalCountList.mtd}} -->
+                                     {{mtd | indianNumber}}
+                                </h1>
+                                
+                            </div>
+
+                            <div class="col-3" style="display: flex; justify-content: left; padding-top: 27px; font-weight: 500;color: rgb(0, 69, 116)">
+                                
+                                <span *ngIf="totalCountList.perDeg > 0" style="font-size: 12px; color:rgb(0, 109, 0); font-weight: 500;  display: inline-block; margin-left: -10px;" >
+                                    {{totalCountList.perDeg}}%
+                                </span>
+    
+                                <span *ngIf="totalCountList.perDeg < 0" style="font-size: 12px; color:rgb(226, 18, 3); font-weight: 500;   display: inline-block; margin-left: -10px;">
+                                    {{totalCountList.perDeg}}%
+                                </span>
+    
+                                <span *ngIf="totalCountList.perDeg == 0" style="font-size: 12px; color:rgb(3, 126, 226); font-weight: 500;   display: inline-block; margin-left: -10px;">
+                                    {{totalCountList.perDeg}}%
+                                </span>
+                                
+                            </div>
+                            
+                        </div>
+                    </mat-card>
+                </div>
+    
+            </div>
+
+    
+            <div class="row" style=" position: absolute; bottom: 0; left: 15;  width: 100%;">
+
+                <div class="col-12 trigger_impact" >
+                    <div class="row trigger_impact_namepad big_chart_Namepad"  >
+                        <div class="col-10" style="display: flex; align-items: center;">
+                            <span >Triggers Impact &#40; GWP
+                                Impact : <span style="color: #03e529;">{{gwpImpact}}</span> L &#41;</span>
+
+
+                        &nbsp;&nbsp;
+                        </div>
+                        <div class="col-2"  style="display: flex; align-items: center; justify-content: right;">
+                            
+                        </div>
+                        
+                        
+                    </div>
+
+                    <div class="row trigger_impact_table chart_table_display_pad" >
+                        <!-- <table class="table-striped" style="width: 100%!important;height:300px!important;">
+                            <thead style="background-color: rgb(0, 69, 116); color:#ffffff;">
+                                <tr>
+                                    <th rowspan="2">Trigger Date</th>
+                                    <th colspan="3" style="background-color: rgb(94, 177, 94);"> {{curMonth}} 
+                                    </th>
+                                    <th colspan="3" style="background-color: rgb(255, 158, 67);">{{prevMonth}} </th>
+                                    <th colspan="3" style="background-color: rgb(68, 179, 225);">{{beforeprevMonth}} </th>
+            
+                                </tr>
+                                <tr>
+                                    <th style="border-radius: 0px!important; font-size: 11px;">Highlighted</th>
+                                    <th style="font-size: 11px;">Growing Agent Contribution</th>
+                                    <th style="font-size: 11px;">Still Degrowing</th>
+                                    <th style="font-size: 11px;">Highlighted</th>
+                                    <th style="font-size: 11px;">Growing Agent Contribution</th>
+                                    <th style="border-radius: 0px!important; font-size: 11px;">Still Degrowing</th>
+                                    <th style="font-size: 11px;">Highlighted</th>
+                                    <th style="font-size: 11px;">Growing Agent Contribution</th>
+                                    <th style="border-radius: 0px!important;font-size: 11px;">Still Degrowing</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let row of triggerImpTable;index as i">
+                                    <td style="width: 19%;">{{row.TRIGGER_DATE | slice: 0 : 16}}</td>
+                                    <td>{{row.highlighted}}</td>
+                                    <td style="color: green; width: 9%;">{{row.growPer}} %</td>
+                                    <td style="color: red; width: 9%;">{{row.stillDegrow}}</td>
+                                    <td>{{row.highlightedPre}}</td>
+                                    <td style="color: green; width: 9%;">{{row.growPerPre}} %</td>
+                                    <td style="color: red; width: 9%;">{{row.stillDegrowPre}}</td>
+                                    <td>{{row.highlightedPreBef}}</td>
+                                    <td style="color: green; width: 9%;">{{row.growPerPreBef}} %</td>
+                                    <td style="color: red; width: 9%;">{{row.stillDegrowPreBef}}</td>
+            
+                                    
+                                </tr>
+                            </tbody>
+                        </table> -->
+
+
+                        <canvas id="triggerImpact_table_chart" ></canvas>
+                    </div>
+                
+                </div>             
+    
+                
+                
+            </div>
+    
+        </div>
+
+
+
+
+        <div class="col-3" style="padding-left: 0;">
+            <ng-container >
+                <div class="row big_chart_Namepad" style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+                    <div class="col-10" style="display: flex; align-items: center;">
+                        <span >Previous 3 Months GWP</span> 
+                    &nbsp;&nbsp;
+                    </div>
+                    <div class="col-2"  style="display: flex; align-items: center; justify-content: right;">
+                        <mat-icon  title="Download" (click)="chart16Download()" style="color: rgb(0, 69, 116);">download</mat-icon>
+                    </div>
+                    
+                    
+                </div>
+    
+                <div class="row chart_table_display_pad" style="border: 1px solid rgba(114, 114, 114, 0.753); box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;  ">
+                    <canvas id="threeMonthsGwpGraph" height='200' style="width:100%" ></canvas> 
+                </div>
+
+
+
+
+
+                <div class="row big_chart_Namepad" style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; display: flex; justify-content: left; align-items: center; margin-top: 20px!important;">
+                    <div class="col-12" style="display: flex; justify-content: left;" >
+                        
+
+                        <div class="row" style="padding:0;display: flex; justify-content: left;">
+                            <div class="col-12" style="padding:0;display: flex; justify-content: left;">
+                                <span >Actionable Highlights </span> 
+                            </div>
+                            <div class="col-12" style="padding:0;display: flex; justify-content: left;">
+                                <span style="color: red;font-size: 12px;">No Improvements </span> 
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                </div>
+    
+                <div class="row chart_table_display_pad" style="border: 1px solid rgba(114, 114, 114, 0.753); box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;  padding:15px!important">
+
+                    <table class="table-striped" style="width: 100%!important; ">
+                        
+
+
+                        <thead
+                            style="background-color: rgb(0, 69, 116); border-bottom: 1px solid black!important; color:#ffffff">
+                            <tr>
+                                <th style="width: 20%!important; font-size: 12px; ">
+                                    Priority</th>
+                                <th style="width: 20%!important;font-size: 12px;">Count</th>
+                                <th style="width: 60%!important;font-size: 12px;">
+                                    Insights</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr *ngFor="let row of actionable_highlightData">
+                                <td *ngIf="row.priority == 'P1'" style="background-color: rgba(255, 0, 0, 0.70); font-weight: 500;">{{row.priority}}</td>
+                                <td *ngIf="row.priority == 'P2'" style="background-color: rgba(241, 170, 103, 0.70); font-weight: 500;">{{row.priority}}</td>
+                                <td *ngIf="row.priority == 'P3'" style="background-color: rgba(255, 192, 203, 0.70); font-weight: 500;">{{row.priority}}</td>
+
+
+
+
+                                <td> {{row.count}}</td>
+
+                                <td>{{row.insight_text}} &nbsp;&nbsp;<i class="fa fa-download" title="Download"
+                                        (click)="downloadThreeMonthImds()"></i>
+                                </td>
+                            </tr>
+
+
+
+                            <!-- <tr>
+                                <td style="background-color: rgba(255, 0, 0, 0.70); font-weight: 500;"> P1</td>
+                                <td> {{p1}}</td>
+                                <td>Consistently highlighted for the last 3 months &nbsp;&nbsp;<i class="fa fa-download" title="Download"
+                                        (click)="downloadThreeMonthImds()"></i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="background-color: rgba(241, 170, 103, 0.70); font-weight: 500;">P2</td>
+                                <td>{{p2}}</td>
+                                <td>Consistently highlighted for the last 2 month &nbsp;&nbsp;
+                                    <i class="fa fa-download" title="Download" (click)="downloadTwoMonthImds()"></i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="background-color: rgba(255, 192, 203, 0.70); font-weight: 500;">P3</td>
+                                <td>{{p3}}</td>
+                                <td>Consistently highlighted for the last 1 month &nbsp;&nbsp;
+                                    <i class="fa fa-download" title="Download" (click)="downloadOneMonthImds()"></i>
+                                </td>
+                            </tr> -->
+
+
+
+                        </tbody>
+                    </table>
+                    
+                </div>
+
+
+                
+
+
+                
+            </ng-container>
+        </div>
+    
+        <!-- <div class="col-3">
+            <mat-card
+                style="padding: 0px; margin-bottom: 10px; height: 100%; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;;">
+                <div class="row" style="height: 100%;">
+                    <div class="col-3"
+                        style="display: flex; justify-content: center;align-items: center;">
+    
+                        <button style="background-image: linear-gradient(315deg, #03e5b8 0%, #037cde 74%);color: white;width:44px; height: 44px; border-radius: 50%; border: 1px solid rgba(0, 61, 131, 0.623);box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+                            <i class="fa fa-user-plus fa-lg" style="font-size: 24px;"></i>
+                        </button>
+                        
+                    </div>
+                    <div class="col-7">
+                        <span style="font-size: 20px; padding-top: 15px; display: inline-block">
+                            <b>{{totalCountList.overallImds}}</b>
+                        </span>
+                        <br>Overall IMD
+                    </div>
+                    <div class="col-2" style="display: flex; justify-content: center;align-items: center;">
+    
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+    
+        <div class="col-3">
+            <mat-card
+                style="padding: 0px; margin-bottom: 10px; height: 100%; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;;">
+                <div class="row" style="height: 100%;">
+                    <div class="col-3"
+                        style="display: flex; justify-content: center;align-items: center;">
+    
+                        <button style="background-image: linear-gradient(315deg, #ee9617 0%, #fe5858 74%);color: white;width:44px; height: 44px; border-radius: 50%; border: 1px solid rgba(0, 61, 131, 0.623);box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+                            <i class="fa fa-user-times fa-lg" style="font-size: 24px;"></i>
+                        </button>
+                        
+                    </div>
+                    <div class="col-7">
+                        <span style="font-size: 20px; padding-top: 15px; display: inline-block">
+                            <b>{{totalCountList.degrowingImds}}</b>
+                        </span>
+                        <br>Degrowing IMDs
+                    </div>
+                    <div class="col-2" style="display: flex; justify-content: center;align-items: center;">
+                        <mat-icon class="downloadImdDetails" title="Download" (click)="actImdsDownload()">download</mat-icon>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+    
+        <div class="col-3">
+            <mat-card
+                style="padding: 0px; margin-bottom: 10px; height: 100%; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;;">
+                <div class="row" style="height: 100%;">
+                    <div class="col-3"
+                        style="display: flex; justify-content: center;align-items: center;">
+    
+                        <button style="background-image: linear-gradient(315deg, #03e5b8 0%, #037cde 74%);color: white;width:44px; height: 44px; border-radius: 50%; border: 1px solid rgba(0, 61, 131, 0.623);box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+                            <i class="fa fa-bar-chart fa-lg" style="font-size: 24px;"></i>
+                        </button>
+                        
+                    </div>
+                    <div class="col-7">
+                        <span style="font-size: 20px; padding-top: 15px; display: inline-block">
+                            <b>{{totalCountList.clyMtd}}</b>
+                        </span>
+                        <br>CYLMTD
+                    </div>
+                    <div class="col-2" style="display: flex; justify-content: center;align-items: center;">
+    
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+    
+        <div class="col-3">
+            <mat-card
+                style="padding: 0px; margin-bottom: 10px; height: 100%; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+                <div class="row" style="height: 100%;">
+                    <div class="col-3"
+                        style="display: flex; justify-content: center;align-items: center;">
+    
+                        <button style="background-image: linear-gradient(315deg, #ee9617 0%, #fe5858 74%);color: white;width:44px; height: 44px; border-radius: 50%; border: 1px solid rgba(0, 61, 131, 0.623);box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+                            
+                            <img src="assets/images/graph_down_3.png" style="width: 24px;">
+                        </button>
+                        
+                    </div>
+                    <div class="col-7">
+                        <span style="font-size: 20px; padding-top: 15px; display: inline-block">
+                            <b>{{totalCountList.mtd}}</b>
+                        </span>
+                        <br>MTD
+                    </div>
+                    <div class="col-2" style="display: flex; justify-content: center;align-items: center;">
+    
+                    </div>
+                </div>
+            </mat-card>
+        </div> -->
+    </div>
+    
+   
+    
+    
+    
+    
+    <div class="row" style="padding-top: 20px!important;margin-bottom: 20px!important;">
+    
+
+        <div *ngIf="!status_lessthan_1yr_mtd_down" class="col-12" style="display: flex; justify-content: center; padding: 10px!important;padding-left: 30px!important; padding-right: 15px!important;"><!-- section - Degrowing IMDs Contribution -->
+    
+            <div class="chart_table_display_pad" style="width:100%;  border-top-right-radius: 10px!important; border-bottom-left-radius: 10px!important; overflow: hidden; border-top-left-radius: 10px !important;">
+                <div class="row big_chart_Namepad" >
+                    <div class="col-9" style="display: flex; align-items: center;">
+                        <span >Degrowing {{projectName}} Contribution</span> 
+                    &nbsp;&nbsp;
+                    </div>
+                    <div class="col-3"  style="display: flex; align-items: center; justify-content: right;">
+                        <mat-icon  title="Download" (click)="chart17Download()" style="color: rgb(0, 69, 116);">download</mat-icon>
+                    </div>
+    
+                </div>
+    
+                <div class="row chart_table_display_pad" style="border: 1px solid rgba(114, 114, 114, 0.753);  height: 380px;">
+    
+                    <div class="col-12 " style="width: 100%; overflow: hidden; display: flex; justify-content: center;">
+                        <canvas id="subChannelwiseTotal" width="1000" height="360" ></canvas>
+                        <!-- <canvas id="subChannelwiseTotal" width="800" height="360" ></canvas> -->
+                    </div>
+                    
+                </div>
+            </div>
+            
+    
+        </div>
+    
+        <!-- <div class="container" style="width:100vw;"></div> -->
+    
+    
+        <!-- <ng-template #lessthan_1yr_mtd_down>
+    
+            <div class="col-12" style="">
+                <div class="row" style="background-color: #5bb5ff;  background-image: linear-gradient(315deg, #03e5b8 0%, #037cde 74%); height: 50px;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;" >
+    
+                    <div class="col-9" style="display: flex; align-items: center;">
+                        <span style="color: #ffffff; font-size: 18px; font-weight: bold;">MTD Downtrend Analysis</span> 
+                    &nbsp;&nbsp;
+                    </div>
+                    <div class="col-3"  style="display: flex; align-items: center; justify-content: right;">
+                        <mat-icon  title="Download" (click)="chart1Download()" style="color: #ffffff;">download</mat-icon>
+                    </div>
+    
+                </div>
+    
+                <div class="row" style="border: 1px solid rgba(114, 114, 114, 0.753); box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;  ">
+                    
+                    <div class="col-12" style="width: 90%;">
+                        <canvas id="mtdDowngrw" width="800" height="300"></canvas>
+                    </div>               
+    
+                    
+                </div>
+            </div>
+    
+    
+        </ng-template> -->
+    
+        <div *ngIf="status_lessthan_1yr_mtd_down" class="col-12" style="display: flex; justify-content: center; padding: 10px!important; "> <!--MTD Downtrend Analysis-->  
+            
+            <div style="width:50%;  border-top-right-radius: 10px!important;
+            border-bottom-left-radius: 10px!important;">  
+     
+                <div class="row big_chart_Namepad"  >
+                    
+    
+                    <div class="col-9" style="display: flex; align-items: center;">
+                        <span >MTD Downtrend Analysis</span> 
+                        &nbsp;&nbsp;
+                        <mat-icon  title="Download" (click)="chart1Download()" style="color: rgb(0, 69, 116);">download</mat-icon>
+                    </div>
+    
+                    <div class="col-3"  style="display: flex; align-items: center; justify-content: right;">
+                        <mat-icon  title="go back" (click)="close_lessthan_1yr_mtd_down()" style="color: rgb(0, 69, 116)">arrow_back</mat-icon>
+                    </div>
+    
+                </div>
+    
+                <div class="row chart_table_display_pad" style="border: 1px solid rgba(114, 114, 114, 0.753); height: 300px; display: flex; justify-content: center; overflow: hidden;">
+                    
+                    <div class="col-12" style="width: 90%; display: flex; justify-content: center;overflow: hidden;">
+                        <!-- <canvas id="mtdDowngrw" style="width: 100%;"></canvas>  -->
+                        <canvas id="mtdDowngrw" width="500" height="280"></canvas>
+                    </div>               
+    
+                    
+                </div>
+    
+            </div>
+                        
+            
+        </div>
+    
+    </div>
+    
+    
+    <!-- end -->
+    
+
+    <div *ngIf="designationType == 'NH'" class="row" style="padding-top: 0px!important;margin-bottom: 20px!important;">
+    
+
+        <div  class="col-12" style="display: flex; justify-content: center; padding: 10px!important; padding-left: 30px!important; padding-right: 15px!important;">
+    
+            <div style="width:100%; ">
+                <div class="row big_chart_Namepad" >
+                    <div class="col-9" style="display: flex; align-items: center;">
+                        <span >{{projectName}} Performance Vintage Bucket Wise Graph</span> 
+                    &nbsp;&nbsp;
+                    </div>
+                    <div class="col-3"  style="display: flex; align-items: center; justify-content: right;">
+                        <mat-icon  title="Download" (click)="chart15Download()" style="color: rgb(0, 69, 116);">download</mat-icon>
+                    </div>
+    
+                </div>
+    
+                <div class="row chart_table_display_pad" style="border: 1px solid rgba(114, 114, 114, 0.753);  height: 550px; overflow: hidden;">
+    
+                    <div class="col-12" style="width: 90%; overflow: hidden; display: flex; justify-content: center;">
+                        <canvas id="triggerPerformanceGraph"  height="500" style="width:100%" ></canvas>
+                    </div>
+                    
+                </div>
+            </div>
+            
+    
+        </div>
+
+    
+    </div>
+
+
+
+
+
+    <div *ngIf="designationType != 'NH'" class="row" style="padding-top: 0px!important;margin-bottom: 40px!important;">
+    
+
+        <div  class="col-12" style="display: flex; justify-content: center; padding: 10px!important; padding-left: 30px!important; padding-right: 15px!important;">
+    
+            <div style="width:100%; ">
+                <div class="row big_chart_Namepad" >
+                    <div class="col-9" style="display: flex; align-items: center;">
+                        <span >Degrowing {{projectName}} Performance</span> 
+                    &nbsp;&nbsp;
+                    </div>
+                    <div class="col-3"  style="display: flex; align-items: center; justify-content: right;">
+                        <!-- <mat-icon  title="Download" (click)="chart15Download()" style="color: #ffffff;">download</mat-icon> -->
+                    </div>
+    
+                </div>
+    
+                <div class="row chart_table_display_pad" style="border: 1px solid rgba(114, 114, 114, 0.753);  height: 170px; overflow: hidden; padding-top: 20px!important;">
+    
+                    <div class="col-12" style="width: 90%; overflow: hidden; display: flex; justify-content: center;">
+                        
+                        <table class="table table-hover table-striped" style="text-align: center; justify-items: center;">
+                            <thead style="background: rgba(113, 175, 236, 0.493); border: 1px solid black;">
+                                <tr>
+                                    
+                                    <th rowspan="2" style="border-bottom: 1px solid black; border-top: 1px solid black; align-items: center;">Sub Channel
+                                    </th>
+                                    <th rowspan="2" style="border-bottom: 1px solid black;border-top: 1px solid black; align-items: center;">User Name
+                                    </th>
+                                    <th rowspan="2" style="border-bottom: 1px solid black;border-top: 1px solid black; align-items: center;">Designation
+                                    </th>
+                                    <th colspan="4" style="border-bottom: 1px solid black; border-left: 1px solid black;border-top: 1px solid black; justify-content: center;">Vintage
+                                        Bucket</th>
+                                </tr>
+                                <tr>
+                                    <th style="border-bottom: 1px solid black; border-left: 1px solid black;">1 to 3</th>
+                                    <th style="border-bottom: 1px solid black;border-left: 1px solid black;">4 to 6</th>
+                                    <th style="border-bottom: 1px solid black;border-left: 1px solid black;">7 to 9</th>
+                                    <th style="border-bottom: 1px solid black;border-left: 1px solid black;">10 to 12</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngFor="let row of empPerformTable; index as i">
+                                    <tr>
+                                        <ng-container *ngFor="let col of empPerformcolList; index as j">
+                                            <td>{{row[col]}}</td>
+                                        </ng-container>
+                                    </tr>
+                                </ng-container>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    
+                </div>
+            </div>
+            
+    
+        </div>
+
+    
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-12" style="display: flex; align-items: center;justify-content: left; padding-left: 30px!important; padding-right: 15px!important;">
+            <!-- <div class="col-5" > -->
+                <select class="form-control" [(ngModel)]="subChannel" (change)="getsubChannel()" style="max-width: 250px; height: 35px;">
+                    <option value="all">Select Sub Channel</option>
+                    <option value="{{subChannel.SUB_CHANNEL}}" *ngFor="let subChannel of subChannelList">{{subChannel.SUB_CHANNEL}}</option>
+                </select>
+            <!-- </div> -->
+        </div>
+    </div>
+
+    <div class="row" style="padding-top: 0px!important;margin-bottom: 40px!important;">
+    
+
+        <div *ngIf="designationType == 'NH'"  class="col-12" style="display: flex; justify-content: center; padding: 10px!important; padding-left: 30px!important; padding-right: 15px!important;">
+    
+            <div  style="width:100%; ">
+                <div class="row big_chart_Namepad" >
+                    <div class="col-6" style="display: flex; align-items: center;">
+                        <span>Degrowing {{projectName}} Zonal Wise</span> 
+                    &nbsp;&nbsp;
+                    </div>
+                    <div class="col-5" style="display: flex; align-items: center;justify-content: right;">
+                        <!-- <select class="form-control" [(ngModel)]="subChannel" (change)="getsubChannel()" style="max-width: 250px; height: 35px;">
+                            <option value="all">Select Sub Channel</option>
+                            <option value="{{subChannel.SUB_CHANNEL}}" *ngFor="let subChannel of subChannelList">{{subChannel.SUB_CHANNEL}}</option>
+                        </select> -->
+                    </div>
+
+
+                    <div class="col-1"  style="display: flex; align-items: center; justify-content: right;">
+                        <mat-icon  title="Download" (click)="chart2Download()" style="color: rgb(0, 69, 116);">download</mat-icon>
+                    </div>
+    
+                </div>
+    
+                <div class="row chart_table_display_pad" style="border: 1px solid rgba(114, 114, 114, 0.753);  overflow: hidden; padding-bottom: 20px!important;">
+    
+                    <div class="col-12" style="width: 90%; overflow: hidden; display: flex; justify-content: center;">
+                        <canvas id="underPerZh"  height="400" style="width:100%" ></canvas>
+                    </div>
+                    
+                </div>
+            </div>
+
+    
+        </div>
+
+
+        <div  *ngIf="designationType == 'NH' || designationType == 'ZH'"  class="col-12" style="display: flex; justify-content: center; padding: 10px!important; margin-top: 20px; padding-left: 30px!important; padding-right: 15px!important;">
+    
+            <div style="width:100%; ">
+                <div class="row big_chart_Namepad" >
+                    <div class="col-6" style="display: flex; align-items: center;">
+                        <span >Degrowing {{projectName}} Circle Wise</span> 
+                    &nbsp;&nbsp;
+                    </div>
+                    <div class="col-5" style="display: flex; align-items: center;justify-content: right;">
+                        
+                    </div>
+
+
+                    <div class="col-1"  style="display: flex; align-items: center; justify-content: right;">
+                        <mat-icon  title="Download" (click)="chart3Download()" style="color: rgb(0, 69, 116);">download</mat-icon>
+                    </div>
+    
+                </div>
+    
+                <div class="row chart_table_display_pad" style="border: 1px solid rgba(114, 114, 114, 0.753);  padding-bottom: 20px!important; overflow: hidden;">
+    
+                    <div class="col-12" style="width: 90%; overflow: hidden; display: flex; justify-content: center;">
+                        <canvas id="underPerCh"  height="400" style="width:100%" ></canvas>
+                    </div>
+                    
+                </div>
+            </div>
+    
+        </div>
+
+
+
+        <div  *ngIf="designationType == 'NH' || designationType == 'ZH' || designationType == 'CH'"  class="col-12" style="display: flex; justify-content: center; padding: 10px!important; margin-top: 20px; padding-left: 30px!important; padding-right: 15px!important;">
+    
+            <div style="width:100%; ">
+                <div class="row big_chart_Namepad" >
+                    <div class="col-6" style="display: flex; align-items: center;">
+                        <span >Degrowing {{projectName}} Relationship Manager Wise</span> 
+                    &nbsp;&nbsp;
+                    </div>
+                    <div class="col-5" style="display: flex; align-items: center;justify-content: right;">
+                        
+                    </div>
+
+
+                    <div class="col-1"  style="display: flex; align-items: center; justify-content: right;">
+                        <mat-icon  title="Download" (click)="chart4Download()" style="color: rgb(0, 69, 116);">download</mat-icon>
+                    </div>
+    
+                </div>
+    
+                <div class="row chart_table_display_pad" style="border: 1px solid rgba(114, 114, 114, 0.753);  padding-bottom: 20px!important; overflow: hidden;">
+    
+                    <div class="col-12" style="width: 90%; overflow: hidden; display: flex; justify-content: center;">
+                        <canvas id="underPerRm"  height="400" style="width:100%" ></canvas>
+                    </div>
+                    
+                </div>
+            </div>
+    
+        </div>
+
+
+
+
+        <div  *ngIf="designationType == 'NH'"  class="col-12" style="display: flex; justify-content: center; padding: 10px!important; margin-top: 20px;padding-left: 30px!important; padding-right: 15px!important;">
+    
+            <div style="width:100%; ">
+                <div class="row big_chart_Namepad" >
+                    <div class="col-6" style="display: flex; align-items: center;">
+                        <span >MTD Downtrend Zonal Head Analysis</span> 
+                    &nbsp;&nbsp;
+                    </div>
+                    <div class="col-5" style="display: flex; align-items: center;justify-content: right;">
+                    </div>
+
+
+                    <div class="col-1"  style="display: flex; align-items: center; justify-content: right;">
+                        <mat-icon  title="Download" (click)="chart5Download()" style="color: rgb(0, 69, 116);">download</mat-icon>
+                    </div>
+    
+                </div>
+    
+                <div class="row chart_table_display_pad" style="border: 1px solid rgba(114, 114, 114, 0.753);  padding-bottom: 20px!important; overflow: hidden;">
+    
+                    <div class="col-12" style="width: 90%; overflow: hidden; display: flex; justify-content: center;">
+                        <canvas id="mtdDwnGraphZh"  height="400" style="width:100%" ></canvas>
+                    </div>
+                    
+                </div>
+            </div>
+    
+        </div>
+
+
+
+
+        <div  *ngIf="designationType == 'NH'"  class="col-12" style="display: flex; justify-content: center; padding: 10px!important; margin-top: 20px; padding-left: 30px!important; padding-right: 15px!important;">
+    
+            <div style="width:100%; ">
+                <div class="row big_chart_Namepad" >
+                    <div class="col-6" style="display: flex; align-items: center;">
+                        <span >MTD Downtrend Circle Head Analysis</span> 
+                    &nbsp;&nbsp;
+                    </div>
+                    <div class="col-5" style="display: flex; align-items: center;justify-content: right;">
+                        
+                    </div>
+
+
+                    <div class="col-1"  style="display: flex; align-items: center; justify-content: right;">
+                        <mat-icon  title="Download" (click)="chart6Download()" style="color: rgb(0, 69, 116);">download</mat-icon>
+                    </div>
+    
+                </div>
+    
+                <div class="row chart_table_display_pad" style="border: 1px solid rgba(114, 114, 114, 0.753);  padding-bottom: 20px!important; overflow: hidden;">
+    
+                    <div class="col-12" style="width: 90%; overflow: hidden; display: flex; justify-content: center;">
+                        <canvas id="mtdDwnGraphCh"  height="400" style="width:100%" ></canvas>
+                    </div>
+                    
+                </div>
+            </div>
+    
+        </div>
+
+
+
+
+
+        <div  *ngIf="designationType == 'ZH'"  class="col-12" style="display: flex; justify-content: center; padding: 10px!important; margin-top: 20px; padding-left: 30px!important; padding-right: 15px!important;">
+    
+            <div style="width:100%; ">
+                <div class="row big_chart_Namepad" >
+                    <div class="col-6" style="display: flex; align-items: center;">
+                        <span >MTD Downtrend Circle Head Analysis</span> 
+                    &nbsp;&nbsp;
+                    </div>
+                    <div class="col-5" style="display: flex; align-items: center;justify-content: right;">
+                        
+                    </div>
+
+
+                    <div class="col-1"  style="display: flex; align-items: center; justify-content: right;">
+                        <mat-icon  title="Download" (click)="chart8Download()" style="color: rgb(0, 69, 116);">download</mat-icon>
+                    </div>
+    
+                </div>
+    
+                <div class="row chart_table_display_pad" style="border: 1px solid rgba(114, 114, 114, 0.753);  padding-bottom: 20px!important; overflow: hidden;">
+    
+                    <div class="col-12" style="width: 90%; overflow: hidden; display: flex; justify-content: center;">
+                        <canvas id="underPerformChGraphforZh"  height="400" style="width:100%" ></canvas>
+                    </div>
+                    
+                </div>
+            </div>
+    
+        </div>
+
+
+
+
+
+        <div  *ngIf="designationType == 'NH' || designationType == 'ZH'"  class="col-12" style="display: flex; justify-content: center; padding: 10px!important; margin-top: 20px; padding-left: 30px!important; padding-right: 15px!important;">
+    
+            <div style="width:100%; ">
+                <div class="row big_chart_Namepad" >
+                    <div class="col-6" style="display: flex; align-items: center;">
+                        <span >MTD Downtrend Relationship Manager Analysis</span> 
+                    &nbsp;&nbsp;
+                    </div>
+                    <div class="col-5" style="display: flex; align-items: center;justify-content: right;">
+                        
+                    </div>
+
+
+                    <div class="col-1"  style="display: flex; align-items: center; justify-content: right;">
+                        <mat-icon  title="Download" (click)="chart7Download()" style="color: rgb(0, 69, 116);">download</mat-icon>
+                    </div>
+    
+                </div>
+    
+                <div class="row chart_table_display_pad" style="border: 1px solid rgba(114, 114, 114, 0.753);  padding-bottom: 20px!important; overflow: hidden;">
+    
+                    <div class="col-12" style="width: 90%; overflow: hidden; display: flex; justify-content: center;">
+                        <canvas id="mtdDwnGraphRm"  height="400" style="width:100%" ></canvas>
+                    </div>
+                    
+                </div>
+            </div>
+    
+        </div>
+
+
+
+
+
+        <div  *ngIf="designationType == 'CH'"  class="col-12" style="display: flex; justify-content: center; padding: 10px!important; margin-top: 20px; padding-left: 30px!important; padding-right: 15px!important;">
+    
+            <div style="width:100%; ">
+                <div class="row big_chart_Namepad" >
+                    <div class="col-6" style="display: flex; align-items: center;">
+                        <span >MTD Downtrend Relationship Manager Analysis</span> 
+                    &nbsp;&nbsp;
+                    </div>
+                    <div class="col-5" style="display: flex; align-items: center;justify-content: right;">
+                        
+                    </div>
+
+
+                    <div class="col-1"  style="display: flex; align-items: center; justify-content: right;">
+                        <mat-icon  title="Download" (click)="chart9Download()" style="color: rgb(0, 69, 116);">download</mat-icon>
+                    </div>
+    
+                </div>
+    
+                <div class="row chart_table_display_pad" style="border: 1px solid rgba(114, 114, 114, 0.753);  padding-bottom: 20px!important; overflow: hidden;">
+    
+                    <div class="col-12" style="width: 90%; overflow: hidden; display: flex; justify-content: center;">
+                        <canvas id="underPerformRmGraphforCh"  height="400" style="width:100%" ></canvas>
+                    </div>
+                    
+                </div>
+            </div>
+    
+        </div>
+
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <!-- <div class="row">
+            
+        <div class="row" style=" width: 100%; display: flex; justify-content: center;">
+            
+    
+            <div class="col-12" *ngIf="designationType != 'NH'">
+                <h2>Agents Performance Degrowing IMDs Count</h2>
+                <table class="table table-hover table-striped" style="text-align: center; justify-items: center;">
+                    <thead style="background: rgba(113, 175, 236, 0.493); border: 1px solid black;">
+                        <tr>
+                            
+                            <th rowspan="2" style="border-bottom: 1px solid black; justify-content: center;">Sub Channel
+                            </th>
+                            <th rowspan="2" style="border-bottom: 1px solid black; justify-content: center;">User Name
+                            </th>
+                            <th rowspan="2" style="border-bottom: 1px solid black; justify-content: center;">Designation
+                            </th>
+                            <th colspan="4" style="border-bottom: 1px solid black; justify-content: center;">Vintage
+                                Bucket</th>
+                        </tr>
+                        <tr>
+                            <th style="border-bottom: 1px solid black;">1 to 3</th>
+                            <th style="border-bottom: 1px solid black;">4 to 6</th>
+                            <th style="border-bottom: 1px solid black;">7 to 9</th>
+                            <th style="border-bottom: 1px solid black;">10 to 12</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngFor="let row of empPerformTable; index as i">
+                            <tr>
+                                <ng-container *ngFor="let col of empPerformcolList; index as j">
+                                    <td>{{row[col]}}</td>
+                                </ng-container>
+                            </tr>
+                        </ng-container>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <br> -->
+    
+    
+    
+    <!-- <div class="row" style="text-align: center;">
+        
+        <div class="col-12 graph_gap" *ngIf="designationType == 'NH'">
+            <div class="row" style="justify-content: center;">
+                <span class="graph_header">Degrowing Agents Zonal Wise</span> &nbsp;&nbsp;<mat-icon
+                    class="chart_download" title="Download" (click)="chart2Download()">download</mat-icon>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <select class="form-control" [(ngModel)]="subChannel" (change)="getsubChannel()">
+                        <option value="all">Select Sub Channel</option>
+                        <option value="{{subChannel.SUB_CHANNEL}}" *ngFor="let subChannel of subChannelList">{{subChannel.SUB_CHANNEL}}</option>
+                    </select>
+            </div>
+            <canvas id="underPerZh" width="1000" height="1000"></canvas>
+        </div>
+
+        <div class="col-12 graph_gap" *ngIf="designationType == 'NH' || designationType == 'ZH'">
+            <div class="row" style="justify-content: center;">
+                <span class="graph_header">Degrowing Agents Circle Wise</span> &nbsp;&nbsp;<mat-icon
+                    class="chart_download" title="Download" (click)="chart3Download()">download</mat-icon>
+            </div>
+            <canvas id="underPerCh" width="1000" height="1000"></canvas>
+        </div>
+
+
+        <div class="col-12 graph_gap"
+            *ngIf="designationType == 'NH' || designationType == 'ZH' || designationType == 'CH'">
+            <div class="row" style="justify-content: center;">
+                <span class="graph_header">Degrowing Agents Relationship Manager Wise</span> &nbsp;&nbsp;<mat-icon
+                    class="chart_download" title="Download" (click)="chart4Download()">download</mat-icon>
+            </div>
+            <canvas id="underPerRm" width="1000" height="1000"></canvas>
+        </div>
+
+
+        
+        <div class="col-12 graph_gap" *ngIf="designationType == 'NH'">
+            <div class="row" style="justify-content: center;">
+                <span class="graph_header">MTD Downtrend Zonal Head Analysis</span> &nbsp;&nbsp;<mat-icon
+                    class="chart_download" title="Download" (click)="chart5Download()">download</mat-icon>
+            </div>
+            <canvas id="mtdDwnGraphZh" width="1000" height="1000"></canvas>
+        </div>
+
+
+        <div class="col-12 graph_gap" *ngIf="designationType == 'NH'">
+            <div class="row" style="justify-content: center;">
+                <span class="graph_header">MTD Downtrend Circle Head Analysis</span> &nbsp;&nbsp;<mat-icon
+                    class="chart_download" (click)="chart6Download()">download</mat-icon>
+            </div>
+            <canvas id="mtdDwnGraphCh" width="1000" height="1000"></canvas>
+        </div>
+
+
+        <div class="col-12 graph_gap" *ngIf="designationType == 'ZH'">
+            <div class="row" style="justify-content: center;">
+                <span class="graph_header">MTD Downtrend Circle Head Analysis</span> &nbsp;&nbsp;<mat-icon
+                    class="chart_download" title="Download" (click)="chart8Download()">download</mat-icon>
+            </div>
+            <canvas id="underPerformChGraphforZh" width="1000" height="1000"></canvas>
+        </div>
+
+
+        <div class="col-12 graph_gap" *ngIf="designationType == 'NH' || designationType == 'ZH'">
+            <div class="row" style="justify-content: center;">
+                <span class="graph_header">MTD Downtrend Relationship Manager Analysis</span> &nbsp;&nbsp;<mat-icon
+                    class="chart_download" (click)="chart7Download()">download</mat-icon>
+            </div>
+            <canvas id="mtdDwnGraphRm" width="1000" height="1000"></canvas>
+        </div>
+
+
+
+        <div class="col-12 graph_gap" *ngIf="designationType == 'CH'">
+            <div class="row" style="justify-content: center;">
+                <span class="graph_header">MTD Downtrend Relationship Manager Analysis</span> &nbsp;&nbsp;<mat-icon
+                    class="chart_download" title="Download" (click)="chart9Download()">download</mat-icon>
+            </div>
+            <canvas id="underPerformRmGraphforCh" width="1000" height="1000"></canvas>
+        </div>
+    
+    </div> -->
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <br> -->
+
+<!-- <app-india-map></app-india-map> -->
+
+

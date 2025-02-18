@@ -1,0 +1,105 @@
+<!-- <p>login works!</p> -->
+
+
+
+    
+<div class="content" style="height: 100%;background-image: radial-gradient(white, white, #d7d7d7);">
+    
+    <div >
+      <div class="row " >
+        <div class="col-lg-3"></div>
+
+        
+        <div class="col-lg-6 borderPadding contents" >
+          <div class="row justify-content-center" >
+            <div class="col-md-8" style="padding:5%; background-color:#f7f7ff;  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+              <div class="row" style="display: flex; justify-content: center;">
+                <!-- <img src="assets/images/bajaj_logo.svg" alt="logo" > -->
+                <img src="assets/image/pentation.png" alt="logo" style="height: 70px;">
+              </div>
+
+              <!-- <div class="mt-3 mb-4">
+                <br>
+              <h2 style="font-size: 22px!important;">Sign In</h2>
+              <br>
+
+            </div> -->
+              <div class="form-group first mt-4" >
+                <label for="username">Username</label>
+                <input type="text" class="form-control t_input" id="username"   [(ngModel)]="username" (keyup.enter)="login()">
+                <!-- <br> -->
+
+                <!-- <mat-checkbox [(ngModel)]="isRenewal" [disabled]="page == 2" (onSelect)="toggleRights()">Renewal</mat-checkbox>
+                <mat-checkbox [(ngModel)]="isEmployeeMaster" [disabled]="page == 2" (onSelect)="toggleRights()">Employee Master</mat-checkbox> -->
+
+                <!-- <mat-radio-group aria-label="Select an option" [(ngModel)]="isRenewal" [disabled]="page == 2" color="primary">
+                  <mat-radio-button value="1">Renewal &nbsp; &nbsp; &nbsp; &nbsp;</mat-radio-button>
+                  <mat-radio-button value="0"> Employee Master</mat-radio-button>
+                </mat-radio-group> -->
+
+              </div>
+
+              <div class="form-group last mb-4" >
+                <label for="password">Password</label>
+                <input [type]="showPassword ? 'text' : 'password'" class="form-control t_input" id="password" [(ngModel)]="password" (keyup.enter)="login()">
+                <!-- <span toggle="#passKey" [class]="showPassword ?'fa fa-fw fa-eye-slash field-icon toggle-password':'fa fa-fw fa-eye field-icon'" (click)="showPassword = !showPassword"></span> -->
+                <span toggle="#passKey" *ngIf="!showPassword" class="field-icon" (click)="showPassword = !showPassword"><mat-icon style="color: rgba(7, 80, 116, 0.733) !important;">visibility</mat-icon></span>
+
+                <span  toggle="#passKey" *ngIf="showPassword" class="field-icon toggle-password" (click)="showPassword = !showPassword"><mat-icon style="color: rgba(7, 80, 116, 0.733) !important;">visibility_off</mat-icon></span>
+              </div>
+
+              <!-- <br> -->
+
+              <!-- <div class="form-group first mt-4"> -->
+                <div class="row" style="display: flex; justify-content: center;">
+                  <!-- <div class="col-6" style="padding:0% !important; padding-right: 7px !important; margin: 0% !important;" >
+
+                    <button  class="filterApplyButton"  style="background-color: rgb(201 201 201);
+                    border: solid #c3c3c3;" [disabled]="page == 1" (click)="page=1" >
+    
+                      <span style="color:black">Back</span>
+                  </button>
+                  </div> -->
+                  <!-- <div class="col-1"></div> -->
+                  <div class="col-12" style="padding:0% !important; padding-left: 0px !important; margin: 0% !important;">
+                    <!-- {{page}} -->
+                    <!-- <button  *ngIf="page==1" class="filterApplyButton"  style="background-color: rgb(0, 95, 204);" (click)="checkUserName()" >
+
+                      <span style="color:white" >Next</span>                      
+
+                    </button> -->
+
+                  <button  class="filterApplyButton"  style="background-color: rgb(0, 95, 204); border: none;" (click)="login()">
+
+                    <!-- <span *ngIf="page==1" style="color:white" (click)="checkUserName()">Next</span> -->
+                    <span  style="color:white" >Log In</span>
+
+                </button>
+                  </div>
+                </div>
+               
+              <!-- </div> -->
+
+
+
+              
+
+                <!-- <div class="row" style="display: flex; justify-content: right;"> -->
+                  <div class="row" >
+                  <!-- <a href="" style="position:absolute; left: 15px;font-size: 10pt;">Forgot Password</a> -->
+                 
+                  <!-- <mat-icon  (click)="login()" title="Log In" style="font-size: 22pt; cursor:pointer;position:absolute; right: 15px;">arrow_circle_right</mat-icon> -->
+                </div>
+                
+              
+           <br>
+            </div>
+          </div>
+          
+        </div>
+        <div class="col-lg-3"></div>
+
+        
+      </div>
+    </div>
+  </div>

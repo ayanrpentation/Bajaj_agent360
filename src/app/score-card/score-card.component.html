@@ -1,0 +1,3706 @@
+<!-- <div class="container-fluid" style="padding-top:4%; padding-left: 3%; padding-right: 2%;"> -->
+
+
+<!-- <div  *ngIf="!seachBtnClicked_afterLoad" class="container-fluid" style="padding:40px;height: 100vh!important;display:flex; align-items: center;">
+    <div   class="col-12" style="text-align: center; padding:2%;box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; background-color: rgb(255, 255, 255); border-radius: 10px;">
+
+
+        <div   class="row" style="display: flex; justify-content: center; font-size: 18px; height: 30px; color: #362c70">
+            <span>Are you Searching for IMD Code?</span>
+        </div>
+
+
+        <div   class="row" >
+
+            <div class="col-4" style="display: flex; justify-content: left;">
+
+                <button class="btn topButtons"  (click)="getYtdDetails(searchImdCode)">
+                    YTD
+                </button>
+    
+    
+                <button  class="btn topButtons"   (click)="downloadScoreCardAll()" title="All IMDs Download"> 
+                    <i class="fa fa-download"></i> &nbsp; All IMDs
+                </button>
+    
+    
+                <button *ngIf="imdsearched"  class="btn topButtons" (click)="openModalDownload(downloadScoreCardBox,imdInfo.INTERMEDIARY_ID,1)"  title="download score card">
+                    <i class="fa fa-download"></i> &nbsp; Score Card
+                </button>
+
+            </div>
+
+
+
+            <div class="col-4" style="display:flex; justify-content: center;">
+                <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4" style="width:500px; border: 2px solid #b9acff; overflow: hidden;">
+                    <div class="input-group">
+                      
+    
+                      <input type="search"  [(ngModel)]="searchImdCode" placeholder="Search Your IMD Here" aria-describedby="button-addon2" class="form-control border-0 bg-light">
+    
+                      <div class="input-group-prepend ">
+    
+                        <button id="button-addon2" type="submit" class="btn btn-link" style="color: #6c5bca"  title="Search Your IMD Here" (click)="  seachBtnClicked_afterLoad = true; getImdDetails(searchImdCode); getScoreCardDetails(searchImdCode);getRecommendations(searchImdCode); getTotalGraph_rep(searchImdCode); getLRvsCAQGraphs(searchImdCode); getLobPieGraphs(searchImdCode); getOnePagerdataYTD(searchImdCode); getOnePagerdataMOM(searchImdCode);"><i class="fa fa-search"></i></button>
+    
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-4">
+                
+            </div>
+    </div>
+</div> -->
+
+
+
+<div *ngIf="!seachBtnClicked_afterLoad" class="row" style="height: 30vh"></div>
+
+<!-- <div *ngIf="seachBtnClicked_afterLoad" class="row" style="height: 90px"></div> -->
+
+<div    class="container-fluid" style="padding:40px;">
+
+    
+    <div   class="col-12 " [ngClass]="seachBtnClicked_afterLoad == true?'fullScorecardBody':'noSearch_fullScorecardBody'">
+        
+
+        <!-- <br>
+        <br> -->
+
+
+        
+
+
+
+        <div   class="row" style="display: flex; justify-content: center; font-size: 25px; height: 30px; color: #362c70;">
+            <span>Are you looking for an {{projectName}} Score Card?</span>
+
+
+            <!-- <div class="container" > -->
+
+                <!-- Note the linear gauge requires settings only for
+                minimumValue, maximumValue, and value properties.
+                All other properties are optional and listed here
+                for demonstration purpose only -->
+                <!-- <igx-linear-gauge
+                    #linearGauge
+                    height="80px"
+                    width="400px"
+                    minimumValue=0
+                    maximumValue=100
+                    value=50
+                    interval=10
+                    labelInterval=10
+                    labelExtent=0.02
+        
+                    minorTickEndExtent=0.10,
+                    minorTickStartExtent=0.20,
+                    tickStartExtent=0.25,
+                    tickEndExtent=0.05,
+                    tickStrokeThickness=2,
+        
+                    needleShape="Needle"
+                    needleBrush="#79797a"
+                    needleOutline="#79797a"
+                    scaleStrokeThickness=0
+                    scaleBrush="#ffffff"
+                    scaleOutline="#d3d3d3"
+                    backingBrush="#ffffff"
+                    backingOutline="#d1d1d1"
+                    backingStrokeThickness=0>
+                </igx-linear-gauge> -->
+            <!-- </div> -->
+
+            <!-- <i class={{icontest}} aria-hidden="true"></i> -->
+        </div>
+
+        <div class="row" style="height: 20px"></div>
+
+
+        <div   class="row" >
+
+            <div class="col-2" style="display: flex; justify-content: left;">
+
+                <!-- <button *ngIf="seachBtnClicked_afterLoad" class="btn topButtons"  (click)="getYtdDetails(searchImdCode)">
+                    YTD
+                </button>
+    
+    
+                <button *ngIf="seachBtnClicked_afterLoad" class="btn topButtons"   (click)="downloadScoreCardAll()" title="All IMDs Download"> 
+                    <i class="fa fa-download"></i> &nbsp; All IMDs
+                </button>
+    
+    
+                <button *ngIf="seachBtnClicked_afterLoad"  class="btn topButtons" (click)="openModalDownload(downloadScoreCardBox,imdInfo.INTERMEDIARY_ID,1)"  title="download score card">
+                    <i class="fa fa-download"></i> &nbsp; Score Card
+                </button> -->
+
+            </div>
+
+
+
+
+            <div class="col-8" style="display:flex; justify-content: center;">
+               
+
+
+                <select *ngIf="seachBtnClicked_afterLoad" name="" id="" [(ngModel)]="month_selectedItems_singleselect" style="width: 130px; height: 55px; border: 2px solid #b9acff; overflow: hidden; border-radius: 25px; font-size: 16px; color: rgb(51, 51, 51); background-color: #f8f9fa; text-align: center;" (change)="formation_month_selectedItems()">
+
+                    <option value="">Month</option>                    
+                    <option *ngFor="let month of month_dropdownList" value="{{month.monthVal}}">{{month.monthName}}</option>
+                </select>
+
+
+
+                &nbsp; &nbsp;
+                
+
+
+
+
+                <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4" style="width:600px; border: 2px solid #b9acff; overflow: hidden;">
+                    <div class="input-group">
+                      
+    
+                      <input type="search"  [(ngModel)]="searchImdCode" placeholder="Search your {{projectName}} here" aria-describedby="button-addon2" class="form-control border-0 bg-light" style="font-size: 18px; text-align: center; text-indent: 30px;">
+    
+                      <div class="input-group-prepend ">
+    
+                        <button id="button-addon2" type="submit" class="btn btn-link" style="color: #6c5bca;"  title="Search your {{projectName}} here" (click)="seachBtnClicked_afterLoad=true;getImdDetails(searchImdCode); getScoreCardDetails(searchImdCode);getRecommendations(searchImdCode); getTotalGraph_rep(searchImdCode); getLRvsCAQGraphs(searchImdCode); getLobPieGraphs(searchImdCode); getOnePagerdataYTD(searchImdCode); getOnePagerdataMOM(searchImdCode); ytdFlag = false"><i class="fa fa-search"></i></button>
+    
+                      </div>
+                    </div>
+                </div>
+
+
+                &nbsp; &nbsp;
+
+
+
+                <button *ngIf="seachBtnClicked_afterLoad"  class="btn topButtons" (click)="showPdfTypes = false; openModalDownload(downloadScoreCardBox,imdInfo.INTERMEDIARY_ID,1)"  title="download score card" style="height: 50px; width: 50px; border-radius: 50%;">
+                    <i class="fa fa-download"></i>
+                </button>
+
+                &nbsp; 
+
+                <button *ngIf="seachBtnClicked_afterLoad" class="btn topButtons"  (click)="getYtdDetails(searchImdCode)"  style="height: 50px; width: 50px; border-radius: 50%; text-align: center;">
+
+                    <span style="margin-left: -5px;">YTD</span>
+                </button>
+
+                
+
+
+
+            </div>
+
+            <div class="col-2">
+                
+            </div>
+
+
+
+        </div>
+
+
+
+        
+
+
+
+
+
+
+        <div  *ngIf="imdsearched"   class="row" style="height: 10px;"></div>
+
+
+
+        <!-- <div class="row" style="display:flex; justify-content: right;">
+            <button class="btn topButtons"  (click)="getYtdDetails(searchImdCode)">
+                YTD
+            </button>
+
+
+            <button  class="btn topButtons" 
+                (click)="clearAllDetails();" title="Refresh">
+                <i class="fa fa-refresh"></i>
+            </button>
+
+
+            <button  class="btn topButtons"   (click)="downloadScoreCardAll()" title="All IMDs Download"> 
+                <i class="fa fa-download"></i> &nbsp; All IMDs
+            </button>
+
+
+            <button *ngIf="imdsearched"  class="btn topButtons" (click)="openModalDownload(downloadScoreCardBox,imdInfo.INTERMEDIARY_ID,1)"  title="download score card">
+                <i class="fa fa-download"></i> &nbsp; Score Card
+            </button>
+
+
+            
+        </div> -->
+
+
+
+
+
+
+        <!-- <hr style="background-color:#6c5bca00"> -->
+
+
+        <div  *ngIf="imdsearched"  class="row" style="padding: 0;">
+
+            <div class="col-1" style="padding:0">
+
+
+                <!-- <div class="row" style="display: flex; justify-content: left;">
+
+                    <div class="col-3 agentInfoGap">Imd Code & Name</div>
+
+                    <div class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">
+
+                        <span *ngIf="imdsearched">{{imdInfo.INTERMEDIARY_ID}} - {{imdInfo.INTERMEDIARY_NAME}}</span>
+
+                    </div>
+
+                </div> -->
+
+            </div>
+
+
+
+            <div class="col-10">
+
+                <div class="row" style="display: flex; justify-content: center; padding:0">
+
+                    <div class="col-2 agentInfoGap">{{projectName}} Code & Name</div>
+
+                    <div class="col-3" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">
+
+                        <span *ngIf="imdsearched">{{imdInfo.INTERMEDIARY_ID}} - {{imdInfo.INTERMEDIARY_NAME | titlecase}}</span>
+                        <!-- <span *ngIf="imdsearched">{{imdInfo.INTERMEDIARY_ID}} - Dummy IMD</span> -->
+
+                    </div>
+                    &nbsp;&nbsp;
+
+                    <div class="col-2 agentInfoGap">Vintage</div>
+
+                    <div class="col-3" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">{{imdInfo.AGENT_VINTAGE}}</div>
+
+                </div>
+
+            </div>
+
+            <div class="col-1"  style="padding:0">
+                
+                
+            </div>
+
+        </div>
+
+
+
+        <hr  *ngIf="imdsearched" style="background-color:#6b5acc62">
+
+
+        <div  *ngIf="imdsearched" class="row" style="height: 30px;"></div>
+
+
+
+
+        <div  *ngIf="imdsearched" class="row" style="padding:0">
+
+            <div class="col-4" style="padding:0">
+
+                <div class="row" style="padding:0">
+                    <div class="col-11 agentInfoGap" style="background-color: #d7cfff;">Spoc Information</div>
+                </div>
+
+                <div class="row" style="padding:0">
+                    <div class="col-5 agentInfoGap">ZH Name</div>
+                    <div class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">{{imdInfo.ZH_NAME}}</div>
+                    <!-- <div class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">Dummy ZH</div> -->
+                </div>
+
+                <div class="row" style="padding:0">
+                    <div class="col-5 agentInfoGap">CH Name</div>
+                    <div class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">{{imdInfo.CH_NAME}}</div>
+                    <!-- <div class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">Dummy CH</div> -->
+                </div>
+
+                <div class="row" style="padding:0">
+                    <div class="col-5 agentInfoGap">RM Name</div>
+                    <div class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">{{imdInfo.RM_NAME}}</div>
+                    <!-- <div class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">Dummy RM</div> -->
+                </div>
+
+                <div class="row" style="padding:0">
+                    <div class="col-5 agentInfoGap">Sub Channel</div>
+                    <div class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">{{imdInfo.SUB_CHANNEL | titlecase}}</div>
+                </div>
+
+            </div>
+
+
+            <div class="col-4">
+
+                <div class="row" style="display: flex; justify-content: center;">
+                    <div class="col-11 agentInfoGap"  style="background-color: #d7cfff;">Demographic Information</div>
+                </div>
+
+                <div class="row" style="display: flex; justify-content: center;">
+                    <div class="col-5 agentInfoGap">Location</div>
+                    <div class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">{{imdInfo.LOCATION | titlecase}}</div>
+                </div>
+
+                <div class="row" style="display: flex; justify-content: center;">
+                    <div class="col-5 agentInfoGap">Gender</div>
+                    <div class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">{{imdInfo.GENDER}}</div>
+                </div>
+
+                <div class="row" style="display: flex; justify-content: center;">
+                    <div class="col-5 agentInfoGap">Marital Status</div>
+                    <div class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">{{imdInfo.MARRIED_STATUS}}</div>
+                </div>
+
+                <div class="row" style="display: flex; justify-content: center;">
+                    <div class="col-5 agentInfoGap">Background</div>
+                    <div class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">{{imdInfo.AGENT_BACKGROUND}}</div>
+                </div>
+
+            </div>
+
+
+            <div class="col-4" style="padding:0">
+
+                <div class="row" style="display: flex; justify-content: right; padding:0">
+                    <div class="col-11 agentInfoGap"  style="background-color: #d7cfff;">Performance Information</div>
+                </div>
+
+                <div class="row" style="display: flex; justify-content: right; padding:0">
+                    <div class="col-5 agentInfoGap">Bucket & Score</div>
+
+
+                    <div class="col-2" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'" >
+                        <span *ngIf="imdsearched">{{imdInfo.BANDING}}</span>
+                    </div>
+
+
+
+
+                    <div *ngIf="imdInfo.TOTAL<1" class="col-4" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'" style="background-color: #ffc7bd;background: linear-gradient(45deg, #ffc7bd, white); ">
+                        <span *ngIf="imdsearched">{{imdInfo.TOTAL}}</span>
+                    </div>
+
+                    <div *ngIf="imdInfo.TOTAL==1" class="col-4" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'" >
+                        <span *ngIf="imdsearched">{{imdInfo.TOTAL}}</span>
+                    </div>
+
+                    <div *ngIf="imdInfo.TOTAL>1" class="col-4" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'" style="background-color: #bdffbd;background: linear-gradient(45deg, #bdffbd, white);">
+                        <span *ngIf="imdsearched">{{imdInfo.TOTAL}}</span>
+                    </div>
+                    <!-- <div class="col-4" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'" style="border-left: 3px solid #ffffff;">
+                        <span *ngIf="imdsearched">{{imdInfo.TOTAL}}</span>
+                    </div> -->
+                </div>
+
+
+
+                <div class="row" style="display: flex; justify-content: right; padding:0">
+                    <div class="col-5 agentInfoGap">Combined Operating Ratio</div>
+                    <!-- <div class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">
+                        <span *ngIf="imdsearched">{{imdInfo.CY_COR}}%</span></div> -->
+
+                        <div *ngIf="imdInfo.CY_COR>100" class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'" style=" background: linear-gradient(45deg, #ff8e88, white); ">
+                            <span *ngIf="imdsearched">{{imdInfo.CY_COR}}%</span>
+
+                            
+                        </div>
+    
+                        <div *ngIf="imdInfo.CY_COR <100 && imdInfo.CY_COR >0" class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'" style="background-color: #ff964f;    background: linear-gradient(45deg, #ff964f, white);">
+                            <span *ngIf="imdsearched">{{imdInfo.CY_COR}}%</span>
+
+                            <!-- <meter id="disk_d" min="-300" max="300" [value]="imdInfo.CY_COR" style="background-color: #ff964f;">{{imdInfo.CY_COR}}%</meter> -->
+                        </div>
+    
+                        <div *ngIf="imdInfo.CY_COR < 0" class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'" style="background-color: #8bff8b;    background: linear-gradient(45deg, #8bff8b, white);">
+                            <span *ngIf="imdsearched">{{imdInfo.CY_COR}}%</span>
+                        </div>
+
+                        <div *ngIf="imdInfo.CY_COR == 0" class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'" style="background-color: #8bff8b;    background: linear-gradient(45deg, #8bff8b, white);">
+                            <span *ngIf="imdsearched">{{imdInfo.CY_COR}}%</span>
+                        </div>
+
+
+                        <!-- <div id="chart-container">FusionCharts XT will load here!</div> -->
+
+
+
+
+                </div>
+
+
+
+                <div class="row" style="display: flex; justify-content: right; padding:0">
+                    <div class="col-5 agentInfoGap">Loss Ratio</div>
+                    <!-- <div class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'" [style]="styleVar_start + backGround + styleVar_end">
+                        <span *ngIf="imdsearched">{{imdInfo.LOSS_RATIO}}%</span>
+                        </div> -->
+
+
+                        <div *ngIf="imdInfo.LOSS_RATIO >= 100" class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'" style="background-color: #ff8e88;   background: linear-gradient(45deg, #ff8e88, white);">
+                            <span *ngIf="imdsearched">{{imdInfo.LOSS_RATIO}}%</span>
+                        </div>
+    
+                        <div *ngIf="imdInfo.LOSS_RATIO < 100 && imdInfo.LOSS_RATIO >=0" class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'"  style="background-color: #ff964f;  background: linear-gradient(45deg, #ff964f, white);">
+                            <span *ngIf="imdsearched">{{imdInfo.LOSS_RATIO}}%</span>
+                        </div>
+    
+                        <div *ngIf="imdInfo.LOSS_RATIO < 0" class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'" style="background-color: #8bff8b;  background: linear-gradient(45deg, #8bff8b, white);">
+                            <span *ngIf="imdsearched">{{imdInfo.LOSS_RATIO}}%</span>
+                        </div>
+                </div>
+
+
+                
+
+                <div class="row" style="display: flex; justify-content: right; padding:0">
+                    <div class="col-5 agentInfoGap">Acquisition Cost Ratio</div>
+                    <!-- <div class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">
+                        <span *ngIf="imdsearched">{{imdInfo.COMMISSION_RATIO}}%</span>
+                        </div> -->
+
+
+
+                        <div *ngIf="imdInfo.COMMISSION_RATIO>100" class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'" style="background-color: #ff8e88;   background: linear-gradient(45deg, #ff8e88, white); ">
+                            <span *ngIf="imdsearched">{{imdInfo.COMMISSION_RATIO}}%</span>
+                        </div>
+    
+                        <!-- <div *ngIf="imdInfo.COMMISSION_RATIO <300 && imdInfo.COMMISSION_RATIO >-300" class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'" style="background-color: #ff964f;">
+                            <span *ngIf="imdsearched">{{imdInfo.COMMISSION_RATIO}}%</span>
+                        </div> -->
+    
+                        <div *ngIf="imdInfo.COMMISSION_RATIO<100" class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'" style="background-color: #8bff8b;  background: linear-gradient(45deg, #8bff8b, white);">
+                            <span *ngIf="imdsearched">{{imdInfo.COMMISSION_RATIO}}%</span>
+                        </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+        <!-- <div class="row" style="font-weight: bold;  font-size: 16px;">
+
+
+            <div class="col-11" style="text-align: left;  font-size: 18px;">
+
+                <img width="30px;" src="assets/image/user.png" alt="">&nbsp;&nbsp;&nbsp;
+                <span> Agent Info</span>
+
+            </div>
+
+
+            <div class="col-1" [ngClass]="filter_btn_clicked!=0? 'agentInfoGap' : ''">
+
+                <span *ngIf="month_selectedItems.length!=0" style="font-size: 12px;">{{monthName}}</span>
+            </div>
+
+        </div> -->
+
+
+        <div *ngIf="imdsearched"  class="row" style="height:40px"></div>
+
+
+
+
+
+        <div  *ngIf="imdsearched" class="row">
+
+            <div class="col-6" style="padding: 0; padding-right: 10px;">
+                <table class="table table-hover" style="text-align: center; justify-items: center; font-size: 18px!important;">
+
+
+                    <thead>
+                        <tr style="background: #fada5a; color:black ; font-size: 18px; font-weight: bold;">
+    
+                            <th class="tableColumnStyle"  >Metrics</th>
+                            <th class="tableColumnStyle"  >Actuals</th>
+                            <th class="tableColumnStyle"  >Score</th>
+                            <th class="tableColumnStyle"  >Max</th>
+                            <th class="tableColumnStyle"></th>
+    
+                        </tr>
+    
+                    </thead>
+    
+                    <tbody >
+                        <tr class='highlighRow' >
+                            <td class="tableColumnStyle" style="font-weight: bold; text-align: left; margin-left: 30px;">GWP</td>
+                            <td class="tableColumnStyle" >{{getComma(scorecardDetails.GWP)}}</td>
+                            <td class="tableColumnStyle" >{{scorecardDetails.MOM_GWP_SCORE}}
+                            </td>
+                            <td class="tableColumnStyle" >{{scoreConfig.MOM_GWP_SCORE}}</td>
+
+                            <td *ngIf="ytdFlag != true" class="tableColumnStyle" style="width:5%; ">
+                                <mat-icon style="font-size: 12pt; position: relative; top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                    (click)="openModal(gwpBox,1); getGWPScoreDetails(imdInfo.INTERMEDIARY_ID);this.getGWPGraphs(imdInfo.INTERMEDIARY_ID);">open_with</mat-icon>
+                            </td>
+                            <td *ngIf="ytdFlag == true" class="tableColumnStyle" style="width:5%; ">
+                                <mat-icon  style="font-size: 12pt; position: relative; top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                    (click)="openModal(gwpBox,1); getGWPScoreDetailsYtd(imdInfo.INTERMEDIARY_ID);this.getGWPGraphs(imdInfo.INTERMEDIARY_ID);">open_with</mat-icon>
+                            </td>
+
+                        </tr>
+    
+                        <tr style="padding: 0;">
+                            <td class="tableColumnStyle" style=" font-weight: bold; text-align: left; margin-left: 30px;">NOP</td>
+                            <td class="tableColumnStyle" >{{getComma(scorecardDetails.NOP)}}</td>
+                            <td class="tableColumnStyle" >
+                                {{scorecardDetails.NOP_FINAL_SCORE}}</td>
+                            <td class="tableColumnStyle" >{{scoreConfig.NOP_FINAL_SCORE}}
+                            </td>
+    
+                            <td *ngIf="ytdFlag != true" class="tableColumnStyle" style="width:5%; ">
+                                <mat-icon style="font-size: 12pt; position: relative; top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                    (click)="openModal(nopBox,1);getNOPScoreDetails(imdInfo.INTERMEDIARY_ID);this.getNOPGraphs(imdInfo.INTERMEDIARY_ID);">open_with</mat-icon>
+                            </td>
+                            <td *ngIf="ytdFlag == true" class="tableColumnStyle" style="width:5%;  ">
+                                <mat-icon style="font-size: 12pt; position: relative; top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                    (click)="openModal(nopBox,1);getNOPScoreDetailsYtd(imdInfo.INTERMEDIARY_ID);this.getNOPGraphs(imdInfo.INTERMEDIARY_ID);">open_with</mat-icon>
+                            </td>
+    
+                        </tr>
+    
+                        <tr class='highlighRow' style="padding: 0;">
+                            <td class="tableColumnStyle" style=" font-weight: bold; text-align: left; margin-left: 30px;">NOP Renewal Ratio%</td>
+                            <td class="tableColumnStyle" >{{scorecardDetails.RENEWAL_RATIO}} %
+                            </td>
+                            <td class="tableColumnStyle" >{{scorecardDetails.NOP_RR_SCORE}}
+                            </td>
+                            <td class="tableColumnStyle" >{{scoreConfig.NOP_RR_SCORE}}</td>
+    
+                            <td *ngIf="ytdFlag != true" class="tableColumnStyle" style="width:5%; ">
+                                <mat-icon style="font-size: 12pt; position: relative; top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                    (click)="openModal(noprrBox,1);getNOPRRScoreDetails(imdInfo.INTERMEDIARY_ID);this.getNOPRRGraphs(imdInfo.INTERMEDIARY_ID);">open_with</mat-icon>
+                            </td>
+                            <td *ngIf="ytdFlag == true" class="tableColumnStyle" style="width:5%;">
+                                <mat-icon style="font-size: 12pt; position: relative; top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                    (click)="openModal(noprrBox,1);getNOPRRScoreDetailsYtd(imdInfo.INTERMEDIARY_ID);this.getNOPRRGraphs(imdInfo.INTERMEDIARY_ID);">open_with</mat-icon>
+                            </td>
+    
+                        </tr>
+    
+    
+                        <tr >
+                            <td class="tableColumnStyle" style=" font-weight: bold; text-align: left; margin-left: 30px;">Cross Sell</td>
+                            <td class="tableColumnStyle" >
+                                {{getComma(scorecardDetails.CROSS_SELL_POL)}}</td>
+                            <td class="tableColumnStyle" >
+                                {{scorecardDetails.CROSS_SELL_SCORE}}</td>
+                            <td class="tableColumnStyle" >{{scoreConfig.CROSS_SELL_SCORE}}
+                            </td>
+    
+                            <td *ngIf="ytdFlag != true" class="tableColumnStyle" style="width:5%; ">
+                                <mat-icon style="font-size: 12pt; position: relative; top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                    (click)="openModal(csellBox,1);getSELLScoreDetails(imdInfo.INTERMEDIARY_ID, 'cross sell');getSELLGraphs(imdInfo.INTERMEDIARY_ID, 'cross sell');">open_with</mat-icon>
+                            </td>
+    
+                            <td *ngIf="ytdFlag == true" class="tableColumnStyle" style="width:5%; ">
+                                <mat-icon style="font-size: 12pt; position: relative; top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                    (click)="openModal(csellBox,1);getSELLScoreDetailsYtd(imdInfo.INTERMEDIARY_ID, 'cross sell');getSELLGraphs(imdInfo.INTERMEDIARY_ID, 'cross sell');">open_with</mat-icon>
+                            </td>
+                        </tr>
+    
+    
+                        <tr class='highlighRow' >
+                            <td class="tableColumnStyle" style=" font-weight: bold; text-align: left; margin-left: 30px;">Upsell</td>
+                            <td class="tableColumnStyle" >{{getComma(scorecardDetails.UP_SELL_POL)}}
+                            </td>
+                            <td class="tableColumnStyle" >{{scorecardDetails.UP_SELL_SCORE}}
+                            </td>
+                            <td class="tableColumnStyle" >{{scoreConfig.UP_SELL_SCORE}}</td>
+    
+                            <td *ngIf="ytdFlag != true" class="tableColumnStyle" style="width:5%; ">
+                                <mat-icon style="font-size: 12pt; position: relative; top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                    (click)="openModal(upsellBox,1);getSELLScoreDetails(imdInfo.INTERMEDIARY_ID, 'upsell');getSELLGraphs(imdInfo.INTERMEDIARY_ID, 'upsell');">open_with</mat-icon>
+                            </td>
+                            <td *ngIf="ytdFlag == true" class="tableColumnStyle" style="width:5%; ">
+                                <mat-icon style="font-size: 12pt; position: relative; top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                    (click)="openModal(upsellBox,1);getSELLScoreDetailsYtd(imdInfo.INTERMEDIARY_ID, 'upsell');getSELLGraphs(imdInfo.INTERMEDIARY_ID, 'upsell');">open_with</mat-icon>
+                            </td>
+    
+                        </tr>
+    
+                        <tr style="padding: 0;">
+                            <td class="tableColumnStyle" style=" font-weight: bold; text-align: left; margin-left: 30px;">Winback</td>
+                            <td class="tableColumnStyle" >{{getComma(scorecardDetails.WINBACK_POL)}}
+                            </td>
+                            <td class="tableColumnStyle" >{{scorecardDetails.WINBACK_SCORE}}
+                            </td>
+                            <td class="tableColumnStyle" >{{scoreConfig.WINBACK_SCORE}}</td>
+    
+                            <td *ngIf="ytdFlag != true" class="tableColumnStyle" style="width:5%; ">
+                                <mat-icon style="font-size: 12pt; position: relative; top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                    (click)="openModal(winbackBox,1);getSELLScoreDetails(imdInfo.INTERMEDIARY_ID, 'winback');getSELLGraphs(imdInfo.INTERMEDIARY_ID, 'winback');">open_with</mat-icon>
+                            </td>
+                            <td *ngIf="ytdFlag == true" class="tableColumnStyle" style="width:5%; ">
+                                <mat-icon style="font-size: 12pt; position: relative; top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                    (click)="openModal(winbackBox,1);getSELLScoreDetailsYtd(imdInfo.INTERMEDIARY_ID, 'winback');getSELLGraphs(imdInfo.INTERMEDIARY_ID, 'winback');">open_with</mat-icon>
+                            </td>
+                        </tr>
+                        <!-- <tr class='highlighRow' style="padding: 0;">
+                                        <td class="tableColumnStyle" style="padding: 0; font-weight: bold;">COR</td>
+                                        <td class="tableColumnStyle" style="padding: 0; ">{{scorecardDetails.CY_COR}}</td>
+                                        <td class="tableColumnStyle" style="padding: 0; ">
+                                            {{scorecardDetails.PROFITABILITY_SCORE}}</td>
+                                        <td class="tableColumnStyle" style="padding: 0; ">
+                                            {{scoreConfig.PROFITABILITY_SCORE}}</td>
+    
+                                        <td class="tableColumnStyle" style="width:5%; padding: 0; ">
+                                            <mat-icon style="font-size: 12pt;
+                                                            
+                                                            position: relative;
+                                                            top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                                (click)="openModal(corBox,1);getCORScoreDetails(imdInfo.INTERMEDIARY_ID);this.getCORGraphs(imdInfo.INTERMEDIARY_ID);">open_with</mat-icon>
+                                        </td>
+                                    </tr> -->
+    
+    
+    
+                        <tr class='highlighRow' >
+                            <td class="tableColumnStyle" style=" font-weight: bold; text-align: left; margin-left: 30px;">Digital Touch Point</td>
+                            <td class="tableColumnStyle" style="padding: 0; ">
+                                {{scorecardDetails.DIGITAL_ACTIVENESS}} %</td>
+                            <td class="tableColumnStyle" >{{scorecardDetails.DTP_SCORE}}
+                            </td>
+                            <td class="tableColumnStyle" >{{scoreConfig.DTP_SCORE}}</td>
+    
+                            <td *ngIf="ytdFlag != true" class="tableColumnStyle" style="width:5%; ">
+                                <mat-icon style="font-size: 12pt; position: relative; top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                    (click)="openModal(digitalBox,1);getDTPScoreDetails(imdInfo.INTERMEDIARY_ID);getDTPGraphs(imdInfo.INTERMEDIARY_ID);">open_with</mat-icon>
+                            </td>
+                            <td *ngIf="ytdFlag == true" class="tableColumnStyle" style="width:5%;  ">
+                                <mat-icon style="font-size: 12pt; position: relative; top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                    (click)="openModal(digitalBox,1);getDTPScoreDetailsYtd(imdInfo.INTERMEDIARY_ID);getDTPGraphs(imdInfo.INTERMEDIARY_ID);">open_with</mat-icon>
+                            </td>
+    
+                        </tr>
+    
+                        <tr >
+                            <td class="tableColumnStyle" style=" font-weight: bold; text-align: left; margin-left: 30px;">Physical Touch Point</td>
+                            <td class="tableColumnStyle" >{{getComma(scorecardDetails.MEETING_COUNT)}}
+                            </td>
+                            <td class="tableColumnStyle" >{{scorecardDetails.PTP_SCORE}}
+                            </td>
+                            <td class="tableColumnStyle" >{{scoreConfig.PTP_SCORE}}</td>
+    
+                            <td *ngIf="ytdFlag != true" class="tableColumnStyle" style="width:5%; ">
+                                <mat-icon style="font-size: 12pt; position: relative; top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                    (click)="openModal(physicalBox,1);getPTPScoreDetails(imdInfo.INTERMEDIARY_ID);this.getPTPGraphs(imdInfo.INTERMEDIARY_ID);">open_with</mat-icon>
+                            </td>
+                            <td *ngIf="ytdFlag == true" class="tableColumnStyle" style="width:5%; ">
+                                <mat-icon style="font-size: 12pt; position: relative; top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                    (click)="openModal(physicalBox,1);getPTPScoreDetailsYtd(imdInfo.INTERMEDIARY_ID);this.getPTPGraphs(imdInfo.INTERMEDIARY_ID);">open_with</mat-icon>
+                            </td>
+    
+                        </tr>
+    
+                        <tr class='highlighRow' >
+                            <td class="tableColumnStyle" style=" font-weight: bold;  text-align: left; margin-left: 30px;">Campaign Eligibility</td>
+                            <td class="tableColumnStyle" >
+                                {{scorecardDetails.CY_ELIGIBILITY_PER}} %</td>
+                            <td class="tableColumnStyle" >
+                                {{scorecardDetails.CAMPAIGN_SCORE}}</td>
+                            <td class="tableColumnStyle" >{{scoreConfig.CAMPAIGN_SCORE}}
+                            </td>
+    
+                            <td *ngIf="ytdFlag != true" class="tableColumnStyle" style="width:5%; ">
+                                <mat-icon style="font-size: 12pt; position: relative; top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                    (click)="openModal(campaignBox,1);getCampaignScoreDetails(imdInfo.INTERMEDIARY_ID); this.getCampaignGraphs(imdInfo.INTERMEDIARY_ID);">open_with</mat-icon>
+                            </td>
+                            <td *ngIf="ytdFlag == true" class="tableColumnStyle" style="width:5%;  ">
+                                <mat-icon style="font-size: 12pt; position: relative; top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                    (click)="openModal(campaignBox,1);getCampaignScoreDetailsYtd(imdInfo.INTERMEDIARY_ID); this.getCampaignGraphs(imdInfo.INTERMEDIARY_ID);">open_with</mat-icon>
+                            </td>
+    
+                        </tr>
+    
+                        <tr style="padding: 0;">
+                            <td class="tableColumnStyle" style=" font-weight: bold;  text-align: left; margin-left: 30px;">LOB</td>
+                            <td class="tableColumnStyle" >{{scorecardDetails.LOB}}</td>
+                            <td class="tableColumnStyle" >
+                                {{scorecardDetails.LOB_MAIN_SCORE}}</td>
+                            <td class="tableColumnStyle" >{{scoreConfig.LOB_MAIN_SCORE}}
+                            </td>
+    
+                            <td *ngIf="ytdFlag != true" class="tableColumnStyle" style="width:5%;  ">
+                                <mat-icon style="font-size: 12pt;  position: relative; top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                    (click)="openModal(lobBox,1);getLOBScoreDetails(imdInfo.INTERMEDIARY_ID); this.getLOBGraphs(imdInfo.INTERMEDIARY_ID);">open_with</mat-icon>
+                            </td>
+                            <td *ngIf="ytdFlag == true" class="tableColumnStyle" style="width:5%; ">
+                                <mat-icon style="font-size: 12pt;  position: relative; top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                    (click)="openModal(lobBox,1);getLOBScoreDetailsYtd(imdInfo.INTERMEDIARY_ID); this.getLOBGraphs(imdInfo.INTERMEDIARY_ID);">open_with</mat-icon>
+                            </td>
+    
+                        </tr>
+    
+                    </tbody>
+                   
+                </table>
+            </div>
+
+
+
+
+            <div class="col-6"  style="padding: 0; padding-left: 10px;height:100%">
+
+
+                    <div class="row" style="justify-content: center; text-align: center; height:48px; font-weight: bold; font-size: 20px; color: #ffffff;background-color: #6c5bca; display: flex; align-items: center;">
+                        <img width="30px;" src="assets/image/graphrecommendation.png" alt="" style="width: 30px; height: 30px">
+                        &nbsp;&nbsp;&nbsp;
+                        <!-- <span> Recommendation Towards Growth</span> -->
+                        <span>Insights and Recommendations towards growth</span>
+                        <br>
+                    </div>
+
+
+
+                    <!-- <div class="row" style="background-color: rgb(235 251 255); border: solid 1px rgb(0 188 211); padding: 4% !important; height: 480px;overflow-y: scroll; margin-top: 5px !important; font-size: 16px;">
+
+                        <span> &#9658; &nbsp;</span>Agent scored &nbsp;<span> {{imdInfo.TOTAL}} &nbsp; </span> and closed <span>
+                            &nbsp;{{imdInfo.monthStr}} &nbsp;</span> in band '<span>{{imdInfo.BANDING}}'.</span>
+
+                        <p>
+                            <span> &nbsp;Agent has <span>{{imdInfo.GROWTH}}</span> its performance from <span>
+                                &nbsp;{{imdInfo.lastm_monthStr}} &nbsp;</span> (BAND
+                            <span>&nbsp;'{{imdInfo.LASTM_BANDING}}'&nbsp;</span>) to <span> &nbsp;{{imdInfo.monthStr}}
+                                &nbsp;</span> (BAND <span>&nbsp;'{{imdInfo.BANDING}}'&nbsp;</span>) .</span>
+                        </p>
+
+                            <p  *ngFor="let eachrec of recommendationList">
+                                <span> &#9658; &nbsp; {{eachrec}}</span>
+                            </p>
+
+                    </div> -->
+                    
+
+                    <div class="row" style="background-color: #f0ecff;
+                        border: solid 0px #fada5a; padding: 4% !important;
+                        height: 530px;overflow-y: scroll; border-radius: 0px;
+                        margin-top: 5px !important; font-size: 16px; text-align: left; display: flex;">
+
+                        <!-- <div class="col-12" style="padding:0; margin:0">
+                            <p>
+                                
+                            </p>
+                        </div> -->
+
+
+
+                        <p>
+                            &#9658; {{projectName}} scored {{imdInfo.TOTAL}} and closed {{imdInfo.monthStr}} in band '{{imdInfo.BANDING}}'.
+                        </p>
+
+                        <p>
+                            <span>&#9658; {{projectName}} has <span>{{imdInfo.GROWTH}}</span> its performance from <span>
+                                &nbsp;{{imdInfo.lastm_monthStr}} &nbsp;</span> (BAND
+                            <span>&nbsp;'{{imdInfo.LASTM_BANDING}}'&nbsp;</span>) to <span> &nbsp;{{imdInfo.monthStr}}
+                                &nbsp;</span> (BAND <span>&nbsp;'{{imdInfo.BANDING}}'&nbsp;</span>) .</span>
+                        </p>
+                        
+                        
+                        <span *ngFor="let eachrec of recommendationList" style="display: inline-block;">
+                            <!-- <span>
+                                &#9658;
+                            </span> -->
+
+                            <!-- <i class="fa fa-dot-circle-o" aria-hidden="true"></i> -->
+                            
+                            <p>&#9658; {{eachrec}}</p>
+                        </span>
+
+
+
+                        <div class="col-12" style="height: 180px"></div>
+                        
+
+
+
+                    </div>
+        
+            </div>
+
+
+
+
+
+            
+        </div>
+
+
+        <!-- <div  *ngIf="imdsearched" class="row" style="font-weight: bold; font-size: 17px;" >
+            <div class="col-12" style="display: flex; align-items: center; justify-content: center; text-align: center; background-color: #7667c4; height:40px!important">
+
+                <div class="row" style="display: flex; align-items: center; justify-content: center;">
+                    <img width="30px"  src="assets/image/graphrecommendation.png" alt="" >
+                    &nbsp;&nbsp;&nbsp;
+                    <span style="font-size: 18px;"> Recommendation Towards Growth</span>
+                </div>
+            
+                
+            </div>
+
+            <br>
+            <div class="row" style="background-color: rgb(235 251 255);
+                border: solid 1px rgb(0 188 211); padding: 4% !important;
+                height: 250px;overflow: scroll; border-radius: 8px;
+                margin-top: 15px !important; font-size: 15px; text-align: left; width: 100%;">
+                <span> &#9658; &nbsp;</span>Agent scored &nbsp;<span> {{imdInfo.TOTAL}} &nbsp; </span> and closed <span>
+                    &nbsp;{{imdInfo.monthStr}} &nbsp;</span> in band '<span>{{imdInfo.BANDING}}'.</span>
+                <br>
+
+
+                <span> &#9658; &nbsp;Agent has <span>{{imdInfo.GROWTH}}</span> its performance from <span>
+                        &nbsp;{{imdInfo.lastm_monthStr}} &nbsp;</span> (BAND
+                    <span>&nbsp;'{{imdInfo.LASTM_BANDING}}'&nbsp;</span>) to <span> &nbsp;{{imdInfo.monthStr}}
+                        &nbsp;</span> (BAND <span>&nbsp;'{{imdInfo.BANDING}}'&nbsp;</span>) .</span>
+                <br>
+
+                <ng-container *ngFor="let eachrec of recommendationList">
+
+                    <span> &#9658; &nbsp; {{eachrec}}</span>
+                    <br>
+                </ng-container>
+            </div>
+
+        </div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- <div class="agentInfo" style="width: 100%; font-size: 18px;">
+
+            <div class="row"  style="min-height: 60px;">
+                <div class="col-1 agentInfoGap">Imd Code</div>
+                <div class="col-2" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">
+                    {{imdInfo.INTERMEDIARY_ID}}</div>
+                <div class="col-1"></div>
+
+
+
+                <div class="col-1 agentInfoGap">Bucket</div>
+                <div class="col-2" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">
+                    {{imdInfo.BANDING}}</div>
+                    <div class="col-1"></div>
+
+
+
+                <div class="col-1"></div>
+                <div class="col-1 agentInfoGap">RM Name</div>
+                <div class="col-2" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">
+                {{imdInfo.RM_NAME}}</div>
+            </div>
+
+
+
+
+
+            <div class="row"  style="min-height: 60px;">
+                <div class="col-1 agentInfoGap">Imd Name</div>
+                <div class="col-2" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">
+                    {{imdInfo.INTERMEDIARY_NAME}}</div>
+                    <div class="col-1"></div>
+
+
+
+
+
+                <div class="col-1 agentInfoGap">Vintage</div>
+                <div class="col-2" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">
+                    {{imdInfo.AGENT_VINTAGE}}</div>
+                    <div class="col-1"></div>
+
+
+                    <div class="col-1"></div>
+                <div class="col-1 agentInfoGap">CH Name</div>
+                <div class="col-2" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">
+                {{imdInfo.CH_NAME}}</div>
+                
+            </div>
+
+
+
+
+
+
+            <div class="row"  style="min-height: 60px;">
+                <div class="col-1 agentInfoGap">Imd Code</div>
+                <div class="col-2" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">
+                    {{imdInfo.INTERMEDIARY_ID}}</div>
+                <div class="col-1"></div>
+
+
+
+                <div class="col-1 agentInfoGap">Bucket</div>
+                <div class="col-2" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">
+                    {{imdInfo.BANDING}}</div>
+                    <div class="col-1"></div>
+
+
+                    <div class="col-1"></div>
+                <div class="col-1 agentInfoGap">RM Name</div>
+                <div class="col-2" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">
+                {{imdInfo.RM_NAME}}</div>
+                
+            </div>
+
+
+
+
+
+
+
+
+            <div class="row"  style="min-height: 60px;">
+                <div class="col-1 agentInfoGap">Background</div>
+                <div class="col-2" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">
+                {{imdInfo.AGENT_BACKGROUND}}</div>
+                <div class="col-1"></div>
+
+
+                
+
+
+                        <div class="col-3 agentInfoGap">Marital Status</div>
+                        <div class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">
+                        {{imdInfo.MARRIED_STATUS}}</div>
+                        <div class="col-3"></div>
+
+
+                   
+
+
+
+                
+
+
+
+                <div class="col-1"></div>
+                <div class="col-1 agentInfoGap">Agent Age</div>
+                <div class="col-2" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">
+                {{imdInfo.AGENT_AGE}}</div>
+                
+            </div>
+
+
+        </div> -->
+
+
+
+
+
+
+
+
+        <!-- <div class="row" style="text-align: left; font-size:18px;">
+
+            <div class="col-1 agentInfoGap">Imd Code</div>
+            <div class="col-2" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">
+                {{imdInfo.INTERMEDIARY_ID}}</div>
+            <div class="col-1"></div>
+
+
+
+            <div class="col-1 agentInfoGap">Bucket</div>
+            <div class="col-2" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">
+                {{imdInfo.BANDING}}</div>
+                <div class="col-1"></div>
+
+
+
+            <div class="col-1 agentInfoGap">RM Name</div>
+            <div class="col-2" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">
+                {{imdInfo.RM_NAME}}</div>
+                <div class="col-1"></div>
+
+
+
+            <div class="col-1 agentInfoGap">Imd Name</div>
+            <div class="col-2" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">
+                {{imdInfo.INTERMEDIARY_NAME}}</div>
+                <div class="col-1"></div>
+
+
+
+
+
+            <div class="col-1 agentInfoGap">Vintage</div>
+            <div class="col-1" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">
+                {{imdInfo.AGENT_VINTAGE}}</div>
+                <div class="col-1"></div>
+
+
+
+            <div class="col-1 agentInfoGap">CH Name</div>
+            <div class="col-1" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">
+                {{imdInfo.CH_NAME}}</div>
+                <div class="col-1"></div>
+
+
+
+
+            <div class="col-1 agentInfoGap">Location</div>
+            <div class="col-2" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">
+                {{imdInfo.LOCATION}}</div>
+                <div class="col-1"></div>
+
+
+
+
+            <div class="col-1 agentInfoGap">Gender</div>
+            <div class="col-2" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">
+                {{imdInfo.GENDER}}</div>
+                <div class="col-1"></div>
+
+
+
+            <div class="col-1 agentInfoGap">ZH Name</div>
+            <div class="col-2" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">
+                {{imdInfo.ZH_NAME}}</div>
+                <div class="col-1"></div>
+
+
+
+            <div class="col-1 agentInfoGap">Background</div>
+            <div class="col-1" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">
+                {{imdInfo.AGENT_BACKGROUND}}</div>
+                <div class="col-1"></div>
+
+
+
+            <div class="col-1 agentInfoGap">Marital Status</div>
+            <div class="col-1" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">
+                {{imdInfo.MARRIED_STATUS}}</div>
+                <div class="col-1"></div>
+
+
+
+
+            <div class="col-1 agentInfoGap">Agent Age</div>
+            <div class="col-2" [ngClass]="imdsearched == true?'2':'agentInfoGapValue1'">
+                {{imdInfo.AGENT_AGE}}</div>
+                <div class="col-1"></div>
+
+        </div> -->
+
+
+
+
+        <!-- <div  *ngIf="totalChart_rep_status" class="row" style="margin-top: 3%!important; font-weight: bold; font-size: 17px;">
+            <div class="col-12" style="justify-content: center; text-align: center;">
+                <span *ngIf="imdsearched"> Total Score</span>
+            </div>
+            <div class="col-12" style="padding: 1%; ">
+                <canvas id="totalChart_rep" style="width:100%" height="300"></canvas>
+            </div>
+        </div> -->
+        <!-- <div  *ngIf="lrVsCaqGraph_status" class="row" style="margin-top: 3%!important; font-weight: bold; font-size: 17px;" >
+            <div class="col-12" style="justify-content: center; text-align: center;">
+                <span *ngIf="imdsearched"> LR Vs CAQ Vs COR</span>
+            </div>
+            <div class="col-12" style="padding: 1%; ">
+                <canvas id="lrVsCaqGraph" style="width:100%" height="300"></canvas>
+            </div>
+        </div> -->
+        <!-- <div  *ngIf="lobPieGraph_status" class="row" style="margin-top: 3%!important;font-weight: bold; font-size: 17px;" >
+            <div class="col-12" style="justify-content: center; text-align: center;">
+                <span *ngIf="imdsearched">LOB Wise GWP</span>
+            </div>
+            <div class="col-12" style="padding: 1%; ">
+                <canvas id="lobPieGraph" style="width:100%" height="300"></canvas>
+            </div>
+        </div> -->
+
+        <div *ngIf="imdsearched" class="row" style="height:30px"></div>
+
+
+
+        <div  *ngIf="imdsearched" class="row" >
+
+            <div class="col-6"  style="padding: 0; padding-left: 10px;height:100%">
+
+
+                <div class="row" style="justify-content: center; text-align: center; height:48px; font-weight: bold; font-size: 20px; color: #ffffff;background-color: #6c5bca; display: flex; align-items: center; border-radius: 0;">
+                    
+                    <span>Total Score</span>
+                </div> 
+                
+                <div class="row" style="height: 500px; margin-top: 5px!important; border: 1px solid #6c5bca5d; padding:40px!important; padding-bottom: 0!important;  display: flex; align-items: center; justify-content: center;">
+                    <!-- <canvas id="totalChart_rep" ></canvas> -->
+                    <div id="totalChart_rep" style="width: 100%; height:95%;"></div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+            <div class="col-6"  style="padding: 0; padding-left: 10px;height:100%">
+
+
+                <div class="row" style="justify-content: center; text-align: center; height:48px; font-weight: bold; font-size: 20px; color: #ffffff;background-color: #6c5bca; display: flex; align-items: center; border-radius: 0px;">
+                    
+                    <span>Loss Ratio Vs Acquisition Cost Ratio Vs Combined Operating Ratio</span>
+                </div>  
+                
+                
+                <div class="row" style="height: 500px; margin-top: 5px!important; border: 1px solid #6c5bca5d; padding:40px!important; padding-bottom: 0!important;  display: flex; align-items: center; justify-content: center;">
+                    <!-- <canvas id="lrVsCaqGraph" ></canvas> -->
+                    <div id="lrVsCaqGraph" style="width: 100%; height:95%;"></div>
+                </div>
+            </div>
+                
+    
+        </div>
+
+
+        <!-- <div *ngIf="imdsearched" class="row" style="height:40px"></div>
+
+
+        <div  *ngIf="imdsearched" class="row" >
+
+            <div class="col-6"  style="padding: 0; padding-left: 10px;height:100%">
+
+
+                <div class="row" style="justify-content: center; text-align: center; height:48px; font-weight: bold; font-size: 20px; color: #ffffff;background-color: #6c5bca; display: flex; align-items: center; border-radius: 0px;">
+                    
+                    <span>LOBwise GWP</span>
+                </div> 
+                
+                <div class="row" style="height: 500px; margin-top: 5px!important; border: 1px solid #6c5bca5d; padding:40px!important;  display: flex; align-items: center; justify-content: center;">
+                    
+                    <div id="lobWiseGwp_pie"></div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+            <div class="col-6"  style="padding: 0; padding-left: 10px;height:100%">
+
+
+                <div class="row" style="justify-content: center; text-align: center; height:48px; font-weight: bold; font-size: 20px; color: #ffffff;background-color: #6c5bca; display: flex; align-items: center; border-radius: 0px;">
+                    
+                    
+                    <span>LOBwise NOP</span>
+                </div>  
+                
+                
+                
+
+                <div class="row" style="height: 500px; margin-top: 5px!important; border: 1px solid #6c5bca5d; padding:40px!important; padding-top:60px!important;  display: flex; align-items: center; justify-content: center;">
+                    <div id="lobWiseNop_pie"></div>
+                </div>
+            </div>
+                
+    
+        </div> -->
+
+
+        
+
+        <!-- <div class="col-6"  style="padding: 0; padding-left: 10px;height:100%">
+
+
+            <div class="row" style="justify-content: center; text-align: center; height:48px; font-weight: bold; font-size: 20px; color: #ffffff;background-color: #6c5bca; display: flex; align-items: center; border-radius: 25px;">
+                
+                <span> Recommendation Towards Growth</span>
+                <br>
+            </div>
+            
+
+            <div class="row" style="background-color: #ffffdf;
+                border: solid 1px #fada5a; padding: 4% !important;
+                height: 480px; border-radius: 0px;
+                margin-top: 5px !important; font-size: 16px; text-align: left; display: flex;">
+
+
+
+                
+                
+
+
+
+            </div>
+
+        </div> -->
+        
+        
+
+
+
+
+        <!-- <hr class="solid"> -->
+        <div  *ngIf="imdsearched" class="row" >
+            <div class="col-12" style="padding: 1%; font-weight: bold; font-size: 20px; background-color: #7667c4; margin-top: 40px; margin-bottom: 10px; border-radius: 30px;">
+                <span style="color: white; float: left;font-size: 22px;" (click)="resetYtdCareAdvTabl()"><i class="fa fa-refresh" aria-hidden="true"></i></span>
+                <span style="color: white;">YTD Care Advisor Report Card </span>
+                <!-- <span style="color: white; float: right;font-size: 20px;">YTD {{month_selectedItems[0].monthName}}</span> -->
+                <span style="color: white; float: right;font-size: 20px;">YTD {{formatMonth(month_selectedItems_singleselect)}}</span>
+            </div>
+
+
+
+
+
+
+
+            <div class="col-12" style="padding: 0; overflow-x: auto;">
+
+                <table class="table table-hover " >
+                    <thead>
+                        <tr style="background: #fada5a; color:black; font-size: 16px!important; font-weight: bold;">
+                            <th > Buss Fig.</th>
+                            <th colspan="4" style=" border-left: 1px solid rgb(255, 255, 255);">Topline (In Lac)</th>
+                            <th colspan="2" style=" border-left: 1px solid rgb(255, 255, 255);">Contribution</th>
+                            <th colspan="3" style=" border-left: 1px solid rgb(255, 255, 255);">Renewal Ratio</th>
+                            <th colspan="3" style=" border-left: 1px solid rgb(255, 255, 255);">Loss Ratio</th>
+                            <th colspan="3" style=" border-left: 1px solid rgb(255, 255, 255);">Commission Ratio</th>
+                        </tr>
+                        
+                        <tr style="background: #dfb2f4; color:black; font-size: 16px!important; font-weight: bold;">
+                            <th style=" border-left: 1px solid white;">LOB
+                                <span style="font-size: 10px!important; font-weight: 400!important; float: right; ">
+    
+                                    <i *ngIf="show_LOB_asc" class="fa fa-chevron-up" aria-hidden="true" (click)="orderby_YTD_Care_Advisor_Report_Card('LOB','asc'); show_LOB_asc = false"></i>
+    
+                                    <i *ngIf="!show_LOB_asc" class="fa fa-chevron-down" aria-hidden="true" (click)="orderby_YTD_Care_Advisor_Report_Card('LOB','desc'); show_LOB_asc = true"></i>
+    
+                                </span> 
+                            </th>
+    
+                            <th style=" border-left: 1px solid white;">LFY
+                                <span style="font-size: 10px!important; font-weight: 400!important; float: right; ">
+    
+                                    <i *ngIf="show_topline_lfy_asc" class="fa fa-chevron-up" aria-hidden="true" (click)="orderby_YTD_Care_Advisor_Report_Card('LFY_GWP','asc'); show_topline_lfy_asc = false"></i>
+    
+                                    <i *ngIf="!show_topline_lfy_asc" class="fa fa-chevron-down" aria-hidden="true" (click)="orderby_YTD_Care_Advisor_Report_Card('LFY_GWP','desc'); show_topline_lfy_asc = true"></i>
+    
+                                </span>
+                            </th>
+    
+                            <th style=" border-left: 1px solid white;">LYTD
+                                <span style="font-size: 10px!important; font-weight: 400!important; float: right; ">
+                                    <i *ngIf="show_topline_lytd_asc" class="fa fa-chevron-up" aria-hidden="true" (click)="orderby_YTD_Care_Advisor_Report_Card('LYTD_GWP','asc'); show_topline_lytd_asc = false"></i>
+                                    <i *ngIf="!show_topline_lytd_asc" class="fa fa-chevron-down" aria-hidden="true" (click)="orderby_YTD_Care_Advisor_Report_Card('LYTD_GWP','desc'); show_topline_lytd_asc = true"></i>
+                                </span>
+                            </th>
+    
+                            <th style=" border-left: 1px solid white;">CYTD
+                                <span style="font-size: 10px!important; font-weight: 400!important; float: right; ">
+                                    <i *ngIf="show_topline_cytd_asc" class="fa fa-chevron-up" aria-hidden="true" (click)="orderby_YTD_Care_Advisor_Report_Card('CYTD_GWP','asc'); show_topline_cytd_asc = false"></i>
+                                    <i *ngIf="!show_topline_cytd_asc" class="fa fa-chevron-down" aria-hidden="true" (click)="orderby_YTD_Care_Advisor_Report_Card('CYTD_GWP','desc'); show_topline_cytd_asc = true"></i>
+                                </span>
+                            </th>
+    
+                            <th style=" border-left: 1px solid white;">Growth
+                                <span style="font-size: 10px!important; font-weight: 400!important; float: right; ">
+                                    <i *ngIf="show_topline_growth_asc" class="fa fa-chevron-up" aria-hidden="true" (click)="orderby_YTD_Care_Advisor_Report_Card('GROWTH_GWP','asc'); show_topline_growth_asc = false"></i>
+                                    <i *ngIf="!show_topline_growth_asc" class="fa fa-chevron-down" aria-hidden="true" (click)="orderby_YTD_Care_Advisor_Report_Card('GROWTH_GWP','desc'); show_topline_growth_asc = true"></i>
+                                </span>
+                            </th>
+    
+                            <th style=" border-left: 1px solid white;">LFY
+                                <span style="font-size: 10px!important; font-weight: 400!important; float: right; ">
+                                    <i *ngIf="show_contribution_lfy_asc" class="fa fa-chevron-up" aria-hidden="true" (click)="orderby_YTD_Care_Advisor_Report_Card('LFY_CONTRIBUTION','asc'); show_contribution_lfy_asc = false"></i>
+                                    <i *ngIf="!show_contribution_lfy_asc" class="fa fa-chevron-down" aria-hidden="true" (click)="orderby_YTD_Care_Advisor_Report_Card('LFY_CONTRIBUTION','desc'); show_contribution_lfy_asc = true"></i>
+                                </span>
+                            </th>
+    
+                            <th style=" border-left: 1px solid white;">CYTD
+                                <span style="font-size: 10px!important; font-weight: 400!important; float: right; ">
+                                    <i *ngIf="show_contribution_cytd_asc" class="fa fa-chevron-up" aria-hidden="true" (click)="orderby_YTD_Care_Advisor_Report_Card('CYTD_CONTRIBUTION','asc'); show_contribution_cytd_asc = false"></i>
+                                    <i *ngIf="!show_contribution_cytd_asc" class="fa fa-chevron-down" aria-hidden="true" (click)="orderby_YTD_Care_Advisor_Report_Card('CYTD_CONTRIBUTION','desc'); show_contribution_cytd_asc = true"></i>
+                                </span>
+                            </th>
+    
+                            <th style=" border-left: 1px solid white;">LYTD
+                                <span style="font-size: 10px!important; font-weight: 400!important; float: right; ">
+                                    <i *ngIf="show_renewal_lytd_asc" class="fa fa-chevron-up" aria-hidden="true" (click)="orderby_YTD_Care_Advisor_Report_Card('LYTD_RENEWAL_RATIO','asc'); show_renewal_lytd_asc = false"></i>
+                                    <i *ngIf="!show_renewal_lytd_asc" class="fa fa-chevron-down" aria-hidden="true" (click)="orderby_YTD_Care_Advisor_Report_Card('LYTD_RENEWAL_RATIO','desc'); show_renewal_lytd_asc = true"></i>
+                                </span>
+                            </th>
+    
+                            <th style=" border-left: 1px solid white;">CYTD
+                                <span style="font-size: 10px!important; font-weight: 400!important; float: right; ">
+                                    <i *ngIf="show_renewal_cytd_asc" class="fa fa-chevron-up" aria-hidden="true" (click)="orderby_YTD_Care_Advisor_Report_Card('CYTD_RENEWAL_RATIO','asc'); show_renewal_cytd_asc = false"></i>
+                                    <i *ngIf="!show_renewal_cytd_asc" class="fa fa-chevron-down" aria-hidden="true" (click)="orderby_YTD_Care_Advisor_Report_Card('CYTD_RENEWAL_RATIO','desc'); show_renewal_cytd_asc = true"></i>
+                                </span>
+                            </th>
+    
+                            <th style=" border-left: 1px solid white;">Variance
+                                <span style="font-size: 10px!important; font-weight: 400!important; float: right; ">
+                                    <i *ngIf="show_renewal_variance_asc" class="fa fa-chevron-up" aria-hidden="true" (click)="orderby_YTD_Care_Advisor_Report_Card('VARIANCE_RENEWAL_RATIO','asc'); show_renewal_variance_asc = false"></i>
+                                    <i *ngIf="!show_renewal_variance_asc" class="fa fa-chevron-down" aria-hidden="true" (click)="orderby_YTD_Care_Advisor_Report_Card('VARIANCE_RENEWAL_RATIO','desc'); show_renewal_variance_asc = true"></i>
+                                </span>
+                            </th>
+    
+                            <th style=" border-left: 1px solid white;">LFY
+                                <span style="font-size: 10px!important; font-weight: 400!important; float: right; ">
+                                    <i *ngIf="show_loss_lfy_asc" class="fa fa-chevron-up" aria-hidden="true" (click)="orderby_YTD_Care_Advisor_Report_Card('LFY_LOSS_RATIO','asc'); show_loss_lfy_asc = false"></i>
+                                    <i *ngIf="!show_loss_lfy_asc" class="fa fa-chevron-down" aria-hidden="true" (click)="orderby_YTD_Care_Advisor_Report_Card('LFY_LOSS_RATIO','desc'); show_loss_lfy_asc = true"></i>
+                                </span>
+                            </th>
+    
+                            <th style=" border-left: 1px solid white;">CYTD
+                                <span style="font-size: 10px!important; font-weight: 400!important; float: right; ">
+                                    <i *ngIf="show_loss_cytd_asc" class="fa fa-chevron-up" aria-hidden="true" (click)="orderby_YTD_Care_Advisor_Report_Card('CYTD_LOSS_RATIO','asc'); show_loss_cytd_asc = false"></i>
+                                    <i *ngIf="!show_loss_cytd_asc" class="fa fa-chevron-down" aria-hidden="true" (click)="orderby_YTD_Care_Advisor_Report_Card('CYTD_LOSS_RATIO','desc'); show_loss_cytd_asc = true"></i>
+                                </span>
+                            </th>
+    
+                            <th style=" border-left: 1px solid white;">Variance
+                                <span style="font-size: 10px!important; font-weight: 400!important; float: right; ">
+                                    <i *ngIf="show_loss_variance_asc" class="fa fa-chevron-up" aria-hidden="true" (click)="orderby_YTD_Care_Advisor_Report_Card('VARIANCE_LOSS_RATIO','asc'); show_loss_variance_asc = false"></i>
+                                    <i *ngIf="!show_loss_variance_asc" class="fa fa-chevron-down" aria-hidden="true" (click)="orderby_YTD_Care_Advisor_Report_Card('VARIANCE_LOSS_RATIO','desc'); show_loss_variance_asc = true"></i>
+                                </span>
+                            </th>
+    
+                            <th style=" border-left: 1px solid white;">LFY
+                                <span style="font-size: 10px!important; font-weight: 400!important; float: right; ">
+                                    <i *ngIf="show_comission_lfy_asc" class="fa fa-chevron-up" aria-hidden="true" (click)="orderby_YTD_Care_Advisor_Report_Card('LFY_COMMISSION_RATIO','asc'); show_comission_lfy_asc = false"></i>
+                                    <i *ngIf="!show_comission_lfy_asc" class="fa fa-chevron-down" aria-hidden="true" (click)="orderby_YTD_Care_Advisor_Report_Card('LFY_COMMISSION_RATIO','desc'); show_comission_lfy_asc = true"></i>
+                                </span>
+                            </th>
+    
+                            <th style=" border-left: 1px solid white;">CYTD
+                                <span style="font-size: 10px!important; font-weight: 400!important; float: right; ">
+                                    <i *ngIf="show_comission_cytd_asc" class="fa fa-chevron-up" aria-hidden="true" (click)="orderby_YTD_Care_Advisor_Report_Card('CYTD_COMMISSION_RATIO','asc'); show_comission_cytd_asc = false"></i>
+                                    <i *ngIf="!show_comission_cytd_asc" class="fa fa-chevron-down" aria-hidden="true" (click)="orderby_YTD_Care_Advisor_Report_Card('CYTD_COMMISSION_RATIO','desc'); show_comission_cytd_asc = true"></i>
+                                </span>
+                            </th>
+    
+                            <th style=" border-left: 1px solid white;">Variance
+                                <span style="font-size: 10px!important; font-weight: normal!important; float: right; ">
+                                    <i *ngIf="show_comission_variance_asc" class="fa fa-chevron-up" aria-hidden="true" (click)="orderby_YTD_Care_Advisor_Report_Card('VARIANCE_COMMISSION_RATIO','asc'); show_comission_variance_asc = false"></i>
+                                    <i *ngIf="!show_comission_variance_asc" class="fa fa-chevron-down" aria-hidden="true" (click)="orderby_YTD_Care_Advisor_Report_Card('VARIANCE_COMMISSION_RATIO','desc'); show_comission_variance_asc = true"></i>
+                                </span>
+                            </th>
+    
+                        </tr>
+                    </thead>
+    
+    
+    
+                    <!-- <tbody>
+                        <tr *ngFor="let col of onePagerYtdDataList_except_total;"  style="font-size: 16px!important">
+                            <td style="text-align: left; margin-left: 30px;">{{col.LOB}}</td>
+                            <td>{{col.LFY_GWP}}</td>
+                            <td>{{col.LYTD_GWP}}</td>
+                            <td>{{col.CYTD_GWP}}</td>
+    
+    
+    
+                            <td *ngIf="col.GROWTH_GWP < 0"
+                                style="color:#000000; background-color: #ff8e88; font-weight: bold;">{{col.GROWTH_GWP}}%</td>
+                            <td *ngIf="col.GROWTH_GWP > 0"  style="color:#000000; background-color: #8bff8b; font-weight: bold;">{{col.GROWTH_GWP}}%</td>
+                            <td *ngIf="col.GROWTH_GWP == 0">{{col.GROWTH_GWP}}%</td>
+    
+    
+    
+                            <td>{{col.LFY_CONTRIBUTION}}</td>
+                            <td>{{col.CYTD_CONTRIBUTION}}</td>
+                            <td>{{col.LYTD_RENEWAL_RATIO}}</td>
+                            <td>{{col.CYTD_RENEWAL_RATIO}}</td>
+    
+    
+    
+                            <td *ngIf="col.VARIANCE_RENEWAL_RATIO < 0"
+                                style="color:#000000; background-color: #ff8e88; font-weight: bold;">
+                                {{col.VARIANCE_RENEWAL_RATIO}}%</td>
+                            <td *ngIf="col.VARIANCE_RENEWAL_RATIO > 0"  style="color:#000000; background-color: #8bff8b; font-weight: bold;">{{col.VARIANCE_RENEWAL_RATIO}}%</td>
+                            <td *ngIf="col.VARIANCE_RENEWAL_RATIO == 0">{{col.VARIANCE_RENEWAL_RATIO}}%</td>
+    
+    
+    
+                            <td>{{col.LFY_LOSS_RATIO}}</td>
+                            <td>{{col.CYTD_LOSS_RATIO}}</td>
+    
+    
+    
+                            <td *ngIf="col.VARIANCE_LOSS_RATIO < 0"
+                                style="color:#000000; background-color: #ff8e88; font-weight: bold;">
+                                {{col.VARIANCE_LOSS_RATIO}}%</td>
+                            <td *ngIf="col.VARIANCE_LOSS_RATIO > 0"  style="color:#000000; background-color: #8bff8b; font-weight: bold;">{{col.VARIANCE_LOSS_RATIO}}%</td>
+                            <td *ngIf="col.VARIANCE_LOSS_RATIO == 0">{{col.VARIANCE_LOSS_RATIO}}%</td>
+    
+    
+    
+                            <td>{{col.LFY_COMMISSION_RATIO}}</td>
+                            <td>{{col.CYTD_COMMISSION_RATIO}}</td>
+    
+    
+    
+                            <td *ngIf="col.VARIANCE_COMMISSION_RATIO < 0"
+                                style="color:#000000; background-color: #ff8e88; font-weight: bold;">
+                                {{col.VARIANCE_COMMISSION_RATIO}}%</td>
+                            <td *ngIf="col.VARIANCE_COMMISSION_RATIO > 0"  style="color:#000000; background-color: #8bff8b; font-weight: bold;">{{col.VARIANCE_COMMISSION_RATIO}}%</td>
+                            <td *ngIf="col.VARIANCE_COMMISSION_RATIO == 0">{{col.VARIANCE_COMMISSION_RATIO}}%</td>
+    
+    
+                            
+                        </tr>
+    
+    
+                        
+                        <tr *ngFor="let col of onePagerYtdDataList_total;"  style="font-size: 17px!important; background-color: #e5e0ff;">
+                            <td style="text-align: left; margin-left: 30px;">{{col.LOB}}</td>
+                            <td>{{col.LFY_GWP}}</td>
+                            <td>{{col.LYTD_GWP}}</td>
+                            <td>{{col.CYTD_GWP}}</td>
+    
+    
+    
+                            <td *ngIf="col.GROWTH_GWP < 0"
+                                style="color:#000000; background-color: #ff8e88; font-weight: bold;">{{col.GROWTH_GWP}}%</td>
+                            <td *ngIf="col.GROWTH_GWP > 0"  style="color:#000000; background-color: #8bff8b; font-weight: bold;">{{col.GROWTH_GWP}}%</td>
+                            <td *ngIf="col.GROWTH_GWP == 0">{{col.GROWTH_GWP}}%</td>
+    
+    
+    
+                            <td>{{col.LFY_CONTRIBUTION}}</td>
+                            <td>{{col.CYTD_CONTRIBUTION}}</td>
+                            <td>{{col.LYTD_RENEWAL_RATIO}}</td>
+                            <td>{{col.CYTD_RENEWAL_RATIO}}</td>
+    
+    
+    
+                            <td *ngIf="col.VARIANCE_RENEWAL_RATIO < 0"
+                                style="color:#000000; background-color: #ff8e88; font-weight: bold;">
+                                {{col.VARIANCE_RENEWAL_RATIO}}%</td>
+                            <td *ngIf="col.VARIANCE_RENEWAL_RATIO > 0"  style="color:#000000; background-color: #8bff8b; font-weight: bold;">{{col.VARIANCE_RENEWAL_RATIO}}%</td>
+                            <td *ngIf="col.VARIANCE_RENEWAL_RATIO == 0">{{col.VARIANCE_RENEWAL_RATIO}}%</td>
+    
+    
+    
+                            <td>{{col.LFY_LOSS_RATIO}}</td>
+                            <td>{{col.CYTD_LOSS_RATIO}}</td>
+    
+    
+    
+                            <td *ngIf="col.VARIANCE_LOSS_RATIO < 0"
+                                style="color:#000000; background-color: #ff8e88; font-weight: bold;">
+                                {{col.VARIANCE_LOSS_RATIO}}%</td>
+                            <td *ngIf="col.VARIANCE_LOSS_RATIO > 0"  style="color:#000000; background-color: #8bff8b; font-weight: bold;">{{col.VARIANCE_LOSS_RATIO}}%</td>
+                            <td *ngIf="col.VARIANCE_LOSS_RATIO == 0">{{col.VARIANCE_LOSS_RATIO}}%</td>
+    
+    
+    
+                            <td>{{col.LFY_COMMISSION_RATIO}}</td>
+                            <td>{{col.CYTD_COMMISSION_RATIO}}</td>
+    
+    
+    
+                            <td *ngIf="col.VARIANCE_COMMISSION_RATIO < 0"
+                                style="color:#000000; background-color: #ff8e88; font-weight: bold;">
+                                {{col.VARIANCE_COMMISSION_RATIO}}%</td>
+                            <td *ngIf="col.VARIANCE_COMMISSION_RATIO > 0"  style="color:#000000; background-color: #8bff8b; font-weight: bold;">{{col.VARIANCE_COMMISSION_RATIO}}%</td>
+                            <td *ngIf="col.VARIANCE_COMMISSION_RATIO == 0">{{col.VARIANCE_COMMISSION_RATIO}}%</td>
+    
+    
+                            
+                        </tr>
+    
+                    </tbody> -->
+    
+    
+    
+                    <tbody cdkDropList (cdkDropListDropped)="drop($event)">
+                        <tr *ngFor="let col of onePagerYtdDataList_except_total" cdkDrag style="font-size: 16px!important">
+                          <td style="text-align: left; margin-left: 30px;">{{col.LOB | uppercase}}</td>
+                          <td>{{col.LFY_GWP}}</td>
+                          <td>{{col.LYTD_GWP}}</td>
+                          <td>{{col.CYTD_GWP}}</td>
+                          <td *ngIf="col.GROWTH_GWP < 0" style="color:#000000; background-color: #ff8e88; font-weight: bold;">{{col.GROWTH_GWP}}%</td>
+                          <td *ngIf="col.GROWTH_GWP > 0" style="color:#000000; background-color: #8bff8b; font-weight: bold;">{{col.GROWTH_GWP}}%</td>
+                          <td *ngIf="col.GROWTH_GWP == 0">{{col.GROWTH_GWP}}%</td>
+                          <td>{{col.LFY_CONTRIBUTION}}</td>
+                          <td>{{col.CYTD_CONTRIBUTION}}</td>
+                          <td>{{col.LYTD_RENEWAL_RATIO}}</td>
+                          <td>{{col.CYTD_RENEWAL_RATIO}}</td>
+                          <td *ngIf="col.VARIANCE_RENEWAL_RATIO < 0" style="color:#000000; background-color: #ff8e88; font-weight: bold;">{{col.VARIANCE_RENEWAL_RATIO}}%</td>
+                          <td *ngIf="col.VARIANCE_RENEWAL_RATIO > 0" style="color:#000000; background-color: #8bff8b; font-weight: bold;">{{col.VARIANCE_RENEWAL_RATIO}}%</td>
+                          <td *ngIf="col.VARIANCE_RENEWAL_RATIO == 0">{{col.VARIANCE_RENEWAL_RATIO}}%</td>
+                          <td>{{col.LFY_LOSS_RATIO}}</td>
+                          <td>{{col.CYTD_LOSS_RATIO}}</td>
+                          <td *ngIf="col.VARIANCE_LOSS_RATIO < 0" style="color:#000000; background-color: #ff8e88; font-weight: bold;">{{col.VARIANCE_LOSS_RATIO}}%</td>
+                          <td *ngIf="col.VARIANCE_LOSS_RATIO > 0" style="color:#000000; background-color: #8bff8b; font-weight: bold;">{{col.VARIANCE_LOSS_RATIO}}%</td>
+                          <td *ngIf="col.VARIANCE_LOSS_RATIO == 0">{{col.VARIANCE_LOSS_RATIO}}%</td>
+                          <td>{{col.LFY_COMMISSION_RATIO}}</td>
+                          <td>{{col.CYTD_COMMISSION_RATIO}}</td>
+                          <td *ngIf="col.VARIANCE_COMMISSION_RATIO < 0" style="color:#000000; background-color: #ff8e88; font-weight: bold;">{{col.VARIANCE_COMMISSION_RATIO}}%</td>
+                          <td *ngIf="col.VARIANCE_COMMISSION_RATIO > 0" style="color:#000000; background-color: #8bff8b; font-weight: bold;">{{col.VARIANCE_COMMISSION_RATIO}}%</td>
+                          <td *ngIf="col.VARIANCE_COMMISSION_RATIO == 0">{{col.VARIANCE_COMMISSION_RATIO}}%</td>
+                        </tr>
+                      </tbody>
+    
+                      <tbody>
+                        <tr *ngFor="let col of onePagerYtdDataList_total;"  style="font-size: 17px!important; background-color: #e5e0ff;">
+                            <td style="text-align: left; margin-left: 30px;">{{col.LOB}}</td>
+                            <td>{{col.LFY_GWP}}</td>
+                            <td>{{col.LYTD_GWP}}</td>
+                            <td>{{col.CYTD_GWP}}</td>
+    
+    
+    
+                            <td *ngIf="col.GROWTH_GWP < 0"
+                                style="color:#000000; background-color: #ff8e88; font-weight: bold;">{{col.GROWTH_GWP}}%</td>
+                            <td *ngIf="col.GROWTH_GWP > 0"  style="color:#000000; background-color: #8bff8b; font-weight: bold;">{{col.GROWTH_GWP}}%</td>
+                            <td *ngIf="col.GROWTH_GWP == 0">{{col.GROWTH_GWP}}%</td>
+    
+    
+    
+                            <td>{{col.LFY_CONTRIBUTION}}</td>
+                            <td>{{col.CYTD_CONTRIBUTION}}</td>
+                            <td>{{col.LYTD_RENEWAL_RATIO}}</td>
+                            <td>{{col.CYTD_RENEWAL_RATIO}}</td>
+    
+    
+    
+                            <td *ngIf="col.VARIANCE_RENEWAL_RATIO < 0"
+                                style="color:#000000; background-color: #ff8e88; font-weight: bold;">
+                                {{col.VARIANCE_RENEWAL_RATIO}}%</td>
+                            <td *ngIf="col.VARIANCE_RENEWAL_RATIO > 0"  style="color:#000000; background-color: #8bff8b; font-weight: bold;">{{col.VARIANCE_RENEWAL_RATIO}}%</td>
+                            <td *ngIf="col.VARIANCE_RENEWAL_RATIO == 0">{{col.VARIANCE_RENEWAL_RATIO}}%</td>
+    
+    
+    
+                            <td>{{col.LFY_LOSS_RATIO}}</td>
+                            <td>{{col.CYTD_LOSS_RATIO}}</td>
+    
+    
+    
+                            <td *ngIf="col.VARIANCE_LOSS_RATIO < 0"
+                                style="color:#000000; background-color: #ff8e88; font-weight: bold;">
+                                {{col.VARIANCE_LOSS_RATIO}}%</td>
+                            <td *ngIf="col.VARIANCE_LOSS_RATIO > 0"  style="color:#000000; background-color: #8bff8b; font-weight: bold;">{{col.VARIANCE_LOSS_RATIO}}%</td>
+                            <td *ngIf="col.VARIANCE_LOSS_RATIO == 0">{{col.VARIANCE_LOSS_RATIO}}%</td>
+    
+    
+    
+                            <td>{{col.LFY_COMMISSION_RATIO}}</td>
+                            <td>{{col.CYTD_COMMISSION_RATIO}}</td>
+    
+    
+    
+                            <td *ngIf="col.VARIANCE_COMMISSION_RATIO < 0"
+                                style="color:#000000; background-color: #ff8e88; font-weight: bold;">
+                                {{col.VARIANCE_COMMISSION_RATIO}}%</td>
+                            <td *ngIf="col.VARIANCE_COMMISSION_RATIO > 0"  style="color:#000000; background-color: #8bff8b; font-weight: bold;">{{col.VARIANCE_COMMISSION_RATIO}}%</td>
+                            <td *ngIf="col.VARIANCE_COMMISSION_RATIO == 0">{{col.VARIANCE_COMMISSION_RATIO}}%</td>
+    
+    
+                            
+                        </tr>
+                      </tbody>
+                </table>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- <table class="table table-hover">
+                <thead>
+                    <tr style="background: #fada5a; color:black; font-size: 16px!important; font-weight: bold;">
+                        <th > Buss Fig.</th>
+                        <th colspan="4" style=" border-left: 1px solid rgb(255, 255, 255);">Topline (In Lac)</th>
+                        <th colspan="2" style=" border-left: 1px solid rgb(255, 255, 255);">Contribution</th>
+                        <th colspan="3" style=" border-left: 1px solid rgb(255, 255, 255);">Renewal Ratio</th>
+                        <th colspan="3" style=" border-left: 1px solid rgb(255, 255, 255);">Loss Ratio</th>
+                        <th colspan="3" style=" border-left: 1px solid rgb(255, 255, 255);">Commission Ratio</th>
+                    </tr>
+                    <tr style="background: #dfb2f4; color:black; font-size: 16px!important; font-weight: bold;">
+                        <th *ngFor="let header of tableHeaders; let i = index" (click)="sortBy(i)"  style=" border-left: 1px solid white;">
+                            {{header}}
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let col of sortedData" style="font-size: 16px!important;">
+
+
+                        <td style="text-align: left; margin-left: 30px;">{{col.LOB}}</td>
+                        <td>{{col.LFY_GWP}}</td>
+                        <td>{{col.LYTD_GWP}}</td>
+                        <td>{{col.CYTD_GWP}}</td>
+
+
+
+                        <td *ngIf="col.GROWTH_GWP < 0"
+                            style="color:#000000; background-color: #ff8e88; font-weight: bold;">{{col.GROWTH_GWP}}%</td>
+                        <td *ngIf="col.GROWTH_GWP > 0"  style="color:#000000; background-color: #8bff8b; font-weight: bold;">{{col.GROWTH_GWP}}%</td>
+                        <td *ngIf="col.GROWTH_GWP == 0">{{col.GROWTH_GWP}}%</td>
+
+
+
+                        <td>{{col.LFY_CONTRIBUTION}}</td>
+                        <td>{{col.CYTD_CONTRIBUTION}}</td>
+                        <td>{{col.LYTD_RENEWAL_RATIO}}</td>
+                        <td>{{col.CYTD_RENEWAL_RATIO}}</td>
+
+
+
+                        <td *ngIf="col.VARIANCE_RENEWAL_RATIO < 0"
+                            style="color:#000000; background-color: #ff8e88; font-weight: bold;">
+                            {{col.VARIANCE_RENEWAL_RATIO}}%</td>
+                        <td *ngIf="col.VARIANCE_RENEWAL_RATIO > 0"  style="color:#000000; background-color: #8bff8b; font-weight: bold;">{{col.VARIANCE_RENEWAL_RATIO}}%</td>
+                        <td *ngIf="col.VARIANCE_RENEWAL_RATIO == 0">{{col.VARIANCE_RENEWAL_RATIO}}%</td>
+
+
+
+                        <td>{{col.LFY_LOSS_RATIO}}</td>
+                        <td>{{col.CYTD_LOSS_RATIO}}</td>
+
+
+
+                        <td *ngIf="col.VARIANCE_LOSS_RATIO < 0"
+                            style="color:#000000; background-color: #ff8e88; font-weight: bold;">
+                            {{col.VARIANCE_LOSS_RATIO}}%</td>
+                        <td *ngIf="col.VARIANCE_LOSS_RATIO > 0"  style="color:#000000; background-color: #8bff8b; font-weight: bold;">{{col.VARIANCE_LOSS_RATIO}}%</td>
+                        <td *ngIf="col.VARIANCE_LOSS_RATIO == 0">{{col.VARIANCE_LOSS_RATIO}}%</td>
+
+
+
+                        <td>{{col.LFY_COMMISSION_RATIO}}</td>
+                        <td>{{col.CYTD_COMMISSION_RATIO}}</td>
+
+
+
+                        <td *ngIf="col.VARIANCE_COMMISSION_RATIO < 0"
+                            style="color:#000000; background-color: #ff8e88; font-weight: bold;">
+                            {{col.VARIANCE_COMMISSION_RATIO}}%</td>
+                        <td *ngIf="col.VARIANCE_COMMISSION_RATIO > 0"  style="color:#000000; background-color: #8bff8b; font-weight: bold;">{{col.VARIANCE_COMMISSION_RATIO}}%</td>
+                        <td *ngIf="col.VARIANCE_COMMISSION_RATIO == 0">{{col.VARIANCE_COMMISSION_RATIO}}%</td>
+                    </tr>
+                </tbody>
+            </table> -->
+
+
+
+
+
+
+
+
+
+            <!-- <table class="table table-hover">
+                <thead>
+                    <tr style="background: #fada5a; color:black; font-size: 16px!important; font-weight: bold;">
+                        <th *ngFor="let header of tableHeaders; let i = index" (click)="sortBy(i)" style="border-left: 1px solid white;">
+                            {{header}}
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let col of sortedData">
+                        <td style="text-align: left; margin-left: 30px;">{{col.LOB}}</td>
+                        <td>{{col.LFY_GWP}}</td>
+                        <td>{{col.LYTD_GWP}}</td>
+                        <td>{{col.CYTD_GWP}}</td>
+                    </tr>
+                </tbody>
+            </table> -->
+            
+
+
+
+
+
+
+
+
+
+
+            <!-- <div class="col-12" style="padding: 2%; font-weight: bold; font-size: 17px;">
+                <span>MOM CARE ADVISOR REPORT CARD </span>
+            </div> -->
+
+            <div class="col-12" style="padding: 1%; font-weight: bold; font-size: 20px; background-color: #7667c4; margin-top: 40px; margin-bottom: 10px; border-radius: 30px;">
+                <span style="color: white;">MoM Care Advisor Report Card </span>
+            </div>
+
+            <table class="table table-hover ">
+                <thead>
+                    <tr style="background: #fada5a; color:black ; font-size: 16px!important; font-weight: bold;">
+                        <th *ngFor="let row of onePagerMomColList;" >{{row}}</th>
+                    </tr>
+                </thead>
+
+
+                <tbody>
+                    <!-- <tr *ngFor="let row of onePagerMomDataList;" style="font-size: 16px!important;">
+                        <ng-container *ngFor="let col of onePagerMomColList; let i = index">
+                                <td [ngClass]="(i == 0) && (row==0)? 'boldW': ''" > {{row[col]}}</td>
+                        </ng-container>
+                    </tr> -->
+
+
+
+                    <tr *ngFor="let row of onePagerMomDataList; let rowIndex = index;" style="font-size: 16px!important;">
+
+                        <ng-container *ngFor="let col of onePagerMomColList; let colIndex = index;">
+
+
+                            <td >
+                                {{row[col]}}
+                            </td>
+
+
+
+                            <!-- <ng-container [ngClass]="(colIndex == 0)? 'boldW': ''"> -->
+
+
+                                <!-- <td *ngIf="growthRowIndexes.notIncludes(rowIndex) ">
+                                    {{row[col]}}
+                                </td>
+
+                                <td *ngIf="!growthRowIndexes.notIncludes(rowIndex) ">
+                                    {{row[col]}}
+                                </td> -->
+
+
+                                <!-- <td [ngClass]="((row.MONTH == 'Growth') && () && ())?'red':''">
+                                    {{row[col]}}
+                                </td> -->
+
+
+
+
+                                <!-- <td *ngIf="growthRowIndexes.includes(rowIndex)==true && growth_noColor_colIndexs.includes(colIndex)==true && row[col] > 0" style="background-color: #8bff8b;">
+                                    {{row[col]}}
+                                </td> -->
+
+                                <!-- <td *ngIf="growthRowIndexes.includes(rowIndex)==true && growth_noColor_colIndexs.includes(colIndex)==true && row[col] == 0">
+                                    {{row[col]}}
+                                </td> -->
+
+                                <!-- <td *ngIf="growthRowIndexes.includes(rowIndex)==true && growth_noColor_colIndexs.includes(colIndex)==true && row[col] < 0" style="background-color: red;">
+                                    {{row[col]}}
+                                </td> -->
+
+
+                            <!-- </ng-container> -->
+                            
+                        </ng-container>
+                        
+                    </tr>
+
+
+
+                </tbody>
+            </table>
+        </div>
+
+        <hr  *ngIf="imdsearched" class="solid" >
+        <!-- <div class="row">
+            <div class="details">Bucket </div>
+            &nbsp;&nbsp;
+            <div class="detailsValue"><span style="font-weight: bold;">{{imdInfo.BANDING}}</span> </div>
+
+            &nbsp;&nbsp;&nbsp;
+            <div class="details">Score </div>
+            &nbsp;&nbsp;
+            <div class="detailsValue"><span style="font-weight: bold;">{{imdInfo.TOTAL}}</span> </div>
+
+            &nbsp;&nbsp;&nbsp;
+            <div class="details"> CAQ </div>
+            &nbsp;&nbsp;
+            <div class="detailsValue" [style]="style_var_comm">{{imdInfo.COMMISSION_RATIO}} %</div>
+
+            &nbsp;&nbsp;&nbsp;
+            <div class="details"> LR </div>
+            &nbsp;&nbsp;
+            <div class="detailsValue" [style]="style_var_loss"> {{imdInfo.LOSS_RATIO}} %</div>
+
+            &nbsp;&nbsp;&nbsp;
+            <div class="details">COR</div>
+            &nbsp;&nbsp;
+            <div class="detailsValue" [style]="style_var_cor"> {{imdInfo.CY_COR}} %</div>
+
+
+            <div style="padding:1%; cursor: pointer; " *ngIf="imdsearched">
+
+                <mat-icon title="Get CYLY View"
+                    (click)="openModal(totalBox,1); getTotalGraph(imdInfo.INTERMEDIARY_ID);">launch</mat-icon>
+            </div>
+
+        </div> -->
+
+
+
+
+
+
+
+
+
+
+        <!-- <div class="row">
+            <div class="div" style="width: 20%; padding: 10px;">
+                <mat-card>
+                    <div class="row" style="padding: 10px!important;">
+                        <div class="col-6" style="color: rgb(0, 69, 116); text-align: center; justify-content: center;">
+                            <h2>
+                                Bucket
+                            </h2>
+                        </div>
+
+                        <div class="col-6" style="display: flex; justify-content: center; color: rgb(0, 69, 116);">
+                            <h2>
+                                {{imdInfo.BANDING}}
+                            </h2>
+                        </div>
+                    </div>
+                </mat-card>
+            </div>
+            <div class="div" style="width: 20%; padding: 10px;">
+                <mat-card>
+                    <div class="row" style="padding: 10px!important;">
+                        <div class="col-4" style="color: rgb(0, 69, 116); text-align: center;">
+                            <h2>
+                                Score
+                            </h2>
+                        </div>
+
+                        <div class="col-8" style="display: flex; justify-content: center; color: rgb(0, 69, 116);">
+                            <h2>
+                                {{imdInfo.TOTAL}}
+                            </h2>
+                        </div>
+                    </div>
+                </mat-card>
+            </div>
+            <div class="div" style="width: 20%; padding: 10px;">
+                <mat-card>
+                    <div class="row" style="padding: 10px!important;" [style]="style_var_comm">
+                        <div class="col-4" style="color: rgb(0, 69, 116); text-align: center;">
+                            <h2>
+                                CAQ
+                            </h2>
+                        </div>
+
+                        <div class="col-8" style="display: flex; justify-content: center; color: rgb(0, 69, 116);" >
+                            
+                            <h2>
+                                {{imdInfo.COMMISSION_RATIO}} %
+                            </h2>
+                        </div>
+                    </div>
+                </mat-card>
+            </div>
+            <div class="div" style="width: 20%; padding: 10px;">
+                <mat-card>
+                    <div class="row" style="padding: 10px!important;" [style]="style_var_loss">
+                        <div class="col-4" style="color: rgb(0, 69, 116); text-align: center;">
+                            <h2>
+                                LR
+                            </h2>
+                        </div>
+
+                        <div class="col-8" style="display: flex; justify-content: center; color: rgb(0, 69, 116);" >
+                            <h2>
+                                {{imdInfo.LOSS_RATIO}} %
+                            </h2>
+                            
+                            
+                        </div>
+                    </div>
+                </mat-card>
+            </div>
+            <div class="div" style="width: 20%; padding: 10px;">
+                <mat-card>
+                    <div class="row" style="padding: 10px!important;" [style]="style_var_cor">
+                        <div class="col-4" style="color: rgb(0, 69, 116); text-align: center;">
+                            <h2>
+                                COR
+                            </h2>
+                        </div>
+
+                        <div class="col-8" style="display: flex; justify-content: center; color: rgb(0, 69, 116);" >
+                            
+                            <h2>
+                                {{imdInfo.CY_COR}} %
+                            </h2>
+                        </div>
+                    </div>
+                </mat-card>
+            </div>
+
+
+
+        </div> -->
+
+
+
+
+
+
+
+        <br  *ngIf="imdsearched">
+        <br  *ngIf="imdsearched">
+
+        <!-- <div  *ngIf="totalChart_rep_status" class="row" style="margin-top: 3%!important; font-weight: bold; font-size: 17px;">
+            <div class="col-12" style="justify-content: center; text-align: center;">
+                <span *ngIf="imdsearched"> Total Score</span>
+            </div>
+            <div class="col-12" style="padding: 1%; ">
+                <canvas id="totalChart_rep" style="width:100%" height="300"></canvas>
+            </div>
+        </div>
+        <div  *ngIf="lrVsCaqGraph_status" class="row" style="margin-top: 3%!important; font-weight: bold; font-size: 17px;" >
+            <div class="col-12" style="justify-content: center; text-align: center;">
+                <span *ngIf="imdsearched"> LR Vs CAQ Vs COR</span>
+            </div>
+            <div class="col-12" style="padding: 1%; ">
+                <canvas id="lrVsCaqGraph" style="width:100%" height="300"></canvas>
+            </div>
+        </div> -->
+
+
+
+        <!-- <div  *ngIf="lobPieGraph_status" class="row" style="margin-top: 3%!important;font-weight: bold; font-size: 17px;" >
+            <div class="col-12" style="justify-content: center; text-align: center;">
+                <span *ngIf="imdsearched">LOB Wise GWP</span>
+            </div>
+            <div class="col-12" style="padding: 1%; ">
+                <canvas id="lobPieGraph" style="width:100%" height="300"></canvas>
+            </div>
+        </div> -->
+
+
+
+
+        <!-- <div   class="row" style="margin-top: 3%!important;font-weight: bold; font-size: 17px;" >
+            <div class="col-12" style="justify-content: center; text-align: center;">
+                <span *ngIf="imdsearched">LOB Wise GWP</span>
+            </div>
+
+
+
+            <div class="col-12" style="padding: 1%; ">
+                <div id="lobWiseGwp_pie"></div>
+            </div>
+        </div> -->
+
+    </div>
+
+</div>
+
+
+
+<ng-template #agentScoreBox>
+
+
+    <!-- <div style="padding:30px!important;">
+        <div class="row" style="text-align: center;">
+            <span style="font-weight: bold; font-size: 18pt;">
+                Agent Score Card
+            </span>
+            <span style="position: absolute; right: 33px;">
+                <mat-icon (click)="closeModal()" style="cursor: pointer;">close</mat-icon>
+
+            </span>
+        </div>
+
+        <hr class="solid">
+
+        <div class="row" style="font-weight: bold; font-size: 17px;">
+            <img width="30px;" src="assets/image/user.png" alt="">
+            &nbsp;&nbsp;
+            &nbsp;
+
+            <span style="position: relative; top: 3px;"> Agent Info</span>
+
+
+
+        </div>
+
+        <br>
+
+        <div class="row" style="text-align: left; font-size:13px;">
+            <div class="col-2" style="font-weight: bold; text-align: left;   background-color:  rgb(241, 240, 240);">Imd
+                Code</div>
+
+            <div class="col-2" style="text-align: left; ">{{imdInfo.INTERMEDIARY_ID}}</div>
+
+            <div class="col-3" style="font-weight: bold; text-align: left;  background-color:  rgb(241, 240, 240);">
+                Bucket</div>
+
+            <div class="col-2" style="text-align: left; ">{{imdInfo.BANDING}}</div>
+
+            <div class="col-2" style="font-weight: bold; text-align: left;   background-color:  rgb(241, 240, 240);">
+                Gender</div>
+
+            <div class="col-1" style="text-align: left; ">{{imdInfo.GENDER}}</div>
+
+            <div class="col-2" style="font-weight: bold; text-align: left; background-color:  rgb(241, 240, 240);">Imd
+                Name</div>
+
+            <div class="col-2" style="text-align: left; ">{{imdInfo.INTERMEDIARY_NAME}}</div>
+
+            <div class="col-3" style="font-weight: bold; text-align: left;  background-color:  rgb(241, 240, 240);">
+                Background</div>
+
+            <div class="col-2" style="text-align: left; ">{{imdInfo.AGENT_BACKGROUND}}</div>
+
+            <div class="col-2" style="font-weight: bold; text-align: left; background-color:  rgb(241, 240, 240);">
+                Marital Status</div>
+
+            <div class="col-1" style="text-align: left; ">{{imdInfo.MARRIED_STATUS}}</div>
+
+
+            <div class="col-2" style="font-weight: bold; text-align: left; background-color: rgb(241, 240, 240);">
+                Location</div>
+
+            <div class="col-2" style="text-align: left; ">{{imdInfo.LOCATION}}</div>
+
+            <div class="col-3" style="font-weight: bold; text-align: left;  background-color:  rgb(241, 240, 240);">
+                Vintage</div>
+
+            <div class="col-2" style="text-align: left; ">{{imdInfo.AGENT_VINTAGE}}</div>
+
+            <div class="col-2" style="font-weight: bold; text-align: left; background-color:  rgb(241, 240, 240);">Agent
+                Age</div>
+
+            <div class="col-1" style="text-align: left; ">{{imdInfo.AGENT_AGE}}</div>
+
+        </div>
+
+        <hr class="solid">
+
+        <div class="row" style="font-weight: bold; font-size: 17px;">
+            <img width="40px;" src="assets/image/scorecard.png" alt="">
+            &nbsp;&nbsp;
+            &nbsp;
+
+            <span style="position: relative; top: 3px;"> Agent Score Card</span>
+
+
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+
+
+            <div style=" padding:1% ;background-color: rgb(241, 240, 240);">Bucket </div>
+            &nbsp; &nbsp;
+            <div style=" padding:1% ;background-color: rgb(147, 168, 113);"><span
+                    style="font-weight: bold;">{{imdInfo.BANDING}}</span> </div>
+
+
+
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+
+
+            <div style="padding:1% ;background-color: rgb(241, 240, 240);">Score </div>
+            &nbsp; &nbsp;
+
+            <div style="  padding:1%; background-color: rgb(147, 168, 113);"><span
+                    style="font-weight: bold;">{{imdInfo.TOTAL}}</span> </div>
+
+            &nbsp;
+            &nbsp;
+
+            <div style="  padding:1%; cursor: pointer; ">
+                <mat-icon title="download score card"
+                    (click)="openModalDownload(downloadScoreCardBox,imdInfo.INTERMEDIARY_ID,0)">get_app</mat-icon>
+                &nbsp;&nbsp;
+                <mat-icon title="Get CYLY View"
+                    (click)="openModal(totalBox,0); getTotalGraph(imdInfo.INTERMEDIARY_ID);">launch</mat-icon>
+
+            </div>
+
+        </div>
+        <br>
+
+        <div class="row">
+            <table class="table table-hover" style="text-align: center; justify-items: center;">
+
+
+                <thead>
+                    <tr class="" style="background: #535353; color:white ; font-size: 17px; font-weight: bold;">
+
+                        <th class="tableColumnStyle" style="padding: 0; ">Metrics</th>
+                        <th class="tableColumnStyle" style="padding: 0; ">Actuals</th>
+                        <th class="tableColumnStyle" style="padding: 0; ">Score</th>
+                        <th class="tableColumnStyle" style="padding: 0; ">Max</th>
+
+
+                        <th class="tableColumnStyle" style="padding: 0;"></th>
+
+
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+                    <tr class='highlighRow' style="padding: 0;">
+                        <td class="tableColumnStyle" style="padding: 0; font-weight: bold;">GWP</td>
+                        <td class="tableColumnStyle" style="padding: 0; ">{{scorecardDetails.GWP}}</td>
+                        <td class="tableColumnStyle" style="padding: 0; ">{{scorecardDetails.MOM_GWP_SCORE}}</td>
+                        <td class="tableColumnStyle" style="padding: 0; ">{{scoreConfig.MOM_GWP_SCORE}}</td>
+                        <td class="tableColumnStyle" style="width:5%; padding: 0; ">
+                            <mat-icon style="font-size: 12pt;
+                                                        
+                                                        position: relative;
+                                                        top: 4px; color:rgb(105, 104, 104); cursor: pointer;" (click)="closeModal(); openModal(gwpBox,0); getGWPScoreDetails(imdInfo.INTERMEDIARY_ID);     this.getGWPGraphs(imdInfo.INTERMEDIARY_ID);
+">open_with</mat-icon>
+                        </td>
+
+
+                    </tr>
+
+                    <tr style="padding: 0;">
+                        <td class="tableColumnStyle" style="padding: 0; font-weight: bold;">NOP</td>
+                        <td class="tableColumnStyle" style="padding: 0; ">{{scorecardDetails.NOP}}</td>
+                        <td class="tableColumnStyle" style="padding: 0; ">{{scorecardDetails.NOP_FINAL_SCORE}}</td>
+                        <td class="tableColumnStyle" style="padding: 0; ">{{scoreConfig.NOP_FINAL_SCORE}}</td>
+
+                        <td class="tableColumnStyle" style="width:5%; padding: 0; ">
+                            <mat-icon style="font-size: 12pt;
+                                                        
+                                                        position: relative;
+                                                        top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                (click)="closeModal();openModal(nopBox,0);getNOPScoreDetails(imdInfo.INTERMEDIARY_ID); getNOPGraphs(imdInfo.INTERMEDIARY_ID)">open_with</mat-icon>
+                        </td>
+
+                    </tr>
+
+                    <tr class='highlighRow' style="padding: 0;">
+                        <td class="tableColumnStyle" style="padding: 0; font-weight: bold;">NOP RR%</td>
+                        <td class="tableColumnStyle" style="padding: 0; ">{{scorecardDetails.RENEWAL_RATIO}}</td>
+                        <td class="tableColumnStyle" style="padding: 0; ">{{scorecardDetails.NOP_RR_SCORE}}</td>
+                        <td class="tableColumnStyle" style="padding: 0; ">{{scoreConfig.NOP_RR_SCORE}}</td>
+
+                        <td class="tableColumnStyle" style="width:5%; padding: 0; ">
+                            <mat-icon style="font-size: 12pt;
+                                                        
+                                                        position: relative;
+                                                        top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                (click)="closeModal();openModal(noprrBox,0);getNOPRRScoreDetails(imdInfo.INTERMEDIARY_ID);this.getNOPRRGraphs(imdInfo.INTERMEDIARY_ID);">open_with</mat-icon>
+                        </td>
+
+                    </tr>
+
+                    <tr style="padding: 0;">
+                        <td class="tableColumnStyle" style="padding: 0; font-weight: bold;">CROSS SELL</td>
+                        <td class="tableColumnStyle" style="padding: 0; ">{{scorecardDetails.CROSS_SELL_POL}}</td>
+                        <td class="tableColumnStyle" style="padding: 0; ">{{scorecardDetails.CROSS_SELL_SCORE}}</td>
+                        <td class="tableColumnStyle" style="padding: 0; ">{{scoreConfig.CROSS_SELL_SCORE}}</td>
+
+                        <td class="tableColumnStyle" style="width:5%; padding: 0;">
+                            <mat-icon style="font-size: 12pt;
+                                                        
+                                                        position: relative;
+                                                        top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                (click)="openModal(csellBox,0);getSELLScoreDetails(imdInfo.INTERMEDIARY_ID, 'cross sell');getSELLGraphs(imdInfo.INTERMEDIARY_ID, 'cross sell');">open_with</mat-icon>
+                        </td>
+
+                    </tr>
+
+
+                    <tr class='highlighRow' style="padding: 0;">
+                        <td class="tableColumnStyle" style="padding: 0; font-weight: bold;">UPSELL</td>
+                        <td class="tableColumnStyle" style="padding: 0; ">{{scorecardDetails.UP_SELL_POL}}</td>
+                        <td class="tableColumnStyle" style="padding: 0; ">{{scorecardDetails.UP_SELL_SCORE}}</td>
+                        <td class="tableColumnStyle" style="padding: 0; ">{{scoreConfig.UP_SELL_SCORE}}</td>
+
+                        <td class="tableColumnStyle" style="width:5%; padding: 0;">
+                            <mat-icon style="font-size: 12pt;
+                                                        
+                                                        position: relative;
+                                                        top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                (click)="openModal(upsellBox,0);getSELLScoreDetails(imdInfo.INTERMEDIARY_ID, 'upsell');getSELLGraphs(imdInfo.INTERMEDIARY_ID, 'upsell');">open_with</mat-icon>
+                        </td>
+
+                    </tr>
+
+                    <tr style="padding: 0;">
+                        <td class="tableColumnStyle" style="padding: 0; font-weight: bold;">WINBACK</td>
+                        <td class="tableColumnStyle" style="padding: 0; ">{{scorecardDetails.WINBACK_POL}}</td>
+                        <td class="tableColumnStyle" style="padding: 0; ">{{scorecardDetails.WINBACK_SCORE}}</td>
+                        <td class="tableColumnStyle" style="padding: 0; ">{{scoreConfig.WINBACK_SCORE}}</td>
+
+                        <td class="tableColumnStyle" style="width:5%; padding: 0;">
+                            <mat-icon style="font-size: 12pt;
+                                                        
+                                                        position: relative;
+                                                        top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                (click)="openModal(winbackBox,0);getSELLScoreDetails(imdInfo.INTERMEDIARY_ID, 'winback');getSELLGraphs(imdInfo.INTERMEDIARY_ID, 'winback');">open_with</mat-icon>
+                        </td>
+
+                    </tr>
+
+                    
+
+                    <tr class='highlighRow' style="padding: 0;">
+                        <td class="tableColumnStyle" style="padding: 0; font-weight: bold;">DIGITAL TP</td>
+                        <td class="tableColumnStyle" style="padding: 0; ">{{scorecardDetails.DIGITAL_ACTIVENESS}}</td>
+                        <td class="tableColumnStyle" style="padding: 0; ">{{scorecardDetails.DTP_SCORE}}</td>
+                        <td class="tableColumnStyle" style="padding: 0; ">{{scoreConfig.DTP_SCORE}}</td>
+
+                        <td class="tableColumnStyle" style="width:5%; padding: 0; ">
+                            <mat-icon style="font-size: 12pt;
+                                                        
+                                                        position: relative;
+                                                        top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                (click)="closeModal();openModal(digitalBox,0);getDTPScoreDetails(imdInfo.INTERMEDIARY_ID); getDTPGraphs(imdInfo.INTERMEDIARY_ID);">open_with</mat-icon>
+                        </td>
+
+                    </tr>
+
+                    <tr style="padding: 0;">
+                        <td class="tableColumnStyle" style="padding: 0;font-weight: bold; ">PHYSICAL TP</td>
+                        <td class="tableColumnStyle" style="padding: 0; ">{{scorecardDetails.MEETING_COUNT}}</td>
+                        <td class="tableColumnStyle" style="padding: 0; ">{{scorecardDetails.PTP_SCORE}}</td>
+                        <td class="tableColumnStyle" style="padding: 0; ">{{scoreConfig.PTP_SCORE}}</td>
+
+                        <td class="tableColumnStyle" style="width:5%; padding: 0; ">
+                            <mat-icon style="font-size: 12pt;
+                                                        
+                                                        position: relative;
+                                                        top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                (click)="closeModal();openModal(physicalBox,0);getPTPScoreDetails(imdInfo.INTERMEDIARY_ID); getPTPGraphs(imdInfo.INTERMEDIARY_ID);">open_with</mat-icon>
+                        </td>
+
+                    </tr>
+
+                    <tr class='highlighRow' style="padding: 0;">
+                        <td class="tableColumnStyle" style="padding: 0;font-weight: bold; ">CAMPAIGN E</td>
+                        <td class="tableColumnStyle" style="padding: 0; ">{{scorecardDetails.CY_ELIGIBILITY_PER}}</td>
+                        <td class="tableColumnStyle" style="padding: 0; ">{{scorecardDetails.CAMPAIGN_SCORE}}</td>
+                        <td class="tableColumnStyle" style="padding: 0; ">{{scoreConfig.CAMPAIGN_SCORE}}</td>
+
+                        <td class="tableColumnStyle" style="width:5%; padding: 0; ">
+                            <mat-icon style="font-size: 12pt;
+                                                        
+                                                        position: relative;
+                                                        top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                (click)="closeModal();openModal(campaignBox,0);
+                                                        getCampaignScoreDetails(imdInfo.INTERMEDIARY_ID);this.getCampaignGraphs(imdInfo.INTERMEDIARY_ID);">open_with</mat-icon>
+                        </td>
+
+                    </tr>
+
+                    <tr style="padding: 0;">
+                        <td class="tableColumnStyle" style="padding: 0; font-weight: bold;">LOB</td>
+                        <td class="tableColumnStyle" style="padding: 0; ">{{scorecardDetails.LOB}}</td>
+                        <td class="tableColumnStyle" style="padding: 0; ">{{scorecardDetails.LOB_MAIN_SCORE}}</td>
+                        <td class="tableColumnStyle" style="padding: 0; ">{{scoreConfig.LOB_MAIN_SCORE}}</td>
+
+                        <td class="tableColumnStyle" style="width:5%; padding: 0; ">
+                            <mat-icon style="font-size: 12pt;
+                                                        
+                                                        position: relative;
+                                                        top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                (click)="closeModal();openModal(lobBox,0);
+                                                        getLOBScoreDetails(imdInfo.INTERMEDIARY_ID);this.getLOBGraphs(imdInfo.INTERMEDIARY_ID);">open_with</mat-icon>
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div> -->
+
+
+</ng-template>
+
+
+<ng-template #downloadScoreCardBox>
+    <div style="padding:30px!important;">
+        <div class="row" style="text-align: center;">
+            <span style="font-weight: bold; font-size: 18pt;">
+                Score Card Download
+            </span>
+            <span style="position: absolute; right: 33px;">
+                <mat-icon (click)="goBack(agentScoreBox);showPdfTypes = false; " style="cursor: pointer;">close</mat-icon>
+
+            </span>
+        </div>
+
+        <hr class="solid">
+        <div class="row" style="font-weight: bold; font-size: 17px; color: rgb(46, 46, 46);">
+
+            Choose Format for downloading the {{projectName}} Score Card.
+        </div>
+        <br>
+        <br>
+        <div class="row" style="font-weight: bold; font-size: 17px; ">
+
+            <ng-container *ngIf="!showPdfTypes">
+
+                <div class="col-6" style="padding:0 !important;">
+                    <button class="filterApplyButton" style="background-color: rgb(0 74 139);
+                    height: 42px;" (click)="downloadScoreCard()">
+                        <span>.xlsx</span>
+                    </button>
+                </div>
+                <div class="col-6" style="padding:0 !important;">
+                    <button class="filterApplyButton" style="    background-color: rgb(0 74 139);
+                    height: 42px;" (click)="showPdfTypes = true">
+                        <!-- <span>.pdf</span> -->
+                        <span>.pdf</span>
+                    </button>
+                </div>
+
+            </ng-container>
+
+            
+
+
+            <ng-container *ngIf="showPdfTypes">
+                <div class="col-12">
+                    <p style="font-weight: 500; font-size: 16px;">
+                        Select Your .pdf Report Type
+                    </p>
+                    
+                </div>
+                <div class="col-6" style="padding:0 !important;">
+                    <button class="filterApplyButton" style="background-color: rgb(0 74 139);
+                    height: 42px;" (click)="showPdfTypes = false; downloadScoreCardPDF('detail')">
+                        <span>Detail</span>
+                    </button>
+                </div>
+                <div class="col-6" style="padding:0 !important;">
+                    <button class="filterApplyButton" style="    background-color: rgb(0 74 139);
+                    height: 42px;" (click)="showPdfTypes = false; downloadScoreCardPDF('short')">
+                        <span>Short</span>
+                    </button>
+                </div>
+            </ng-container>
+            
+
+
+
+
+            <!-- <div class="col-6" style="padding:0 !important;">
+                <button class="filterApplyButton" style="    background-color: rgb(0 74 139);
+                height: 42px;" (click)="downloadScoreCardPDF()">
+                    <span>.pdf</span>
+                </button>
+            </div> -->
+
+
+            <!-- <div style="padding:2% !important">Month Year</div>
+            &nbsp;
+            &nbsp;
+            <div style="padding:2% !important; font-weight: lighter;">            
+                <div  class="multiselectFilter">
+                    <ng-multiselect-dropdown
+                        [placeholder]="'MONTH YEAR'"
+                        [settings]="month_dropdownSettings"
+                        [data]="month_dropdownList"
+                        [(ngModel)]="month_selectedItems"
+                        >
+                    </ng-multiselect-dropdown>
+                </div>
+            </div> -->
+        </div>
+    </div>
+
+
+</ng-template>
+
+
+
+<ng-template #agentRecommendationBox>
+
+
+    <div style="padding:30px!important;">
+
+        <div class="row" style="text-align: center;">
+            <span style="font-weight: bold; font-size: 18pt;"> {{projectName}} Score Card</span>
+
+            <span style="position: absolute; right: 33px;">
+                <mat-icon (click)="closeModal()" style="cursor: pointer;">close</mat-icon>
+
+            </span>
+
+        </div>
+
+        <hr class="solid">
+
+
+        <div class="row" style="font-weight: bold; font-size: 17px;">
+            <img width="30px;" src="assets/image/user.png" alt="">
+            &nbsp;&nbsp;
+            &nbsp;
+
+            <span style="position: relative; top: 3px;"> {{projectName}} Info</span>
+
+
+
+        </div>
+
+        <br>
+
+        <div class="row" style="    text-align: left; font-size:13px;
+             ">
+
+            <!-- <div class="col-3" style="background-color: rgb(161, 159, 159);">Imd Code</div>
+               &nbsp;
+               <div class="col-2" style="background-color:  rgb(241, 240, 240);">3423456</div>
+               &nbsp;
+               <div class="col-3" style="background-color: rgb(161, 159, 159);">Bucket</div>
+               &nbsp;
+               <div class="col-2" style="background-color:  rgb(241, 240, 240);" >B</div> -->
+            <div class="col-2" style="font-weight: bold; text-align: left;   background-color:  rgb(241, 240, 240);">Imd
+                Code</div>
+
+            <div class="col-2" style="text-align: left; ">{{imdInfo.INTERMEDIARY_ID}}</div>
+
+            <div class="col-3" style="font-weight: bold; text-align: left;  background-color:  rgb(241, 240, 240);">
+                Bucket</div>
+
+            <div class="col-2" style="text-align: left; ">{{imdInfo.BANDING}}</div>
+
+            <div class="col-2" style="font-weight: bold; text-align: left;   background-color:  rgb(241, 240, 240);">
+                Gender</div>
+
+            <div class="col-1" style="text-align: left; ">{{imdInfo.GENDER}}</div>
+
+            <div class="col-2" style="font-weight: bold; text-align: left; background-color:  rgb(241, 240, 240);">{{projectName}}
+                Name</div>
+
+            <div class="col-2" style="text-align: left; ">{{imdInfo.INTERMEDIARY_NAME}}</div>
+
+            <div class="col-3" style="font-weight: bold; text-align: left;  background-color:  rgb(241, 240, 240);">
+                Background</div>
+
+            <div class="col-2" style="text-align: left; ">{{imdInfo.AGENT_BACKGROUND}}</div>
+
+            <div class="col-2" style="font-weight: bold; text-align: left; background-color:  rgb(241, 240, 240);">
+                Marital Status</div>
+
+            <div class="col-1" style="text-align: left; ">{{imdInfo.MARRIED_STATUS}}</div>
+
+
+            <div class="col-2" style="font-weight: bold; text-align: left; background-color: rgb(241, 240, 240);">
+                Location</div>
+
+            <div class="col-2" style="text-align: left; ">{{imdInfo.LOCATION}}</div>
+
+            <div class="col-3" style="font-weight: bold; text-align: left;  background-color:  rgb(241, 240, 240);">
+                Vintage</div>
+
+            <div class="col-2" style="text-align: left; ">{{imdInfo.AGENT_VINTAGE}}</div>
+
+            <div class="col-2" style="font-weight: bold; text-align: left; background-color:  rgb(241, 240, 240);">{{projectName}}
+                Age</div>
+
+            <div class="col-1" style="text-align: left; ">{{imdInfo.AGENT_AGE}}</div>
+
+        </div>
+
+        <hr class="solid">
+
+        <div class="row" style="font-weight: bold; font-size: 17px;">
+            <img width="30px;" src="assets/image/graphrecommendation.png" alt="">
+            &nbsp;&nbsp;
+            &nbsp;
+
+            <span style="position: relative; top: 3px;"> Recommendation Towards Growth</span>
+
+            <br>
+            <div class="row" style="background-color: rgb(235 251 255);
+                border: solid 1px rgb(0 188 211);
+                padding: 4% !important;
+                height: 250px;overflow: scroll;
+                margin-top: 15px !important; font-size: 15px;">
+                <span> &#9658; &nbsp;</span>{{projectName}} scored &nbsp;<span> {{imdInfo.TOTAL}} &nbsp; </span> and closed <span>
+                    &nbsp;{{imdInfo.monthStr}} &nbsp;</span> in band '<span>{{imdInfo.BANDING}}'.</span>
+                <br>
+
+
+                <span> &#9658; &nbsp;{{projectName}} has <span>{{imdInfo.GROWTH}}</span> its performance from <span>
+                        &nbsp;{{imdInfo.lastm_monthStr}} &nbsp;</span> (BAND
+                    <span>&nbsp;'{{imdInfo.LASTM_BANDING}}'&nbsp;</span>) to <span> &nbsp;{{imdInfo.monthStr}}
+                        &nbsp;</span> (BAND <span>&nbsp;'{{imdInfo.BANDING}}'&nbsp;</span>) .</span>
+                <br>
+
+                <ng-container *ngFor="let eachrec of recommendationList">
+
+                    <span> &#9658; &nbsp; {{eachrec}}</span>
+                    <br>
+                </ng-container>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</ng-template>
+
+
+
+<ng-template #totalBox>
+
+
+    <div style="padding:30px!important;">
+
+        <div class="row" style="text-align: center;">
+            <img width="35px;" src="assets/image/graphrecommendation.png" alt="">
+            &nbsp; &nbsp;
+
+            <span style="font-weight: bold; font-size: 18pt; position: relative; top: 10px;"> Total Score</span>
+
+            <span style="position: absolute; right: 33px;">
+                <mat-icon (click)="goBack(agentScoreBox)" style="cursor: pointer;">arrow_back</mat-icon>
+
+            </span>
+
+        </div>
+
+        <hr class="solid">
+
+
+
+
+
+        <div class="row" style="font-weight: bold; font-size: 17px;">
+
+            <div class="col-12" style="padding:2%">
+                <canvas id="totalChart" width="1500" height="1000"></canvas>
+
+                <br>
+
+                <!-- <canvas  id="bandingChart" width="1500" height="1000"></canvas> -->
+
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+
+</ng-template>
+
+
+<ng-template #gwpBox>
+
+
+    <div style="padding:30px!important; background-color: #f8f8f8;">
+
+        <div class="row" style="text-align: center;">
+            <img width="35px;" src="assets/image/graphrecommendation.png" alt="">
+            &nbsp; &nbsp;
+
+            <span style="font-weight: bold; font-size: 18pt; position: relative; top: 10px;"> GWP</span>
+
+            <span style="position: absolute; right: 33px;">
+                <mat-icon (click)="goBack( agentScoreBox)" style="cursor: pointer;">arrow_back</mat-icon>
+
+            </span>
+
+        </div>
+
+        <!-- <hr class="solid"> -->
+
+
+
+
+
+        <div class="row" style="font-weight: bold; font-size: 17px;margin-top: 30px!important;">
+
+            <div class="col-12" style="padding:2%; border: 1px solid rgba(109, 109, 109, 0.829); border-radius: 10px; background-color: #ffffff;">
+                <table class="table table-hover" style="text-align: center; justify-items: center;">
+
+
+                    <thead>
+                        <tr class="" style="background: #bbd4e9; height: 40px!important;">
+                            <th class="tableColumnStyle" style="padding: 15px; text-align: left; padding-left: 30px;width:40%">Bifurcation</th>
+                            <th class="tableColumnStyle" style="padding: 15px;">Actual</th>
+                            <th class="tableColumnStyle" style="padding: 15px;">Score</th>
+                            <th class="tableColumnStyle" style="padding: 15px;">Max</th>
+
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+                        <tr style="padding: 0;">
+                            <td style="padding: 0;" class="tableColumnStyle" style=" text-align: left; padding-left: 30px;" title="Current Month Gross Written Premium">CM GWP</td>
+                            <td style="padding: 0;" class="tableColumnStyle">{{gwp_scorecardDetails.GWP | indianNumber}}</td>
+                            <td style="padding: 0;" class="tableColumnStyle">{{gwp_scorecardDetails.GWP_SCORE}}</td>
+                            <td style="padding: 0;" class="tableColumnStyle">{{gwp_scoreConfig.GWP_SCORE}}</td>
+
+
+
+                        </tr>
+
+                        <tr class="highlighRow" style="padding: 0;">
+                            <td style="padding: 0;" class="tableColumnStyle" style=" text-align: left; padding-left: 30px;"  title="Current Month Growth">CM GROWTH</td>
+                            <td style="padding: 0;" class="tableColumnStyle">{{gwp_scorecardDetails.MOM_GROWTH}}%</td>
+                            <td style="padding: 0;" class="tableColumnStyle">{{gwp_scorecardDetails.MOM_GROWTH_SCORE}}
+                            </td>
+                            <td style="padding: 0;" class="tableColumnStyle">{{gwp_scoreConfig.MOM_GROWTH_SCORE}}</td>
+
+
+
+                        </tr>
+
+                        <tr style="padding: 0;">
+                            <td style="padding: 0;" class="tableColumnStyle" style=" text-align: left; padding-left: 30px;"  title="Current Month Last Year Growth">CMLY GROWTH</td>
+                            <td style="padding: 0;" class="tableColumnStyle">{{gwp_scorecardDetails.CMLY_GROWTH}}%</td>
+                            <td style="padding: 0;" class="tableColumnStyle">{{gwp_scorecardDetails.CMLY_GROWTH_SCORE}}
+                            </td>
+                            <td style="padding: 0;" class="tableColumnStyle">{{gwp_scoreConfig.CMLY_GROWTH_SCORE}}</td>
+
+
+
+                        </tr>
+
+                        <tr style="padding: 0;">
+                            <td style="padding: 0;" class="tableColumnStyle" style=" text-align: left; padding-left: 30px;" title="Current Month Last Year Growth Absolute">CMLY GROWTH ABSOLUTE</td>
+                            <td style="padding: 0;" class="tableColumnStyle">
+                                {{gwp_scorecardDetails.CMLY_GROWTH_ABSOLUTE | indianNumber}}</td>
+                            <td style="padding: 0;" class="tableColumnStyle">
+                                {{gwp_scorecardDetails.CMLY_GROWTH_ABSOLUTE_SCORE}}</td>
+                            <td style="padding: 0;" class="tableColumnStyle">
+                                {{gwp_scoreConfig.CMLY_GROWTH_ABSOLUTE_SCORE}}</td>
+
+
+
+                        </tr>
+
+                        <tr class="highlighRow" style="padding: 0;">
+                            <td style="padding: 0;" class="tableColumnStyle" style=" text-align: left; padding-left: 30px;">CONSISTENCY</td>
+                            <td style="padding: 0;" class="tableColumnStyle">{{gwp_scorecardDetails.CONSISTENCY | indianNumber}}</td>
+                            <td style="padding: 0;" class="tableColumnStyle">{{gwp_scorecardDetails.CONSISTENCY_SCORE}}
+                            </td>
+                            <td style="padding: 0;" class="tableColumnStyle">{{gwp_scoreConfig.CONSISTENCY_SCORE}}</td>
+
+
+                        </tr>
+
+
+
+
+
+
+
+
+
+
+
+                    </tbody>
+                </table>
+            </div>
+
+
+
+            
+
+            
+
+        </div>
+
+
+        <div class="row" style="margin-top:  30px !important; min-height: 300px!important;">
+            <!-- <div class="chart-container"> -->
+            <div class="" style=" border: 1px solid rgba(109, 109, 109, 0.829); border-radius: 10px;width:49%;padding:1%; background-color: #ffffff;">
+                <span style="font-weight: bold;">Total:</span>
+                
+                <!-- <button (click)="exportChart();">Export</button> -->
+                <!-- <canvas id="gwpChart1" width="1000" height="1000"></canvas> -->
+                <canvas id="gwpChart1" ></canvas>
+            </div>
+
+            <div style="width:2%"></div>
+
+
+            <div class=""  style=" border: 1px solid rgba(109, 109, 109, 0.829); border-radius: 10px;width:49%;padding: 1%; background-color: #ffffff;">
+                <span style="font-weight: bold;">Bifurcation:</span>
+                <!-- Bifurcation: -->
+                <!-- <canvas id="gwpChart2" width="1500" height="1000"></canvas> -->
+                <canvas id="gwpChart2" ></canvas>
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+
+
+</ng-template>
+
+
+
+<ng-template #nopBox>
+
+
+    <div style="padding:30px!important; background-color: #f8f8f8;">
+
+        <div class="row" style="text-align: center;">
+            <img width="35px;" src="assets/image/graphrecommendation.png" alt="">
+            &nbsp; &nbsp;
+
+            <span style="font-weight: bold; font-size: 18pt; position: relative; top: 10px;"> NOP</span>
+
+            <span style="position: absolute; right: 33px;">
+                <mat-icon (click)="goBack( agentScoreBox)" style="cursor: pointer;">arrow_back</mat-icon>
+
+            </span>
+
+        </div>
+
+        <!-- <hr class="solid"> -->
+
+
+
+
+
+        <div class="row" style="font-weight: bold; font-size: 17px;margin-top: 30px!important;">
+
+            <div class="col-12" style="padding:2%; border: 1px solid rgba(109, 109, 109, 0.829); border-radius: 10px; background-color: #ffffff;">
+                <table class="table table-hover" style="text-align: center; justify-items: center;">
+
+
+                    <thead>
+                        <tr class="" style="background: #bbd4e9;">
+                            <th class="tableColumnStyle" style="padding: 0;">Bifurcation</th>
+                            <th class="tableColumnStyle" style="padding: 0;">Actual</th>
+                            <th class="tableColumnStyle" style="padding: 0;">Score</th>
+                            <th class="tableColumnStyle" style="padding: 0;">Max</th>
+
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+                        <tr style="padding: 0;">
+                            <td style="padding: 0;" class="tableColumnStyle" title="New Business Number of Policies">NB NOP</td>
+                            <td style="padding: 0;" class="tableColumnStyle">{{nop_scorecardDetails.NOP}}</td>
+                            <td style="padding: 0;" class="tableColumnStyle">{{nop_scorecardDetails.NOP_SCORE}}</td>
+                            <td style="padding: 0;" class="tableColumnStyle">{{nop_scoreConfig.NOP_SCORE}}</td>
+
+
+
+                        </tr>
+
+                        <tr class="highlighRow" style="padding: 0;">
+                            <td style="padding: 0;" class="tableColumnStyle" title="Renewal Number of Policies">REN NOP</td>
+                            <td style="padding: 0;" class="tableColumnStyle">{{nop_scorecardDetails.RENWED_COUNT}}</td>
+                            <td style="padding: 0;" class="tableColumnStyle">{{nop_scorecardDetails.RENWED_COUNT_SCORE}}
+                            </td>
+                            <td style="padding: 0;" class="tableColumnStyle">{{nop_scoreConfig.RENWED_COUNT_SCORE}}</td>
+
+
+                        </tr>
+
+
+
+
+
+                    </tbody>
+                </table>
+            </div>
+
+            
+            <!-- <div class="col-12">
+                <div class="col-12">
+                    Total:
+                    <canvas id="nopChart1" width="1000" height="1000"></canvas>
+                </div>
+                <br>
+                <div class="col-12" style="margin-top:  3px !important;">
+                    Bifurcation:
+                    <canvas id="nopChart2" width="1500" height="1000"></canvas>
+                </div>
+
+
+
+                
+
+            </div> -->
+
+
+            <div class="row" style="padding: 0!important; width: 100%; margin-top:  30px !important; min-height: 300px!important;">
+                <div  style="width: 49%!important; border: 1px solid rgba(109, 109, 109, 0.829); border-radius: 10px; background-color: #ffffff; padding: 1%;">
+                    Total:
+                    <canvas id="nopChart1" ></canvas>
+                </div>
+    
+                <div style="width: 2%!important;"></div>
+    
+                <div  style="width: 49%!important; border: 1px solid rgba(109, 109, 109, 0.829); border-radius: 10px; background-color: #ffffff; padding: 1%;">
+                    Bifurcation:
+                    <canvas id="nopChart2" ></canvas>
+                </div>
+            </div>
+
+
+            
+
+
+
+
+        </div>
+
+    </div>
+
+
+</ng-template>
+
+
+
+<ng-template #noprrBox>
+
+
+    <div style="padding:30px!important; background-color: #f8f8f8;">
+
+        <div class="row" style="text-align: center;">
+            <img width="35px;" src="assets/image/graphrecommendation.png" alt="">
+            &nbsp; &nbsp;
+
+            <span style="font-weight: bold; font-size: 18pt; position: relative; top: 10px;"> Renewal Ratio</span>
+
+            <span style="position: absolute; right: 33px;">
+                <mat-icon (click)="goBack( agentScoreBox)" style="cursor: pointer;">arrow_back</mat-icon>
+
+            </span>
+
+        </div>
+
+        <!-- <hr class="solid"> -->
+
+
+
+
+
+        <div class="row" style="font-weight: bold; font-size: 17px; margin-top: 30px!important;">
+
+            <div class="col-12" style="padding:2%; border: 1px solid rgba(109, 109, 109, 0.829); border-radius: 10px; background-color: #ffffff;">
+                <table class="table table-hover" style="text-align: center; justify-items: center; ">
+
+
+                    <thead>
+                        <tr class="" style="background: #bbd4e9;">
+                            <th class="tableColumnStyle" style="padding: 0;">Bifurcation</th>
+                            <th class="tableColumnStyle" style="padding: 0;">Actual</th>
+                            <th class="tableColumnStyle" style="padding: 0;">Score</th>
+                            <th class="tableColumnStyle" style="padding: 0;">Max</th>
+
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+                        <tr style="padding: 0;">
+                            <td style="padding: 0;" class="tableColumnStyle"  title="Renewal Ration Percentage">RR%</td>
+                            <td style="padding: 0;" class="tableColumnStyle">{{noprr_scorecardDetails.RENEWAL_RATIO}}%
+                            </td>
+                            <td style="padding: 0;" class="tableColumnStyle">
+                                {{noprr_scorecardDetails.RENEWAL_RATIO_SCORE}}</td>
+                            <td style="padding: 0;" class="tableColumnStyle">{{noprr_scoreConfig.RENEWAL_RATIO_SCORE}}
+                            </td>
+
+
+
+                        </tr>
+
+
+
+
+
+
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-12" style="padding: 0!important; min-height: 400px; margin-top: 30px!important;">
+
+                <!-- <div class="col-12"> -->
+                <div style="width: 100%!important; border: 1px solid rgba(109, 109, 109, 0.829); border-radius: 10px;padding:1%!important; background-color: #ffffff;">
+
+                    <!-- <canvas id="noprrChart1" width="1000" height="1000"></canvas> -->
+                    <canvas id="noprrChart1"></canvas>
+                </div>
+
+
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</ng-template>
+
+
+
+<ng-template #corBox>
+
+
+    <div style="padding:30px!important;">
+
+        <div class="row" style="text-align: center;">
+            <img width="35px;" src="assets/image/graphrecommendation.png" alt="">
+            &nbsp; &nbsp;
+
+            <span style="font-weight: bold; font-size: 18pt; position: relative; top: 10px;"> Profitability</span>
+
+            <span style="position: absolute; right: 33px;">
+                <mat-icon (click)="goBack( agentScoreBox)" style="cursor: pointer;">arrow_back</mat-icon>
+
+            </span>
+
+        </div>
+
+        <hr class="solid">
+
+
+
+
+
+        <div class="row" style="font-weight: bold; font-size: 17px;">
+
+            <div class="col-5" style="padding:2%">
+                <table class="table table-hover" style="text-align: center; justify-items: center;">
+
+
+                    <thead>
+                        <tr class="" style="background: #bbd4e9;">
+                            <th class="tableColumnStyle" style="padding: 0;">Bifurcation</th>
+                            <th class="tableColumnStyle" style="padding: 0;">Actual</th>
+                            <th class="tableColumnStyle" style="padding: 0;">Score</th>
+                            <th class="tableColumnStyle" style="padding: 0;">Max</th>
+
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+                        <tr style="padding: 0;">
+                            <td style="padding: 0;" class="tableColumnStyle"  title="COR Current Year">COR CY</td>
+                            <td style="padding: 0;" class="tableColumnStyle">{{cor_scorecardDetails.CY_COR}}</td>
+                            <td style="padding: 0;" class="tableColumnStyle">{{cor_scorecardDetails.CY_COR_SCORE}}</td>
+                            <td style="padding: 0;" class="tableColumnStyle">{{cor_scoreConfig.CY_COR_SCORE}}</td>
+
+
+
+                        </tr>
+
+                        <tr class="highlighRow" style="padding: 0;">
+                            <td style="padding: 0;" class="tableColumnStyle"  title="COR Current Year / Last Year">COR CY/LY</td>
+                            <td style="padding: 0;" class="tableColumnStyle">{{cor_scorecardDetails.COR_CY_LY}}</td>
+                            <td style="padding: 0;" class="tableColumnStyle">{{cor_scorecardDetails.COR_CY_LY_SCORE}}
+                            </td>
+                            <td style="padding: 0;" class="tableColumnStyle">{{cor_scoreConfig.COR_CY_LY_SCORE}}</td>
+
+
+
+                        </tr>
+
+
+
+
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-7">
+                <!-- <div class="chart-container"> -->
+                <div class="col-12">
+                    Total:
+                    <canvas id="corChart1" width="1000" height="1000"></canvas>
+                </div>
+                <br>
+                <div class="col-12" style="margin-top:  3px !important;">
+                    Bifurcation:
+                    <canvas id="corChart2" width="1500" height="1000"></canvas>
+                </div>
+
+
+
+                <!-- <canvas  id="MyChart" width="500" height="500">{{ chart }}</canvas> -->
+                <!-- </div>  -->
+                <!-- <canvas id="myChart" width="100" height="100">{{chart}}</canvas> -->
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</ng-template>
+
+
+
+
+<ng-template #lobBox>
+
+
+    <div style="padding:30px!important;  background-color: #f8f8f8;">
+
+        <div class="row" style="text-align: center;">
+            <img width="35px;" src="assets/image/graphrecommendation.png" alt="">
+            &nbsp; &nbsp;
+
+            <span style="font-weight: bold; font-size: 18pt; position: relative; top: 10px;"> Finance LOB</span>
+
+            <span style="position: absolute; right: 33px;">
+                <mat-icon (click)="goBack( agentScoreBox)" style="cursor: pointer;">arrow_back</mat-icon>
+
+            </span>
+
+        </div>
+
+        <!-- <hr class="solid"> -->
+
+
+
+
+
+        <div class="row" style="font-weight: bold; font-size: 17px; margin-top: 30px!important;">
+
+            <div class="col-12" style="padding:2%; border: 1px solid rgba(109, 109, 109, 0.829); border-radius: 10px; background-color: #ffffff;">
+                <table class="table table-hover" style="text-align: center; justify-items: center;">
+
+
+                    <thead>
+                        <tr class="" style="background: #bbd4e9;">
+                            <th class="tableColumnStyle" style="padding: 0;">Bifurcation</th>
+                            <th class="tableColumnStyle" style="padding: 0;">Actual</th>
+                            <th class="tableColumnStyle" style="padding: 0;">Score</th>
+                            <th class="tableColumnStyle" style="padding: 0;">Max</th>
+
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+                        <tr style="padding: 0;">
+                            <td style="padding: 0;" class="tableColumnStyle"   title="Line of Business Type">LOB Type</td>
+                            <td style="padding: 0;" class="tableColumnStyle">{{lob_scorecardDetails.LOB}}</td>
+                            <td style="padding: 0;" class="tableColumnStyle">{{lob_scorecardDetails.LOB_SCORE}}</td>
+                            <td style="padding: 0;" class="tableColumnStyle">{{lob_scoreConfig.LOB_SCORE}}</td>
+
+
+
+                        </tr>
+
+
+
+
+
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-12"  style="padding: 0!important; min-height: 400px; margin-top: 30px!important;">
+                <!-- <div class="col-12">
+
+                    <canvas id="lobChart1" width="1000" height="1000"></canvas>
+                </div> -->
+
+                <div style="width: 100%!important; border: 1px solid rgba(109, 109, 109, 0.829); border-radius: 10px;padding:1%!important; background-color: #ffffff;">
+                    <canvas id="lobChart1"></canvas>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+</ng-template>
+
+
+
+<ng-template #campaignBox>
+
+
+    <div style="padding:30px!important;  background-color: #f8f8f8;">
+
+        <div class="row" style="text-align: center;">
+            <img width="35px;" src="assets/image/graphrecommendation.png" alt="">
+            &nbsp; &nbsp;
+
+            <span style="font-weight: bold; font-size: 18pt; position: relative; top: 10px;"> Campaign</span>
+
+            <span style="position: absolute; right: 33px;">
+                <mat-icon (click)="goBack( agentScoreBox)" style="cursor: pointer;">arrow_back</mat-icon>
+
+            </span>
+
+        </div>
+
+        <!-- <hr class="solid"> -->
+
+
+
+
+
+        <div class="row" style="font-weight: bold; font-size: 17px; margin-top: 30px!important;">
+
+            <div class="col-12" style="padding:2%; border: 1px solid rgba(109, 109, 109, 0.829); border-radius: 10px; background-color: #ffffff;">
+                <table class="table table-hover" style="text-align: center; justify-items: center;">
+
+
+                    <thead>
+                        <tr class="" style="background: #bbd4e9;">
+                            <th class="tableColumnStyle" style="padding: 0;">Bifurcation</th>
+                            <th class="tableColumnStyle" style="padding: 0;">Actual</th>
+                            <th class="tableColumnStyle" style="padding: 0;">Score</th>
+                            <th class="tableColumnStyle" style="padding: 0;">Max</th>
+
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+                        <tr style="padding: 0;">
+                            <td style="padding: 0;" class="tableColumnStyle"  title="Current Year Eligibility">CY Eligibility</td>
+                            <td style="padding: 0;" class="tableColumnStyle">
+                                {{campaign_scorecardDetails.CY_ELIGIBILITY_PER}}%</td>
+                            <td style="padding: 0;" class="tableColumnStyle">
+                                {{campaign_scorecardDetails.CY_ELIGIBILITY_PER_SCORE}}</td>
+                            <td style="padding: 0;" class="tableColumnStyle">
+                                {{campaign_scoreConfig.CY_ELIGIBILITY_PER_SCORE}}</td>
+
+
+
+                        </tr>
+
+                        <tr style="padding: 0;">
+                            <td style="padding: 0;" class="tableColumnStyle"  title="Last Year Eligibility">LY Eligibility</td>
+                            <td style="padding: 0;" class="tableColumnStyle">
+                                {{campaign_scorecardDetails.LY_ELIGIBILITY_PER}}%</td>
+                            <td style="padding: 0;" class="tableColumnStyle">
+                                {{campaign_scorecardDetails.LY_ELIGIBILITY_PER_SCORE}}</td>
+                            <td style="padding: 0;" class="tableColumnStyle">
+                                {{campaign_scoreConfig.LY_ELIGIBILITY_PER_SCORE}}</td>
+
+
+
+                        </tr>
+
+
+
+
+
+
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- <div class="col-12">
+                <div class="col-12">
+                    Total:
+                    <canvas id="cmpChart1" width="1000" height="1000"></canvas>
+                </div>
+                <br>
+                <div class="col-12" style="margin-top:  3px !important;">
+                    Bifurcation:
+                    <canvas id="cmpChart2" width="1000" height="1000"></canvas>
+                </div>
+            </div> -->
+
+
+
+            <div class="row" style="padding: 0!important; width: 100%; margin-top:  30px !important; min-height: 300px!important;">
+                <div  style="width: 49%!important; border: 1px solid rgba(109, 109, 109, 0.829); border-radius: 10px; background-color: #ffffff; padding: 1%;">
+                    Total:
+                    <canvas id="cmpChart1" ></canvas>
+                </div>
+    
+                <div style="width: 2%!important;"></div>
+    
+                <div  style="width: 49%!important; border: 1px solid rgba(109, 109, 109, 0.829); border-radius: 10px; background-color: #ffffff; padding: 1%;">
+                    Bifurcation:
+                    <canvas id="cmpChart2" ></canvas>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+</ng-template>
+
+
+
+<ng-template #digitalBox>
+
+
+    <div style="padding:30px!important; background-color: #f8f8f8;">
+
+        <div class="row" style="text-align: center;">
+            <img width="35px;" src="assets/image/graphrecommendation.png" alt="">
+            &nbsp; &nbsp;
+
+            <span style="font-weight: bold; font-size: 18pt; position: relative; top: 10px;"> Digital Touch Point</span>
+
+            <span style="position: absolute; right: 33px;">
+                <mat-icon (click)="goBack( agentScoreBox)" style="cursor: pointer;">arrow_back</mat-icon>
+
+            </span>
+
+        </div>
+
+        <!-- <hr class="solid"> -->
+
+
+
+
+
+        <div class="row" style="font-weight: bold; font-size: 17px; margin-top: 30px!important;">
+
+            <div class="col-12" style="padding:2%; border: 1px solid rgba(109, 109, 109, 0.829); border-radius: 10px; background-color: #ffffff;">
+                <table class="table table-hover" style="text-align: center; justify-items: center;">
+
+
+                    <thead>
+                        <tr class="" style="background: #bbd4e9;">
+                            <th class="tableColumnStyle" style="padding: 0;">Bifurcation</th>
+                            <th class="tableColumnStyle" style="padding: 0;">Actual</th>
+                            <th class="tableColumnStyle" style="padding: 0;">Score</th>
+                            <th class="tableColumnStyle" style="padding: 0;">Max</th>
+
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+                        <tr style="padding: 0;">
+                            <td style="padding: 0;" class="tableColumnStyle">Digital Activeness</td>
+                            <td style="padding: 0;" class="tableColumnStyle">{{dtp_scorecardDetails.DIGITAL_ACTIVENESS}}%
+                            </td>
+                            <td style="padding: 0;" class="tableColumnStyle">{{dtp_scorecardDetails.DTP_SCORE}}</td>
+                            <td style="padding: 0;" class="tableColumnStyle">
+                                {{dtp_scoreConfig.DIGITAL_ACTIVENESS_SCORE}}</td>
+
+
+
+                        </tr>
+
+
+
+
+
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-12" style="padding: 0!important; min-height: 400px; margin-top: 30px!important;">
+                <div style="width: 100%!important; border: 1px solid rgba(109, 109, 109, 0.829); border-radius: 10px;padding:1%!important; background-color: #ffffff;">
+
+                    <!-- <canvas id="dtpChart1" width="1000" height="1000"></canvas> -->
+                    <canvas id="dtpChart1"></canvas>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+</ng-template>
+
+
+
+<ng-template #physicalBox>
+
+
+    <div style="padding:30px!important; background-color: #f8f8f8;">
+
+        <div class="row" style="text-align: center;">
+            <img width="35px;" src="assets/image/graphrecommendation.png" alt="">
+            &nbsp; &nbsp;
+
+            <span style="font-weight: bold; font-size: 18pt; position: relative; top: 10px;"> Physical Touch
+                Point</span>
+
+            <span style="position: absolute; right: 33px;">
+                <mat-icon (click)="goBack( agentScoreBox)" style="cursor: pointer;">arrow_back</mat-icon>
+
+            </span>
+
+        </div>
+
+        <!-- <hr class="solid"> -->
+
+
+
+
+
+        <div class="row" style="font-weight: bold; font-size: 17px; margin-top: 30px!important;">
+
+            <div class="col-12" style="padding:2%; border: 1px solid rgba(109, 109, 109, 0.829); border-radius: 10px; background-color: #ffffff;">
+                <table class="table table-hover" style="text-align: center; justify-items: center;">
+
+
+                    <thead>
+                        <tr class="" style="background: #bbd4e9;">
+                            <th class="tableColumnStyle" style="padding: 0;">Bifurcation</th>
+                            <th class="tableColumnStyle" style="padding: 0;">Actual</th>
+                            <th class="tableColumnStyle" style="padding: 0;">Score</th>
+                            <th class="tableColumnStyle" style="padding: 0;">Max</th>
+
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+                        <tr style="padding: 0;">
+                            <td style="padding: 0;" class="tableColumnStyle">Meeting Count</td>
+                            <td style="padding: 0;" class="tableColumnStyle">{{ptp_scorecardDetails.MEETING_COUNT}}</td>
+                            <td style="padding: 0;" class="tableColumnStyle">
+                                {{ptp_scorecardDetails.MEETING_COUNT_SCORE}}</td>
+                            <td style="padding: 0;" class="tableColumnStyle">{{ptp_scoreConfig.MEETING_COUNT_SCORE}}
+                            </td>
+
+
+
+                        </tr>
+
+
+
+
+
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-12" style="padding: 0!important; min-height: 400px; margin-top: 30px!important;">
+                <div style="width: 100%!important; border: 1px solid rgba(109, 109, 109, 0.829); border-radius: 10px;padding:1%!important; background-color: #ffffff;">
+
+                    <!-- <canvas id="ptpChart1" width="1000" height="1000"></canvas> -->
+
+                    <canvas id="ptpChart1"></canvas>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+</ng-template>
+
+
+
+<ng-template #csellBox>
+
+
+    <div style="padding:30px!important; background-color: #f8f8f8;">
+
+        <div class="row" style="text-align: center;">
+            <img width="35px;" src="assets/image/graphrecommendation.png" alt="">
+            &nbsp; &nbsp;
+
+            <span style="font-weight: bold; font-size: 18pt; position: relative; top: 10px;"> CROSS SELL</span>
+
+            <span style="position: absolute; right: 33px;">
+                <mat-icon (click)="goBack( agentScoreBox)" style="cursor: pointer;">arrow_back</mat-icon>
+
+            </span>
+
+        </div>
+
+        <!-- <hr class="solid"> -->
+
+
+
+
+
+        <div class="row" style="font-weight: bold; font-size: 17px; margin-top: 30px!important;">
+
+            <div class="col-12" style="padding:2%; border: 1px solid rgba(109, 109, 109, 0.829); border-radius: 10px; background-color: #ffffff;">
+                <table class="table table-hover" style="text-align: center; justify-items: center;">
+
+
+                    <thead>
+                        <tr class="" style="background: #bbd4e9;">
+                            <th class="tableColumnStyle" style="padding: 0;">Bifurcation</th>
+                            <th class="tableColumnStyle" style="padding: 0;">Actual</th>
+                            <th class="tableColumnStyle" style="padding: 0;">Score</th>
+                            <th class="tableColumnStyle" style="padding: 0;">Max</th>
+
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+                        <tr style="padding: 0;">
+                            <td style="padding: 0;" class="tableColumnStyle">Cross Sell Policy</td>
+                            <td style="padding: 0;" class="tableColumnStyle">{{sale_scorecardDetails.CROSS_SELL_POL}}
+                            </td>
+                            <td style="padding: 0;" class="tableColumnStyle">{{sale_scorecardDetails.CROSS_SELL_SCORE}}
+                            </td>
+                            <td style="padding: 0;" class="tableColumnStyle">{{sale_scoreConfig.CROSS_SELL_POL_SCORE}}
+                            </td>
+
+
+
+                        </tr>
+
+
+
+
+
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-12" style="padding: 0!important; min-height: 400px; margin-top: 30px!important;">
+                <div style="width: 100%!important; border: 1px solid rgba(109, 109, 109, 0.829); border-radius: 10px;padding:1%!important; background-color: #ffffff;">
+
+                    <!-- <canvas id="sellChart1" width="1000" height="1000"></canvas> -->
+                    <canvas id="sellChart1"></canvas>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+</ng-template>
+
+
+<ng-template #upsellBox>
+
+
+    <div style="padding:30px!important; background-color: #f8f8f8;">
+
+        <div class="row" style="text-align: center;">
+            <img width="35px;" src="assets/image/graphrecommendation.png" alt="">
+            &nbsp; &nbsp;
+
+            <span style="font-weight: bold; font-size: 18pt; position: relative; top: 10px;"> UPSELL</span>
+
+            <span style="position: absolute; right: 33px;">
+                <mat-icon (click)="goBack( agentScoreBox)" style="cursor: pointer;">arrow_back</mat-icon>
+
+            </span>
+
+        </div>
+
+        <!-- <hr class="solid"> -->
+
+
+
+
+
+        <div class="row" style="font-weight: bold; font-size: 17px; margin-top: 30px!important;">
+
+            <div class="col-12" style="padding:2%; border: 1px solid rgba(109, 109, 109, 0.829); border-radius: 10px; background-color: #ffffff;">
+                <table class="table table-hover" style="text-align: center; justify-items: center;">
+
+
+                    <thead>
+                        <tr class="" style="background: #bbd4e9;">
+                            <th class="tableColumnStyle" style="padding: 0;">Bifurcation</th>
+                            <th class="tableColumnStyle" style="padding: 0;">Actual</th>
+                            <th class="tableColumnStyle" style="padding: 0;">Score</th>
+                            <th class="tableColumnStyle" style="padding: 0;">Max</th>
+
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+                        <tr style="padding: 0;">
+                            <td style="padding: 0;" class="tableColumnStyle">Upsell Policy</td>
+                            <td style="padding: 0;" class="tableColumnStyle">{{sale_scorecardDetails.UP_SELL_POL}}</td>
+                            <td style="padding: 0;" class="tableColumnStyle">{{sale_scorecardDetails.UP_SELL_SCORE}}
+                            </td>
+                            <td style="padding: 0;" class="tableColumnStyle">{{sale_scoreConfig.UP_SELL_POL_SCORE}}</td>
+
+
+
+                        </tr>
+
+
+
+
+
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-12" style="padding: 0!important; min-height: 400px; margin-top: 30px!important;">
+                <div style="width: 100%!important; border: 1px solid rgba(109, 109, 109, 0.829); border-radius: 10px;padding:1%!important; background-color: #ffffff;">
+
+                    <!-- <canvas id="sellChart1" width="1000" height="1000"></canvas> -->
+                    <canvas id="sellChart1"></canvas>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+</ng-template>
+
+
+
+<ng-template #winbackBox>
+
+
+    <div style="padding:30px!important; background-color: #f8f8f8;">
+
+        <div class="row" style="text-align: center;">
+            <img width="35px;" src="assets/image/graphrecommendation.png" alt="">
+            &nbsp; &nbsp;
+
+            <span style="font-weight: bold; font-size: 18pt; position: relative; top: 10px;"> WINBACK</span>
+
+            <span style="position: absolute; right: 33px;">
+                <mat-icon (click)="goBack( agentScoreBox)" style="cursor: pointer;">arrow_back</mat-icon>
+
+            </span>
+
+        </div>
+
+        <!-- <hr class="solid"> -->
+
+
+
+
+
+        <div class="row" style="font-weight: bold; font-size: 17px; margin-top: 30px!important;">
+
+            <div class="col-12" style="padding:2%; border: 1px solid rgba(109, 109, 109, 0.829); border-radius: 10px; background-color: #ffffff;">
+                <table class="table table-hover" style="text-align: center; justify-items: center;">
+
+
+                    <thead>
+                        <tr class="" style="background: #bbd4e9;">
+                            <th class="tableColumnStyle" style="padding: 0;">Bifurcation</th>
+                            <th class="tableColumnStyle" style="padding: 0;">Actual</th>
+                            <th class="tableColumnStyle" style="padding: 0;">Score</th>
+                            <th class="tableColumnStyle" style="padding: 0;">Max</th>
+
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+                        <tr style="padding: 0;">
+                            <td style="padding: 0;" class="tableColumnStyle">Winback Policy</td>
+                            <td style="padding: 0;" class="tableColumnStyle">{{sale_scorecardDetails.WINBACK_POL}}</td>
+                            <td style="padding: 0;" class="tableColumnStyle">{{sale_scorecardDetails.WINBACK_SCORE}}
+                            </td>
+                            <td style="padding: 0;" class="tableColumnStyle">{{sale_scoreConfig.WINBACK_POL_SCORE}}</td>
+
+
+
+                        </tr>
+
+
+
+
+
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-12" style="padding: 0!important; min-height: 400px; margin-top: 30px!important;">
+                <div style="width: 100%!important; border: 1px solid rgba(109, 109, 109, 0.829); border-radius: 10px;padding:1%!important; background-color: #ffffff;">
+
+                    <!-- <canvas id="sellChart1" width="1000" height="1000"></canvas> -->
+                    <canvas id="sellChart1"></canvas>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+</ng-template>

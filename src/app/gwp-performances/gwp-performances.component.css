@@ -1,0 +1,317 @@
+::ng-deep ngb-modal-backdrop {
+  z-index: 100 !important;
+}
+
+
+
+
+.mtd_ytd_ftm_button {
+  width: 120px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  margin: 0 10px 10px 0;
+  background-color: #5d87ff;
+  color: #fff;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.openedGpwSection {
+  background-color: #000;
+  color: #fff;
+  cursor: pointer;
+}
+
+.gap {
+  height: 30px;
+}
+
+/* Concentric Progress Bars */
+.concentric-progress-bars {
+  position: relative;
+  width: 300px;
+  height: 300px;
+}
+
+.progress-bar {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid #fff;
+}
+
+.progress-bar.outer {
+  width: 250px;
+  height: 250px;
+}
+
+.progress-bar.middle {
+  width: 210px;
+  height: 210px;
+}
+
+.progress-bar.inner {
+  width: 170px;
+  height: 170px;
+  background-color: white;
+}
+
+/* Center text */
+.center-text {
+  font-size: 30px;
+  font-weight: bold;
+  color: black;
+}
+
+/* Progress Fill */
+.progress {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  clip-path: inset(0 round 10px);
+  animation: loadProgress 1s ease forwards;
+}
+
+.progress-bar.outer .progress {
+  background: conic-gradient(
+    #1F5CC7 calc(var(--current-progress) * 1%),
+    #e1eeed 0
+  );
+}
+
+.progress-bar.middle .progress {
+  background: conic-gradient(
+    var(--progress-color) calc(var(--current-progress) * 1%),
+    var(--background-color) 0
+  );
+}
+
+.progress-bar.inner .progress {
+  background: none; /* Transparent inner circle */
+}
+
+/* Smooth transition for progress */
+@keyframes loadProgress {
+  0% { --current-progress: 0; }
+  100% { --current-progress: var(--progress); }
+}
+
+/* Tooltip Effect */
+.progress-bar:hover::after {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.progress-bar:not(:hover)::after {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* table making css */
+.table-bordered {
+  border: 1px solid #5b4b74; /* Adds a border to the table */
+}
+
+.table-bordered th,
+.table-bordered td {
+  border: 1px solid #5b4b74; /* Adds borders to table cells (both <th> and <td>) */
+}
+
+.table-bordered thead th {
+  border-bottom-width: 1px; /* Adds thicker bottom borders for header cells */
+}
+.table-bordered thead td {
+  border-bottom-width: 1px; /* Adds thicker bottom borders for header cells */
+}
+
+
+
+
+
+
+.thead_style{
+/* background-color: #d7cfff; */
+background-color: #e2e2e2;
+/* background: linear-gradient(to right, #d7cfff, #e5e7eb); */
+/* background: linear-gradient(90deg, #ffbf96, #fe7096); */
+/* background: linear-gradient(90deg, #84d9d2, #07cdae); */
+}
+
+
+.retailTotal{
+  background-color: #5d87ff; 
+  font-weight: 700; 
+  font-size: 16px!important; 
+  color: #ffffff;
+}
+
+.firstHeaderRow{
+  background: linear-gradient(90deg, #5ea4ff, #5ea4ff);  
+}
+.secondHeaderRow{
+  background: linear-gradient(90deg, #74c0ff, #74c0ff);
+}
+.thirdHeaderRow{
+  background: linear-gradient(90deg, #b3daff, #b3daff);
+}
+
+
+.ratailAsOnDate{
+  min-width: 250px;
+  background-color: #5d87ff;
+  color: #fff;
+  /* background-image: linear-gradient(90deg, #ffbf96 0%, #fda1ba 100%); */
+  border: 2px solid #8b6a6d!important;
+  font-size: 16px!important; 
+  text-align: center; 
+  vertical-align: middle;
+  position: sticky;
+  left: 0;
+  z-index: 10;
+}
+
+
+
+
+
+.freeze-cell {
+  position: sticky;
+  left: 0;
+  z-index: 10;
+  background-color: #fff; 
+  box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1); 
+}
+
+.freeze-cell_blue {
+  position: sticky;
+  left: 0;
+  z-index: 10; 
+  background-color: #5d87ff; 
+  box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1); 
+}
+
+.freeze-cell_lblue {
+  position: sticky;
+  left: 0;
+  z-index: 10; 
+  background-color: #c8e3ff; 
+  box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1); 
+}
+
+
+
+.table_text{
+  font-size: 16px!important; 
+  text-align: center; 
+  vertical-align: middle;
+  background-color: #fff;
+}
+
+.table_text_lblue{
+  font-size: 16px!important; 
+  text-align: center; 
+  vertical-align: middle;
+  background-color: #c8e3ff;
+}
+
+.table_text_blue{
+  font-size: 16px!important; 
+  text-align: center; 
+  vertical-align: middle;
+  background-color: #5d87ff;
+}
+
+.table_text_blue_1{
+  font-size: 16px!important; 
+  text-align: center; 
+  vertical-align: middle;
+  background-color: #5ea4ff;
+}
+
+
+.table_text_blue_2{
+  font-size: 16px!important; 
+  text-align: center; 
+  vertical-align: middle;
+  background-color: #74c0ff;
+}
+
+
+
+.green {
+  background-color: #c8e6c9; /* Light green */
+  color: black;
+}
+
+.red {
+  background-color: #ffcdd2; /* Light red */
+  color: black;
+}
+
+
+.text_left{
+  text-align: left;
+}
+
+
+
+
+
+.gaugetable{
+  box-shadow: -4px 8px 5px -2px rgba(0, 0, 0, 0.452); 
+  border-right: solid 1px rgb(194, 194, 194);  
+  border-radius: 5px!important; 
+  overflow: hidden;
+}
+
+.gaugetable_firstCol{
+  /* background-color: #e1eeed!important; */
+  /* background-color: #fdfdfd!important; */
+  background-color: #e6e6e6!important;
+}
+
+.gaugetable_tableHeader{
+  background-color: #f1f1f1!important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

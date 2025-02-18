@@ -1,0 +1,113 @@
+.fullBody {
+    width:100%;
+    /* background-color: #d6d6d6; 
+    padding : 20px!important; */
+}
+
+.marquee-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.marquee-line {
+    width: 90%!important;
+    white-space: nowrap;
+    animation: marquee 10s linear infinite;
+}
+
+@keyframes marquee {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+  
+
+.left_side_pad {
+    position: relative;
+}
+
+.space_between {
+    width: calc(100% - 30px)!important;
+    height: 60px;
+    margin-top: 25px!important;
+    margin-left: 15px!important;
+    margin-right: 15px!important;
+    background-color: rgba(169, 202, 235, 0.61);
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border: 1px solid rgba(114, 114, 114, 0.356); 
+}
+
+.trigger_impact {
+    /* width: calc(100% - 15px)!important; */
+    /* padding-left: 15px!important; */
+    padding-right: 15px!important;
+    /* padding-top: 15px!important; */
+    padding-bottom: 0!important;
+}
+
+.trigger_impact_namepad {
+    width: calc(100% - 15px)!important;
+    border: 1px solid rgba(114, 114, 114, 0.753); 
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; 
+    border-bottom: none;
+}
+
+.trigger_impact_table {
+    width: calc(100% - 15px)!important;
+    padding:15px!important; 
+    border: 1px solid rgba(114, 114, 114, 0.753); 
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; 
+}
+
+mat-card {
+    padding: 0px; 
+    margin-bottom: 10px; 
+    height: 100px; 
+    box-shadow: 5px 5px 5px rgb(78 114 143)!important;
+    border: 1px solid rgba(78, 114, 143, 0.39);
+    border-radius: 10px;
+    background-color: #ffffff;
+
+    /* box-shadow: 5px 5px 5px #e8e3ff!important;
+    border: 1px solid #d7cfff; */
+
+
+
+
+    /* border-top-right-radius: 10px!important;
+    border-bottom-left-radius: 10px!important;
+    border-top-left-radius: 0px!important;
+    border-bottom-right-radius: 0px!important; */
+    overflow: hidden;
+}
+
+
+.big_chart_Namepad{
+    background-color: #ffffff; 
+    color: #000000; 
+    font-size: 15px; 
+    font-weight: bold; 
+    /* background-image: linear-gradient(315deg, #03e5b8 0%, #037cde 74%);  */
+    border-bottom: none!important;
+    height: 50px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    /* border: 1px solid rgba(78, 114, 143, 0.39); */
+    border: 1px solid rgba(114, 114, 114, 0.753);
+    /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+}
+
+.chart_table_display_pad {
+    background-color: #ffffff; 
+    border-top: none!important;
+    border-bottom-left-radius: 10px!important;
+    border-bottom-right-radius: 10px!important;
+    overflow: hidden!important;
+    /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+}
+
+.changeWidth {
+    width: 60%;
+}

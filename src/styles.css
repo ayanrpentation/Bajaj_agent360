@@ -1,0 +1,340 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~angular-notifier/styles";
+@import "~angular-notifier/styles/core.css";
+@import "~angular-notifier/styles/themes/theme-material.css";
+@import "~angular-notifier/styles/types/type-error.css";
+@import "~angular-notifier/styles/types/type-success.css";
+@import "~angular-notifier/styles/types/type-default.css";
+@import "~angular-notifier/styles/types/type-info.css";
+
+
+/* @media only screen and (max-width: 768px) {
+   
+    [class*="col-"] {
+      width: 100%;
+    }
+} */
+
+html, body {
+    height: 100%;
+    /* font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif */
+}
+
+body {
+    /* font-family: "Roboto" !important; */
+    font-family: sans-serif!important;
+    /* background-color: #f1f1f1; */
+    background-color: #ffffff;
+    color: #000000;
+}
+.container, .row, .col {
+    margin: 0!important;
+    padding: 0!important
+}
+
+.fullPagePagename{
+    
+}
+
+.sidenav {
+    /* width: 205px; */
+    width: 280px;
+    /* background-color: rgb(29 38 48); */
+    background-color: #e8e3ff;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top:80px;
+    /* top:55px; */
+
+    /* bottom: 0; */
+    color: #ffffff;
+    padding-right: 15px!important;
+    /* padding-bottom: 15px!important; */
+    padding: 15px;
+    /* box-shadow: 1px 1px 10px 5px #88888895; */
+}
+.filterButton{
+   padding-top: 5px!important;
+   padding-bottom: 5px!important; 
+   font-size: 15px;
+}
+.mainArea_noNav {
+    width: 100%;
+    min-height: 100%;
+    padding:5px;
+    /* padding-top: 80px; */
+    padding-top:75px;
+
+    /* padding-left: 210px; */
+    /* padding-left: 280px; */
+    color:#000000;
+    /* background-color: #fafafa!important; */
+}
+.mainArea {
+    width: 100%;
+    height: 100%;
+    padding:5px;
+    /* padding-top: 80px; */
+    padding-top:55px;
+
+    /* padding-left: 210px; */
+    padding-left: 280px;
+    color:#000000;
+    /* background-color: #fafafa!important; */
+}
+.mainAreaPad {
+    min-height: 100%; 
+    /* background-color: rgb(255, 255, 255); */
+    background-color: rgb(228, 228, 228);
+    width: calc(100% - 280px)
+    /* box-shadow: 1px 1px 10px 5px #88888895; */
+
+    /* background-color: #fafafa!important; */
+    /* padding: 15px!important; */
+    /* padding-top: 30px!important; */
+    /* padding-bottom: 30px!important; */
+}
+.reportName{
+    font-size: 20px;
+    font-weight: bold;
+}
+.reportNamePad{
+    height: 50px;
+    background-color: rgb(46 84 126);
+    padding:15px!important;
+    padding-left: 20px!important;
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffffff;
+}
+.agentPad{
+    height: 50px;
+    /* background-color: rgb(46 84 126); */
+    background-color: rgb(29 38 48);
+    padding:15px!important;
+    padding-left: 20px!important;
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffffff;
+    cursor: pointer;
+}
+.highlightpad{
+    /* border-bottom: 5px solid rgb(209 209 209); */
+    border-bottom: 5px solid rgb(78 114 143);
+
+}
+.highlighRow{
+    background-color: #dce3e969;;
+}
+.AA{
+    background-color: #95c167d4;
+
+}
+.A{
+    background-color: #ffe0bf;
+
+}
+.B{
+    background-color: #ffee70;
+
+}
+.C{
+    background-color: #f5b067;
+
+}
+.D{
+    background-color: #f77636db;
+
+}
+
+hr.solid {
+    border-top: 1px solid #141414;
+  }
+.reportTimePad{
+    /* height: auto; */
+    height: 50px;
+    background-color: rgba(0, 255, 76, 0.219);
+    padding:15px!important;
+    padding-bottom: 0px;
+    padding-left: 20px!important;
+    font-size: 12px;
+    margin-bottom: 20px!important;
+    color: #242424b4;
+    border-radius: 10px;
+}
+
+/* .reportTimePad:hover{
+    animation-name: example;
+    animation-duration: 10s;
+} */
+
+@keyframes example {
+  from {background-color: rgba(0, 255, 76, 0.219);
+        color: #242424b4}
+  to {background-color: rgba(0, 255, 55, 0.685);
+      color: #242424}
+}
+
+.downloadButton{
+    background-color: transparent;
+    border: none;
+    color:#ffffff;
+    margin-top: -10px!important;
+}
+
+.multiselectFilter {
+    margin-bottom: 10px!important;
+    color: black;
+    /* background-color: #e8e3ff!important; */
+}
+
+
+
+/* .multiselect-dropdown{
+
+} */
+
+/* ng-multiselect-dropdown {
+    display: inline-block;
+    background: #3c3c3c52;
+    border:none;
+    width: 100%;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-weight: 400;
+    line-height: 1.52857143;
+    text-align: left;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border-radius: 4px;
+} */
+
+.multiselect-dropdown, .dropdown-btn {
+    /* border: 1px solid #c5b8ff !important;
+    background: #ffffff00 !important;
+    font-size: 18px; */
+   
+}
+.dropdown-btn {
+    margin-top: 5px !important;
+    /* background-color: transparent !important; */
+    /* padding-top: 0px !important; */
+}
+
+.filterApplyButton{
+    width:100%;
+    color: #ffffff; 
+    height: 35px;
+}
+
+.filterLabel{
+    font-size: 13px; 
+    font-weight: bold;
+}
+
+
+.columnColor{
+    text-align: center; 
+    /* background-color: rgb(0, 40, 87);  */
+    background-color: rgb(88, 100, 114);
+    border: 1px solid rgb(255, 255, 255);
+    color: #ffffff
+}
+
+.rowColor_CLtotal {
+    /* background-color: rgb(191, 224, 255); */
+    background-color: rgb(158 184 209 / 56%);;
+}
+.tableColumnStyle {
+    /* border: 1px solid rgb(122, 122, 122)!important; */
+}
+
+.reportArea {
+    width:100%; 
+    overflow: scroll; 
+    max-height: 450px;
+    border: 1px solid rgb(122, 122, 122)!important;
+}
+
+tr{
+    font-size: 13px!important;
+    height: 30px!important;
+    text-align: center;
+    /* padding: 0.5%!important; */
+
+}
+/* th{
+    padding: 1%!important;
+    height: 30px!important;
+}
+td{
+    padding: 0.5%!important;
+    height: 30px!important;
+} */
+
+
+
+.filterButtonArea::-webkit-scrollbar {
+    width: 5px;
+  }  
+  /* Track */
+  .filterButtonArea::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }  
+  /* Handle */
+  .filterButtonArea::-webkit-scrollbar-thumb {
+    background: #888;
+  }  
+  /* Handle on hover */
+  .filterButtonArea::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+
+
+
+  /* .reportArea::-webkit-scrollbar {
+    width: 5px;
+  }   */
+
+  /* Track */
+  .reportArea::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }  
+  /* Handle */
+  .reportArea::-webkit-scrollbar-thumb {
+    background: #888;
+  }  
+  /* Handle on hover */
+  .reportArea::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+
+
+
+
+
+
+
+
+  /* @media only screen and (max-width: 1366px) {
+  } */
+
+  @media only screen and (max-width: 1366px) {
+    body {
+        /* zoom: 0.8; */
+        /* zoom: 0.75; */
+      /* transform: scale(0.8);  */
+      /* transform-origin: top left;  */
+      /* Adjust transform origin if needed */
+      /* Additional styles if necessary */
+    }
+
+    /* ::ng-deep .cdk-overlay-backdrop {
+        background-color: rgba(0, 0, 0, 0.5)!important;
+    } */
+  }
+  

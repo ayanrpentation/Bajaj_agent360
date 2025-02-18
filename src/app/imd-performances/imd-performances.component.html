@@ -1,0 +1,1074 @@
+<div class="col-lg-12 p-2">
+  <div class="row">
+    <div
+      class="mtd_ytd_ftm_button"
+      (click)="opened_imd_section = 'mtd'"
+      [ngClass]="opened_imd_section == 'mtd' ? 'openedGpwSection' : ''"
+    >
+      MTD
+    </div>
+
+    <div
+      class="mtd_ytd_ftm_button"
+      (click)="opened_imd_section = 'ftm'"
+      [ngClass]="opened_imd_section == 'ftm' ? 'openedGpwSection' : ''"
+    >
+      FTM
+    </div>
+
+    <div
+      class="mtd_ytd_ftm_button"
+      (click)="opened_imd_section = 'ytd'"
+      [ngClass]="opened_imd_section == 'ytd' ? 'openedGpwSection' : ''"
+    >
+      YTD
+    </div>
+  </div>
+
+  <div class="row">
+    <div
+      class="col"
+      style="padding: 10px !important; padding-bottom: 0px !important; padding-left: 0!important;"
+    >
+      
+      <!-- <ng-multiselect-dropdown
+        [placeholder]="'Zone'"
+        [settings]="zone_dropdownSettings"
+        [data]="zone_dropdownList"
+        [(ngModel)]="zone_selectedItems"
+        (onSelect)="get_state_list(); get_location_list()"
+        (onSelectAll)="get_state_list(); get_location_list()"
+        (onDeSelect)="get_state_list(); get_location_list()"
+        (onDeSelectAll)="get_state_list(); get_location_list()"
+      >
+      </ng-multiselect-dropdown> -->
+
+
+      <ng-multiselect-dropdown
+        [placeholder]="'Zone'"
+        [settings]="zone_dropdownSettings"
+        [data]="zone_dropdownList"
+        [(ngModel)]="zone_selectedItems"
+        (onSelect)="get_all_filter_list()"
+        (onSelectAll)="get_all_filter_list()"
+        (onDeSelect)="get_all_filter_list()"
+        (onDeSelectAll)="get_all_filter_list()"
+      >
+      </ng-multiselect-dropdown>
+    </div>
+
+    <div
+      class="col"
+      style="padding: 10px !important; padding-bottom: 0px !important"
+    >
+      <ng-multiselect-dropdown
+        [placeholder]="'State'"
+        [settings]="state_dropdownSettings"
+        [data]="state_dropdownList"
+        [(ngModel)]="state_selectedItems"
+        (onSelect)="get_all_filter_list()"
+        (onSelectAll)="get_all_filter_list()"
+        (onDeSelect)="get_all_filter_list()"
+        (onDeSelectAll)="get_all_filter_list()"
+      >
+      </ng-multiselect-dropdown>
+    </div>
+
+    <div
+      class="col"
+      style="padding: 10px !important; padding-bottom: 0px !important"
+    >
+      <ng-multiselect-dropdown
+        [placeholder]="'Location'"
+        [settings]="location_dropdownSettings"
+        [data]="location_dropdownList"
+        [(ngModel)]="location_selectedItems"
+      >
+      </ng-multiselect-dropdown>
+    </div>
+
+    <div
+      class="col"
+      style="padding: 10px !important; padding-bottom: 0px !important"
+    >
+      <ng-multiselect-dropdown
+        [placeholder]="'Channel'"
+        [settings]="imdChannel_dropdownSettings"
+        [data]="imdChannel_dropdownList"
+        [(ngModel)]="imdChannel_selectedItems"
+      >
+      </ng-multiselect-dropdown>
+    </div>
+
+    <div
+      class="col"
+      style="padding: 10px !important; padding-bottom: 0px !important;  padding-right: 0!important;"
+    >
+      <div
+        class="row"
+        style="padding: 0 !important; padding-top: 5px !important"
+      >
+        <div class="" style="padding: 0; width: 48%">
+          <button
+            class="filterApplyButton"
+            style="
+              background-color: rgb(238, 99, 99);
+              height: 36px;
+              border-radius: 5px;
+              border: none;
+            "
+            (click)="resetAll()"
+          >
+            <span>Reset</span>
+          </button>
+        </div>
+
+        <div class="" style="padding: 0; width: 4%"></div>
+
+        <div class="col" style="padding: 0; width: 48%">
+          <button
+            class="filterApplyButton"
+            style="
+              background-color: rgb(0, 95, 204);
+              height: 36px;
+              border-radius: 5px;
+              border: none;
+            "
+            (click)="applyFilter_imd()"
+          >
+            <span>Apply</span>
+          </button>
+        </div>
+
+
+
+
+      </div>
+    </div>
+
+
+
+
+
+  </div>
+
+
+
+  <div class="row gap"></div>
+
+
+
+  <ng-container *ngIf="opened_imd_section==''" style="height:70vh!important;">
+    <div class="spinner-border text-primary" role="status" style="position:relative; top:50%; left:50%; margin-top:30%">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </ng-container>
+
+
+
+  <ng-container *ngIf="opened_imd_section=='mtd'">
+
+
+    <div class="row" style="display:flex; gap: 30px;">
+      <div class="col" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius: 5px; padding: 30px!important;">
+  
+        <div class="row" style="display: flex; justify-content: center;">
+          <h3>
+            Activation
+          </h3>
+        </div>
+        
+  
+        <div class="row" style="display: flex; justify-content: center;">
+          <div class="concentric-progress-bars">
+            <!-- Outer progress bar -->
+            <div class="progress-bar outer" [attr.data-value]="100 + '%'">
+              <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + activation_target + ''"></div>
+            </div>
+          
+            <!-- Middle progress bar -->          
+            <div class="progress-bar middle" [attr.data-value]="activation_achv_per + '%'" >
+              <div class="progress" [ngStyle]="getMiddleProgressStyles(activation_achv_per)" [title]="'Achievement: ' + activation_achv + ''" ></div>
+            </div>
+          
+            <!-- Inner progress bar with center text -->
+            <div class="progress-bar inner"  (click)="openModal(activation)">
+              <div class="center-text">{{ activation_centerText }}</div>
+            </div>
+          </div>
+        </div>
+  
+  
+  
+        <div class="row" style="background-color: #fdfdfd;">
+  
+          <table class="table gaugetable">
+            <thead>
+              <tr  style="font-size:16px!important; " >
+                <th scope="col gaugetable_firstCol" style="background-color: #e6e6e6!important;">Comparison</th>
+                <!-- <th scope="col" class="gaugetable_tableHeader" >GWP</th> -->
+                <th scope="col" class="gaugetable_tableHeader" >IMD Count</th>
+                <!-- <th scope="col" class="gaugetable_tableHeader" >Renewals</th>
+                <th scope="col" class="gaugetable_tableHeader" >NOP</th>
+                <th scope="col" class="gaugetable_tableHeader" >COR</th>
+                <th scope="col" class="gaugetable_tableHeader" >LR</th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <tr  style="font-size:16px!important;">
+                <td class="gaugetable_firstCol" scope="row">MTD</td>
+  
+                <td>{{activation_total_data.retail_sub_channels[activation_total_data.retail_sub_channels.length-1].mtd_count}}</td>
+                <!-- <td>24</td>
+                <td>58</td>
+                <td>33</td>
+                <td>68</td>
+                <td>74</td> -->
+              </tr>
+              <tr  style="font-size:16px!important;">
+                <td class="gaugetable_firstCol"  scope="row">LYMTD</td>
+  
+                <td>{{activation_total_data.retail_sub_channels[activation_total_data.retail_sub_channels.length-1].lymtd_count}}</td>
+                <!-- <td>33</td>
+                <td>24</td>
+                <td>57</td>
+                <td>94</td>
+                <td>67</td> -->
+              </tr>
+            </tbody>
+          </table>
+  
+        </div>
+        
+      </div>
+  
+  
+      <div class="col" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius: 5px; padding: 30px!important;">
+  
+        <div class="row" style="display: flex; justify-content: center;">
+          <h3>
+            Recruitment
+          </h3>
+        </div>
+        
+  
+        <div class="row" style="display: flex; justify-content: center;">
+          <div class="concentric-progress-bars">
+            <!-- Outer progress bar -->
+            <div class="progress-bar outer" [attr.data-value]="100 + '%'">
+              <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + recruitment_target + ''"></div>
+            </div>
+          
+            <!-- Middle progress bar -->          
+            <div class="progress-bar middle" [attr.data-value]="recruitment_achv_per + '%'" >
+              <div class="progress" [ngStyle]="getMiddleProgressStyles(recruitment_achv_per)" [title]="'Achievement: ' + recruitment_achv + ''" ></div>
+            </div>
+  
+  
+          
+            <!-- Inner progress bar with center text -->
+            <div class="progress-bar inner"  (click)="openModal(recruitment)">
+              <div class="center-text">{{recruitment_centerText}}</div>
+            </div>
+          </div>
+        </div>
+  
+  
+  
+        <div class="row" style="background-color: #fdfdfd;">
+  
+          <table class="table gaugetable">
+            <thead>
+              <tr  style="font-size:16px!important; " >
+                <th scope="col gaugetable_firstCol" style="background-color: #e6e6e6!important;">Comparison</th>
+                <!-- <th scope="col" class="gaugetable_tableHeader" >GWP</th> -->
+                <th scope="col" class="gaugetable_tableHeader" >IMD Count</th>
+                <!-- <th scope="col" class="gaugetable_tableHeader" >Renewals</th>
+                <th scope="col" class="gaugetable_tableHeader" >NOP</th>
+                <th scope="col" class="gaugetable_tableHeader" >COR</th>
+                <th scope="col" class="gaugetable_tableHeader" >LR</th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <tr  style="font-size:16px!important;">
+                <td class="gaugetable_firstCol" scope="row">MTD</td>
+  
+                <td>{{recruitment_total_data.retail_sub_channels[recruitment_total_data.retail_sub_channels.length-1].mtd_count}}</td>
+                <!-- <td>24</td>
+                <td>58</td>
+                <td>33</td>
+                <td>68</td>
+                <td>74</td> -->
+              </tr>
+              <tr  style="font-size:16px!important;">
+                <td class="gaugetable_firstCol"  scope="row">LYMTD</td>
+  
+                <td>{{recruitment_total_data.retail_sub_channels[recruitment_total_data.retail_sub_channels.length-1].lymtd_count}}</td>
+                <!-- <td>33</td>
+                <td>24</td>
+                <td>57</td>
+                <td>94</td>
+                <td>67</td> -->
+              </tr>
+            </tbody>
+          </table>
+  
+        </div>
+        
+      </div>
+  
+  
+    </div>
+
+  </ng-container>
+
+
+
+
+
+
+
+  <ng-container *ngIf="opened_imd_section=='ftm'">
+
+
+    <div class="row" style="display:flex; gap: 30px;">
+      <div class="col" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius: 5px; padding: 30px!important;">
+  
+        <div class="row" style="display: flex; justify-content: center;">
+          <h3>
+            Activation
+          </h3>
+        </div>
+        
+  
+        <div class="row" style="display: flex; justify-content: center;">
+          <div class="concentric-progress-bars">
+            <!-- Outer progress bar -->
+            <div class="progress-bar outer" [attr.data-value]="100 + '%'">
+              <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + activation_target_ftm + ''"></div>
+            </div>
+          
+            <!-- Middle progress bar -->          
+            <div class="progress-bar middle" [attr.data-value]="activation_achv_per_ftm + '%'" >
+              <div class="progress" [ngStyle]="getMiddleProgressStyles(activation_achv_per_ftm)" [title]="'Achievement: ' + activation_achv_ftm + ''" ></div>
+            </div>
+          
+            <!-- Inner progress bar with center text -->
+            <div class="progress-bar inner"  (click)="openModal(activation)">
+              <div class="center-text">{{ activation_centerText_ftm }}</div>
+            </div>
+          </div>
+        </div>
+  
+  
+  
+        <div class="row" style="background-color: #fdfdfd;">
+  
+          <table class="table gaugetable">
+            <thead>
+              <tr  style="font-size:16px!important; " >
+                <th scope="col gaugetable_firstCol" style="background-color: #e6e6e6!important;">Comparison</th>
+                <!-- <th scope="col" class="gaugetable_tableHeader" >GWP</th> -->
+                <th scope="col" class="gaugetable_tableHeader" >IMD Count</th>
+                <!-- <th scope="col" class="gaugetable_tableHeader" >Renewals</th>
+                <th scope="col" class="gaugetable_tableHeader" >NOP</th>
+                <th scope="col" class="gaugetable_tableHeader" >COR</th>
+                <th scope="col" class="gaugetable_tableHeader" >LR</th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <tr  style="font-size:16px!important;">
+                <td class="gaugetable_firstCol" scope="row">FTM</td>
+  
+                <td>{{activation_total_data.retail_sub_channels[activation_total_data.retail_sub_channels.length-1].ftm_count}}</td>
+                <!-- <td>24</td>
+                <td>58</td>
+                <td>33</td>
+                <td>68</td>
+                <td>74</td> -->
+              </tr>
+              <tr  style="font-size:16px!important;">
+                <td class="gaugetable_firstCol"  scope="row">LYFTM</td>
+  
+                <td>{{activation_total_data.retail_sub_channels[activation_total_data.retail_sub_channels.length-1].lyftm_count}}</td>
+                <!-- <td>33</td>
+                <td>24</td>
+                <td>57</td>
+                <td>94</td>
+                <td>67</td> -->
+              </tr>
+            </tbody>
+          </table>
+  
+        </div>
+        
+      </div>
+  
+  
+      <div class="col" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius: 5px; padding: 30px!important;">
+  
+        <div class="row" style="display: flex; justify-content: center;">
+          <h3>
+            Recruitment
+          </h3>
+        </div>
+        
+  
+        <div class="row" style="display: flex; justify-content: center;">
+          <div class="concentric-progress-bars">
+            <!-- Outer progress bar -->
+            <div class="progress-bar outer" [attr.data-value]="100 + '%'">
+              <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + recruitment_target_ftm + ''"></div>
+            </div>
+          
+            <!-- Middle progress bar -->          
+            <div class="progress-bar middle" [attr.data-value]="recruitment_achv_per_ftm + '%'" >
+              <div class="progress" [ngStyle]="getMiddleProgressStyles(recruitment_achv_per_ftm)" [title]="'Achievement: ' + recruitment_achv_ftm + ''" ></div>
+            </div>
+  
+  
+          
+            <!-- Inner progress bar with center text -->
+            <div class="progress-bar inner"  (click)="openModal(recruitment)">
+              <div class="center-text">{{recruitment_centerText_ftm}}</div>
+            </div>
+          </div>
+        </div>
+  
+  
+  
+        <div class="row" style="background-color: #fdfdfd;">
+  
+          <table class="table gaugetable">
+            <thead>
+              <tr  style="font-size:16px!important; " >
+                <th scope="col gaugetable_firstCol" style="background-color: #e6e6e6!important;">Comparison</th>
+                <!-- <th scope="col" class="gaugetable_tableHeader" >GWP</th> -->
+                <th scope="col" class="gaugetable_tableHeader" >IMD Count</th>
+                <!-- <th scope="col" class="gaugetable_tableHeader" >Renewals</th>
+                <th scope="col" class="gaugetable_tableHeader" >NOP</th>
+                <th scope="col" class="gaugetable_tableHeader" >COR</th>
+                <th scope="col" class="gaugetable_tableHeader" >LR</th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <tr  style="font-size:16px!important;">
+                <td class="gaugetable_firstCol" scope="row">FTM</td>
+  
+                <td>{{recruitment_total_data.retail_sub_channels[recruitment_total_data.retail_sub_channels.length-1].ftm_count}}</td>
+                <!-- <td>24</td>
+                <td>58</td>
+                <td>33</td>
+                <td>68</td>
+                <td>74</td> -->
+              </tr>
+              <tr  style="font-size:16px!important;">
+                <td class="gaugetable_firstCol"  scope="row">LYFTM</td>
+  
+                <td>{{recruitment_total_data.retail_sub_channels[recruitment_total_data.retail_sub_channels.length-1].lyftm_count}}</td>
+                <!-- <td>33</td>
+                <td>24</td>
+                <td>57</td>
+                <td>94</td>
+                <td>67</td> -->
+              </tr>
+            </tbody>
+          </table>
+  
+        </div>
+        
+      </div>
+  
+  
+    </div>
+  
+
+  </ng-container>
+
+
+
+
+
+
+
+  <ng-container *ngIf="opened_imd_section=='ytd'">
+
+
+    <div class="row" style="display:flex; gap: 30px;">
+      <div class="col" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius: 5px; padding: 30px!important;">
+  
+        <div class="row" style="display: flex; justify-content: center;">
+          <h3>
+            Activation
+          </h3>
+        </div>
+        
+  
+        <div class="row" style="display: flex; justify-content: center;">
+          <div class="concentric-progress-bars">
+            <!-- Outer progress bar -->
+            <div class="progress-bar outer" [attr.data-value]="100 + '%'">
+              <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + activation_target_ytd + ''"></div>
+            </div>
+          
+            <!-- Middle progress bar -->          
+            <div class="progress-bar middle" [attr.data-value]="activation_achv_per_ytd + '%'" >
+              <div class="progress" [ngStyle]="getMiddleProgressStyles(activation_achv_per_ytd)" [title]="'Achievement: ' + activation_achv_ytd + ''" ></div>
+            </div>
+          
+            <!-- Inner progress bar with center text -->
+            <div class="progress-bar inner"  (click)="openModal(activation)">
+              <div class="center-text">{{ activation_centerText_ytd }}</div>
+            </div>
+          </div>
+        </div>
+  
+  
+  
+        <div class="row" style="background-color: #fdfdfd;">
+  
+          <table class="table gaugetable">
+            <thead>
+              <tr  style="font-size:16px!important; " >
+                <th scope="col gaugetable_firstCol" style="background-color: #e6e6e6!important;">Comparison</th>
+                <!-- <th scope="col" class="gaugetable_tableHeader" >GWP</th> -->
+                <th scope="col" class="gaugetable_tableHeader" >IMD Count</th>
+                <!-- <th scope="col" class="gaugetable_tableHeader" >Renewals</th>
+                <th scope="col" class="gaugetable_tableHeader" >NOP</th>
+                <th scope="col" class="gaugetable_tableHeader" >COR</th>
+                <th scope="col" class="gaugetable_tableHeader" >LR</th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <tr  style="font-size:16px!important;">
+                <td class="gaugetable_firstCol" scope="row">YTD</td>
+  
+                <td>{{activation_total_data.retail_sub_channels[activation_total_data.retail_sub_channels.length-1].ytd_count}}</td>
+                <!-- <td>24</td>
+                <td>58</td>
+                <td>33</td>
+                <td>68</td>
+                <td>74</td> -->
+              </tr>
+              <tr  style="font-size:16px!important;">
+                <td class="gaugetable_firstCol"  scope="row">LYTD</td>
+  
+                <td>{{activation_total_data.retail_sub_channels[activation_total_data.retail_sub_channels.length-1].lytd_count}}</td>
+                <!-- <td>33</td>
+                <td>24</td>
+                <td>57</td>
+                <td>94</td>
+                <td>67</td> -->
+              </tr>
+            </tbody>
+          </table>
+  
+        </div>
+        
+      </div>
+  
+  
+      <div class="col" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius: 5px; padding: 30px!important;">
+  
+        <div class="row" style="display: flex; justify-content: center;">
+          <h3>
+            Recruitment
+          </h3>
+        </div>
+        
+  
+        <div class="row" style="display: flex; justify-content: center;">
+          <div class="concentric-progress-bars">
+            <!-- Outer progress bar -->
+            <div class="progress-bar outer" [attr.data-value]="100 + '%'">
+              <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + recruitment_target_ytd + ''"></div>
+            </div>
+          
+            <!-- Middle progress bar -->          
+            <div class="progress-bar middle" [attr.data-value]="recruitment_achv_per_ytd + '%'" >
+              <div class="progress" [ngStyle]="getMiddleProgressStyles(recruitment_achv_per_ytd)" [title]="'Achievement: ' + recruitment_achv_ytd + ''" ></div>
+            </div>
+  
+  
+          
+            <!-- Inner progress bar with center text -->
+            <div class="progress-bar inner"   (click)="openModal(recruitment)">
+              <div class="center-text">{{recruitment_centerText_ytd}}</div>
+            </div>
+          </div>
+        </div>
+  
+  
+  
+        <div class="row" style="background-color: #fdfdfd;">
+  
+          <table class="table gaugetable">
+            <thead>
+              <tr  style="font-size:16px!important; " >
+                <th scope="col gaugetable_firstCol" style="background-color: #e6e6e6!important;">Comparison</th>
+                <!-- <th scope="col" class="gaugetable_tableHeader" >GWP</th> -->
+                <th scope="col" class="gaugetable_tableHeader" >IMD Count</th>
+                <!-- <th scope="col" class="gaugetable_tableHeader" >Renewals</th>
+                <th scope="col" class="gaugetable_tableHeader" >NOP</th>
+                <th scope="col" class="gaugetable_tableHeader" >COR</th>
+                <th scope="col" class="gaugetable_tableHeader" >LR</th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <tr  style="font-size:16px!important;">
+                <td class="gaugetable_firstCol" scope="row">YTD</td>
+  
+                <td>{{recruitment_total_data.retail_sub_channels[recruitment_total_data.retail_sub_channels.length-1].ytd_count}}</td>
+                <!-- <td>24</td>
+                <td>58</td>
+                <td>33</td>
+                <td>68</td>
+                <td>74</td> -->
+              </tr>
+              <tr  style="font-size:16px!important;">
+                <td class="gaugetable_firstCol"  scope="row">LYTD</td>
+  
+                <td>{{recruitment_total_data.retail_sub_channels[recruitment_total_data.retail_sub_channels.length-1].lytd_count}}</td>
+                <!-- <td>33</td>
+                <td>24</td>
+                <td>57</td>
+                <td>94</td>
+                <td>67</td> -->
+              </tr>
+            </tbody>
+          </table>
+  
+        </div>
+        
+      </div>
+  
+  
+    </div>
+  
+
+  </ng-container>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ng-template #activation>
+
+
+  <div style="padding:30px!important;">
+
+      <div class="row" style="text-align: center;">
+          <!-- <img width="35px;" src="assets/image/graphrecommendation.png" alt="">
+          &nbsp; &nbsp; -->
+
+          <span style="font-weight: bold; font-size: 18pt; position: relative; top: 10px;">Activation Performance</span>
+
+          <span style="position: absolute; right: 33px;">
+              <!-- <mat-icon (click)="goBack(activation)" style="cursor: pointer;">arrow_back</mat-icon> -->
+              <span (click)="goBack(activation)"  style="cursor: pointer;">X</span>
+
+          </span>
+
+      </div>
+
+      <!-- <hr class="solid"> -->
+
+
+
+
+
+      <div class="row" style="font-weight: bold; font-size: 17px;">
+
+        <div  style="width: 100%!important; background-color: #fff; padding: 15px!important; margin-bottom:20px">
+    
+                
+    
+          <div class="row" style=" overflow: auto; ">                               
+      
+            
+
+            <table   class="table table-bordered">
+              <thead class="thead_style" >
+
+                  <tr class="firstHeaderRow">
+                      <th rowspan="3"  class =" ratailAsOnDate" >Retail as on {{activation_table_data.retailAsOn}}</th>
+                      <th colspan="11" class ="table_text_blue_1">ACTIVATION</th>
+                  </tr>
+                  
+                <tr class="secondHeaderRow">                                      
+                  <th colspan="7" class ="table_text_blue_2">MTD</th>
+                  <th colspan="2" class ="table_text_blue_2">%ACHD.</th>
+                  <th colspan="2" class ="table_text_blue_2">%GROWTH</th>
+                </tr>
+
+                <tr class="thirdHeaderRow">
+                  <th class ="table_text_lblue">Projection</th>
+                  <th class ="table_text_lblue">RM Count</th>
+                  <th class ="table_text_lblue">YTD March Activation</th>
+                  <th class ="table_text_lblue">FTM</th>
+                  <th class ="table_text_lblue">{{activation_table_data.currentMonth}}</th>
+                  <th class ="table_text_lblue">{{activation_table_data.prevMonth}}</th>
+                  <th class ="table_text_lblue">{{activation_table_data.lastYearCurrentMonth}}</th>
+
+
+                  <th class ="table_text_lblue">On FTM</th>
+                  <th class ="table_text_lblue">On MTD</th>
+
+                  
+                  <th class ="table_text_lblue">Growth Over LM</th>
+                  <th class ="table_text_lblue">Growth Over LY</th>
+                </tr>
+              </thead>
+
+
+              <tbody>
+
+                  <tr *ngFor="let row of activation_table_data.retailSubChannels" class ="table_text">
+                      <td class ="table_text freeze-cell text_left">{{row.name}}</td>
+
+
+                      <td class ="table_text">{{row.projection}}</td>
+                      <td class ="table_text">{{row.rm_count}}</td>
+                      <td class ="table_text">{{row.lytd_count}}</td>
+                      <td class ="table_text">{{row.ftm_count}}</td>
+                      <td class ="table_text">{{row.mtd_count}}</td>
+                      <td class ="table_text">{{row.lmtd_count}}</td>
+                      <td class ="table_text">{{row.lymtd_count}}</td>
+
+
+                      <td class ="table_text">{{row.acheivement_on_ftm ?? 0}}%</td>
+                      <td class ="table_text">{{row.acheivement_on_mtd ?? 0}}%</td>
+
+
+                      <td class ="table_text" [ngClass]="growthBoxColor(row.growth_over_lmtd)">{{row.growth_over_lmtd ?? 0}}%</td>
+                      <td class ="table_text" [ngClass]="growthBoxColor(row.growth_over_lymtd)">{{row.growth_over_lymtd ?? 0}}%</td>
+
+                  </tr>
+
+
+
+
+
+                
+                  <tr class="retailStrategic"  *ngIf="activation_table_data.retailStrategicInitiatives!='nodata'">
+
+                      <td class ="table_text freeze-cell text_left">{{activation_table_data.retailStrategicInitiatives.name}}</td>
+
+
+                      <td class ="table_text">{{activation_table_data.retailStrategicInitiatives.projection}}</td>
+                      <td class ="table_text">{{activation_table_data.retailStrategicInitiatives.rm_count}}</td>
+                      <td class ="table_text">{{activation_table_data.retailStrategicInitiatives.lytd_count}}</td>
+                      <td class ="table_text">{{activation_table_data.retailStrategicInitiatives.ftm_count}}</td>
+                      <td class ="table_text">{{activation_table_data.retailStrategicInitiatives.mtd_count}}</td>
+                      <td class ="table_text">{{activation_table_data.retailStrategicInitiatives.lmtd_count}}</td>
+                      <td class ="table_text">{{activation_table_data.retailStrategicInitiatives.lymtd_count}}</td>
+
+
+                      <td class ="table_text">{{activation_table_data.retailStrategicInitiatives.acheivement_on_ftm ?? 0}}%</td>
+                      <td class ="table_text">{{activation_table_data.retailStrategicInitiatives.acheivement_on_mtd ?? 0}}%</td>
+
+
+                      <td class ="table_text" [ngClass]="growthBoxColor(activation_table_data.retailStrategicInitiatives.growth_over_lmtd)">{{activation_table_data.retailStrategicInitiatives.growth_over_lmtd ?? 0}}%</td>
+                      <td class ="table_text" [ngClass]="growthBoxColor(activation_table_data.retailStrategicInitiatives.growth_over_lymtd)">{{activation_table_data.retailStrategicInitiatives.growth_over_lymtd ?? 0}}%</td>
+
+
+                     
+                  </tr>
+
+
+                <tr class="retailTotal">
+
+                  <td class ="table_text_blue freeze-cell_blue">{{activation_table_data.retailTotal.name}}</td>
+
+
+                  <td class ="table_text_blue">{{activation_table_data.retailTotal.projection}}</td>
+                  <td class ="table_text_blue">{{activation_table_data.retailTotal.rm_count}}</td>
+                  <td class ="table_text_blue">{{activation_table_data.retailTotal.lytd_count}}</td>
+                  <td class ="table_text_blue">{{activation_table_data.retailTotal.ftm_count}}</td>
+                  <td class ="table_text_blue">{{activation_table_data.retailTotal.mtd_count}}</td>
+                  <td class ="table_text_blue">{{activation_table_data.retailTotal.lmtd_count}}</td>
+                  <td class ="table_text_blue">{{activation_table_data.retailTotal.lymtd_count}}</td>
+
+
+                  <td class ="table_text_blue">{{activation_table_data.retailTotal.acheivement_on_ftm ?? 0}}%</td>
+                  <td class ="table_text_blue">{{activation_table_data.retailTotal.acheivement_on_mtd ?? 0}}%</td>
+
+
+                  <td class ="table_text_blue" [ngClass]="growthBoxColor(activation_table_data.retailTotal.growth_over_lmtd)">{{activation_table_data.retailTotal.growth_over_lmtd ?? 0}}%</td>
+                  <td class ="table_text_blue" [ngClass]="growthBoxColor(activation_table_data.retailTotal.growth_over_lymtd)">{{activation_table_data.retailTotal.growth_over_lymtd ?? 0}}%</td>
+
+
+                      <!-- <td class ="table_text">{{activation_table_data.retailTotal.projection}}</td>
+                      <td class ="table_text">{{activation_table_data.retailTotal.rm_count}}</td>
+                      <td class ="table_text">{{activation_table_data.retailTotal.lytd_count}}</td>
+                      <td class ="table_text">{{activation_table_data.retailTotal.ftm_count}}</td>
+                      <td class ="table_text">{{activation_table_data.retailTotal.mtd_count}}</td>
+                      <td class ="table_text">{{activation_table_data.retailTotal.lmtd_count}}</td>
+                      <td class ="table_text">{{activation_table_data.retailTotal.lymtd_count}}</td>
+
+
+                      <td class ="table_text">{{activation_table_data.retailTotal.acheivement_on_ftm}}%</td>
+                      <td class ="table_text">{{activation_table_data.retailTotal.acheivement_on_mtd}}%</td>
+
+
+                      <td class ="table_text" [ngClass]="growthBoxColor(activation_table_data.retailTotal.growth_over_mtd)">{{activation_table_data.retailTotal.growth_over_mtd}}%</td>
+                      <td class ="table_text" [ngClass]="growthBoxColor(activation_table_data.retailTotal.growth_over_lymtd)">{{activation_table_data.retailTotal.growth_over_lymtd}}%</td> -->
+
+
+                  
+                </tr>
+              </tbody>
+            </table>
+              
+            
+      
+      
+        </div>
+      
+        </div>
+
+
+
+      </div>
+
+  </div>
+
+
+</ng-template>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ng-template #recruitment>
+
+
+  <div style="padding:30px!important;">
+
+      <div class="row" style="text-align: center;">
+          <!-- <img width="35px;" src="assets/image/graphrecommendation.png" alt="">
+          &nbsp; &nbsp; -->
+
+          <span style="font-weight: bold; font-size: 18pt; position: relative; top: 10px;">Recruitment Performance</span>
+
+          <span style="position: absolute; right: 33px;">
+              <!-- <mat-icon (click)="goBack(activation)" style="cursor: pointer;">arrow_back</mat-icon> -->
+              <span (click)="goBack(recruitment)"  style="cursor: pointer;">X</span>
+
+          </span>
+
+      </div>
+
+      <!-- <hr class="solid"> -->
+
+
+
+
+
+      <div class="row" style="font-weight: bold; font-size: 17px;">
+
+        <div  style="width: 100%!important; background-color: #fff; padding: 15px!important; margin-bottom:20px">
+    
+                
+    
+          <div class="row" style=" overflow: auto; ">                               
+      
+            
+
+
+            <table   class="table table-bordered">
+              <thead class="thead_style" >
+
+                  <tr class="firstHeaderRow">
+                      <th rowspan="3"  class =" ratailAsOnDate" >Retail as on {{recruitment_table_data.retailAsOn}}</th>
+                      <th colspan="8" class ="table_text_blue_1">RECRUITMENT</th>
+                  </tr>
+                  
+                <tr class="secondHeaderRow">                                      
+                  <th colspan="5" class ="table_text_blue_2">MTD</th>
+                  <th colspan="1" class ="table_text_blue_2">%ACHD.</th>
+                  <th colspan="2" class ="table_text_blue_2">%GROWTH</th>
+                </tr>
+
+                <tr class="thirdHeaderRow">
+                  <th class ="table_text_lblue">Projection</th>
+                  <th class ="table_text_lblue">{{recruitment_table_data.currentMonth}}</th>
+                  <th class ="table_text_lblue">{{recruitment_table_data.prevMonth}}</th>
+                  <th class ="table_text_lblue">{{recruitment_table_data.lastYearCurrentMonth}}</th>
+                  <th class ="table_text_lblue">%Growth</th>
+
+
+                  <th class ="table_text_lblue">Growth Over Projection</th>
+
+                  
+                  <th class ="table_text_lblue">LM</th>
+                  <th class ="table_text_lblue">LY</th>
+                </tr>
+              </thead>
+
+
+              <tbody>
+
+                  <tr *ngFor="let row of recruitment_table_data.retailSubChannels" class ="table_text">
+                      <td class ="table_text freeze-cell text_left">{{row.name}}</td>
+
+
+                      <td class ="table_text">{{row.projection}}</td>
+                      <td class ="table_text">{{row.mtd_count}}</td>
+                      <td class ="table_text">{{row.lmtd_count}}</td>
+                      <td class ="table_text">{{row.lymtd_count}}</td>
+                      <td class ="table_text" [ngClass]="growthBoxColor(row.acheivement_on_mtd)">{{row.acheivement_on_mtd ?? 0}}%</td>
+
+
+
+
+                      <td class ="table_text" [ngClass]="growthBoxColor(row.growth_over_projection)">{{row.growth_over_projection ?? 0}}%</td>
+
+
+                      <td class ="table_text" [ngClass]="growthBoxColor(row.growth_over_lmtd)">{{row.growth_over_lmtd ?? 0}}%</td>
+                      <td class ="table_text" [ngClass]="growthBoxColor(row.growth_over_lymtd)">{{row.growth_over_lymtd ?? 0}}%</td>
+
+                  </tr>
+
+
+
+
+
+                
+                  <tr class="retailStrategic"  *ngIf="recruitment_table_data.retailStrategicInitiatives!='nodata'">
+
+                      <td class ="table_text freeze-cell text_left">{{recruitment_table_data.retailStrategicInitiatives.name}}</td>
+
+
+                      <td class ="table_text">{{recruitment_table_data.retailStrategicInitiatives.projection}}</td>
+                      <td class ="table_text">{{recruitment_table_data.retailStrategicInitiatives.mtd_count}}</td>
+                      <td class ="table_text">{{recruitment_table_data.retailStrategicInitiatives.lmtd_count}}</td>
+                      <td class ="table_text">{{recruitment_table_data.retailStrategicInitiatives.lymtd_count}}</td>
+                      <td class ="table_text" [ngClass]="growthBoxColor(recruitment_table_data.retailStrategicInitiatives.acheivement_on_mtd)">{{recruitment_table_data.retailStrategicInitiatives.acheivement_on_mtd ?? 0}}%</td>
+                      
+                      <td class ="table_text" [ngClass]="growthBoxColor(recruitment_table_data.retailStrategicInitiatives.growth_over_projection)">{{recruitment_table_data.retailStrategicInitiatives.growth_over_projection ?? 0}}%</td>
+
+
+                      <td class ="table_text" [ngClass]="growthBoxColor(recruitment_table_data.retailStrategicInitiatives.growth_over_lmtd)">{{recruitment_table_data.retailStrategicInitiatives.growth_over_lmtd ?? 0}}%</td>
+                      <td class ="table_text" [ngClass]="growthBoxColor(recruitment_table_data.retailStrategicInitiatives.growth_over_lymtd)">{{recruitment_table_data.retailStrategicInitiatives.growth_over_lymtd ?? 0}}%</td>
+
+
+                     
+                  </tr>
+
+
+                <tr class="retailTotal">
+
+                  <td class ="table_text_blue freeze-cell_blue">{{recruitment_table_data.retailTotal.name}}</td>
+
+
+                  <td class ="table_text_blue">{{recruitment_table_data.retailTotal.projection}}</td>
+                  <td class ="table_text_blue">{{recruitment_table_data.retailTotal.mtd_count}}</td>
+                  <td class ="table_text_blue">{{recruitment_table_data.retailTotal.lmtd_count}}</td>
+                  <td class ="table_text_blue">{{recruitment_table_data.retailTotal.lymtd_count}}</td>
+                  <td class ="table_text_blue" [ngClass]="growthBoxColor(recruitment_table_data.retailTotal.acheivement_on_mtd)">{{recruitment_table_data.retailTotal.acheivement_on_mtd ?? 0}}%</td>
+                  
+                  <td class ="table_text_blue" [ngClass]="growthBoxColor(recruitment_table_data.retailTotal.growth_over_projection)">{{recruitment_table_data.retailTotal.growth_over_projection ?? 0}}%</td>
+
+
+                  <td class ="table_text_blue" [ngClass]="growthBoxColor(recruitment_table_data.retailTotal.growth_over_lmtd)">{{recruitment_table_data.retailTotal.growth_over_lmtd ?? 0}}%</td>
+                  <td class ="table_text_blue" [ngClass]="growthBoxColor(recruitment_table_data.retailTotal.growth_over_lymtd)">{{recruitment_table_data.retailTotal.growth_over_lymtd ?? 0}}%</td>
+
+
+                  
+                </tr>
+              </tbody>
+            </table>
+              
+            
+      
+      
+        </div>
+      
+        </div>
+
+
+
+      </div>
+
+  </div>
+
+
+</ng-template>
