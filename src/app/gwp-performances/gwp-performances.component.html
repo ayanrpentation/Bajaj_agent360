@@ -194,31 +194,10 @@
             Topline
           </h3>
         </div> -->
-        
-  
-        <!-- <div class="row" style="display: flex; justify-content: center;">
-          
-            <div class="concentric-progress-bars">
-              <div class="progress-bar outer" [attr.data-value]="100 + '%'">
-                <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + topLine_target + ''"></div>
-              </div>
-            
-                      
-              <div class="progress-bar middle" [attr.data-value]="topLine_achv_per + '%'" >
-                <div class="progress" [ngStyle]="getMiddleProgressStyles(topLine_achv_per)" [title]="'Achievement: ' + topLine_achv + ''" ></div>
-              </div>
-            
-              
-              <div class="progress-bar inner"  (click)="openModal(topline)">
-                <div class="center-text">{{ topLine_centerText }}</div>
-              </div>
-            </div>          
-          
-        </div> -->
 
 
 
-        <div class="row">
+        <!-- <div class="row">
 
           <div class="col-md-6" style="display: flex;  align-items: center; height:400px; ">
 
@@ -252,6 +231,51 @@
             </div>
           </div>
 
+        </div> -->
+
+
+        <div class="row">
+
+          <div class="col-md-6" style="display: flex;  align-items: center;">
+
+            <div class="row" style="display: flex; justify-content: center;">
+              <h3>
+                Topline
+              </h3>
+              <div class="concentric-progress-bars">
+                <div class="progress-bar outer" [attr.data-value]="100 + '%'">
+                  <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + topLine_target + ''"></div>
+                </div>
+              
+                        
+                <div class="progress-bar middle" [attr.data-value]="topLine_achv_per + '%'" >
+                  <div class="progress" [ngStyle]="getMiddleProgressStyles(topLine_achv_per)" [title]="'Achievement: ' + topLine_achv + ''" ></div>
+                </div>
+              
+                
+                <div class="progress-bar inner"  (click)="openModal(topline)">
+                  <div class="center-text">{{ topLine_centerText }}</div>
+                </div>
+              </div> 
+            </div>
+
+            
+
+          </div>
+
+          <div class="col-md-6">
+            <div class="row" style="max-height: 200px;">
+              <app-column-chart [id]="'topline_mtd_cor'" [chartData]="topline_mtd_cor" [height]="'200px'" style="width:100%; "></app-column-chart>
+            </div>
+
+            <div class="row" style="max-height: 200px;">
+              <app-column-chart [id]="'topline_mtd_lr'" [chartData]="topline_mtd_lr" [height]="'200px'"  style="width: 100%; "></app-column-chart>
+            </div>
+          </div>
+          
+
+
+
         </div>
   
   
@@ -264,11 +288,12 @@
                 <th scope="col gaugetable_firstCol" style="background-color: #e6e6e6!important;">Growth Over (%)</th>
 
                 <th scope="col" class="gaugetable_tableHeader" >GWP</th>
-                <th scope="col" class="gaugetable_tableHeader" >IMD Count</th>
-                <th scope="col" class="gaugetable_tableHeader" >Renewals</th>
+                <th scope="col" class="gaugetable_tableHeader" >Contributing IMD Count</th>
+                <!-- <th scope="col" class="gaugetable_tableHeader" >Renewals</th> -->
                 <th scope="col" class="gaugetable_tableHeader" >NOP</th>
                 <!-- <th scope="col" class="gaugetable_tableHeader" >COR</th>
                 <th scope="col" class="gaugetable_tableHeader" >LR</th> -->
+                <!-- <th scope="col" class="gaugetable_tableHeader" >Growth %</th> -->
               </tr>
             </thead>
             <tbody>
@@ -282,22 +307,51 @@
 
 
                 <td>{{topline_total_data.agent_performance.retail_sub_channels[(topline_total_data.agent_performance.retail_sub_channels).length - 2]?.contributingImdCountMtd?.growthOverLm_percentage ?? 0}}%</td>
-                <td>{{topline_total_data.renewal.retail_sub_channels[(topline_total_data.renewal.retail_sub_channels).length - 2]?.mtd_growth_over_lmtd_RR ?? 0}}%</td>
+                <!-- <td>{{topline_total_data.renewal.retail_sub_channels[(topline_total_data.renewal.retail_sub_channels).length - 2]?.mtd_growth_over_lmtd_RR ?? 0}}%</td> -->
                 <td>{{topline_total_data.agent_performance.retail_sub_channels[(topline_total_data.agent_performance.retail_sub_channels).length - 2]?.mtd?.growthPercentage_lmtd_NOP ?? 0}}%</td>
 
-                <!-- <td>68</td>
-                <td>74</td> -->
+                
+                <!-- <td>74</td> -->
               </tr>
               <tr  style="font-size:16px!important;">
                 <td class="gaugetable_firstCol"  scope="row">LYMTD</td>
   
                 <td>{{topline_total_data.agent_performance.retail_sub_channels[(topline_total_data.agent_performance.retail_sub_channels).length - 2]?.mtd?.growthPercentage_lymtd ?? 0}}%</td>
                 <td>{{topline_total_data.agent_performance.retail_sub_channels[(topline_total_data.agent_performance.retail_sub_channels).length - 2]?.contributingImdCountMtd?.growthOverLy_percentage ?? 0}}%</td>
-                <td>{{topline_total_data.renewal.retail_sub_channels[(topline_total_data.renewal.retail_sub_channels).length - 2]?.mtd_growth_over_lymtd_RR ?? 0}}%</td>
+                <!-- <td>{{topline_total_data.renewal.retail_sub_channels[(topline_total_data.renewal.retail_sub_channels).length - 2]?.mtd_growth_over_lymtd_RR ?? 0}}%</td> -->
                 <td>{{topline_total_data.agent_performance.retail_sub_channels[(topline_total_data.agent_performance.retail_sub_channels).length - 2]?.mtd?.growthPercentage_lymtd_NOP ?? 0}}%</td>
 
-                <!-- <td>94</td>
-                <td>67</td> -->
+                <!-- <td></td> -->
+                <!-- <td>67</td> -->
+              </tr>
+            </tbody>
+          </table>
+  
+        </div>
+
+
+
+        <div class="row" style="background-color: #fdfdfd;">
+  
+          <table class="table gaugetable">
+            <thead>
+              <tr  style="font-size:16px!important; " >
+                <th scope="col gaugetable_firstCol" style="background-color: #e6e6e6!important;">Metric</th>
+
+                <th scope="col" class="gaugetable_tableHeader" >MTD</th>
+                <th scope="col" class="gaugetable_tableHeader" >LMTD</th>
+                <th scope="col" class="gaugetable_tableHeader" >LYMTD</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr  style="font-size:16px!important;">
+                <td class="gaugetable_firstCol" scope="row">RR %</td>
+
+                <td class="" >{{topline_total_data.renewal.retail_sub_channels[(topline_total_data.renewal.retail_sub_channels).length - 2]?.mtd_RR ?? 0}}%</td>
+                <td class="" >{{topline_total_data.renewal.retail_sub_channels[(topline_total_data.renewal.retail_sub_channels).length - 2]?.lmtd_RR ?? 0}}%</td>
+                <td class="" >{{topline_total_data.renewal.retail_sub_channels[(topline_total_data.renewal.retail_sub_channels).length - 2]?.lymtd_RR ?? 0}}%</td>
+
               </tr>
             </tbody>
           </table>
@@ -316,7 +370,7 @@
         </div> -->
         
 
-        <div class="row">
+        <!-- <div class="row">
 
           <div class="col-md-6" style="display: flex;  align-items: center; height:400px; ">
 
@@ -326,19 +380,13 @@
               </h3>
 
               <div class="concentric-progress-bars">
-                <!-- Outer progress bar -->
                 <div class="progress-bar outer" [attr.data-value]="100 + '%'">
                   <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + health_target + ''"></div>
                 </div>
-              
-                <!-- Middle progress bar -->          
+                    
                 <div class="progress-bar middle" [attr.data-value]="health_achv_per + '%'" >
                   <div class="progress" [ngStyle]="getMiddleProgressStyles(health_achv_per)" [title]="'Achievement: ' + health_achv + ''" ></div>
                 </div>
-      
-      
-              
-                <!-- Inner progress bar with center text -->
                 <div class="progress-bar inner"  (click)="openModal(health)">
                   <div class="center-text">{{health_centerText}}</div>
                 </div>
@@ -353,7 +401,58 @@
             </div>
           </div>
 
+        </div> -->
+
+
+
+        <div class="row">
+
+          <div class="col-md-6" style="display: flex;  align-items: center;">
+
+            <div class="row" style="display: flex; justify-content: center;">
+              <h3>
+                Health
+              </h3>
+              <div class="concentric-progress-bars">
+                <div class="progress-bar outer" [attr.data-value]="100 + '%'">
+                  <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + health_target + ''"></div>
+                </div>
+                    
+                <div class="progress-bar middle" [attr.data-value]="health_achv_per + '%'" >
+                  <div class="progress" [ngStyle]="getMiddleProgressStyles(health_achv_per)" [title]="'Achievement: ' + health_achv + ''" ></div>
+                </div>
+                <div class="progress-bar inner"  (click)="openModal(health)">
+                  <div class="center-text">{{health_centerText}}</div>
+                </div>
+              </div>
+            </div>
+
+            
+
+          </div>
+
+          <div class="col-md-6">
+            <div class="row" style="max-height: 200px;">
+              <app-column-chart [id]="'health_mtd_cor'" [chartData]="health_mtd_cor" [height]="'200px'" style="width:100%; "></app-column-chart>
+            </div>
+
+            <div class="row" style="max-height: 200px;">
+              <app-column-chart [id]="'health_mtd_lr'" [chartData]="health_mtd_lr" [height]="'200px'"  style="width: 100%; "></app-column-chart>
+            </div>
+          </div>
+          
+
+
+
         </div>
+
+
+
+
+
+
+
+
   
   
   
@@ -364,9 +463,10 @@
               <tr  style="font-size:16px!important; " >
                 <th scope="col gaugetable_firstCol" style="background-color: #e6e6e6!important;">Growth Over (%)</th>
                 <th scope="col" class="gaugetable_tableHeader" >GWP</th>
-                <th scope="col" class="gaugetable_tableHeader" >IMD Count</th>
-                <th scope="col" class="gaugetable_tableHeader" >Renewals</th>
+                <th scope="col" class="gaugetable_tableHeader" >Contributing IMD Count</th>
+                <!-- <th scope="col" class="gaugetable_tableHeader" >Renewals</th> -->
                 <th scope="col" class="gaugetable_tableHeader" >NOP</th>
+                <!-- <th scope="col" class="gaugetable_tableHeader" >Growth %</th> -->
               </tr>
             </thead>
             <tbody>
@@ -375,7 +475,7 @@
 
                 <td>{{health_total_data.agent_performance.retail_sub_channels[(health_total_data.agent_performance.retail_sub_channels).length - 2]?.mtd?.growthPercentage_lmtd ?? 0}}%</td>
                 <td>{{health_total_data.agent_performance.retail_sub_channels[(health_total_data.agent_performance.retail_sub_channels).length - 2]?.contributingImdCountMtd?.growthOverLm_percentage ?? 0}}%</td>
-                <td>{{health_total_data.renewal.retail_sub_channels[(health_total_data.renewal.retail_sub_channels).length - 2]?.mtd_growth_over_lmtd_RR ?? 0}}%</td>
+                <!-- <td>{{health_total_data.renewal.retail_sub_channels[(health_total_data.renewal.retail_sub_channels).length - 2]?.mtd_growth_over_lmtd_RR ?? 0}}%</td> -->
                 <td>{{health_total_data.agent_performance.retail_sub_channels[(health_total_data.agent_performance.retail_sub_channels).length - 2]?.mtd?.growthPercentage_lmtd_NOP ?? 0}}%</td>
 
               </tr>
@@ -384,14 +484,42 @@
   
                 <td>{{health_total_data.agent_performance.retail_sub_channels[(health_total_data.agent_performance.retail_sub_channels).length - 2]?.mtd?.growthPercentage_lymtd ?? 0}}%</td>
                 <td>{{health_total_data.agent_performance.retail_sub_channels[(health_total_data.agent_performance.retail_sub_channels).length - 2]?.contributingImdCountMtd?.growthOverLy_percentage ?? 0}}%</td>
-                <td>{{health_total_data.renewal.retail_sub_channels[(health_total_data.renewal.retail_sub_channels).length - 2]?.mtd_growth_over_lymtd_RR ?? 0}}%</td>
+                <!-- <td>{{health_total_data.renewal.retail_sub_channels[(health_total_data.renewal.retail_sub_channels).length - 2]?.mtd_growth_over_lymtd_RR ?? 0}}%</td> -->
                 <td>{{health_total_data.agent_performance.retail_sub_channels[(health_total_data.agent_performance.retail_sub_channels).length - 2]?.mtd?.growthPercentage_lymtd_NOP ?? 0}}%</td>
               </tr>
             </tbody>
           </table>
   
         </div>
-        
+
+
+        <div class="row" style="background-color: #fdfdfd;">
+  
+          <table class="table gaugetable">
+            <thead>
+              <tr  style="font-size:16px!important; " >
+                <th scope="col gaugetable_firstCol" style="background-color: #e6e6e6!important;">Metric</th>
+
+                <th scope="col" class="gaugetable_tableHeader" >MTD</th>
+                <th scope="col" class="gaugetable_tableHeader" >LMTD</th>
+                <th scope="col" class="gaugetable_tableHeader" >LYMTD</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr  style="font-size:16px!important;">
+                <td class="gaugetable_firstCol" scope="row">RR %</td>
+                
+                <td class="" >{{health_total_data.renewal.retail_sub_channels[(health_total_data.renewal.retail_sub_channels).length - 2]?.mtd_RR ?? 0}}%</td>
+                <td class="" >{{health_total_data.renewal.retail_sub_channels[(health_total_data.renewal.retail_sub_channels).length - 2]?.lmtd_RR ?? 0}}%</td>
+                <td class="" >{{health_total_data.renewal.retail_sub_channels[(health_total_data.renewal.retail_sub_channels).length - 2]?.lymtd_RR ?? 0}}%</td>
+
+              </tr>
+            </tbody>
+          </table>
+  
+        </div>
+
       </div>
   
   
@@ -413,7 +541,7 @@
         </div> -->
         
   
-        <div class="row">
+        <!-- <div class="row">
 
           <div class="col-md-6" style="display: flex;  align-items: center;">
 
@@ -421,6 +549,46 @@
               <h3>
                 FRH
               </h3>
+              <div class="concentric-progress-bars">
+                <div class="progress-bar outer" [attr.data-value]="100 + '%'">
+                  <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + frh_target + ''"></div>
+                </div>       
+                <div class="progress-bar middle" [attr.data-value]="frh_achv_per + '%'" >
+                  <div class="progress" [ngStyle]="getMiddleProgressStyles(frh_achv_per)" [title]="'Achievement: ' + frh_achv + ''" ></div>
+                </div>
+                <div class="progress-bar inner"  (click)="openModal(frh)">
+                  <div class="center-text">{{frh_centerText}}</div>
+                </div>
+              </div>
+            </div>
+
+            
+
+          </div>
+
+          <div class="col-md-6">
+            <div class="row" style="max-height: 200px;">
+              <app-column-chart [id]="'frh_mtd_cor'" [chartData]="frh_mtd_cor" [height]="'200px'" style="width:100%; "></app-column-chart>
+            </div>
+
+            <div class="row" style="max-height: 200px;">
+              <app-column-chart [id]="'frh_mtd_lr'" [chartData]="frh_mtd_lr" [height]="'200px'"  style="width: 100%; "></app-column-chart>
+            </div>
+          </div>
+        </div> -->
+
+
+
+
+        <div class="row">
+
+          <div class="col-md-6" style="display: flex;  align-items: center; height:400px; ">
+
+            <div class="row" style="display: flex; justify-content: center;">
+              <h3>
+                FRH
+              </h3>
+
               <div class="concentric-progress-bars">
                 <!-- Outer progress bar -->
                 <div class="progress-bar outer" [attr.data-value]="100 + '%'">
@@ -437,25 +605,15 @@
                   <div class="center-text">{{frh_centerText}}</div>
                 </div>
               </div>
+
             </div>
-
-            
-
           </div>
 
           <div class="col-md-6">
-            <div class="row" style="max-height: 200px;">
-              <!-- <app-column-chart [chartData]="chartInfo" (chartClicked)="onChartEvent($event)"></app-column-chart> -->
+            <div class="row" style="padding-top: 120px!important;">
               <app-column-chart [id]="'frh_mtd_cor'" [chartData]="frh_mtd_cor" [height]="'200px'" style="width:100%; "></app-column-chart>
             </div>
-
-            <div class="row" style="max-height: 200px;">
-              <app-column-chart [id]="'frh_mtd_lr'" [chartData]="frh_mtd_lr" [height]="'200px'"  style="width: 100%; "></app-column-chart>
-            </div>
           </div>
-          
-
-
 
         </div>
   
@@ -468,9 +626,10 @@
               <tr  style="font-size:16px!important; " >
                 <th scope="col gaugetable_firstCol" style="background-color: #e6e6e6!important;">Growth Over (%)</th>
                 <th scope="col" class="gaugetable_tableHeader" >GWP</th>
-                <th scope="col" class="gaugetable_tableHeader" >IMD Count</th>
+                <th scope="col" class="gaugetable_tableHeader" >Contributing IMD Count</th>
                 <!-- <th scope="col" class="gaugetable_tableHeader" >Renewals</th> -->
                 <th scope="col" class="gaugetable_tableHeader" >NOP</th>
+                <!-- <th scope="col" class="gaugetable_tableHeader" >Growth %</th> -->
               </tr>
             </thead>
             <tbody>
@@ -494,6 +653,36 @@
           </table>
   
         </div>
+
+
+        <!-- <div class="row" style="background-color: #fdfdfd;">
+  
+          <table class="table gaugetable">
+            <thead>
+              <tr  style="font-size:16px!important; " >
+                <th scope="col gaugetable_firstCol" style="background-color: #e6e6e6!important;">Metric</th>
+
+                <th scope="col" class="gaugetable_tableHeader" >MTD</th>
+                <th scope="col" class="gaugetable_tableHeader" >LMTD</th>
+                <th scope="col" class="gaugetable_tableHeader" >LYMTD</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr  style="font-size:16px!important;">
+                <td class="gaugetable_firstCol" scope="row">RR %</td>
+                
+                <td class="" >{{frh_total_data.renewal.retail_sub_channels[(frh_total_data.renewal.retail_sub_channels).length - 2]?.mtd_RR ?? 0}}%</td>
+                <td class="" >{{frh_total_data.renewal.retail_sub_channels[(frh_total_data.renewal.retail_sub_channels).length - 2]?.lmtd_RR ?? 0}}%</td>
+                <td class="" >{{frh_total_data.renewal.retail_sub_channels[(frh_total_data.renewal.retail_sub_channels).length - 2]?.lymtd_RR ?? 0}}%</td>
+
+              </tr>
+            </tbody>
+          </table>
+  
+        </div> -->
+
+
         
       </div>
   
@@ -507,7 +696,7 @@
         </div> -->
         
   
-        <div class="row">
+        <!-- <div class="row">
 
           <div class="col-md-6" style="display: flex;  align-items: center; height:400px; ">
 
@@ -517,19 +706,12 @@
               </h3>
 
               <div class="concentric-progress-bars">
-                <!-- Outer progress bar -->
                 <div class="progress-bar outer" [attr.data-value]="100 + '%'">
                   <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + pvtcar_target + ''"></div>
-                </div>
-              
-                <!-- Middle progress bar -->          
+                </div>         
                 <div class="progress-bar middle" [attr.data-value]="pvtcar_achv_per + '%'" >
                   <div class="progress" [ngStyle]="getMiddleProgressStyles(pvtcar_achv_per)" [title]="'Achievement: ' + pvtcar_achv + ''" ></div>
                 </div>
-      
-      
-              
-                <!-- Inner progress bar with center text -->
                 <div class="progress-bar inner"  (click)="openModal(pvtcar)">
                   <div class="center-text">{{pvtcar_centerText}}</div>
                 </div>
@@ -541,13 +723,58 @@
             <div class="row" style="padding-top: 120px!important;">
               <app-column-chart [id]="'pvtcar_mtd_cor'" [chartData]="pvtcar_mtd_cor" [height]="'200px'" style="width:100%; "></app-column-chart>
             </div>
-
-            <!-- <div class="row" style="max-height: 200px;">
-              <app-column-chart [id]="'frh_mtd_lr'" [chartData]="frh_mtd_lr" [height]="'200px'"  style="width: 100%; "></app-column-chart>
-            </div> -->
           </div>
 
+        </div> -->
+
+
+
+
+        <div class="row">
+
+          <div class="col-md-6" style="display: flex;  align-items: center;">
+
+            <div class="row" style="display: flex; justify-content: center;">
+              <h3>
+                Private Car
+              </h3>
+              <div class="concentric-progress-bars">
+                <div class="progress-bar outer" [attr.data-value]="100 + '%'">
+                  <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + pvtcar_target + ''"></div>
+                </div>         
+                <div class="progress-bar middle" [attr.data-value]="pvtcar_achv_per + '%'" >
+                  <div class="progress" [ngStyle]="getMiddleProgressStyles(pvtcar_achv_per)" [title]="'Achievement: ' + pvtcar_achv + ''" ></div>
+                </div>
+                <div class="progress-bar inner"  (click)="openModal(pvtcar)">
+                  <div class="center-text">{{pvtcar_centerText}}</div>
+                </div>
+              </div>
+            </div>
+
+            
+
+          </div>
+
+          <div class="col-md-6">
+            <div class="row" style="max-height: 200px;">
+              <app-column-chart [id]="'pvtcar_mtd_cor'" [chartData]="pvtcar_mtd_cor" [height]="'200px'" style="width:100%; "></app-column-chart>
+            </div>
+
+            <div class="row" style="max-height: 200px;">
+              <app-column-chart [id]="'pvtcar_mtd_lr'" [chartData]="pvtcar_mtd_lr" [height]="'200px'"  style="width: 100%; "></app-column-chart>
+            </div>
+          </div>
+          
+
+
+
         </div>
+
+
+
+
+
+
   
   
   
@@ -558,9 +785,10 @@
               <tr  style="font-size:16px!important; " >
                 <th scope="col gaugetable_firstCol" style="background-color: #e6e6e6!important;">Growth Over (%)</th>
                 <th scope="col" class="gaugetable_tableHeader" >GWP</th>
-                <th scope="col" class="gaugetable_tableHeader" >IMD Count</th>
-                <th scope="col" class="gaugetable_tableHeader" >Renewals</th>
+                <th scope="col" class="gaugetable_tableHeader" >Contributing IMD Count</th>
+                <!-- <th scope="col" class="gaugetable_tableHeader" >Renewals</th> -->
                 <th scope="col" class="gaugetable_tableHeader" >NOP</th>
+                <!-- <th scope="col" class="gaugetable_tableHeader" >Growth %</th> -->
               </tr>
             </thead>
             <tbody>
@@ -569,7 +797,7 @@
   
                 <td>{{pvtCar_total_data.agent_performance.retail_sub_channels[(pvtCar_total_data.agent_performance.retail_sub_channels).length - 2]?.mtd?.growthPercentage_lmtd ?? 0}}%</td>
                 <td>{{pvtCar_total_data.agent_performance.retail_sub_channels[(pvtCar_total_data.agent_performance.retail_sub_channels).length - 2]?.contributingImdCountMtd?.growthOverLm_percentage ?? 0}}%</td>
-                <td>{{pvtCar_total_data.renewal.retail_sub_channels[(pvtCar_total_data.renewal.retail_sub_channels).length - 2]?.mtd_growth_over_lmtd_RR ?? 0}}%</td>
+                <!-- <td>{{pvtCar_total_data.renewal.retail_sub_channels[(pvtCar_total_data.renewal.retail_sub_channels).length - 2]?.mtd_growth_over_lmtd_RR ?? 0}}%</td> -->
                 <td>{{pvtCar_total_data.agent_performance.retail_sub_channels[(pvtCar_total_data.agent_performance.retail_sub_channels).length - 2]?.mtd?.growthPercentage_lmtd_NOP ?? 0}}%</td>
               </tr>
               <tr  style="font-size:16px!important;">
@@ -577,13 +805,46 @@
   
                 <td>{{pvtCar_total_data.agent_performance.retail_sub_channels[(pvtCar_total_data.agent_performance.retail_sub_channels).length - 2]?.mtd?.growthPercentage_lymtd ?? 0}}%</td>
                 <td>{{pvtCar_total_data.agent_performance.retail_sub_channels[(pvtCar_total_data.agent_performance.retail_sub_channels).length - 2]?.contributingImdCountMtd?.growthOverLy_percentage ?? 0}}%</td>
-                <td>{{pvtCar_total_data.renewal.retail_sub_channels[(pvtCar_total_data.renewal.retail_sub_channels).length - 2]?.mtd_growth_over_lymtd_RR ?? 0}}%</td>
+                <!-- <td>{{pvtCar_total_data.renewal.retail_sub_channels[(pvtCar_total_data.renewal.retail_sub_channels).length - 2]?.mtd_growth_over_lymtd_RR ?? 0}}%</td> -->
                 <td>{{pvtCar_total_data.agent_performance.retail_sub_channels[(pvtCar_total_data.agent_performance.retail_sub_channels).length - 2]?.mtd?.growthPercentage_lymtd_NOP ?? 0}}%</td>
               </tr>
             </tbody>
           </table>
   
         </div>
+
+
+
+        <div class="row" style="background-color: #fdfdfd;">
+  
+          <table class="table gaugetable">
+            <thead>
+              <tr  style="font-size:16px!important; " >
+                <th scope="col gaugetable_firstCol" style="background-color: #e6e6e6!important;">Metric</th>
+
+                <th scope="col" class="gaugetable_tableHeader" >MTD</th>
+                <th scope="col" class="gaugetable_tableHeader" >LMTD</th>
+                <th scope="col" class="gaugetable_tableHeader" >LYMTD</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr  style="font-size:16px!important;">
+                <td class="gaugetable_firstCol" scope="row">RR %</td>
+                
+                <td class="" >{{pvtCar_total_data.renewal.retail_sub_channels[(pvtCar_total_data.renewal.retail_sub_channels).length - 2]?.mtd_RR ?? 0}}%</td>
+                <td class="" >{{pvtCar_total_data.renewal.retail_sub_channels[(pvtCar_total_data.renewal.retail_sub_channels).length - 2]?.lmtd_RR ?? 0}}%</td>
+                <td class="" >{{pvtCar_total_data.renewal.retail_sub_channels[(pvtCar_total_data.renewal.retail_sub_channels).length - 2]?.lymtd_RR ?? 0}}%</td>
+
+              </tr>
+            </tbody>
+          </table>
+  
+        </div>
+
+
+
+
         
       </div>
   
@@ -606,7 +867,7 @@
         </div> -->
         
   
-        <div class="row" >
+        <!-- <div class="row" >
 
           <div class="col-md-6" style="display:flex; align-items: center;">
 
@@ -616,19 +877,13 @@
                 ROPC
               </h3>
               <div class="concentric-progress-bars">
-                <!-- Outer progress bar -->
                 <div class="progress-bar outer" [attr.data-value]="100 + '%'">
                   <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + ropc_target + ''"></div>
                 </div>
-              
-                <!-- Middle progress bar -->          
+                         
                 <div class="progress-bar middle" [attr.data-value]="ropc_achv_per + '%'" >
                   <div class="progress" [ngStyle]="getMiddleProgressStyles(ropc_achv_per)" [title]="'Achievement: ' + ropc_achv + ''" ></div>
                 </div>
-      
-      
-              
-                <!-- Inner progress bar with center text -->
                 <div class="progress-bar inner"   (click)="openModal(ropc)">
                   <div class="center-text">{{ropc_centerText}}</div>
                 </div>
@@ -640,7 +895,6 @@
 
           <div class="col-md-6">
             <div class="row" style="max-height: 200px;">
-              <!-- <app-column-chart [chartData]="chartInfo" (chartClicked)="onChartEvent($event)"></app-column-chart> -->
               <app-column-chart [id]="'ropc_mtd_cor'" [chartData]="ropc_mtd_cor" [height]="'200px'" style="width:100%; "></app-column-chart>
             </div>
 
@@ -648,7 +902,48 @@
               <app-column-chart [id]="'ropc_mtd_lr'" [chartData]="ropc_mtd_lr" [height]="'200px'"  style="width: 100%; "></app-column-chart>
             </div>
           </div>
+        </div> -->
+
+
+
+
+        <div class="row">
+
+          <div class="col-md-6" style="display: flex;  align-items: center; height:400px; ">
+
+            <div class="row" style="display: flex; justify-content: center;">
+              <h3>
+                ROPC
+              </h3>
+
+              <div class="concentric-progress-bars">
+                <div class="progress-bar outer" [attr.data-value]="100 + '%'">
+                  <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + ropc_target + ''"></div>
+                </div>
+                         
+                <div class="progress-bar middle" [attr.data-value]="ropc_achv_per + '%'" >
+                  <div class="progress" [ngStyle]="getMiddleProgressStyles(ropc_achv_per)" [title]="'Achievement: ' + ropc_achv + ''" ></div>
+                </div>
+                <div class="progress-bar inner"   (click)="openModal(ropc)">
+                  <div class="center-text">{{ropc_centerText}}</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="row" style="padding-top: 120px!important;">
+              <app-column-chart [id]="'ropc_mtd_cor'" [chartData]="ropc_mtd_cor" [height]="'200px'" style="width:100%; "></app-column-chart>
+            </div>
+          </div>
+
         </div>
+
+
+
+
+
   
   
   
@@ -659,8 +954,9 @@
               <tr  style="font-size:16px!important; " >
                 <th scope="col gaugetable_firstCol" style="background-color: #e6e6e6!important;">Growth Over (%)</th>
                 <th scope="col" class="gaugetable_tableHeader" >GWP</th>
-                <th scope="col" class="gaugetable_tableHeader" >IMD Count</th>
+                <th scope="col" class="gaugetable_tableHeader" >Contributing IMD Count</th>
                 <th scope="col" class="gaugetable_tableHeader" >NOP</th>
+                <!-- <th scope="col" class="gaugetable_tableHeader" >Growth %</th> -->
               </tr>
             </thead>
             <tbody>
@@ -682,6 +978,39 @@
           </table>
   
         </div>
+
+
+
+        <!-- <div class="row" style="background-color: #fdfdfd;">
+  
+          <table class="table gaugetable">
+            <thead>
+              <tr  style="font-size:16px!important; " >
+                <th scope="col gaugetable_firstCol" style="background-color: #e6e6e6!important;">Metric</th>
+
+                <th scope="col" class="gaugetable_tableHeader" >MTD</th>
+                <th scope="col" class="gaugetable_tableHeader" >LMTD</th>
+                <th scope="col" class="gaugetable_tableHeader" >LYMTD</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr  style="font-size:16px!important;">
+                <td class="gaugetable_firstCol" scope="row">RR %</td>
+                
+                <td class="" >{{ropc_total_data.renewal.retail_sub_channels[(ropc_total_data.renewal.retail_sub_channels).length - 2]?.mtd_RR ?? 0}}%</td>
+                <td class="" >{{ropc_total_data.renewal.retail_sub_channels[(ropc_total_data.renewal.retail_sub_channels).length - 2]?.lmtd_RR ?? 0}}%</td>
+                <td class="" >{{ropc_total_data.renewal.retail_sub_channels[(ropc_total_data.renewal.retail_sub_channels).length - 2]?.lymtd_RR ?? 0}}%</td>
+
+              </tr>
+            </tbody>
+          </table>
+  
+        </div> -->
+
+
+
+
         
       </div>
   
@@ -710,7 +1039,7 @@
         </div> -->
 
 
-        <div class="row">
+        <!-- <div class="row">
 
           <div class="col-md-6" style="display: flex;  align-items: center; height:400px; ">
 
@@ -738,13 +1067,59 @@
             <div class="row" style="padding-top: 120px!important;">
               <app-column-chart [id]="'property_mtd_cor'" [chartData]="property_mtd_cor" [height]="'200px'" style="width:100%; "></app-column-chart>
             </div>
-
-            <!-- <div class="row" style="max-height: 200px;">
-              <app-column-chart [id]="'frh_mtd_lr'" [chartData]="frh_mtd_lr" [height]="'200px'"  style="width: 100%; "></app-column-chart>
-            </div> -->
           </div>
 
+        </div> -->
+
+
+
+
+
+        <div class="row">
+
+          <div class="col-md-6" style="display: flex;  align-items: center;">
+
+            <div class="row" style="display: flex; justify-content: center;">
+              <h3>
+                Property
+              </h3>
+              <div class="concentric-progress-bars">
+                <div class="progress-bar outer" [attr.data-value]="100 + '%'">
+                  <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + property_target + ''"></div>
+                </div>       
+                <div class="progress-bar middle" [attr.data-value]="property_achv_per + '%'" >
+                  <div class="progress" [ngStyle]="getMiddleProgressStyles(property_achv_per)" [title]="'Achievement: ' + property_achv + ''" ></div>
+                </div>
+                <div class="progress-bar inner"  (click)="openModal(property)">
+                  <div class="center-text">{{property_centerText}}</div>
+                </div>
+              </div>
+            </div>
+
+            
+
+          </div>
+
+          <div class="col-md-6">
+            <div class="row" style="max-height: 200px;">
+              <app-column-chart [id]="'property_mtd_cor'" [chartData]="property_mtd_cor" [height]="'200px'" style="width:100%; "></app-column-chart>
+            </div>
+
+            <div class="row" style="max-height: 200px;">
+              <app-column-chart [id]="'property_mtd_lr'" [chartData]="property_mtd_lr" [height]="'200px'"  style="width: 100%; "></app-column-chart>
+            </div>
+          </div>
+          
+
+
+
         </div>
+
+
+
+
+
+
   
   
   
@@ -755,8 +1130,8 @@
               <tr  style="font-size:16px!important; " >
                 <th scope="col gaugetable_firstCol" style="background-color: #e6e6e6!important;">Growth Over (%)</th>
                 <th scope="col" class="gaugetable_tableHeader" >GWP</th>
-                <th scope="col" class="gaugetable_tableHeader" >IMD Count</th>
-                <th scope="col" class="gaugetable_tableHeader" >Renewals</th>
+                <th scope="col" class="gaugetable_tableHeader" >Contributing IMD Count</th>
+                <!-- <th scope="col" class="gaugetable_tableHeader" >Renewals</th> -->
                 <th scope="col" class="gaugetable_tableHeader" >NOP</th>
               </tr>
             </thead>
@@ -766,7 +1141,7 @@
   
                 <td>{{property_total_data.agent_performance.retail_sub_channels[(property_total_data.agent_performance.retail_sub_channels).length - 2]?.mtd?.growthPercentage_lmtd ?? 0}}%</td>
                 <td>{{property_total_data.agent_performance.retail_sub_channels[(property_total_data.agent_performance.retail_sub_channels).length - 2]?.contributingImdCountMtd?.growthOverLm_percentage ?? 0}}%</td>
-                <td>{{property_total_data.renewal.retail_sub_channels[(property_total_data.renewal.retail_sub_channels).length - 2]?.mtd_growth_over_lmtd_RR ?? 0}}%</td>
+                <!-- <td>{{property_total_data.renewal.retail_sub_channels[(property_total_data.renewal.retail_sub_channels).length - 2]?.mtd_growth_over_lmtd_RR ?? 0}}%</td> -->
                 <td>{{property_total_data.agent_performance.retail_sub_channels[(property_total_data.agent_performance.retail_sub_channels).length - 2]?.mtd?.growthPercentage_lmtd_NOP ?? 0}}%</td>
               </tr>
               <tr  style="font-size:16px!important;">
@@ -774,13 +1149,47 @@
   
                 <td>{{property_total_data.agent_performance.retail_sub_channels[(property_total_data.agent_performance.retail_sub_channels).length - 2]?.mtd?.growthPercentage_lymtd ?? 0}}%</td>
                 <td>{{property_total_data.agent_performance.retail_sub_channels[(property_total_data.agent_performance.retail_sub_channels).length - 2]?.contributingImdCountMtd?.growthOverLy_percentage ?? 0}}%</td>
-                <td>{{property_total_data.renewal.retail_sub_channels[(property_total_data.renewal.retail_sub_channels).length - 2]?.mtd_growth_over_lymtd_RR ?? 0}}%</td>
+                <!-- <td>{{property_total_data.renewal.retail_sub_channels[(property_total_data.renewal.retail_sub_channels).length - 2]?.mtd_growth_over_lymtd_RR ?? 0}}%</td> -->
                 <td>{{property_total_data.agent_performance.retail_sub_channels[(property_total_data.agent_performance.retail_sub_channels).length - 2]?.mtd?.growthPercentage_lymtd_NOP ?? 0}}%</td>
               </tr>
             </tbody>
           </table>
   
         </div>
+
+
+
+
+        <div class="row" style="background-color: #fdfdfd;">
+  
+          <table class="table gaugetable">
+            <thead>
+              <tr  style="font-size:16px!important; " >
+                <th scope="col gaugetable_firstCol" style="background-color: #e6e6e6!important;">Metric</th>
+
+                <th scope="col" class="gaugetable_tableHeader" >MTD</th>
+                <th scope="col" class="gaugetable_tableHeader" >LMTD</th>
+                <th scope="col" class="gaugetable_tableHeader" >LYMTD</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr  style="font-size:16px!important;">
+                <td class="gaugetable_firstCol" scope="row">RR %</td>
+                
+                <td class="" >{{property_total_data.renewal.retail_sub_channels[(property_total_data.renewal.retail_sub_channels).length - 2]?.mtd_RR ?? 0}}%</td>
+                <td class="" >{{property_total_data.renewal.retail_sub_channels[(property_total_data.renewal.retail_sub_channels).length - 2]?.lmtd_RR ?? 0}}%</td>
+                <td class="" >{{property_total_data.renewal.retail_sub_channels[(property_total_data.renewal.retail_sub_channels).length - 2]?.lymtd_RR ?? 0}}%</td>
+
+              </tr>
+            </tbody>
+          </table>
+  
+        </div>
+
+
+
+
         
       </div>
   
@@ -836,8 +1245,8 @@
               <tr  style="font-size:16px!important; " >
                 <th scope="col gaugetable_firstCol" style="background-color: #e6e6e6!important;">Growth Over (%)</th>
                 <th scope="col" class="gaugetable_tableHeader" >GWP</th>
-                <th scope="col" class="gaugetable_tableHeader" >IMD Count</th>
-                <th scope="col" class="gaugetable_tableHeader" >Renewals</th>
+                <th scope="col" class="gaugetable_tableHeader" >Contributing IMD Count</th>
+                <!-- <th scope="col" class="gaugetable_tableHeader" >Renewals</th> -->
                 <th scope="col" class="gaugetable_tableHeader" >NOP</th>
               </tr>
             </thead>
@@ -848,7 +1257,7 @@
                 <td>{{topline_total_data.agent_performance.retail_sub_channels[(topline_total_data.agent_performance.retail_sub_channels).length - 2]?.ftm?.growthPercentage_lftm ?? 0}}%</td>
 
                 <td>{{topline_total_data.agent_performance.retail_sub_channels[(topline_total_data.agent_performance.retail_sub_channels).length - 2]?.contributingImdCountFtm?.growthOverLm_percentage ?? 0}}%</td>
-                <td>{{topline_total_data.renewal.retail_sub_channels[(topline_total_data.renewal.retail_sub_channels).length - 2]?.ftm_growth_over_lftm_RR ?? 0}}%</td>
+                <!-- <td>{{topline_total_data.renewal.retail_sub_channels[(topline_total_data.renewal.retail_sub_channels).length - 2]?.ftm_growth_over_lftm_RR ?? 0}}%</td> -->
                 <td>{{topline_total_data.agent_performance.retail_sub_channels[(topline_total_data.agent_performance.retail_sub_channels).length - 2]?.ftm?.growthPercentage_lftm_NOP ?? 0}}%</td>
               </tr>
 
@@ -858,8 +1267,36 @@
                 <td>{{topline_total_data.agent_performance.retail_sub_channels[(topline_total_data.agent_performance.retail_sub_channels).length - 2]?.ftm?.growthPercentage_lyftm ?? 0}}%</td>
 
                 <td>{{topline_total_data.agent_performance.retail_sub_channels[(topline_total_data.agent_performance.retail_sub_channels).length - 2]?.contributingImdCountFtm?.growthOverLy_percentage ?? 0}}%</td>
-                <td>{{topline_total_data.renewal.retail_sub_channels[(topline_total_data.renewal.retail_sub_channels).length - 2]?.ftm_growth_over_lyftm_RR ?? 0}}%</td>
+                <!-- <td>{{topline_total_data.renewal.retail_sub_channels[(topline_total_data.renewal.retail_sub_channels).length - 2]?.ftm_growth_over_lyftm_RR ?? 0}}%</td> -->
                 <td>{{topline_total_data.agent_performance.retail_sub_channels[(topline_total_data.agent_performance.retail_sub_channels).length - 2]?.ftm?.growthPercentage_lyftm_base_NOP ?? 0}}%</td>
+              </tr>
+            </tbody>
+          </table>
+  
+        </div>
+
+
+        <div class="row" style="background-color: #fdfdfd;">
+  
+          <table class="table gaugetable">
+            <thead>
+              <tr  style="font-size:16px!important; " >
+                <th scope="col gaugetable_firstCol" style="background-color: #e6e6e6!important;">Metric</th>
+
+                <th scope="col" class="gaugetable_tableHeader" >FTM</th>
+                <th scope="col" class="gaugetable_tableHeader" >LFTM</th>
+                <th scope="col" class="gaugetable_tableHeader" >LYFTM</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr  style="font-size:16px!important;">
+                <td class="gaugetable_firstCol" scope="row">RR %</td>
+                
+                <td class="" >{{topline_total_data.renewal.retail_sub_channels[(topline_total_data.renewal.retail_sub_channels).length - 2]?.ftm_RR ?? 0}}%</td>
+                <td class="" >{{topline_total_data.renewal.retail_sub_channels[(topline_total_data.renewal.retail_sub_channels).length - 2]?.lftm_RR ?? 0}}%</td>
+                <td class="" >{{topline_total_data.renewal.retail_sub_channels[(topline_total_data.renewal.retail_sub_channels).length - 2]?.lyftm_RR ?? 0}}%</td>
+
               </tr>
             </tbody>
           </table>
@@ -908,8 +1345,8 @@
               <tr  style="font-size:16px!important; " >
                 <th scope="col gaugetable_firstCol" style="background-color: #e6e6e6!important;">Growth Over (%)</th>
                 <th scope="col" class="gaugetable_tableHeader" >GWP</th>
-                <th scope="col" class="gaugetable_tableHeader" >IMD Count</th>
-                <th scope="col" class="gaugetable_tableHeader" >Renewals</th>
+                <th scope="col" class="gaugetable_tableHeader" >Contributing IMD Count</th>
+                <!-- <th scope="col" class="gaugetable_tableHeader" >Renewals</th> -->
                 <th scope="col" class="gaugetable_tableHeader" >NOP</th>
               </tr>
             </thead>
@@ -920,7 +1357,7 @@
                 <td>{{health_total_data.agent_performance.retail_sub_channels[(health_total_data.agent_performance.retail_sub_channels).length - 2]?.ftm?.growthPercentage_lftm ?? 0}}%</td>
 
                 <td>{{health_total_data.agent_performance.retail_sub_channels[(health_total_data.agent_performance.retail_sub_channels).length - 2]?.contributingImdCountFtm?.growthOverLm_percentage ?? 0}}%</td>
-                <td>{{health_total_data.renewal.retail_sub_channels[(health_total_data.renewal.retail_sub_channels).length - 2]?.ftm_growth_over_lftm_RR ?? 0}}%</td>
+                <!-- <td>{{health_total_data.renewal.retail_sub_channels[(health_total_data.renewal.retail_sub_channels).length - 2]?.ftm_growth_over_lftm_RR ?? 0}}%</td> -->
                 <td>{{health_total_data.agent_performance.retail_sub_channels[(health_total_data.agent_performance.retail_sub_channels).length - 2]?.ftm?.growthPercentage_lftm_NOP ?? 0}}%</td>
               </tr>
               <tr  style="font-size:16px!important;">
@@ -929,13 +1366,45 @@
                 <td>{{health_total_data.agent_performance.retail_sub_channels[(health_total_data.agent_performance.retail_sub_channels).length - 2]?.ftm?.growthPercentage_lyftm ?? 0}}%</td>
 
                 <td>{{health_total_data.agent_performance.retail_sub_channels[(health_total_data.agent_performance.retail_sub_channels).length - 2]?.contributingImdCountFtm?.growthOverLy_percentage ?? 0}}%</td>
-                <td>{{health_total_data.renewal.retail_sub_channels[(health_total_data.renewal.retail_sub_channels).length - 2]?.ftm_growth_over_lyftm_RR ?? 0}}%</td>
+                <!-- <td>{{health_total_data.renewal.retail_sub_channels[(health_total_data.renewal.retail_sub_channels).length - 2]?.ftm_growth_over_lyftm_RR ?? 0}}%</td> -->
                 <td>{{health_total_data.agent_performance.retail_sub_channels[(health_total_data.agent_performance.retail_sub_channels).length - 2]?.ftm?.growthPercentage_lyftm_base_NOP ?? 0}}%</td>
               </tr>
             </tbody>
           </table>
   
         </div>
+
+
+
+
+        <div class="row" style="background-color: #fdfdfd;">
+  
+          <table class="table gaugetable">
+            <thead>
+              <tr  style="font-size:16px!important; " >
+                <th scope="col gaugetable_firstCol" style="background-color: #e6e6e6!important;">Metric</th>
+
+                <th scope="col" class="gaugetable_tableHeader" >FTM</th>
+                <th scope="col" class="gaugetable_tableHeader" >LFTM</th>
+                <th scope="col" class="gaugetable_tableHeader" >LYFTM</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr  style="font-size:16px!important;">
+                <td class="gaugetable_firstCol" scope="row">RR %</td>
+                
+                <td class="" >{{health_total_data.renewal.retail_sub_channels[(health_total_data.renewal.retail_sub_channels).length - 2]?.ftm_RR ?? 0}}%</td>
+                <td class="" >{{health_total_data.renewal.retail_sub_channels[(health_total_data.renewal.retail_sub_channels).length - 2]?.lftm_RR ?? 0}}%</td>
+                <td class="" >{{health_total_data.renewal.retail_sub_channels[(health_total_data.renewal.retail_sub_channels).length - 2]?.lyftm_RR ?? 0}}%</td>
+
+              </tr>
+            </tbody>
+          </table>
+  
+        </div>
+
+
         
       </div>
   
@@ -986,7 +1455,7 @@
               <tr  style="font-size:16px!important; " >
                 <th scope="col gaugetable_firstCol" style="background-color: #e6e6e6!important;">Growth Over (%)</th>
                 <th scope="col" class="gaugetable_tableHeader" >GWP</th>
-                <th scope="col" class="gaugetable_tableHeader" >IMD Count</th>
+                <th scope="col" class="gaugetable_tableHeader" >Contributing IMD Count</th>
                 <th scope="col" class="gaugetable_tableHeader" >NOP</th>
               </tr>
             </thead>
@@ -1013,6 +1482,33 @@
           </table>
   
         </div>
+
+        <!-- <div class="row" style="background-color: #fdfdfd;">
+  
+          <table class="table gaugetable">
+            <thead>
+              <tr  style="font-size:16px!important; " >
+                <th scope="col gaugetable_firstCol" style="background-color: #e6e6e6!important;">Metric</th>
+
+                <th scope="col" class="gaugetable_tableHeader" >FTM</th>
+                <th scope="col" class="gaugetable_tableHeader" >LFTM</th>
+                <th scope="col" class="gaugetable_tableHeader" >LYFTM</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr  style="font-size:16px!important;">
+                <td class="gaugetable_firstCol" scope="row">RR %</td>
+                
+                <td class="" >{{frh_total_data.renewal.retail_sub_channels[(frh_total_data.renewal.retail_sub_channels).length - 2]?.ftm_RR ?? 0}}%</td>
+                <td class="" >{{frh_total_data.renewal.retail_sub_channels[(frh_total_data.renewal.retail_sub_channels).length - 2]?.lftm_RR ?? 0}}%</td>
+                <td class="" >{{frh_total_data.renewal.retail_sub_channels[(frh_total_data.renewal.retail_sub_channels).length - 2]?.lyftm_RR ?? 0}}%</td>
+
+              </tr>
+            </tbody>
+          </table>
+  
+        </div> -->
         
       </div>
   
@@ -1056,8 +1552,8 @@
               <tr  style="font-size:16px!important; " >
                 <th scope="col gaugetable_firstCol" style="background-color: #e6e6e6!important;">Growth Over (%)</th>
                 <th scope="col" class="gaugetable_tableHeader" >GWP</th>
-                <th scope="col" class="gaugetable_tableHeader" >IMD Count</th>
-                <th scope="col" class="gaugetable_tableHeader" >Renewals</th>
+                <th scope="col" class="gaugetable_tableHeader" >Contributing IMD Count</th>
+                <!-- <th scope="col" class="gaugetable_tableHeader" >Renewals</th> -->
                 <th scope="col" class="gaugetable_tableHeader" >NOP</th>
               </tr>
             </thead>
@@ -1068,7 +1564,7 @@
                 <td>{{pvtCar_total_data.agent_performance.retail_sub_channels[(pvtCar_total_data.agent_performance.retail_sub_channels).length - 2]?.ftm?.growthPercentage_lftm ?? 0}}%</td>
 
                 <td>{{pvtCar_total_data.agent_performance.retail_sub_channels[(pvtCar_total_data.agent_performance.retail_sub_channels).length - 2]?.contributingImdCountFtm?.growthOverLm_percentage ?? 0}}%</td>
-                <td>{{pvtCar_total_data.renewal.retail_sub_channels[(pvtCar_total_data.renewal.retail_sub_channels).length - 2]?.ftm_growth_over_lftm_RR ?? 0}}%</td>
+                <!-- <td>{{pvtCar_total_data.renewal.retail_sub_channels[(pvtCar_total_data.renewal.retail_sub_channels).length - 2]?.ftm_growth_over_lftm_RR ?? 0}}%</td> -->
                 <td>{{pvtCar_total_data.agent_performance.retail_sub_channels[(pvtCar_total_data.agent_performance.retail_sub_channels).length - 2]?.ftm?.growthPercentage_lftm_NOP ?? 0}}%</td>
               </tr>
               <tr  style="font-size:16px!important;">
@@ -1077,13 +1573,46 @@
                 <td>{{pvtCar_total_data.agent_performance.retail_sub_channels[(pvtCar_total_data.agent_performance.retail_sub_channels).length - 2]?.ftm?.growthPercentage_lyftm ?? 0}}%</td>
 
                 <td>{{pvtCar_total_data.agent_performance.retail_sub_channels[(pvtCar_total_data.agent_performance.retail_sub_channels).length - 2]?.contributingImdCountFtm?.growthOverLy_percentage ?? 0}}%</td>
-                <td>{{pvtCar_total_data.renewal.retail_sub_channels[(pvtCar_total_data.renewal.retail_sub_channels).length - 2]?.ftm_growth_over_lyftm_RR ?? 0}}%</td>
+                <!-- <td>{{pvtCar_total_data.renewal.retail_sub_channels[(pvtCar_total_data.renewal.retail_sub_channels).length - 2]?.ftm_growth_over_lyftm_RR ?? 0}}%</td> -->
                 <td>{{pvtCar_total_data.agent_performance.retail_sub_channels[(pvtCar_total_data.agent_performance.retail_sub_channels).length - 2]?.ftm?.growthPercentage_lyftm_base_NOP ?? 0}}%</td>
               </tr>
             </tbody>
           </table>
   
         </div>
+
+
+
+        <div class="row" style="background-color: #fdfdfd;">
+  
+          <table class="table gaugetable">
+            <thead>
+              <tr  style="font-size:16px!important; " >
+                <th scope="col gaugetable_firstCol" style="background-color: #e6e6e6!important;">Metric</th>
+
+                <th scope="col" class="gaugetable_tableHeader" >FTM</th>
+                <th scope="col" class="gaugetable_tableHeader" >LFTM</th>
+                <th scope="col" class="gaugetable_tableHeader" >LYFTM</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr  style="font-size:16px!important;">
+                <td class="gaugetable_firstCol" scope="row">RR %</td>
+                
+                <td class="" >{{pvtCar_total_data.renewal.retail_sub_channels[(pvtCar_total_data.renewal.retail_sub_channels).length - 2]?.ftm_RR ?? 0}}%</td>
+                <td class="" >{{pvtCar_total_data.renewal.retail_sub_channels[(pvtCar_total_data.renewal.retail_sub_channels).length - 2]?.lftm_RR ?? 0}}%</td>
+                <td class="" >{{pvtCar_total_data.renewal.retail_sub_channels[(pvtCar_total_data.renewal.retail_sub_channels).length - 2]?.lyftm_RR ?? 0}}%</td>
+
+              </tr>
+            </tbody>
+          </table>
+  
+        </div>
+
+
+
+
         
       </div>
   
@@ -1136,7 +1665,7 @@
               <tr  style="font-size:16px!important; " >
                 <th scope="col gaugetable_firstCol" style="background-color: #e6e6e6!important;">Growth Over (%)</th>
                 <th scope="col" class="gaugetable_tableHeader" >GWP</th>
-                <th scope="col" class="gaugetable_tableHeader" >IMD Count</th>
+                <th scope="col" class="gaugetable_tableHeader" >Contributing IMD Count</th>
                 <th scope="col" class="gaugetable_tableHeader" >NOP</th>
               </tr>
             </thead>
@@ -1162,6 +1691,36 @@
           </table>
   
         </div>
+
+
+
+
+        <!-- <div class="row" style="background-color: #fdfdfd;">
+  
+          <table class="table gaugetable">
+            <thead>
+              <tr  style="font-size:16px!important; " >
+                <th scope="col gaugetable_firstCol" style="background-color: #e6e6e6!important;">Metric</th>
+
+                <th scope="col" class="gaugetable_tableHeader" >FTM</th>
+                <th scope="col" class="gaugetable_tableHeader" >LFTM</th>
+                <th scope="col" class="gaugetable_tableHeader" >LYFTM</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr  style="font-size:16px!important;">
+                <td class="gaugetable_firstCol" scope="row">RR %</td>
+                
+                <td class="" >{{ropc_total_data.renewal.retail_sub_channels[(ropc_total_data.renewal.retail_sub_channels).length - 2]?.ftm_RR ?? 0}}%</td>
+                <td class="" >{{ropc_total_data.renewal.retail_sub_channels[(ropc_total_data.renewal.retail_sub_channels).length - 2]?.lftm_RR ?? 0}}%</td>
+                <td class="" >{{ropc_total_data.renewal.retail_sub_channels[(ropc_total_data.renewal.retail_sub_channels).length - 2]?.lyftm_RR ?? 0}}%</td>
+
+              </tr>
+            </tbody>
+          </table>
+  
+        </div> -->
         
       </div>
   
@@ -1205,8 +1764,8 @@
               <tr  style="font-size:16px!important; " >
                 <th scope="col gaugetable_firstCol" style="background-color: #e6e6e6!important;">Growth Over (%)</th>
                 <th scope="col" class="gaugetable_tableHeader" >GWP</th>
-                <th scope="col" class="gaugetable_tableHeader" >IMD Count</th>
-                <th scope="col" class="gaugetable_tableHeader" >Renewals</th>
+                <th scope="col" class="gaugetable_tableHeader" >Contributing IMD Count</th>
+                <!-- <th scope="col" class="gaugetable_tableHeader" >Renewals</th> -->
                 <th scope="col" class="gaugetable_tableHeader" >NOP</th>
               </tr>
             </thead>
@@ -1217,7 +1776,7 @@
                 <td>{{property_total_data.agent_performance.retail_sub_channels[(property_total_data.agent_performance.retail_sub_channels).length - 2]?.ftm?.growthPercentage_lftm ?? 0}}%</td>
 
                 <td>{{property_total_data.agent_performance.retail_sub_channels[(property_total_data.agent_performance.retail_sub_channels).length - 2]?.contributingImdCountFtm?.growthOverLm_percentage ?? 0}}%</td>
-                <td>{{property_total_data.renewal.retail_sub_channels[(property_total_data.renewal.retail_sub_channels).length - 2]?.ftm_growth_over_lftm_RR ?? 0}}%</td>
+                <!-- <td>{{property_total_data.renewal.retail_sub_channels[(property_total_data.renewal.retail_sub_channels).length - 2]?.ftm_growth_over_lftm_RR ?? 0}}%</td> -->
                 <td>{{property_total_data.agent_performance.retail_sub_channels[(property_total_data.agent_performance.retail_sub_channels).length - 2]?.ftm?.growthPercentage_lftm_NOP ?? 0}}%</td>
               </tr>
               <tr  style="font-size:16px!important;">
@@ -1226,13 +1785,46 @@
                 <td>{{property_total_data.agent_performance.retail_sub_channels[(property_total_data.agent_performance.retail_sub_channels).length - 2]?.ftm?.growthPercentage_lyftm ?? 0}}%</td>
 
                 <td>{{property_total_data.agent_performance.retail_sub_channels[(property_total_data.agent_performance.retail_sub_channels).length - 2]?.contributingImdCountFtm?.growthOverLy_percentage ?? 0}}%</td>
-                <td>{{property_total_data.renewal.retail_sub_channels[(property_total_data.renewal.retail_sub_channels).length - 2]?.ftm_growth_over_lyftm_RR ?? 0}}%</td>
+                <!-- <td>{{property_total_data.renewal.retail_sub_channels[(property_total_data.renewal.retail_sub_channels).length - 2]?.ftm_growth_over_lyftm_RR ?? 0}}%</td> -->
                 <td>{{property_total_data.agent_performance.retail_sub_channels[(property_total_data.agent_performance.retail_sub_channels).length - 2]?.ftm?.growthPercentage_lyftm_base_NOP ?? 0}}%</td>
               </tr>
             </tbody>
           </table>
   
         </div>
+
+
+
+        <div class="row" style="background-color: #fdfdfd;">
+  
+          <table class="table gaugetable">
+            <thead>
+              <tr  style="font-size:16px!important; " >
+                <th scope="col gaugetable_firstCol" style="background-color: #e6e6e6!important;">Metric</th>
+
+                <th scope="col" class="gaugetable_tableHeader" >FTM</th>
+                <th scope="col" class="gaugetable_tableHeader" >LFTM</th>
+                <th scope="col" class="gaugetable_tableHeader" >LYFTM</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr  style="font-size:16px!important;">
+                <td class="gaugetable_firstCol" scope="row">RR %</td>
+                
+                <td class="" >{{property_total_data.renewal.retail_sub_channels[(property_total_data.renewal.retail_sub_channels).length - 2]?.ftm_RR ?? 0}}%</td>
+                <td class="" >{{property_total_data.renewal.retail_sub_channels[(property_total_data.renewal.retail_sub_channels).length - 2]?.lftm_RR ?? 0}}%</td>
+                <td class="" >{{property_total_data.renewal.retail_sub_channels[(property_total_data.renewal.retail_sub_channels).length - 2]?.lyftm_RR ?? 0}}%</td>
+
+              </tr>
+            </tbody>
+          </table>
+  
+        </div>
+
+
+
+
         
       </div>
   
@@ -1288,8 +1880,8 @@
               <tr  style="font-size:16px!important; " >
                 <th scope="col gaugetable_firstCol" style="background-color: #e6e6e6!important;">Growth Over (%)</th>
                 <th scope="col" class="gaugetable_tableHeader" >GWP</th>
-                <th scope="col" class="gaugetable_tableHeader" >IMD Count</th>
-                <th scope="col" class="gaugetable_tableHeader" >Renewals</th>
+                <th scope="col" class="gaugetable_tableHeader" >Contributing IMD Count</th>
+                <!-- <th scope="col" class="gaugetable_tableHeader" >Renewals</th> -->
                 <th scope="col" class="gaugetable_tableHeader" >NOP</th>
               </tr>
             </thead>
@@ -1300,8 +1892,35 @@
                 <td>{{topline_total_data.agent_performance.retail_sub_channels[(topline_total_data.agent_performance.retail_sub_channels).length - 2]?.ytd?.growth_Percentage_over_lytd ?? 0}}%</td>
 
                 <td>{{topline_total_data.agent_performance.retail_sub_channels[(topline_total_data.agent_performance.retail_sub_channels).length - 2]?.contributingImdCountYtd?.growthOverLy_percentage ?? 0}}%</td>
-                <td>{{topline_total_data.renewal.retail_sub_channels[(topline_total_data.renewal.retail_sub_channels).length - 2]?.ytd_growth_over_lytd_RR ?? 0}}%</td>
+                <!-- <td>{{topline_total_data.renewal.retail_sub_channels[(topline_total_data.renewal.retail_sub_channels).length - 2]?.ytd_growth_over_lytd_RR ?? 0}}%</td> -->
                 <td>{{topline_total_data.agent_performance.retail_sub_channels[(topline_total_data.agent_performance.retail_sub_channels).length - 2]?.ytd?.growth_Percentage_over_lytd_NOP ?? 0}}%</td>
+              </tr>
+            </tbody>
+          </table>
+  
+        </div>
+
+
+
+        <div class="row" style="background-color: #fdfdfd;">
+  
+          <table class="table gaugetable">
+            <thead>
+              <tr  style="font-size:16px!important; " >
+                <th scope="col gaugetable_firstCol" style="background-color: #e6e6e6!important;">Metric</th>
+
+                <th scope="col" class="gaugetable_tableHeader" >YTD</th>
+                <th scope="col" class="gaugetable_tableHeader" >LYTD</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr  style="font-size:16px!important;">
+                <td class="gaugetable_firstCol" scope="row">RR %</td>
+                
+                <td class="" >{{topline_total_data.renewal.retail_sub_channels[(topline_total_data.renewal.retail_sub_channels).length - 2]?.ytd_RR ?? 0}}%</td>
+                <td class="" >{{topline_total_data.renewal.retail_sub_channels[(topline_total_data.renewal.retail_sub_channels).length - 2]?.lytd_RR ?? 0}}%</td>
+
               </tr>
             </tbody>
           </table>
@@ -1350,8 +1969,8 @@
               <tr  style="font-size:16px!important; " >
                 <th scope="col gaugetable_firstCol" style="background-color: #e6e6e6!important;">Growth Over (%)</th>
                 <th scope="col" class="gaugetable_tableHeader" >GWP</th>
-                <th scope="col" class="gaugetable_tableHeader" >IMD Count</th>
-                <th scope="col" class="gaugetable_tableHeader" >Renewals</th>
+                <th scope="col" class="gaugetable_tableHeader" >Contributing IMD Count</th>
+                <!-- <th scope="col" class="gaugetable_tableHeader" >Renewals</th> -->
                 <th scope="col" class="gaugetable_tableHeader" >NOP</th>
               </tr>
             </thead>
@@ -1362,8 +1981,35 @@
                 <td>{{health_total_data.agent_performance.retail_sub_channels[(health_total_data.agent_performance.retail_sub_channels).length - 2]?.ytd?.growth_Percentage_over_lytd ?? 0}}%</td>
 
                 <td>{{health_total_data.agent_performance.retail_sub_channels[(health_total_data.agent_performance.retail_sub_channels).length - 2]?.contributingImdCountYtd?.growthOverLy_percentage ?? 0}}%</td>
-                <td>{{health_total_data.renewal.retail_sub_channels[(health_total_data.renewal.retail_sub_channels).length - 2]?.ytd_growth_over_lytd_RR ?? 0}}%</td>
+                <!-- <td>{{health_total_data.renewal.retail_sub_channels[(health_total_data.renewal.retail_sub_channels).length - 2]?.ytd_growth_over_lytd_RR ?? 0}}%</td> -->
                 <td>{{health_total_data.agent_performance.retail_sub_channels[(health_total_data.agent_performance.retail_sub_channels).length - 2]?.ytd?.growth_Percentage_over_lytd_NOP ?? 0}}%</td>
+              </tr>
+            </tbody>
+          </table>
+  
+        </div>
+
+
+
+        <div class="row" style="background-color: #fdfdfd;">
+  
+          <table class="table gaugetable">
+            <thead>
+              <tr  style="font-size:16px!important; " >
+                <th scope="col gaugetable_firstCol" style="background-color: #e6e6e6!important;">Metric</th>
+
+                <th scope="col" class="gaugetable_tableHeader" >YTD</th>
+                <th scope="col" class="gaugetable_tableHeader" >LYTD</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr  style="font-size:16px!important;">
+                <td class="gaugetable_firstCol" scope="row">RR %</td>
+                
+                <td class="" >{{health_total_data.renewal.retail_sub_channels[(health_total_data.renewal.retail_sub_channels).length - 2]?.ytd_RR ?? 0}}%</td>
+                <td class="" >{{health_total_data.renewal.retail_sub_channels[(health_total_data.renewal.retail_sub_channels).length - 2]?.lytd_RR ?? 0}}%</td>
+
               </tr>
             </tbody>
           </table>
@@ -1419,7 +2065,7 @@
               <tr  style="font-size:16px!important; " >
                 <th scope="col gaugetable_firstCol" style="background-color: #e6e6e6!important;">Growth Over (%)</th>
                 <th scope="col" class="gaugetable_tableHeader" >GWP</th>
-                <th scope="col" class="gaugetable_tableHeader" >IMD Count</th>
+                <th scope="col" class="gaugetable_tableHeader" >Contributing IMD Count</th>
                 <th scope="col" class="gaugetable_tableHeader" >NOP</th>
               </tr>
             </thead>
@@ -1479,8 +2125,8 @@
               <tr  style="font-size:16px!important; " >
                 <th scope="col gaugetable_firstCol" style="background-color: #e6e6e6!important;">Growth Over (%)</th>
                 <th scope="col" class="gaugetable_tableHeader" >GWP</th>
-                <th scope="col" class="gaugetable_tableHeader" >IMD Count</th>
-                <th scope="col" class="gaugetable_tableHeader" >Renewals</th>
+                <th scope="col" class="gaugetable_tableHeader" >Contributing IMD Count</th>
+                <!-- <th scope="col" class="gaugetable_tableHeader" >Renewals</th> -->
                 <th scope="col" class="gaugetable_tableHeader" >NOP</th>
               </tr>
             </thead>
@@ -1491,8 +2137,35 @@
                 <td>{{pvtCar_total_data.agent_performance.retail_sub_channels[(pvtCar_total_data.agent_performance.retail_sub_channels).length - 2]?.ytd?.growth_Percentage_over_lytd ?? 0}}%</td>
 
                 <td>{{pvtCar_total_data.agent_performance.retail_sub_channels[(pvtCar_total_data.agent_performance.retail_sub_channels).length - 2]?.contributingImdCountYtd?.growthOverLy_percentage ?? 0}}%</td>
-                <td>{{pvtCar_total_data.renewal.retail_sub_channels[(pvtCar_total_data.renewal.retail_sub_channels).length - 2]?.ytd_growth_over_lytd_RR ?? 0}}%</td>
+                <!-- <td>{{pvtCar_total_data.renewal.retail_sub_channels[(pvtCar_total_data.renewal.retail_sub_channels).length - 2]?.ytd_growth_over_lytd_RR ?? 0}}%</td> -->
                 <td>{{pvtCar_total_data.agent_performance.retail_sub_channels[(pvtCar_total_data.agent_performance.retail_sub_channels).length - 2]?.ytd?.growth_Percentage_over_lytd_NOP ?? 0}}%</td>
+              </tr>
+            </tbody>
+          </table>
+  
+        </div>
+
+
+
+        <div class="row" style="background-color: #fdfdfd;">
+  
+          <table class="table gaugetable">
+            <thead>
+              <tr  style="font-size:16px!important; " >
+                <th scope="col gaugetable_firstCol" style="background-color: #e6e6e6!important;">Metric</th>
+
+                <th scope="col" class="gaugetable_tableHeader" >YTD</th>
+                <th scope="col" class="gaugetable_tableHeader" >LYTD</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr  style="font-size:16px!important;">
+                <td class="gaugetable_firstCol" scope="row">RR %</td>
+                
+                <td class="" >{{pvtCar_total_data.renewal.retail_sub_channels[(pvtCar_total_data.renewal.retail_sub_channels).length - 2]?.ytd_RR ?? 0}}%</td>
+                <td class="" >{{pvtCar_total_data.renewal.retail_sub_channels[(pvtCar_total_data.renewal.retail_sub_channels).length - 2]?.lytd_RR ?? 0}}%</td>
+
               </tr>
             </tbody>
           </table>
@@ -1550,7 +2223,7 @@
               <tr  style="font-size:16px!important; " >
                 <th scope="col gaugetable_firstCol" style="background-color: #e6e6e6!important;">Growth Over (%)</th>
                 <th scope="col" class="gaugetable_tableHeader" >GWP</th>
-                <th scope="col" class="gaugetable_tableHeader" >IMD Count</th>
+                <th scope="col" class="gaugetable_tableHeader" >Contributing IMD Count</th>
                 <th scope="col" class="gaugetable_tableHeader" >NOP</th>
               </tr>
             </thead>
@@ -1610,8 +2283,8 @@
               <tr  style="font-size:16px!important; " >
                 <th scope="col gaugetable_firstCol" style="background-color: #e6e6e6!important;">Growth Over (%)</th>
                 <th scope="col" class="gaugetable_tableHeader" >GWP</th>
-                <th scope="col" class="gaugetable_tableHeader" >IMD Count</th>
-                <th scope="col" class="gaugetable_tableHeader" >Renewals</th>
+                <th scope="col" class="gaugetable_tableHeader" >Contributing IMD Count</th>
+                <!-- <th scope="col" class="gaugetable_tableHeader" >Renewals</th> -->
                 <th scope="col" class="gaugetable_tableHeader" >NOP</th>
               </tr>
             </thead>
@@ -1622,8 +2295,34 @@
                 <td>{{property_total_data.agent_performance.retail_sub_channels[(property_total_data.agent_performance.retail_sub_channels).length - 2]?.ytd?.growth_Percentage_over_lytd ?? 0}}%</td>
 
                 <td>{{property_total_data.agent_performance.retail_sub_channels[(property_total_data.agent_performance.retail_sub_channels).length - 2]?.contributingImdCountYtd?.growthOverLy_percentage ?? 0}}%</td>
-                <td>{{property_total_data.renewal.retail_sub_channels[(property_total_data.renewal.retail_sub_channels).length - 2]?.ytd_growth_over_lytd_RR ?? 0}}%</td>
+                <!-- <td>{{property_total_data.renewal.retail_sub_channels[(property_total_data.renewal.retail_sub_channels).length - 2]?.ytd_growth_over_lytd_RR ?? 0}}%</td> -->
                 <td>{{property_total_data.agent_performance.retail_sub_channels[(property_total_data.agent_performance.retail_sub_channels).length - 2]?.ytd?.growth_Percentage_over_lytd_NOP ?? 0}}%</td>
+              </tr>
+            </tbody>
+          </table>
+  
+        </div>
+
+
+        <div class="row" style="background-color: #fdfdfd;">
+  
+          <table class="table gaugetable">
+            <thead>
+              <tr  style="font-size:16px!important; " >
+                <th scope="col gaugetable_firstCol" style="background-color: #e6e6e6!important;">Metric</th>
+
+                <th scope="col" class="gaugetable_tableHeader" >YTD</th>
+                <th scope="col" class="gaugetable_tableHeader" >LYTD</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr  style="font-size:16px!important;">
+                <td class="gaugetable_firstCol" scope="row">RR %</td>
+                
+                <td class="" >{{property_total_data.renewal.retail_sub_channels[(property_total_data.renewal.retail_sub_channels).length - 2]?.ytd_RR ?? 0}}%</td>
+                <td class="" >{{property_total_data.renewal.retail_sub_channels[(property_total_data.renewal.retail_sub_channels).length - 2]?.lytd_RR ?? 0}}%</td>
+
               </tr>
             </tbody>
           </table>
@@ -1822,6 +2521,7 @@
                         <td class ="table_text">{{row.mtd.lastYearCurrentMonth_mtd}}</td>
 
 
+                        <!-- <td class ="table_text" [ngClass]="row.mtd.growthPercentage_lymtd > 0 ? 'green' : 'red'">{{row.mtd.growthPercentage_lymtd ?? 0}}%</td> -->
                         <td class ="table_text" [ngClass]="row.mtd.growthPercentage_lmtd > 0 ? 'green' : 'red'">{{row.mtd.growthPercentage_lmtd ?? 0}}%</td>
       
       
@@ -1877,6 +2577,7 @@
       
                         <td class ="table_text">{{topLine_table_data.retailStrategicInitiatives.mtd.currentMonth_mtd}}</td>
                         <td class ="table_text">{{topLine_table_data.retailStrategicInitiatives.mtd.lastYearCurrentMonth_mtd}}</td>
+                        <!-- <td class ="table_text" [ngClass]="topLine_table_data.retailStrategicInitiatives.mtd.growthPercentage_lymtd > 0 ? 'green' : 'red'">{{topLine_table_data.retailStrategicInitiatives.mtd.growthPercentage_lymtd ?? 0}}%</td> -->
                         <td class ="table_text" [ngClass]="topLine_table_data.retailStrategicInitiatives.mtd.growthPercentage_lmtd > 0 ? 'green' : 'red'">{{topLine_table_data.retailStrategicInitiatives.mtd.growthPercentage_lmtd ?? 0}}%</td>
       
       
@@ -1927,6 +2628,7 @@
       
                     <td class ="table_text_blue">{{topLine_table_data.retailTotal.mtd.currentMonth_mtd}}</td>
                     <td class ="table_text_blue">{{topLine_table_data.retailTotal.mtd.lastYearCurrentMonth_mtd}}</td>
+                    <!-- <td class ="table_text_blue" [ngClass]="topLine_table_data.retailTotal.mtd.growthPercentage_lymtd > 0 ? 'green' : 'red'">{{topLine_table_data.retailTotal.mtd.growthPercentage_lymtd?topLine_table_data.retailTotal.mtd.growthPercentage_lymtd:0}}%</td> -->
                     <td class ="table_text_blue" [ngClass]="topLine_table_data.retailTotal.mtd.growthPercentage_lmtd > 0 ? 'green' : 'red'">{{topLine_table_data.retailTotal.mtd.growthPercentage_lmtd?topLine_table_data.retailTotal.mtd.growthPercentage_lmtd:0}}%</td>
       
       

@@ -208,6 +208,7 @@
                 <th scope="col gaugetable_firstCol" style="background-color: #e6e6e6!important;">Comparison</th>
                 <!-- <th scope="col" class="gaugetable_tableHeader" >GWP</th> -->
                 <th scope="col" class="gaugetable_tableHeader" >IMD Count</th>
+                <th scope="col" class="gaugetable_tableHeader" >Growth%</th>
                 <!-- <th scope="col" class="gaugetable_tableHeader" >Renewals</th>
                 <th scope="col" class="gaugetable_tableHeader" >NOP</th>
                 <th scope="col" class="gaugetable_tableHeader" >COR</th>
@@ -219,6 +220,7 @@
                 <td class="gaugetable_firstCol" scope="row">MTD</td>
   
                 <td>{{activation_total_data.retail_sub_channels[activation_total_data.retail_sub_channels.length-1].mtd_count}}</td>
+                <td>{{activation_total_data.retail_sub_channels[activation_total_data.retail_sub_channels.length-1].growth_over_lmtd?? 0}}%</td>
                 <!-- <td>24</td>
                 <td>58</td>
                 <td>33</td>
@@ -229,6 +231,7 @@
                 <td class="gaugetable_firstCol"  scope="row">LYMTD</td>
   
                 <td>{{activation_total_data.retail_sub_channels[activation_total_data.retail_sub_channels.length-1].lymtd_count}}</td>
+                <td>{{activation_total_data.retail_sub_channels[activation_total_data.retail_sub_channels.length-1].growth_over_lymtd?? 0}}%</td>
                 <!-- <td>33</td>
                 <td>24</td>
                 <td>57</td>
@@ -283,6 +286,7 @@
                 <th scope="col gaugetable_firstCol" style="background-color: #e6e6e6!important;">Comparison</th>
                 <!-- <th scope="col" class="gaugetable_tableHeader" >GWP</th> -->
                 <th scope="col" class="gaugetable_tableHeader" >IMD Count</th>
+                <th scope="col" class="gaugetable_tableHeader" >Growth%</th>
                 <!-- <th scope="col" class="gaugetable_tableHeader" >Renewals</th>
                 <th scope="col" class="gaugetable_tableHeader" >NOP</th>
                 <th scope="col" class="gaugetable_tableHeader" >COR</th>
@@ -294,6 +298,7 @@
                 <td class="gaugetable_firstCol" scope="row">MTD</td>
   
                 <td>{{recruitment_total_data.retail_sub_channels[recruitment_total_data.retail_sub_channels.length-1].mtd_count}}</td>
+                <td>{{recruitment_total_data.retail_sub_channels[recruitment_total_data.retail_sub_channels.length-1].growth_over_lmtd?? 0}}%</td>
                 <!-- <td>24</td>
                 <td>58</td>
                 <td>33</td>
@@ -304,6 +309,7 @@
                 <td class="gaugetable_firstCol"  scope="row">LYMTD</td>
   
                 <td>{{recruitment_total_data.retail_sub_channels[recruitment_total_data.retail_sub_channels.length-1].lymtd_count}}</td>
+                <td>{{recruitment_total_data.retail_sub_channels[recruitment_total_data.retail_sub_channels.length-1].growth_over_lymtd?? 0}}%</td>
                 <!-- <td>33</td>
                 <td>24</td>
                 <td>57</td>
@@ -370,6 +376,7 @@
                 <th scope="col gaugetable_firstCol" style="background-color: #e6e6e6!important;">Comparison</th>
                 <!-- <th scope="col" class="gaugetable_tableHeader" >GWP</th> -->
                 <th scope="col" class="gaugetable_tableHeader" >IMD Count</th>
+                <th scope="col" class="gaugetable_tableHeader" >Growth%</th>
                 <!-- <th scope="col" class="gaugetable_tableHeader" >Renewals</th>
                 <th scope="col" class="gaugetable_tableHeader" >NOP</th>
                 <th scope="col" class="gaugetable_tableHeader" >COR</th>
@@ -381,6 +388,7 @@
                 <td class="gaugetable_firstCol" scope="row">FTM</td>
   
                 <td>{{activation_total_data.retail_sub_channels[activation_total_data.retail_sub_channels.length-1].ftm_count}}</td>
+                <td>{{activation_total_data.retail_sub_channels[activation_total_data.retail_sub_channels.length-1].growth_over_lftm?? 0}}%</td>
                 <!-- <td>24</td>
                 <td>58</td>
                 <td>33</td>
@@ -391,6 +399,7 @@
                 <td class="gaugetable_firstCol"  scope="row">LYFTM</td>
   
                 <td>{{activation_total_data.retail_sub_channels[activation_total_data.retail_sub_channels.length-1].lyftm_count}}</td>
+                <td>{{activation_total_data.retail_sub_channels[activation_total_data.retail_sub_channels.length-1].growth_over_lyftm?? 0}}%</td>
                 <!-- <td>33</td>
                 <td>24</td>
                 <td>57</td>
@@ -445,6 +454,7 @@
                 <th scope="col gaugetable_firstCol" style="background-color: #e6e6e6!important;">Comparison</th>
                 <!-- <th scope="col" class="gaugetable_tableHeader" >GWP</th> -->
                 <th scope="col" class="gaugetable_tableHeader" >IMD Count</th>
+                <th scope="col" class="gaugetable_tableHeader" >Growth%</th>
                 <!-- <th scope="col" class="gaugetable_tableHeader" >Renewals</th>
                 <th scope="col" class="gaugetable_tableHeader" >NOP</th>
                 <th scope="col" class="gaugetable_tableHeader" >COR</th>
@@ -456,6 +466,7 @@
                 <td class="gaugetable_firstCol" scope="row">FTM</td>
   
                 <td>{{recruitment_total_data.retail_sub_channels[recruitment_total_data.retail_sub_channels.length-1].ftm_count}}</td>
+                <td>{{recruitment_total_data.retail_sub_channels[recruitment_total_data.retail_sub_channels.length-1].growth_over_lftm}}</td>
                 <!-- <td>24</td>
                 <td>58</td>
                 <td>33</td>
@@ -466,6 +477,7 @@
                 <td class="gaugetable_firstCol"  scope="row">LYFTM</td>
   
                 <td>{{recruitment_total_data.retail_sub_channels[recruitment_total_data.retail_sub_channels.length-1].lyftm_count}}</td>
+                <td>{{recruitment_total_data.retail_sub_channels[recruitment_total_data.retail_sub_channels.length-1].growth_over_lyftm}}</td>
                 <!-- <td>33</td>
                 <td>24</td>
                 <td>57</td>
@@ -533,6 +545,7 @@
                 <th scope="col gaugetable_firstCol" style="background-color: #e6e6e6!important;">Comparison</th>
                 <!-- <th scope="col" class="gaugetable_tableHeader" >GWP</th> -->
                 <th scope="col" class="gaugetable_tableHeader" >IMD Count</th>
+                <th scope="col" class="gaugetable_tableHeader" >Growth%</th>
                 <!-- <th scope="col" class="gaugetable_tableHeader" >Renewals</th>
                 <th scope="col" class="gaugetable_tableHeader" >NOP</th>
                 <th scope="col" class="gaugetable_tableHeader" >COR</th>
@@ -544,6 +557,7 @@
                 <td class="gaugetable_firstCol" scope="row">YTD</td>
   
                 <td>{{activation_total_data.retail_sub_channels[activation_total_data.retail_sub_channels.length-1].ytd_count}}</td>
+                <td>{{activation_total_data.retail_sub_channels[activation_total_data.retail_sub_channels.length-1].growth_over_lytd}}</td>
                 <!-- <td>24</td>
                 <td>58</td>
                 <td>33</td>
@@ -554,6 +568,7 @@
                 <td class="gaugetable_firstCol"  scope="row">LYTD</td>
   
                 <td>{{activation_total_data.retail_sub_channels[activation_total_data.retail_sub_channels.length-1].lytd_count}}</td>
+                <td>-</td>
                 <!-- <td>33</td>
                 <td>24</td>
                 <td>57</td>
@@ -608,6 +623,7 @@
                 <th scope="col gaugetable_firstCol" style="background-color: #e6e6e6!important;">Comparison</th>
                 <!-- <th scope="col" class="gaugetable_tableHeader" >GWP</th> -->
                 <th scope="col" class="gaugetable_tableHeader" >IMD Count</th>
+                <th scope="col" class="gaugetable_tableHeader" >Growth%</th>
                 <!-- <th scope="col" class="gaugetable_tableHeader" >Renewals</th>
                 <th scope="col" class="gaugetable_tableHeader" >NOP</th>
                 <th scope="col" class="gaugetable_tableHeader" >COR</th>
@@ -619,6 +635,7 @@
                 <td class="gaugetable_firstCol" scope="row">YTD</td>
   
                 <td>{{recruitment_total_data.retail_sub_channels[recruitment_total_data.retail_sub_channels.length-1].ytd_count}}</td>
+                <td>{{recruitment_total_data.retail_sub_channels[recruitment_total_data.retail_sub_channels.length-1].growth_over_lytd}}</td>
                 <!-- <td>24</td>
                 <td>58</td>
                 <td>33</td>
@@ -629,6 +646,7 @@
                 <td class="gaugetable_firstCol"  scope="row">LYTD</td>
   
                 <td>{{recruitment_total_data.retail_sub_channels[recruitment_total_data.retail_sub_channels.length-1].lytd_count}}</td>
+                <td>-</td>
                 <!-- <td>33</td>
                 <td>24</td>
                 <td>57</td>

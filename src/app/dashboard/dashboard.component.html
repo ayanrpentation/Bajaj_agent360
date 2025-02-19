@@ -695,9 +695,10 @@
 
                             <div  class="box_border"  style=" border-radius: 20px;  background-color: #ffffff; border-radius: 5px; position: relative;">
 
-                                <span style="font-weight: bold; font-size: 14px; position: absolute; left: 40px; top: 10px; padding: 5px; background-color: #9ed3ff; color: #000000; border-radius: 5px; font-weight: 500; cursor: pointer;" (click)="openModal1('showBandTrendGraph', showBandTrendGraph); bandTrendGraphMakingOnly();" title="Click Here to Get More Details">Show Graph</span>
 
-                                <span style="font-weight: bold; font-size: 14px; position: absolute; right: 40px; top: 10px; padding: 5px; background-color: #9ed3ff; color: #000000; border-radius: 5px; font-weight: 500; cursor: pointer;" title="Download" (click)="download_band_trend_table_total()">Download</span>
+                                <span *ngIf="getComparisonStatus"  style="font-weight: bold; font-size: 14px; position: absolute; left: 40px; top: 10px; padding: 5px; background-color: #9ed3ff; color: #000000; border-radius: 5px; font-weight: 500; cursor: pointer;" (click)="openModal1('showBandTrendGraph', showBandTrendGraph); bandTrendGraphMakingOnly();" title="Click Here to Get More Details">Show Graph</span>
+
+                                <span *ngIf="getComparisonStatus" style="font-weight: bold; font-size: 14px; position: absolute; right: 40px; top: 10px; padding: 5px; background-color: #9ed3ff; color: #000000; border-radius: 5px; font-weight: 500; cursor: pointer;" title="Download" (click)="download_band_trend_table_total()">Download</span>
 
 
                                 <!-- <span style="font-weight: bold; font-size: 14px; position: absolute; right: 32px; top: 10px; padding: 5px; color: #000000; border-radius: 5px; font-weight: 500; cursor: pointer;"><mat-icon title="Download" >download</mat-icon></span> -->

@@ -74,17 +74,38 @@ export class ColumnChartComponent implements OnInit, AfterViewInit {
           const index = this.point.index;
           // const customTitle = this.series.chart.options.xAxis[0]['categories'][index];
           const customTitle = "";
-          return `<b>${customTitle}</b><br>${this.series.name}: ${this.y}`;
+          return `<b>${customTitle}</b><br>${this.series.name}: ${this.y}%`;
         }
       },
+      // plotOptions: {
+      //   series: {
+      //     dataLabels: {
+      //       enabled: true,
+      //       style: {
+      //         fontSize: '12px',
+      //         textOutline: 'none',
+      //         // color: '#000000'
+      //       }
+      //     }
+      //   }
+      // },
+      // tooltip: {
+      //   formatter: function () {
+      //     const index = this.point.index;
+      //     const customTitle = this.series.chart.options.xAxis?.[0]['categories'][index] || "";
+      //     return `<b>${customTitle}</b><br>${this.series.name}: ${this.y}%`;
+      //   }
+      // },
       plotOptions: {
         series: {
           dataLabels: {
             enabled: true,
+            formatter: function () {
+              return `${this.y}%`; // Adding % suffix
+            },
             style: {
               fontSize: '12px',
               textOutline: 'none',
-              // color: '#000000'
             }
           }
         }

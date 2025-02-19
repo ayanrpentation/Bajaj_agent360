@@ -100,7 +100,7 @@ export class LoginComponent implements OnInit {
                 } else {
 
 
-                    this.getTriggerDate();
+                    // this.getTriggerDate();
 
                     
 

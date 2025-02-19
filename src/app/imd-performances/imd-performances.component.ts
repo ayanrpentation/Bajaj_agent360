@@ -144,7 +144,7 @@ export class ImdPerformancesComponent implements OnInit {
     this.sideNavStatus();
     this.sideNav_state = true;
     this.setUpValuesInDropDown();
-    this.getChannelList();
+    // this.getChannelList();
 
     this.month_selectedItems = sessionStorage.getItem('selectedMonthYear');
     if (this.month_selectedItems == null){

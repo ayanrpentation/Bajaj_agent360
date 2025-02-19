@@ -1178,7 +1178,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
 
 
+  getComparisonStatus = false;
+
   getcomparison() {
+
+    this.getComparisonStatus = false;
+
     this.bandtendTableStatus = true
     this.bandComparison_table_show = false;
     this.getcomparisonData_total = []
@@ -1442,6 +1447,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         // this.renderMapChart()
         this.visibleContentById('bandComparison')
         // this.getStatewiseGwp()
+
+
+        this.getComparisonStatus = true;
         
 
       } else {
@@ -9082,6 +9090,13 @@ filteBtn(){
         valueSuffix: '',
       },
       plotOptions: {
+        line: {
+          dataLabels: {
+            enabled: true, // Enable data labels on the lines
+            allowOverlap: false,
+          },
+          enableMouseTracking: true, // Allows tooltips when hovering
+        },
         area: {
           stacking: 'normal', // Stacked area chart
         },

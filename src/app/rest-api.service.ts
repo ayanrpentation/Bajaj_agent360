@@ -28,14 +28,14 @@ export class RestApiService {
   // file_path = 'http://192.168.1.15:5000/static';
 
 
-  // API_ROOT = 'http://localhost:5000'; 
-  // file_path = 'http://localhost:5000/static';
+  API_ROOT = 'http://localhost:5000'; 
+  file_path = 'http://localhost:5000/static';
 
 
 
   // bagic 360 server  -- use this while giving to rishav
-  API_ROOT = 'http://10.4.2.134:5000'; 
-  file_path = 'http://10.4.2.134:5000/static';
+  // API_ROOT = 'http://10.4.2.134:5000'; 
+  // file_path = 'http://10.4.2.134:5000/static';
 
 
 
