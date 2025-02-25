@@ -236,7 +236,7 @@
                 <div class="col-7 agentPad" [ngClass]="agentScoreCard == false ? 'highlightpad':''" (click)="agentScoreCard = false">AGENT SEGMENTATION</div>
 
             </div> -->
-            <div class="row mainAreaPad" *ngIf="agentScoreCard == true" style="height: 100%; background-color: #fcfcfc;">
+            <div class="row mainAreaPad"  style="height: 100%; background-color: #fcfcfc;">
 
                 
 
@@ -417,22 +417,23 @@
 
                                     </div>
 
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    <div class="row filterSection" >
 
-                                        <!-- <div class="row"> -->
+
+
+
+
+
+
+
+
+
+                                    <div class="row filterSection"  *ngIf="!showSingleline">
+
+
+
+                                        <div class="row" style="width:100%">
+
+
                                             <div class="col"  style=" padding: 10px!important; padding-bottom: 0px!important;">
                                                 <!-- <div class="multiselectFilter" > -->
                                                     <ng-multiselect-dropdown [placeholder]="'Month Year'" [settings]="month_dropdownSettings"
@@ -440,6 +441,154 @@
                                                         (onSelect)="showMonthFlag=false" (onDeSelect)="showMonthFlag = false" >
                                                     </ng-multiselect-dropdown>
                                                 <!-- </div> -->
+                                            </div>
+
+
+                                            <div class="col"  style=" padding: 10px!important; padding-bottom: 0px!important;">
+                                                <!-- <div class="multiselectFilter" > -->
+                                                    <ng-multiselect-dropdown [placeholder]="'LOB'" [settings]="lob_dropdownSettings"
+                                                        [data]="lob_dropdownList" [(ngModel)]="lob_selectedItems" >
+                                                    </ng-multiselect-dropdown>
+                                                <!-- </div> -->
+                                            </div>
+
+
+                                            <div class="col"  style=" padding: 10px!important; padding-bottom: 0px!important;">
+                                                <!-- <div class="multiselectFilter" > -->
+                                                    <ng-multiselect-dropdown [placeholder]="'Product'" [settings]="product_dropdownSettings"
+                                                        [data]="product_dropdownList" [(ngModel)]="product_selectedItems">
+                                                    </ng-multiselect-dropdown>
+                                                <!-- </div> -->
+                                            </div>
+
+                                            <div class="col" style=" padding: 10px!important;  padding-bottom: 0px!important;">
+                                                <ng-multiselect-dropdown [placeholder]="'Channel'" [settings]="imdChannel_dropdownSettings"
+                                                    [data]="imdChannel_dropdownList" [(ngModel)]="imdChannel_selectedItems"
+                                                    (onSelect)="get_subChannelList()" (onSelectAll)="get_subChannelList()"
+                                                    (onDeSelect)="get_subChannelList()" (onDeSelectAll)="get_subChannelList()">
+                                                </ng-multiselect-dropdown>
+                                            </div>
+                                
+                                            
+                                        </div>
+
+                                        <br/>
+
+
+
+                                        <div class="row" style="width:100%">
+                                
+                                            <div class="col" style=" padding: 10px!important; padding-bottom: 0px!important; ">
+                                                <!-- <div class="multiselectFilter"> -->
+                                                    <ng-multiselect-dropdown [placeholder]="'Zone'" [settings]="zone_dropdownSettings"
+                                                        [data]="zone_dropdownList" [(ngModel)]="zone_selectedItems"
+                                                        (onSelect)="get_state_list(); get_location_list()"
+                                                        (onSelectAll)="get_state_list(); get_location_list()"
+                                                        (onDeSelect)="get_state_list(); get_location_list()"
+                                                        (onDeSelectAll)="get_state_list(); get_location_list()">
+                                                    </ng-multiselect-dropdown>
+                                                <!-- </div> -->
+                                            </div>
+                                
+                                            <div class="col" style=" padding: 10px!important;  padding-bottom: 0px!important;">
+                                                <!-- <div class="multiselectFilter"> -->
+                                                    <ng-multiselect-dropdown [placeholder]="'State'" [settings]="state_dropdownSettings"
+                                                        [data]="state_dropdownList" [(ngModel)]="state_selectedItems"
+                                                        (onSelect)="get_location_list()" (onSelectAll)="get_location_list()"
+                                                        (onDeSelect)="get_location_list()" (onDeSelectAll)="get_location_list()">
+                                                    </ng-multiselect-dropdown>
+                                                <!-- </div> -->
+                                            </div>
+                                
+                                            <div class="col" style=" padding: 10px!important;  padding-bottom: 0px!important;">
+                                                    <ng-multiselect-dropdown [placeholder]="'Location'" [settings]="location_dropdownSettings"
+                                                        [data]="location_dropdownList" [(ngModel)]="location_selectedItems">
+                                                    </ng-multiselect-dropdown>
+                                            </div>
+
+
+                                            <div class="col" style=" padding: 10px!important;  padding-bottom: 0px!important;">
+                                                <div class="row" style="padding:0!important; padding-top: 5px!important ">
+                                                    <div class="" style="padding:0; width:48%">
+                                                        <button class="filterApplyButton" style=" background-color: rgb(238, 99, 99); height: 36px; border-radius: 5px; border: none;" (click)="resetAll();getHeroAgents();getBottomAgents();"
+                                                            >
+                                                            <span>Reset</span>
+                                                        </button>
+                                    
+                                                    </div>
+                              
+                              
+                                                    <div class="" style="padding:0; width:4%"></div>
+                              
+                                                    
+                                    
+                                                    <div class="col" style="padding:0; width: 48%">
+                                                        <button class="filterApplyButton" style="background-color: rgb(0, 95, 204);  height: 36px; border-radius: 5px; border: none" (click)="filteBtn()">
+                                                            <span>Apply</span>
+                                                        </button>
+                                    
+                                                    </div> 
+                                                </div>
+                                              </div>
+
+
+                                        </div>
+
+                                    </div>
+
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    <div class="row filterSection"   *ngIf="showSingleline">
+
+
+
+                                        <!-- <div class="row"> -->
+
+
+                                            <div class="col"  style=" padding: 10px!important; padding-bottom: 0px!important;">
+                                                <!-- <div class="multiselectFilter" > -->
+                                                    <ng-multiselect-dropdown [placeholder]="'Month Year'" [settings]="month_dropdownSettings"
+                                                        [data]="month_dropdownList" [(ngModel)]="month_selectedItems"
+                                                        (onSelect)="showMonthFlag=false" (onDeSelect)="showMonthFlag = false" >
+                                                    </ng-multiselect-dropdown>
+                                                <!-- </div> -->
+                                            </div>
+
+
+                                            <div class="col"  style=" padding: 10px!important; padding-bottom: 0px!important;">
+                                                <!-- <div class="multiselectFilter" > -->
+                                                    <ng-multiselect-dropdown [placeholder]="'LOB'" [settings]="lob_dropdownSettings"
+                                                        [data]="lob_dropdownList" [(ngModel)]="lob_selectedItems" >
+                                                    </ng-multiselect-dropdown>
+                                                <!-- </div> -->
+                                            </div>
+
+
+                                            <div class="col"  style=" padding: 10px!important; padding-bottom: 0px!important;">
+                                                <!-- <div class="multiselectFilter" > -->
+                                                    <ng-multiselect-dropdown [placeholder]="'Product'" [settings]="product_dropdownSettings"
+                                                        [data]="product_dropdownList" [(ngModel)]="product_selectedItems">
+                                                    </ng-multiselect-dropdown>
+                                                <!-- </div> -->
+                                            </div>
+
+                                            <div class="col" style=" padding: 10px!important;  padding-bottom: 0px!important;">
+                                                <ng-multiselect-dropdown [placeholder]="'Channel'" [settings]="imdChannel_dropdownSettings"
+                                                    [data]="imdChannel_dropdownList" [(ngModel)]="imdChannel_selectedItems"
+                                                    (onSelect)="get_subChannelList()" (onSelectAll)="get_subChannelList()"
+                                                    (onDeSelect)="get_subChannelList()" (onDeSelectAll)="get_subChannelList()">
+                                                </ng-multiselect-dropdown>
                                             </div>
                                 
                                             <div class="col" style=" padding: 10px!important; padding-bottom: 0px!important; ">
@@ -470,13 +619,7 @@
                                                     </ng-multiselect-dropdown>
                                             </div>
                                 
-                                            <div class="col" style=" padding: 10px!important;  padding-bottom: 0px!important;">
-                                                    <ng-multiselect-dropdown [placeholder]="'Channel'" [settings]="imdChannel_dropdownSettings"
-                                                        [data]="imdChannel_dropdownList" [(ngModel)]="imdChannel_selectedItems"
-                                                        (onSelect)="get_subChannelList()" (onSelectAll)="get_subChannelList()"
-                                                        (onDeSelect)="get_subChannelList()" (onDeSelectAll)="get_subChannelList()">
-                                                    </ng-multiselect-dropdown>
-                                            </div>
+                                            
                                 
                                             <!-- <div class="col" style=" padding: 10px!important; padding-bottom: 0px!important; ">
                                                     <ng-multiselect-dropdown [placeholder]="'Sub Channel'"
@@ -722,7 +865,7 @@
 
                                     <div class="col-12" style="padding:0!important; ">
 
-                                        <div *ngIf="bandtendTableStatus" class="spinner-border text-primary" role="status" style="position: relative; top: 50%;">
+                                        <div *ngIf="bandtendTableStatus" class="spinner-border text-primary" role="status" style="position: relative; top: 50%; opacity: 0.2;">
                                             <span class="sr-only">Loading...</span>
                                         </div>
 
@@ -1082,7 +1225,7 @@
                                             
                                             <!-- <canvas id="zoneWiseBranding_Chart"  ></canvas> -->
                                             <div id="zoneWiseBranding_Chart" style="height: 95%; width: 95%;">
-                                                <div *ngIf="zonewiseBandingStatus" class="spinner-border text-primary" role="status" style="position: relative; top: 50%;">
+                                                <div *ngIf="zonewiseBandingStatus" class="spinner-border text-primary" role="status" style="position: relative; top: 50%; opacity: 0.2;">
                                                     <span class="sr-only">Loading...</span>
                                                 </div>
                                             </div>

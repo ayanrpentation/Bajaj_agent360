@@ -198,6 +198,7 @@ import { SideNavStatusService } from '../side-nav-status.service';
     }
   
     logout(){
+      this.delete_ddos()
       
       // sessionStorage.removeItem("userDetails");
       // sessionStorage.removeItem("userRights");
@@ -221,6 +222,21 @@ import { SideNavStatusService } from '../side-nav-status.service';
       localStorage.clear();
 
       this.router.navigate(['/']);
+    }
+
+
+    async delete_ddos() {
+      const data = {
+        userAgentId: this.userAgentId    
+      }
+      this.rest.delete_ddos(data).subscribe((res:any)=>{
+        if (res.success) {
+          
+          
+        } else {
+  
+        }
+      });
     }
     
 

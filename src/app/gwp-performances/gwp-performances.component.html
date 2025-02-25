@@ -28,7 +28,21 @@
   <div class="row">
     <div
       class="col"
-      style="padding: 10px !important; padding-bottom: 0px !important; padding-left: 0!important;"
+      style="padding: 10px !important; padding-bottom: 0px !important;  padding-left: 0!important;"
+    >
+      <ng-multiselect-dropdown
+        [placeholder]="'Channel'"
+        [settings]="imdChannel_dropdownSettings"
+        [data]="imdChannel_dropdownList"
+        [(ngModel)]="imdChannel_selectedItems"
+      >
+      </ng-multiselect-dropdown>
+    </div>
+
+
+    <div
+      class="col"
+      style="padding: 10px !important; padding-bottom: 0px !important;"
     >
       
       <!-- <ng-multiselect-dropdown
@@ -42,6 +56,8 @@
         (onDeSelectAll)="get_state_list(); get_location_list()"        
       >
       </ng-multiselect-dropdown> -->
+
+
 
       <ng-multiselect-dropdown
         [placeholder]="'Zone'"
@@ -101,18 +117,7 @@
       </ng-multiselect-dropdown>
     </div>
 
-    <div
-      class="col"
-      style="padding: 10px !important; padding-bottom: 0px !important"
-    >
-      <ng-multiselect-dropdown
-        [placeholder]="'Channel'"
-        [settings]="imdChannel_dropdownSettings"
-        [data]="imdChannel_dropdownList"
-        [(ngModel)]="imdChannel_selectedItems"
-      >
-      </ng-multiselect-dropdown>
-    </div>
+    
 
     <div
       class="col"
@@ -165,6 +170,9 @@
 
 
   </div>
+
+
+  
 
   
   <!-- <div id="agentFlagwiseBanding" style="height: 300px;"></div> -->
@@ -244,12 +252,12 @@
               </h3>
               <div class="concentric-progress-bars">
                 <div class="progress-bar outer" [attr.data-value]="100 + '%'">
-                  <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + topLine_target + ''"></div>
+                  <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + topLine_target + ' Cr'"></div>
                 </div>
               
                         
                 <div class="progress-bar middle" [attr.data-value]="topLine_achv_per + '%'" >
-                  <div class="progress" [ngStyle]="getMiddleProgressStyles(topLine_achv_per)" [title]="'Achievement: ' + topLine_achv + ''" ></div>
+                  <div class="progress" [ngStyle]="getMiddleProgressStyles(topLine_achv_per)" [title]="'Achievement: ' + topLine_achv + ' Cr'" ></div>
                 </div>
               
                 
@@ -307,7 +315,7 @@
 
 
                 <td>{{topline_total_data.agent_performance.retail_sub_channels[(topline_total_data.agent_performance.retail_sub_channels).length - 2]?.contributingImdCountMtd?.growthOverLm_percentage ?? 0}}%</td>
-                <!-- <td>{{topline_total_data.renewal.retail_sub_channels[(topline_total_data.renewal.retail_sub_channels).length - 2]?.mtd_growth_over_lmtd_RR ?? 0}}%</td> -->
+                <!-- <td>{{topline_total_data.renewal.retail_sub_channels[(topline_total_data.renewal.retail_sub_channels).length - 1]?.mtd_growth_over_lmtd_RR ?? 0}}%</td> -->
                 <td>{{topline_total_data.agent_performance.retail_sub_channels[(topline_total_data.agent_performance.retail_sub_channels).length - 2]?.mtd?.growthPercentage_lmtd_NOP ?? 0}}%</td>
 
                 
@@ -318,7 +326,7 @@
   
                 <td>{{topline_total_data.agent_performance.retail_sub_channels[(topline_total_data.agent_performance.retail_sub_channels).length - 2]?.mtd?.growthPercentage_lymtd ?? 0}}%</td>
                 <td>{{topline_total_data.agent_performance.retail_sub_channels[(topline_total_data.agent_performance.retail_sub_channels).length - 2]?.contributingImdCountMtd?.growthOverLy_percentage ?? 0}}%</td>
-                <!-- <td>{{topline_total_data.renewal.retail_sub_channels[(topline_total_data.renewal.retail_sub_channels).length - 2]?.mtd_growth_over_lymtd_RR ?? 0}}%</td> -->
+                <!-- <td>{{topline_total_data.renewal.retail_sub_channels[(topline_total_data.renewal.retail_sub_channels).length - 1]?.mtd_growth_over_lymtd_RR ?? 0}}%</td> -->
                 <td>{{topline_total_data.agent_performance.retail_sub_channels[(topline_total_data.agent_performance.retail_sub_channels).length - 2]?.mtd?.growthPercentage_lymtd_NOP ?? 0}}%</td>
 
                 <!-- <td></td> -->
@@ -348,9 +356,9 @@
               <tr  style="font-size:16px!important;">
                 <td class="gaugetable_firstCol" scope="row">RR %</td>
 
-                <td class="" >{{topline_total_data.renewal.retail_sub_channels[(topline_total_data.renewal.retail_sub_channels).length - 2]?.mtd_RR ?? 0}}%</td>
-                <td class="" >{{topline_total_data.renewal.retail_sub_channels[(topline_total_data.renewal.retail_sub_channels).length - 2]?.lmtd_RR ?? 0}}%</td>
-                <td class="" >{{topline_total_data.renewal.retail_sub_channels[(topline_total_data.renewal.retail_sub_channels).length - 2]?.lymtd_RR ?? 0}}%</td>
+                <td class="" >{{topline_total_data.renewal.retail_sub_channels[(topline_total_data.renewal.retail_sub_channels).length - 1]?.mtd_RR ?? 0}}%</td>
+                <td class="" >{{topline_total_data.renewal.retail_sub_channels[(topline_total_data.renewal.retail_sub_channels).length - 1]?.lmtd_RR ?? 0}}%</td>
+                <td class="" >{{topline_total_data.renewal.retail_sub_channels[(topline_total_data.renewal.retail_sub_channels).length - 1]?.lymtd_RR ?? 0}}%</td>
 
               </tr>
             </tbody>
@@ -415,11 +423,11 @@
               </h3>
               <div class="concentric-progress-bars">
                 <div class="progress-bar outer" [attr.data-value]="100 + '%'">
-                  <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + health_target + ''"></div>
+                  <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + health_target + ' Cr'"></div>
                 </div>
                     
                 <div class="progress-bar middle" [attr.data-value]="health_achv_per + '%'" >
-                  <div class="progress" [ngStyle]="getMiddleProgressStyles(health_achv_per)" [title]="'Achievement: ' + health_achv + ''" ></div>
+                  <div class="progress" [ngStyle]="getMiddleProgressStyles(health_achv_per)" [title]="'Achievement: ' + health_achv + ' Cr'" ></div>
                 </div>
                 <div class="progress-bar inner"  (click)="openModal(health)">
                   <div class="center-text">{{health_centerText}}</div>
@@ -475,7 +483,7 @@
 
                 <td>{{health_total_data.agent_performance.retail_sub_channels[(health_total_data.agent_performance.retail_sub_channels).length - 2]?.mtd?.growthPercentage_lmtd ?? 0}}%</td>
                 <td>{{health_total_data.agent_performance.retail_sub_channels[(health_total_data.agent_performance.retail_sub_channels).length - 2]?.contributingImdCountMtd?.growthOverLm_percentage ?? 0}}%</td>
-                <!-- <td>{{health_total_data.renewal.retail_sub_channels[(health_total_data.renewal.retail_sub_channels).length - 2]?.mtd_growth_over_lmtd_RR ?? 0}}%</td> -->
+                <!-- <td>{{health_total_data.renewal.retail_sub_channels[(health_total_data.renewal.retail_sub_channels).length - 1]?.mtd_growth_over_lmtd_RR ?? 0}}%</td> -->
                 <td>{{health_total_data.agent_performance.retail_sub_channels[(health_total_data.agent_performance.retail_sub_channels).length - 2]?.mtd?.growthPercentage_lmtd_NOP ?? 0}}%</td>
 
               </tr>
@@ -484,7 +492,7 @@
   
                 <td>{{health_total_data.agent_performance.retail_sub_channels[(health_total_data.agent_performance.retail_sub_channels).length - 2]?.mtd?.growthPercentage_lymtd ?? 0}}%</td>
                 <td>{{health_total_data.agent_performance.retail_sub_channels[(health_total_data.agent_performance.retail_sub_channels).length - 2]?.contributingImdCountMtd?.growthOverLy_percentage ?? 0}}%</td>
-                <!-- <td>{{health_total_data.renewal.retail_sub_channels[(health_total_data.renewal.retail_sub_channels).length - 2]?.mtd_growth_over_lymtd_RR ?? 0}}%</td> -->
+                <!-- <td>{{health_total_data.renewal.retail_sub_channels[(health_total_data.renewal.retail_sub_channels).length - 1]?.mtd_growth_over_lymtd_RR ?? 0}}%</td> -->
                 <td>{{health_total_data.agent_performance.retail_sub_channels[(health_total_data.agent_performance.retail_sub_channels).length - 2]?.mtd?.growthPercentage_lymtd_NOP ?? 0}}%</td>
               </tr>
             </tbody>
@@ -510,9 +518,9 @@
               <tr  style="font-size:16px!important;">
                 <td class="gaugetable_firstCol" scope="row">RR %</td>
                 
-                <td class="" >{{health_total_data.renewal.retail_sub_channels[(health_total_data.renewal.retail_sub_channels).length - 2]?.mtd_RR ?? 0}}%</td>
-                <td class="" >{{health_total_data.renewal.retail_sub_channels[(health_total_data.renewal.retail_sub_channels).length - 2]?.lmtd_RR ?? 0}}%</td>
-                <td class="" >{{health_total_data.renewal.retail_sub_channels[(health_total_data.renewal.retail_sub_channels).length - 2]?.lymtd_RR ?? 0}}%</td>
+                <td class="" >{{health_total_data.renewal.retail_sub_channels[(health_total_data.renewal.retail_sub_channels).length - 1]?.mtd_RR ?? 0}}%</td>
+                <td class="" >{{health_total_data.renewal.retail_sub_channels[(health_total_data.renewal.retail_sub_channels).length - 1]?.lmtd_RR ?? 0}}%</td>
+                <td class="" >{{health_total_data.renewal.retail_sub_channels[(health_total_data.renewal.retail_sub_channels).length - 1]?.lymtd_RR ?? 0}}%</td>
 
               </tr>
             </tbody>
@@ -592,12 +600,12 @@
               <div class="concentric-progress-bars">
                 <!-- Outer progress bar -->
                 <div class="progress-bar outer" [attr.data-value]="100 + '%'">
-                  <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + frh_target + ''"></div>
+                  <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + frh_target + ' Cr'"></div>
                 </div>
               
                 <!-- Middle progress bar -->          
                 <div class="progress-bar middle" [attr.data-value]="frh_achv_per + '%'" >
-                  <div class="progress" [ngStyle]="getMiddleProgressStyles(frh_achv_per)" [title]="'Achievement: ' + frh_achv + ''" ></div>
+                  <div class="progress" [ngStyle]="getMiddleProgressStyles(frh_achv_per)" [title]="'Achievement: ' + frh_achv + ' Cr'" ></div>
                 </div>
               
                 <!-- Inner progress bar with center text -->
@@ -638,7 +646,7 @@
   
                 <td>{{frh_total_data.agent_performance.retail_sub_channels[(frh_total_data.agent_performance.retail_sub_channels).length - 2]?.mtd?.growthPercentage_lmtd ?? 0}}%</td>
                 <td>{{frh_total_data.agent_performance.retail_sub_channels[(frh_total_data.agent_performance.retail_sub_channels).length - 2]?.contributingImdCountMtd?.growthOverLm_percentage ?? 0}}%</td>
-                <!-- <td>{{frh_total_data.renewal.retail_sub_channels[(frh_total_data.renewal.retail_sub_channels).length - 2]?.mtd_growth_over_lmtd_RR}}</td> -->
+                <!-- <td>{{frh_total_data.renewal.retail_sub_channels[(frh_total_data.renewal.retail_sub_channels).length - 1]?.mtd_growth_over_lmtd_RR}}</td> -->
                 <td>{{frh_total_data.agent_performance.retail_sub_channels[(frh_total_data.agent_performance.retail_sub_channels).length - 2]?.mtd?.growthPercentage_lmtd_NOP ?? 0}}%</td>
               </tr>
               <tr  style="font-size:16px!important;">
@@ -646,7 +654,7 @@
   
                 <td>{{frh_total_data.agent_performance.retail_sub_channels[(frh_total_data.agent_performance.retail_sub_channels).length - 2]?.mtd?.growthPercentage_lymtd ?? 0}}%</td>
                 <td>{{frh_total_data.agent_performance.retail_sub_channels[(frh_total_data.agent_performance.retail_sub_channels).length - 2]?.contributingImdCountMtd?.growthOverLy_percentage ?? 0}}%</td>
-                <!-- <td>{{frh_total_data.renewal.retail_sub_channels[(frh_total_data.renewal.retail_sub_channels).length - 2]?.mtd_growth_over_lymtd_RR}}</td> -->
+                <!-- <td>{{frh_total_data.renewal.retail_sub_channels[(frh_total_data.renewal.retail_sub_channels).length - 1]?.mtd_growth_over_lymtd_RR}}</td> -->
                 <td>{{frh_total_data.agent_performance.retail_sub_channels[(frh_total_data.agent_performance.retail_sub_channels).length - 2]?.mtd?.growthPercentage_lymtd_NOP ?? 0}}%</td>
               </tr>
             </tbody>
@@ -672,9 +680,9 @@
               <tr  style="font-size:16px!important;">
                 <td class="gaugetable_firstCol" scope="row">RR %</td>
                 
-                <td class="" >{{frh_total_data.renewal.retail_sub_channels[(frh_total_data.renewal.retail_sub_channels).length - 2]?.mtd_RR ?? 0}}%</td>
-                <td class="" >{{frh_total_data.renewal.retail_sub_channels[(frh_total_data.renewal.retail_sub_channels).length - 2]?.lmtd_RR ?? 0}}%</td>
-                <td class="" >{{frh_total_data.renewal.retail_sub_channels[(frh_total_data.renewal.retail_sub_channels).length - 2]?.lymtd_RR ?? 0}}%</td>
+                <td class="" >{{frh_total_data.renewal.retail_sub_channels[(frh_total_data.renewal.retail_sub_channels).length - 1]?.mtd_RR ?? 0}}%</td>
+                <td class="" >{{frh_total_data.renewal.retail_sub_channels[(frh_total_data.renewal.retail_sub_channels).length - 1]?.lmtd_RR ?? 0}}%</td>
+                <td class="" >{{frh_total_data.renewal.retail_sub_channels[(frh_total_data.renewal.retail_sub_channels).length - 1]?.lymtd_RR ?? 0}}%</td>
 
               </tr>
             </tbody>
@@ -740,10 +748,10 @@
               </h3>
               <div class="concentric-progress-bars">
                 <div class="progress-bar outer" [attr.data-value]="100 + '%'">
-                  <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + pvtcar_target + ''"></div>
+                  <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + pvtcar_target + ' Cr'"></div>
                 </div>         
                 <div class="progress-bar middle" [attr.data-value]="pvtcar_achv_per + '%'" >
-                  <div class="progress" [ngStyle]="getMiddleProgressStyles(pvtcar_achv_per)" [title]="'Achievement: ' + pvtcar_achv + ''" ></div>
+                  <div class="progress" [ngStyle]="getMiddleProgressStyles(pvtcar_achv_per)" [title]="'Achievement: ' + pvtcar_achv + ' Cr'" ></div>
                 </div>
                 <div class="progress-bar inner"  (click)="openModal(pvtcar)">
                   <div class="center-text">{{pvtcar_centerText}}</div>
@@ -797,7 +805,7 @@
   
                 <td>{{pvtCar_total_data.agent_performance.retail_sub_channels[(pvtCar_total_data.agent_performance.retail_sub_channels).length - 2]?.mtd?.growthPercentage_lmtd ?? 0}}%</td>
                 <td>{{pvtCar_total_data.agent_performance.retail_sub_channels[(pvtCar_total_data.agent_performance.retail_sub_channels).length - 2]?.contributingImdCountMtd?.growthOverLm_percentage ?? 0}}%</td>
-                <!-- <td>{{pvtCar_total_data.renewal.retail_sub_channels[(pvtCar_total_data.renewal.retail_sub_channels).length - 2]?.mtd_growth_over_lmtd_RR ?? 0}}%</td> -->
+                <!-- <td>{{pvtCar_total_data.renewal.retail_sub_channels[(pvtCar_total_data.renewal.retail_sub_channels).length - 1]?.mtd_growth_over_lmtd_RR ?? 0}}%</td> -->
                 <td>{{pvtCar_total_data.agent_performance.retail_sub_channels[(pvtCar_total_data.agent_performance.retail_sub_channels).length - 2]?.mtd?.growthPercentage_lmtd_NOP ?? 0}}%</td>
               </tr>
               <tr  style="font-size:16px!important;">
@@ -805,7 +813,7 @@
   
                 <td>{{pvtCar_total_data.agent_performance.retail_sub_channels[(pvtCar_total_data.agent_performance.retail_sub_channels).length - 2]?.mtd?.growthPercentage_lymtd ?? 0}}%</td>
                 <td>{{pvtCar_total_data.agent_performance.retail_sub_channels[(pvtCar_total_data.agent_performance.retail_sub_channels).length - 2]?.contributingImdCountMtd?.growthOverLy_percentage ?? 0}}%</td>
-                <!-- <td>{{pvtCar_total_data.renewal.retail_sub_channels[(pvtCar_total_data.renewal.retail_sub_channels).length - 2]?.mtd_growth_over_lymtd_RR ?? 0}}%</td> -->
+                <!-- <td>{{pvtCar_total_data.renewal.retail_sub_channels[(pvtCar_total_data.renewal.retail_sub_channels).length - 1]?.mtd_growth_over_lymtd_RR ?? 0}}%</td> -->
                 <td>{{pvtCar_total_data.agent_performance.retail_sub_channels[(pvtCar_total_data.agent_performance.retail_sub_channels).length - 2]?.mtd?.growthPercentage_lymtd_NOP ?? 0}}%</td>
               </tr>
             </tbody>
@@ -832,9 +840,9 @@
               <tr  style="font-size:16px!important;">
                 <td class="gaugetable_firstCol" scope="row">RR %</td>
                 
-                <td class="" >{{pvtCar_total_data.renewal.retail_sub_channels[(pvtCar_total_data.renewal.retail_sub_channels).length - 2]?.mtd_RR ?? 0}}%</td>
-                <td class="" >{{pvtCar_total_data.renewal.retail_sub_channels[(pvtCar_total_data.renewal.retail_sub_channels).length - 2]?.lmtd_RR ?? 0}}%</td>
-                <td class="" >{{pvtCar_total_data.renewal.retail_sub_channels[(pvtCar_total_data.renewal.retail_sub_channels).length - 2]?.lymtd_RR ?? 0}}%</td>
+                <td class="" >{{pvtCar_total_data.renewal.retail_sub_channels[(pvtCar_total_data.renewal.retail_sub_channels).length - 1]?.mtd_RR ?? 0}}%</td>
+                <td class="" >{{pvtCar_total_data.renewal.retail_sub_channels[(pvtCar_total_data.renewal.retail_sub_channels).length - 1]?.lmtd_RR ?? 0}}%</td>
+                <td class="" >{{pvtCar_total_data.renewal.retail_sub_channels[(pvtCar_total_data.renewal.retail_sub_channels).length - 1]?.lymtd_RR ?? 0}}%</td>
 
               </tr>
             </tbody>
@@ -918,11 +926,11 @@
 
               <div class="concentric-progress-bars">
                 <div class="progress-bar outer" [attr.data-value]="100 + '%'">
-                  <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + ropc_target + ''"></div>
+                  <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + ropc_target + ' Cr'"></div>
                 </div>
                          
                 <div class="progress-bar middle" [attr.data-value]="ropc_achv_per + '%'" >
-                  <div class="progress" [ngStyle]="getMiddleProgressStyles(ropc_achv_per)" [title]="'Achievement: ' + ropc_achv + ''" ></div>
+                  <div class="progress" [ngStyle]="getMiddleProgressStyles(ropc_achv_per)" [title]="'Achievement: ' + ropc_achv + ' Cr'" ></div>
                 </div>
                 <div class="progress-bar inner"   (click)="openModal(ropc)">
                   <div class="center-text">{{ropc_centerText}}</div>
@@ -998,9 +1006,9 @@
               <tr  style="font-size:16px!important;">
                 <td class="gaugetable_firstCol" scope="row">RR %</td>
                 
-                <td class="" >{{ropc_total_data.renewal.retail_sub_channels[(ropc_total_data.renewal.retail_sub_channels).length - 2]?.mtd_RR ?? 0}}%</td>
-                <td class="" >{{ropc_total_data.renewal.retail_sub_channels[(ropc_total_data.renewal.retail_sub_channels).length - 2]?.lmtd_RR ?? 0}}%</td>
-                <td class="" >{{ropc_total_data.renewal.retail_sub_channels[(ropc_total_data.renewal.retail_sub_channels).length - 2]?.lymtd_RR ?? 0}}%</td>
+                <td class="" >{{ropc_total_data.renewal.retail_sub_channels[(ropc_total_data.renewal.retail_sub_channels).length - 1]?.mtd_RR ?? 0}}%</td>
+                <td class="" >{{ropc_total_data.renewal.retail_sub_channels[(ropc_total_data.renewal.retail_sub_channels).length - 1]?.lmtd_RR ?? 0}}%</td>
+                <td class="" >{{ropc_total_data.renewal.retail_sub_channels[(ropc_total_data.renewal.retail_sub_channels).length - 1]?.lymtd_RR ?? 0}}%</td>
 
               </tr>
             </tbody>
@@ -1085,10 +1093,10 @@
               </h3>
               <div class="concentric-progress-bars">
                 <div class="progress-bar outer" [attr.data-value]="100 + '%'">
-                  <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + property_target + ''"></div>
+                  <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + property_target + ' Cr'"></div>
                 </div>       
                 <div class="progress-bar middle" [attr.data-value]="property_achv_per + '%'" >
-                  <div class="progress" [ngStyle]="getMiddleProgressStyles(property_achv_per)" [title]="'Achievement: ' + property_achv + ''" ></div>
+                  <div class="progress" [ngStyle]="getMiddleProgressStyles(property_achv_per)" [title]="'Achievement: ' + property_achv + ' Cr'" ></div>
                 </div>
                 <div class="progress-bar inner"  (click)="openModal(property)">
                   <div class="center-text">{{property_centerText}}</div>
@@ -1141,7 +1149,7 @@
   
                 <td>{{property_total_data.agent_performance.retail_sub_channels[(property_total_data.agent_performance.retail_sub_channels).length - 2]?.mtd?.growthPercentage_lmtd ?? 0}}%</td>
                 <td>{{property_total_data.agent_performance.retail_sub_channels[(property_total_data.agent_performance.retail_sub_channels).length - 2]?.contributingImdCountMtd?.growthOverLm_percentage ?? 0}}%</td>
-                <!-- <td>{{property_total_data.renewal.retail_sub_channels[(property_total_data.renewal.retail_sub_channels).length - 2]?.mtd_growth_over_lmtd_RR ?? 0}}%</td> -->
+                <!-- <td>{{property_total_data.renewal.retail_sub_channels[(property_total_data.renewal.retail_sub_channels).length - 1]?.mtd_growth_over_lmtd_RR ?? 0}}%</td> -->
                 <td>{{property_total_data.agent_performance.retail_sub_channels[(property_total_data.agent_performance.retail_sub_channels).length - 2]?.mtd?.growthPercentage_lmtd_NOP ?? 0}}%</td>
               </tr>
               <tr  style="font-size:16px!important;">
@@ -1149,7 +1157,7 @@
   
                 <td>{{property_total_data.agent_performance.retail_sub_channels[(property_total_data.agent_performance.retail_sub_channels).length - 2]?.mtd?.growthPercentage_lymtd ?? 0}}%</td>
                 <td>{{property_total_data.agent_performance.retail_sub_channels[(property_total_data.agent_performance.retail_sub_channels).length - 2]?.contributingImdCountMtd?.growthOverLy_percentage ?? 0}}%</td>
-                <!-- <td>{{property_total_data.renewal.retail_sub_channels[(property_total_data.renewal.retail_sub_channels).length - 2]?.mtd_growth_over_lymtd_RR ?? 0}}%</td> -->
+                <!-- <td>{{property_total_data.renewal.retail_sub_channels[(property_total_data.renewal.retail_sub_channels).length - 1]?.mtd_growth_over_lymtd_RR ?? 0}}%</td> -->
                 <td>{{property_total_data.agent_performance.retail_sub_channels[(property_total_data.agent_performance.retail_sub_channels).length - 2]?.mtd?.growthPercentage_lymtd_NOP ?? 0}}%</td>
               </tr>
             </tbody>
@@ -1177,9 +1185,9 @@
               <tr  style="font-size:16px!important;">
                 <td class="gaugetable_firstCol" scope="row">RR %</td>
                 
-                <td class="" >{{property_total_data.renewal.retail_sub_channels[(property_total_data.renewal.retail_sub_channels).length - 2]?.mtd_RR ?? 0}}%</td>
-                <td class="" >{{property_total_data.renewal.retail_sub_channels[(property_total_data.renewal.retail_sub_channels).length - 2]?.lmtd_RR ?? 0}}%</td>
-                <td class="" >{{property_total_data.renewal.retail_sub_channels[(property_total_data.renewal.retail_sub_channels).length - 2]?.lymtd_RR ?? 0}}%</td>
+                <td class="" >{{property_total_data.renewal.retail_sub_channels[(property_total_data.renewal.retail_sub_channels).length - 1]?.mtd_RR ?? 0}}%</td>
+                <td class="" >{{property_total_data.renewal.retail_sub_channels[(property_total_data.renewal.retail_sub_channels).length - 1]?.lmtd_RR ?? 0}}%</td>
+                <td class="" >{{property_total_data.renewal.retail_sub_channels[(property_total_data.renewal.retail_sub_channels).length - 1]?.lymtd_RR ?? 0}}%</td>
 
               </tr>
             </tbody>
@@ -1210,7 +1218,7 @@
     <div class="row" style="display:flex; gap: 30px;">
       <div class="col" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius: 5px; padding: 30px!important;">
   
-        <div class="row" style="display: flex; justify-content: center;">
+        <!-- <div class="row" style="display: flex; justify-content: center;">
           <h3>
             Topline
           </h3>
@@ -1219,21 +1227,62 @@
   
         <div class="row" style="display: flex; justify-content: center;">
           <div class="concentric-progress-bars">
-            <!-- Outer progress bar -->
             <div class="progress-bar outer" [attr.data-value]="100 + '%'">
-              <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + topLine_target_ftm + ''"></div>
-            </div>
-          
-            <!-- Middle progress bar -->          
+              <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + topLine_target_ftm + ' Cr'"></div>
+            </div>        
             <div class="progress-bar middle" [attr.data-value]="topLine_achv_per_ftm + '%'" >
-              <div class="progress" [ngStyle]="getMiddleProgressStyles(topLine_achv_per_ftm)" [title]="'Achievement: ' + topLine_achv_ftm + ''" ></div>
+              <div class="progress" [ngStyle]="getMiddleProgressStyles(topLine_achv_per_ftm)" [title]="'Achievement: ' + topLine_achv_ftm + ' Cr'" ></div>
             </div>
-          
-            <!-- Inner progress bar with center text -->
             <div class="progress-bar inner"  (click)="openModal(topline)">
               <div class="center-text">{{ topLine_centerText_ftm }}</div>
             </div>
           </div>
+        </div> -->
+
+
+
+        <div class="row">
+
+          <div class="col-md-6" style="display: flex;  align-items: center;">
+
+            <div class="row" style="display: flex; justify-content: center;">
+              <h3>
+                Topline
+              </h3>
+              <div class="concentric-progress-bars">
+                <div class="progress-bar outer" [attr.data-value]="100 + '%'">
+                  <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + topLine_target_ftm + ' Cr'"></div>
+                </div>
+              
+                        
+                <div class="progress-bar middle" [attr.data-value]="topLine_achv_per_ftm + '%'" >
+                  <div class="progress" [ngStyle]="getMiddleProgressStyles(topLine_achv_per_ftm)" [title]="'Achievement: ' + topLine_achv_ftm + ' Cr'" ></div>
+                </div>
+              
+                
+                <div class="progress-bar inner"  (click)="openModal(topline)">
+                  <div class="center-text">{{ topLine_centerText_ftm }}</div>
+                </div>
+              </div> 
+            </div>
+
+            
+
+          </div>
+
+          <div class="col-md-6">
+            <div class="row" style="max-height: 200px;">
+              <app-column-chart [id]="'topline_ftm_cor'" [chartData]="topline_ftm_cor" [height]="'200px'" style="width:100%; "></app-column-chart>
+            </div>
+
+            <div class="row" style="max-height: 200px;">
+              <app-column-chart [id]="'topline_ftm_lr'" [chartData]="topline_ftm_lr" [height]="'200px'"  style="width: 100%; "></app-column-chart>
+            </div>
+          </div>
+          
+
+
+
         </div>
   
   
@@ -1252,22 +1301,22 @@
             </thead>
             <tbody>
               <tr  style="font-size:16px!important;">
-                <td class="gaugetable_firstCol" scope="row">LMTD</td>
+                <td class="gaugetable_firstCol" scope="row">LFTM</td>
   
                 <td>{{topline_total_data.agent_performance.retail_sub_channels[(topline_total_data.agent_performance.retail_sub_channels).length - 2]?.ftm?.growthPercentage_lftm ?? 0}}%</td>
 
                 <td>{{topline_total_data.agent_performance.retail_sub_channels[(topline_total_data.agent_performance.retail_sub_channels).length - 2]?.contributingImdCountFtm?.growthOverLm_percentage ?? 0}}%</td>
-                <!-- <td>{{topline_total_data.renewal.retail_sub_channels[(topline_total_data.renewal.retail_sub_channels).length - 2]?.ftm_growth_over_lftm_RR ?? 0}}%</td> -->
+                <!-- <td>{{topline_total_data.renewal.retail_sub_channels[(topline_total_data.renewal.retail_sub_channels).length - 1]?.ftm_growth_over_lftm_RR ?? 0}}%</td> -->
                 <td>{{topline_total_data.agent_performance.retail_sub_channels[(topline_total_data.agent_performance.retail_sub_channels).length - 2]?.ftm?.growthPercentage_lftm_NOP ?? 0}}%</td>
               </tr>
 
               <tr  style="font-size:16px!important;">
-                <td class="gaugetable_firstCol"  scope="row">LYMTD</td>
+                <td class="gaugetable_firstCol"  scope="row">LYFTM</td>
   
                 <td>{{topline_total_data.agent_performance.retail_sub_channels[(topline_total_data.agent_performance.retail_sub_channels).length - 2]?.ftm?.growthPercentage_lyftm ?? 0}}%</td>
 
                 <td>{{topline_total_data.agent_performance.retail_sub_channels[(topline_total_data.agent_performance.retail_sub_channels).length - 2]?.contributingImdCountFtm?.growthOverLy_percentage ?? 0}}%</td>
-                <!-- <td>{{topline_total_data.renewal.retail_sub_channels[(topline_total_data.renewal.retail_sub_channels).length - 2]?.ftm_growth_over_lyftm_RR ?? 0}}%</td> -->
+                <!-- <td>{{topline_total_data.renewal.retail_sub_channels[(topline_total_data.renewal.retail_sub_channels).length - 1]?.ftm_growth_over_lyftm_RR ?? 0}}%</td> -->
                 <td>{{topline_total_data.agent_performance.retail_sub_channels[(topline_total_data.agent_performance.retail_sub_channels).length - 2]?.ftm?.growthPercentage_lyftm_base_NOP ?? 0}}%</td>
               </tr>
             </tbody>
@@ -1293,9 +1342,9 @@
               <tr  style="font-size:16px!important;">
                 <td class="gaugetable_firstCol" scope="row">RR %</td>
                 
-                <td class="" >{{topline_total_data.renewal.retail_sub_channels[(topline_total_data.renewal.retail_sub_channels).length - 2]?.ftm_RR ?? 0}}%</td>
-                <td class="" >{{topline_total_data.renewal.retail_sub_channels[(topline_total_data.renewal.retail_sub_channels).length - 2]?.lftm_RR ?? 0}}%</td>
-                <td class="" >{{topline_total_data.renewal.retail_sub_channels[(topline_total_data.renewal.retail_sub_channels).length - 2]?.lyftm_RR ?? 0}}%</td>
+                <td class="" >{{topline_total_data.renewal.retail_sub_channels[(topline_total_data.renewal.retail_sub_channels).length - 1]?.ftm_RR ?? 0}}%</td>
+                <td class="" >{{topline_total_data.renewal.retail_sub_channels[(topline_total_data.renewal.retail_sub_channels).length - 1]?.lftm_RR ?? 0}}%</td>
+                <td class="" >{{topline_total_data.renewal.retail_sub_channels[(topline_total_data.renewal.retail_sub_channels).length - 1]?.lyftm_RR ?? 0}}%</td>
 
               </tr>
             </tbody>
@@ -1308,32 +1357,69 @@
   
       <div class="col" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius: 5px; padding: 30px!important;">
   
-        <div class="row" style="display: flex; justify-content: center;">
+        <!-- <div class="row" style="display: flex; justify-content: center;">
           <h3>
             Health
           </h3>
-        </div>
+        </div> -->
         
   
-        <div class="row" style="display: flex; justify-content: center;">
+        <!-- <div class="row" style="display: flex; justify-content: center;">
           <div class="concentric-progress-bars">
-            <!-- Outer progress bar -->
             <div class="progress-bar outer" [attr.data-value]="100 + '%'">
-              <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + health_target_ftm + ''"></div>
+              <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + health_target_ftm + ' Cr'"></div>
             </div>
-          
-            <!-- Middle progress bar -->          
+                
             <div class="progress-bar middle" [attr.data-value]="health_achv_per_ftm + '%'" >
-              <div class="progress" [ngStyle]="getMiddleProgressStyles(health_achv_per_ftm)" [title]="'Achievement: ' + health_achv_ftm + ''" ></div>
+              <div class="progress" [ngStyle]="getMiddleProgressStyles(health_achv_per_ftm)" [title]="'Achievement: ' + health_achv_ftm + ' Cr'" ></div>
             </div>
   
-  
-          
-            <!-- Inner progress bar with center text -->
             <div class="progress-bar inner"  (click)="openModal(health)">
               <div class="center-text">{{health_centerText_ftm}}</div>
             </div>
           </div>
+        </div> -->
+
+
+        <div class="row">
+
+          <div class="col-md-6" style="display: flex;  align-items: center;">
+
+            <div class="row" style="display: flex; justify-content: center;">
+              <h3>
+                Health
+              </h3>
+              <div class="concentric-progress-bars">
+                <div class="progress-bar outer" [attr.data-value]="100 + '%'">
+                  <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + health_target_ftm + ' Cr'"></div>
+                </div>
+                    
+                <div class="progress-bar middle" [attr.data-value]="health_achv_per_ftm + '%'" >
+                  <div class="progress" [ngStyle]="getMiddleProgressStyles(health_achv_per_ftm)" [title]="'Achievement: ' + health_achv_ftm + ' Cr'" ></div>
+                </div>
+                <div class="progress-bar inner"  (click)="openModal(health)">
+                  <div class="center-text">{{health_centerText_ftm}}</div>
+                </div>
+              </div>
+            </div>
+
+            
+
+          </div>
+
+          <div class="col-md-6">
+            <div class="row" style="max-height: 200px;">
+              <app-column-chart [id]="'health_ftm_cor'" [chartData]="health_ftm_cor" [height]="'200px'" style="width:100%; "></app-column-chart>
+            </div>
+
+            <div class="row" style="max-height: 200px;">
+              <app-column-chart [id]="'health_ftm_lr'" [chartData]="health_ftm_lr" [height]="'200px'"  style="width: 100%; "></app-column-chart>
+            </div>
+          </div>
+          
+
+
+
         </div>
   
   
@@ -1352,21 +1438,21 @@
             </thead>
             <tbody>
               <tr  style="font-size:16px!important;">
-                <td class="gaugetable_firstCol" scope="row">LMTD</td>
+                <td class="gaugetable_firstCol" scope="row">LFTM</td>
   
                 <td>{{health_total_data.agent_performance.retail_sub_channels[(health_total_data.agent_performance.retail_sub_channels).length - 2]?.ftm?.growthPercentage_lftm ?? 0}}%</td>
 
                 <td>{{health_total_data.agent_performance.retail_sub_channels[(health_total_data.agent_performance.retail_sub_channels).length - 2]?.contributingImdCountFtm?.growthOverLm_percentage ?? 0}}%</td>
-                <!-- <td>{{health_total_data.renewal.retail_sub_channels[(health_total_data.renewal.retail_sub_channels).length - 2]?.ftm_growth_over_lftm_RR ?? 0}}%</td> -->
+                <!-- <td>{{health_total_data.renewal.retail_sub_channels[(health_total_data.renewal.retail_sub_channels).length - 1]?.ftm_growth_over_lftm_RR ?? 0}}%</td> -->
                 <td>{{health_total_data.agent_performance.retail_sub_channels[(health_total_data.agent_performance.retail_sub_channels).length - 2]?.ftm?.growthPercentage_lftm_NOP ?? 0}}%</td>
               </tr>
               <tr  style="font-size:16px!important;">
-                <td class="gaugetable_firstCol"  scope="row">LYMTD</td>
+                <td class="gaugetable_firstCol"  scope="row">LYFTM</td>
   
                 <td>{{health_total_data.agent_performance.retail_sub_channels[(health_total_data.agent_performance.retail_sub_channels).length - 2]?.ftm?.growthPercentage_lyftm ?? 0}}%</td>
 
                 <td>{{health_total_data.agent_performance.retail_sub_channels[(health_total_data.agent_performance.retail_sub_channels).length - 2]?.contributingImdCountFtm?.growthOverLy_percentage ?? 0}}%</td>
-                <!-- <td>{{health_total_data.renewal.retail_sub_channels[(health_total_data.renewal.retail_sub_channels).length - 2]?.ftm_growth_over_lyftm_RR ?? 0}}%</td> -->
+                <!-- <td>{{health_total_data.renewal.retail_sub_channels[(health_total_data.renewal.retail_sub_channels).length - 1]?.ftm_growth_over_lyftm_RR ?? 0}}%</td> -->
                 <td>{{health_total_data.agent_performance.retail_sub_channels[(health_total_data.agent_performance.retail_sub_channels).length - 2]?.ftm?.growthPercentage_lyftm_base_NOP ?? 0}}%</td>
               </tr>
             </tbody>
@@ -1394,9 +1480,9 @@
               <tr  style="font-size:16px!important;">
                 <td class="gaugetable_firstCol" scope="row">RR %</td>
                 
-                <td class="" >{{health_total_data.renewal.retail_sub_channels[(health_total_data.renewal.retail_sub_channels).length - 2]?.ftm_RR ?? 0}}%</td>
-                <td class="" >{{health_total_data.renewal.retail_sub_channels[(health_total_data.renewal.retail_sub_channels).length - 2]?.lftm_RR ?? 0}}%</td>
-                <td class="" >{{health_total_data.renewal.retail_sub_channels[(health_total_data.renewal.retail_sub_channels).length - 2]?.lyftm_RR ?? 0}}%</td>
+                <td class="" >{{health_total_data.renewal.retail_sub_channels[(health_total_data.renewal.retail_sub_channels).length - 1]?.ftm_RR ?? 0}}%</td>
+                <td class="" >{{health_total_data.renewal.retail_sub_channels[(health_total_data.renewal.retail_sub_channels).length - 1]?.lftm_RR ?? 0}}%</td>
+                <td class="" >{{health_total_data.renewal.retail_sub_channels[(health_total_data.renewal.retail_sub_channels).length - 1]?.lyftm_RR ?? 0}}%</td>
 
               </tr>
             </tbody>
@@ -1420,30 +1506,63 @@
     <div class="row" style="display:flex; gap: 30px;">
       <div class="col" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius: 5px; padding: 30px!important;">
   
-        <div class="row" style="display: flex; justify-content: center;">
+        <!-- <div class="row" style="display: flex; justify-content: center;">
           <h3>
             FRH
           </h3>
-        </div>
+        </div> -->
         
   
-        <div class="row" style="display: flex; justify-content: center;">
+        <!-- <div class="row" style="display: flex; justify-content: center;">
           <div class="concentric-progress-bars">
-            <!-- Outer progress bar -->
             <div class="progress-bar outer" [attr.data-value]="100 + '%'">
-              <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + frh_target_ftm + ''"></div>
+              <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + frh_target_ftm + ' Cr'"></div>
             </div>
-          
-            <!-- Middle progress bar -->          
+                   
             <div class="progress-bar middle" [attr.data-value]="frh_achv_per_ftm + '%'" >
-              <div class="progress" [ngStyle]="getMiddleProgressStyles(frh_achv_per_ftm)" [title]="'Achievement: ' + frh_achv_ftm + ''" ></div>
+              <div class="progress" [ngStyle]="getMiddleProgressStyles(frh_achv_per_ftm)" [title]="'Achievement: ' + frh_achv_ftm + ' Cr'" ></div>
             </div>
-          
-            <!-- Inner progress bar with center text -->
             <div class="progress-bar inner"  (click)="openModal(frh)">
               <div class="center-text">{{frh_centerText_ftm}}</div>
             </div>
           </div>
+        </div> -->
+
+
+
+
+        <div class="row">
+
+          <div class="col-md-6" style="display: flex;  align-items: center; height:400px; ">
+
+            <div class="row" style="display: flex; justify-content: center;">
+              <h3>
+                FRH
+              </h3>
+
+              <div class="concentric-progress-bars">
+                <div class="progress-bar outer" [attr.data-value]="100 + '%'">
+                  <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + frh_target_ftm + ' Cr'"></div>
+                </div>
+                       
+                <div class="progress-bar middle" [attr.data-value]="frh_achv_per_ftm + '%'" >
+                  <div class="progress" [ngStyle]="getMiddleProgressStyles(frh_achv_per_ftm)" [title]="'Achievement: ' + frh_achv_ftm + ' Cr'" ></div>
+                </div>
+              
+                <div class="progress-bar inner"  (click)="openModal(frh)">
+                  <div class="center-text">{{frh_centerText_ftm}}</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="row" style="padding-top: 120px!important;">
+              <app-column-chart [id]="'frh_ftm_cor'" [chartData]="frh_ftm_cor" [height]="'200px'" style="width:100%; "></app-column-chart>
+            </div>
+          </div>
+
         </div>
   
   
@@ -1461,7 +1580,7 @@
             </thead>
             <tbody>
               <tr  style="font-size:16px!important;">
-                <td class="gaugetable_firstCol" scope="row">LMTD</td>
+                <td class="gaugetable_firstCol" scope="row">LFTM</td>
   
                 <td>{{frh_total_data.agent_performance.retail_sub_channels[(frh_total_data.agent_performance.retail_sub_channels).length - 2]?.ftm?.growthPercentage_lftm ?? 0}}%</td>
 
@@ -1471,7 +1590,7 @@
               </tr>
 
               <tr  style="font-size:16px!important;">
-                <td class="gaugetable_firstCol"  scope="row">LYMTD</td>
+                <td class="gaugetable_firstCol"  scope="row">LYFTM</td>
   
                 <td>{{frh_total_data.agent_performance.retail_sub_channels[(frh_total_data.agent_performance.retail_sub_channels).length - 2]?.ftm?.growthPercentage_lyftm ?? 0}}%</td>
 
@@ -1500,9 +1619,9 @@
               <tr  style="font-size:16px!important;">
                 <td class="gaugetable_firstCol" scope="row">RR %</td>
                 
-                <td class="" >{{frh_total_data.renewal.retail_sub_channels[(frh_total_data.renewal.retail_sub_channels).length - 2]?.ftm_RR ?? 0}}%</td>
-                <td class="" >{{frh_total_data.renewal.retail_sub_channels[(frh_total_data.renewal.retail_sub_channels).length - 2]?.lftm_RR ?? 0}}%</td>
-                <td class="" >{{frh_total_data.renewal.retail_sub_channels[(frh_total_data.renewal.retail_sub_channels).length - 2]?.lyftm_RR ?? 0}}%</td>
+                <td class="" >{{frh_total_data.renewal.retail_sub_channels[(frh_total_data.renewal.retail_sub_channels).length - 1]?.ftm_RR ?? 0}}%</td>
+                <td class="" >{{frh_total_data.renewal.retail_sub_channels[(frh_total_data.renewal.retail_sub_channels).length - 1]?.lftm_RR ?? 0}}%</td>
+                <td class="" >{{frh_total_data.renewal.retail_sub_channels[(frh_total_data.renewal.retail_sub_channels).length - 1]?.lyftm_RR ?? 0}}%</td>
 
               </tr>
             </tbody>
@@ -1515,32 +1634,69 @@
   
       <div class="col" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius: 5px; padding: 30px!important;">
   
-        <div class="row" style="display: flex; justify-content: center;">
+        <!-- <div class="row" style="display: flex; justify-content: center;">
           <h3>
             Private Car
           </h3>
-        </div>
+        </div> -->
         
   
-        <div class="row" style="display: flex; justify-content: center;">
+        <!-- <div class="row" style="display: flex; justify-content: center;">
           <div class="concentric-progress-bars">
-            <!-- Outer progress bar -->
             <div class="progress-bar outer" [attr.data-value]="100 + '%'">
-              <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + pvtcar_target_ftm + ''"></div>
+              <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + pvtcar_target_ftm + ' Cr'"></div>
             </div>
-          
-            <!-- Middle progress bar -->          
+                 
             <div class="progress-bar middle" [attr.data-value]="pvtcar_achv_per_ftm + '%'" >
-              <div class="progress" [ngStyle]="getMiddleProgressStyles(pvtcar_achv_per_ftm)" [title]="'Achievement: ' + pvtcar_achv_ftm + ''" ></div>
+              <div class="progress" [ngStyle]="getMiddleProgressStyles(pvtcar_achv_per_ftm)" [title]="'Achievement: ' + pvtcar_achv_ftm + ' Cr'" ></div>
             </div>
   
-  
-          
-            <!-- Inner progress bar with center text -->
             <div class="progress-bar inner"  (click)="openModal(pvtcar)">
               <div class="center-text">{{pvtcar_centerText_ftm}}</div>
             </div>
           </div>
+        </div> -->
+
+
+
+        <div class="row">
+
+          <div class="col-md-6" style="display: flex;  align-items: center;">
+
+            <div class="row" style="display: flex; justify-content: center;">
+              <h3>
+                Private Car
+              </h3>
+              <div class="concentric-progress-bars">
+                <div class="progress-bar outer" [attr.data-value]="100 + '%'">
+                  <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + pvtcar_target_ftm + ' Cr'"></div>
+                </div>         
+                <div class="progress-bar middle" [attr.data-value]="pvtcar_achv_per_ftm + '%'" >
+                  <div class="progress" [ngStyle]="getMiddleProgressStyles(pvtcar_achv_per_ftm)" [title]="'Achievement: ' + pvtcar_achv_ftm + ' Cr'" ></div>
+                </div>
+                <div class="progress-bar inner"  (click)="openModal(pvtcar)">
+                  <div class="center-text">{{pvtcar_centerText_ftm}}</div>
+                </div>
+              </div>
+            </div>
+
+            
+
+          </div>
+
+          <div class="col-md-6">
+            <div class="row" style="max-height: 200px;">
+              <app-column-chart [id]="'pvtcar_ftm_cor'" [chartData]="pvtcar_ftm_cor" [height]="'200px'" style="width:100%; "></app-column-chart>
+            </div>
+
+            <div class="row" style="max-height: 200px;">
+              <app-column-chart [id]="'pvtcar_ftm_lr'" [chartData]="pvtcar_ftm_lr" [height]="'200px'"  style="width: 100%; "></app-column-chart>
+            </div>
+          </div>
+          
+
+
+
         </div>
   
   
@@ -1559,21 +1715,21 @@
             </thead>
             <tbody>
               <tr  style="font-size:16px!important;">
-                <td class="gaugetable_firstCol" scope="row">LMTD</td>
+                <td class="gaugetable_firstCol" scope="row">LFTM</td>
   
                 <td>{{pvtCar_total_data.agent_performance.retail_sub_channels[(pvtCar_total_data.agent_performance.retail_sub_channels).length - 2]?.ftm?.growthPercentage_lftm ?? 0}}%</td>
 
                 <td>{{pvtCar_total_data.agent_performance.retail_sub_channels[(pvtCar_total_data.agent_performance.retail_sub_channels).length - 2]?.contributingImdCountFtm?.growthOverLm_percentage ?? 0}}%</td>
-                <!-- <td>{{pvtCar_total_data.renewal.retail_sub_channels[(pvtCar_total_data.renewal.retail_sub_channels).length - 2]?.ftm_growth_over_lftm_RR ?? 0}}%</td> -->
+                <!-- <td>{{pvtCar_total_data.renewal.retail_sub_channels[(pvtCar_total_data.renewal.retail_sub_channels).length - 1]?.ftm_growth_over_lftm_RR ?? 0}}%</td> -->
                 <td>{{pvtCar_total_data.agent_performance.retail_sub_channels[(pvtCar_total_data.agent_performance.retail_sub_channels).length - 2]?.ftm?.growthPercentage_lftm_NOP ?? 0}}%</td>
               </tr>
               <tr  style="font-size:16px!important;">
-                <td class="gaugetable_firstCol"  scope="row">LYMTD</td>
+                <td class="gaugetable_firstCol"  scope="row">LYFTM</td>
   
                 <td>{{pvtCar_total_data.agent_performance.retail_sub_channels[(pvtCar_total_data.agent_performance.retail_sub_channels).length - 2]?.ftm?.growthPercentage_lyftm ?? 0}}%</td>
 
                 <td>{{pvtCar_total_data.agent_performance.retail_sub_channels[(pvtCar_total_data.agent_performance.retail_sub_channels).length - 2]?.contributingImdCountFtm?.growthOverLy_percentage ?? 0}}%</td>
-                <!-- <td>{{pvtCar_total_data.renewal.retail_sub_channels[(pvtCar_total_data.renewal.retail_sub_channels).length - 2]?.ftm_growth_over_lyftm_RR ?? 0}}%</td> -->
+                <!-- <td>{{pvtCar_total_data.renewal.retail_sub_channels[(pvtCar_total_data.renewal.retail_sub_channels).length - 1]?.ftm_growth_over_lyftm_RR ?? 0}}%</td> -->
                 <td>{{pvtCar_total_data.agent_performance.retail_sub_channels[(pvtCar_total_data.agent_performance.retail_sub_channels).length - 2]?.ftm?.growthPercentage_lyftm_base_NOP ?? 0}}%</td>
               </tr>
             </tbody>
@@ -1600,9 +1756,9 @@
               <tr  style="font-size:16px!important;">
                 <td class="gaugetable_firstCol" scope="row">RR %</td>
                 
-                <td class="" >{{pvtCar_total_data.renewal.retail_sub_channels[(pvtCar_total_data.renewal.retail_sub_channels).length - 2]?.ftm_RR ?? 0}}%</td>
-                <td class="" >{{pvtCar_total_data.renewal.retail_sub_channels[(pvtCar_total_data.renewal.retail_sub_channels).length - 2]?.lftm_RR ?? 0}}%</td>
-                <td class="" >{{pvtCar_total_data.renewal.retail_sub_channels[(pvtCar_total_data.renewal.retail_sub_channels).length - 2]?.lyftm_RR ?? 0}}%</td>
+                <td class="" >{{pvtCar_total_data.renewal.retail_sub_channels[(pvtCar_total_data.renewal.retail_sub_channels).length - 1]?.ftm_RR ?? 0}}%</td>
+                <td class="" >{{pvtCar_total_data.renewal.retail_sub_channels[(pvtCar_total_data.renewal.retail_sub_channels).length - 1]?.lftm_RR ?? 0}}%</td>
+                <td class="" >{{pvtCar_total_data.renewal.retail_sub_channels[(pvtCar_total_data.renewal.retail_sub_channels).length - 1]?.lyftm_RR ?? 0}}%</td>
 
               </tr>
             </tbody>
@@ -1628,32 +1784,64 @@
     <div class="row" style="display:flex; gap: 30px;">
       <div class="col" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius: 5px; padding: 30px!important;">
   
-        <div class="row" style="display: flex; justify-content: center;">
+        <!-- <div class="row" style="display: flex; justify-content: center;">
           <h3>
             ROPC
           </h3>
-        </div>
+        </div> -->
         
   
-        <div class="row" style="display: flex; justify-content: center;">
+        <!-- <div class="row" style="display: flex; justify-content: center;">
           <div class="concentric-progress-bars">
-            <!-- Outer progress bar -->
+            
             <div class="progress-bar outer" [attr.data-value]="100 + '%'">
-              <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + ropc_target_ftm + ''"></div>
+              <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + ropc_target_ftm + ' Cr'"></div>
             </div>
-          
-            <!-- Middle progress bar -->          
+                   
             <div class="progress-bar middle" [attr.data-value]="ropc_achv_per_ftm + '%'" >
-              <div class="progress" [ngStyle]="getMiddleProgressStyles(ropc_achv_per_ftm)" [title]="'Achievement: ' + ropc_achv_ftm + ''" ></div>
+              <div class="progress" [ngStyle]="getMiddleProgressStyles(ropc_achv_per_ftm)" [title]="'Achievement: ' + ropc_achv_ftm + ' Cr'" ></div>
             </div>
   
   
-          
-            <!-- Inner progress bar with center text -->
             <div class="progress-bar inner"  (click)="openModal(ropc)">
               <div class="center-text">{{ropc_centerText_ftm}}</div>
             </div>
           </div>
+        </div> -->
+
+
+
+        <div class="row">
+
+          <div class="col-md-6" style="display: flex;  align-items: center; height:400px; ">
+
+            <div class="row" style="display: flex; justify-content: center;">
+              <h3>
+                ROPC
+              </h3>
+
+              <div class="concentric-progress-bars">
+                <div class="progress-bar outer" [attr.data-value]="100 + '%'">
+                  <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + ropc_target_ftm + ' Cr'"></div>
+                </div>
+                         
+                <div class="progress-bar middle" [attr.data-value]="ropc_achv_per_ftm + '%'" >
+                  <div class="progress" [ngStyle]="getMiddleProgressStyles(ropc_achv_per_ftm)" [title]="'Achievement: ' + ropc_achv_ftm + ' Cr'" ></div>
+                </div>
+                <div class="progress-bar inner"   (click)="openModal(ropc)">
+                  <div class="center-text">{{ropc_centerText_ftm}}</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="row" style="padding-top: 120px!important;">
+              <app-column-chart [id]="'ropc_ftm_cor'" [chartData]="ropc_ftm_cor" [height]="'200px'" style="width:100%; "></app-column-chart>
+            </div>
+          </div>
+
         </div>
   
   
@@ -1672,7 +1860,7 @@
 
             <tbody>
               <tr  style="font-size:16px!important;">
-                <td class="gaugetable_firstCol" scope="row">LMTD</td>
+                <td class="gaugetable_firstCol" scope="row">LFTM</td>
   
                 <td>{{ropc_total_data.agent_performance.retail_sub_channels[(ropc_total_data.agent_performance.retail_sub_channels).length - 2]?.ftm?.growthPercentage_lftm ?? 0}}%</td>
 
@@ -1680,7 +1868,7 @@
                 <td>{{ropc_total_data.agent_performance.retail_sub_channels[(ropc_total_data.agent_performance.retail_sub_channels).length - 2]?.ftm?.growthPercentage_lftm_NOP ?? 0}}%</td>
               </tr>
               <tr  style="font-size:16px!important;">
-                <td class="gaugetable_firstCol"  scope="row">LYMTD</td>
+                <td class="gaugetable_firstCol"  scope="row">LYFTM</td>
   
                 <td>{{ropc_total_data.agent_performance.retail_sub_channels[(ropc_total_data.agent_performance.retail_sub_channels).length - 2]?.ftm?.growthPercentage_lyftm ?? 0}}%</td>
 
@@ -1712,9 +1900,9 @@
               <tr  style="font-size:16px!important;">
                 <td class="gaugetable_firstCol" scope="row">RR %</td>
                 
-                <td class="" >{{ropc_total_data.renewal.retail_sub_channels[(ropc_total_data.renewal.retail_sub_channels).length - 2]?.ftm_RR ?? 0}}%</td>
-                <td class="" >{{ropc_total_data.renewal.retail_sub_channels[(ropc_total_data.renewal.retail_sub_channels).length - 2]?.lftm_RR ?? 0}}%</td>
-                <td class="" >{{ropc_total_data.renewal.retail_sub_channels[(ropc_total_data.renewal.retail_sub_channels).length - 2]?.lyftm_RR ?? 0}}%</td>
+                <td class="" >{{ropc_total_data.renewal.retail_sub_channels[(ropc_total_data.renewal.retail_sub_channels).length - 1]?.ftm_RR ?? 0}}%</td>
+                <td class="" >{{ropc_total_data.renewal.retail_sub_channels[(ropc_total_data.renewal.retail_sub_channels).length - 1]?.lftm_RR ?? 0}}%</td>
+                <td class="" >{{ropc_total_data.renewal.retail_sub_channels[(ropc_total_data.renewal.retail_sub_channels).length - 1]?.lyftm_RR ?? 0}}%</td>
 
               </tr>
             </tbody>
@@ -1727,32 +1915,69 @@
   
       <div class="col" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius: 5px; padding: 30px!important;">
   
-        <div class="row" style="display: flex; justify-content: center;">
+        <!-- <div class="row" style="display: flex; justify-content: center;">
           <h3>
             Property
           </h3>
-        </div>
+        </div> -->
         
   
-        <div class="row" style="display: flex; justify-content: center;">
+        <!-- <div class="row" style="display: flex; justify-content: center;">
           <div class="concentric-progress-bars">
-            <!-- Outer progress bar -->
             <div class="progress-bar outer" [attr.data-value]="100 + '%'">
-              <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + property_target_ftm + ''"></div>
+              <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + property_target_ftm + ' Cr'"></div>
             </div>
-          
-            <!-- Middle progress bar -->          
+                  
             <div class="progress-bar middle" [attr.data-value]="property_achv_per_ftm + '%'" >
-              <div class="progress" [ngStyle]="getMiddleProgressStyles(property_achv_per_ftm)" [title]="'Achievement: ' + property_achv_ftm + ''" ></div>
+              <div class="progress" [ngStyle]="getMiddleProgressStyles(property_achv_per_ftm)" [title]="'Achievement: ' + property_achv_ftm + ' Cr'" ></div>
             </div>
   
   
-          
-            <!-- Inner progress bar with center text -->
             <div class="progress-bar inner"  (click)="openModal(property)">
               <div class="center-text">{{property_centerText_ftm}}</div>
             </div>
           </div>
+        </div> -->
+
+
+        <div class="row">
+
+          <div class="col-md-6" style="display: flex;  align-items: center;">
+
+            <div class="row" style="display: flex; justify-content: center;">
+              <h3>
+                Property
+              </h3>
+              <div class="concentric-progress-bars">
+                <div class="progress-bar outer" [attr.data-value]="100 + '%'">
+                  <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + property_target_ftm + ' Cr'"></div>
+                </div>       
+                <div class="progress-bar middle" [attr.data-value]="property_achv_per_ftm + '%'" >
+                  <div class="progress" [ngStyle]="getMiddleProgressStyles(property_achv_per_ftm)" [title]="'Achievement: ' + property_achv_ftm + ' Cr'" ></div>
+                </div>
+                <div class="progress-bar inner"  (click)="openModal(property)">
+                  <div class="center-text">{{property_centerText_ftm}}</div>
+                </div>
+              </div>
+            </div>
+
+            
+
+          </div>
+
+          <div class="col-md-6">
+            <div class="row" style="max-height: 200px;">
+              <app-column-chart [id]="'property_ftm_cor'" [chartData]="property_ftm_cor" [height]="'200px'" style="width:100%; "></app-column-chart>
+            </div>
+
+            <div class="row" style="max-height: 200px;">
+              <app-column-chart [id]="'property_ftm_lr'" [chartData]="property_ftm_lr" [height]="'200px'"  style="width: 100%; "></app-column-chart>
+            </div>
+          </div>
+          
+
+
+
         </div>
   
   
@@ -1771,21 +1996,21 @@
             </thead>
             <tbody>
               <tr  style="font-size:16px!important;">
-                <td class="gaugetable_firstCol" scope="row">LMTD</td>
+                <td class="gaugetable_firstCol" scope="row">LFTM</td>
   
                 <td>{{property_total_data.agent_performance.retail_sub_channels[(property_total_data.agent_performance.retail_sub_channels).length - 2]?.ftm?.growthPercentage_lftm ?? 0}}%</td>
 
                 <td>{{property_total_data.agent_performance.retail_sub_channels[(property_total_data.agent_performance.retail_sub_channels).length - 2]?.contributingImdCountFtm?.growthOverLm_percentage ?? 0}}%</td>
-                <!-- <td>{{property_total_data.renewal.retail_sub_channels[(property_total_data.renewal.retail_sub_channels).length - 2]?.ftm_growth_over_lftm_RR ?? 0}}%</td> -->
+                <!-- <td>{{property_total_data.renewal.retail_sub_channels[(property_total_data.renewal.retail_sub_channels).length - 1]?.ftm_growth_over_lftm_RR ?? 0}}%</td> -->
                 <td>{{property_total_data.agent_performance.retail_sub_channels[(property_total_data.agent_performance.retail_sub_channels).length - 2]?.ftm?.growthPercentage_lftm_NOP ?? 0}}%</td>
               </tr>
               <tr  style="font-size:16px!important;">
-                <td class="gaugetable_firstCol"  scope="row">LYMTD</td>
+                <td class="gaugetable_firstCol"  scope="row">LYFTM</td>
   
                 <td>{{property_total_data.agent_performance.retail_sub_channels[(property_total_data.agent_performance.retail_sub_channels).length - 2]?.ftm?.growthPercentage_lyftm ?? 0}}%</td>
 
                 <td>{{property_total_data.agent_performance.retail_sub_channels[(property_total_data.agent_performance.retail_sub_channels).length - 2]?.contributingImdCountFtm?.growthOverLy_percentage ?? 0}}%</td>
-                <!-- <td>{{property_total_data.renewal.retail_sub_channels[(property_total_data.renewal.retail_sub_channels).length - 2]?.ftm_growth_over_lyftm_RR ?? 0}}%</td> -->
+                <!-- <td>{{property_total_data.renewal.retail_sub_channels[(property_total_data.renewal.retail_sub_channels).length - 1]?.ftm_growth_over_lyftm_RR ?? 0}}%</td> -->
                 <td>{{property_total_data.agent_performance.retail_sub_channels[(property_total_data.agent_performance.retail_sub_channels).length - 2]?.ftm?.growthPercentage_lyftm_base_NOP ?? 0}}%</td>
               </tr>
             </tbody>
@@ -1812,9 +2037,9 @@
               <tr  style="font-size:16px!important;">
                 <td class="gaugetable_firstCol" scope="row">RR %</td>
                 
-                <td class="" >{{property_total_data.renewal.retail_sub_channels[(property_total_data.renewal.retail_sub_channels).length - 2]?.ftm_RR ?? 0}}%</td>
-                <td class="" >{{property_total_data.renewal.retail_sub_channels[(property_total_data.renewal.retail_sub_channels).length - 2]?.lftm_RR ?? 0}}%</td>
-                <td class="" >{{property_total_data.renewal.retail_sub_channels[(property_total_data.renewal.retail_sub_channels).length - 2]?.lyftm_RR ?? 0}}%</td>
+                <td class="" >{{property_total_data.renewal.retail_sub_channels[(property_total_data.renewal.retail_sub_channels).length - 1]?.ftm_RR ?? 0}}%</td>
+                <td class="" >{{property_total_data.renewal.retail_sub_channels[(property_total_data.renewal.retail_sub_channels).length - 1]?.lftm_RR ?? 0}}%</td>
+                <td class="" >{{property_total_data.renewal.retail_sub_channels[(property_total_data.renewal.retail_sub_channels).length - 1]?.lyftm_RR ?? 0}}%</td>
 
               </tr>
             </tbody>
@@ -1845,7 +2070,7 @@
     <div class="row" style="display:flex; gap: 30px;">
       <div class="col" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius: 5px; padding: 30px!important;">
   
-        <div class="row" style="display: flex; justify-content: center;">
+        <!-- <div class="row" style="display: flex; justify-content: center;">
           <h3>
             Topline
           </h3>
@@ -1854,21 +2079,66 @@
   
         <div class="row" style="display: flex; justify-content: center;">
           <div class="concentric-progress-bars">
-            <!-- Outer progress bar -->
+            
             <div class="progress-bar outer" [attr.data-value]="100 + '%'">
-              <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + topLine_target_ytd + ''"></div>
+              <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + topLine_target_ytd + ' Cr'"></div>
             </div>
           
-            <!-- Middle progress bar -->          
+                      
             <div class="progress-bar middle" [attr.data-value]="topLine_achv_per_ytd + '%'" >
-              <div class="progress" [ngStyle]="getMiddleProgressStyles(topLine_achv_per_ytd)" [title]="'Achievement: ' + topLine_achv_ytd + ''" ></div>
+              <div class="progress" [ngStyle]="getMiddleProgressStyles(topLine_achv_per_ytd)" [title]="'Achievement: ' + topLine_achv_ytd + ' Cr'" ></div>
             </div>
           
-            <!-- Inner progress bar with center text -->
+            
             <div class="progress-bar inner"  (click)="openModal(topline)">
               <div class="center-text">{{ topLine_centerText_ytd }}</div>
             </div>
           </div>
+        </div> -->
+
+
+        <div class="row">
+
+          <div class="col-md-6" style="display: flex;  align-items: center;">
+
+            <div class="row" style="display: flex; justify-content: center;">
+              <h3>
+                Topline
+              </h3>
+              <div class="concentric-progress-bars">
+                <div class="progress-bar outer" [attr.data-value]="100 + '%'">
+                  <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + topLine_target_ytd + ' Cr'"></div>
+                </div>
+              
+                        
+                <div class="progress-bar middle" [attr.data-value]="topLine_achv_per_ytd + '%'" >
+                  <div class="progress" [ngStyle]="getMiddleProgressStyles(topLine_achv_per_ytd)" [title]="'Achievement: ' + topLine_achv_ytd + ' Cr'" ></div>
+                </div>
+              
+                
+                <div class="progress-bar inner"  (click)="openModal(topline)">
+                  <div class="center-text">{{ topLine_centerText_ytd }}</div>
+                </div>
+              </div> 
+            </div>
+
+            
+
+          </div>
+
+          <div class="col-md-6">
+            <div class="row" style="max-height: 200px;">
+              <app-column-chart [id]="'topline_ytd_cor'" [chartData]="topline_ftm_cor" [height]="'200px'" style="width:100%; "></app-column-chart>
+            </div>
+
+            <div class="row" style="max-height: 200px;">
+              <app-column-chart [id]="'topline_ytd_lr'" [chartData]="topline_ftm_lr" [height]="'200px'"  style="width: 100%; "></app-column-chart>
+            </div>
+          </div>
+          
+
+
+
         </div>
   
   
@@ -1892,7 +2162,7 @@
                 <td>{{topline_total_data.agent_performance.retail_sub_channels[(topline_total_data.agent_performance.retail_sub_channels).length - 2]?.ytd?.growth_Percentage_over_lytd ?? 0}}%</td>
 
                 <td>{{topline_total_data.agent_performance.retail_sub_channels[(topline_total_data.agent_performance.retail_sub_channels).length - 2]?.contributingImdCountYtd?.growthOverLy_percentage ?? 0}}%</td>
-                <!-- <td>{{topline_total_data.renewal.retail_sub_channels[(topline_total_data.renewal.retail_sub_channels).length - 2]?.ytd_growth_over_lytd_RR ?? 0}}%</td> -->
+                <!-- <td>{{topline_total_data.renewal.retail_sub_channels[(topline_total_data.renewal.retail_sub_channels).length - 1]?.ytd_growth_over_lytd_RR ?? 0}}%</td> -->
                 <td>{{topline_total_data.agent_performance.retail_sub_channels[(topline_total_data.agent_performance.retail_sub_channels).length - 2]?.ytd?.growth_Percentage_over_lytd_NOP ?? 0}}%</td>
               </tr>
             </tbody>
@@ -1918,8 +2188,8 @@
               <tr  style="font-size:16px!important;">
                 <td class="gaugetable_firstCol" scope="row">RR %</td>
                 
-                <td class="" >{{topline_total_data.renewal.retail_sub_channels[(topline_total_data.renewal.retail_sub_channels).length - 2]?.ytd_RR ?? 0}}%</td>
-                <td class="" >{{topline_total_data.renewal.retail_sub_channels[(topline_total_data.renewal.retail_sub_channels).length - 2]?.lytd_RR ?? 0}}%</td>
+                <td class="" >{{topline_total_data.renewal.retail_sub_channels[(topline_total_data.renewal.retail_sub_channels).length - 1]?.ytd_RR ?? 0}}%</td>
+                <td class="" >{{topline_total_data.renewal.retail_sub_channels[(topline_total_data.renewal.retail_sub_channels).length - 1]?.lytd_RR ?? 0}}%</td>
 
               </tr>
             </tbody>
@@ -1932,7 +2202,7 @@
   
       <div class="col" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius: 5px; padding: 30px!important;">
   
-        <div class="row" style="display: flex; justify-content: center;">
+        <!-- <div class="row" style="display: flex; justify-content: center;">
           <h3>
             Health
           </h3>
@@ -1941,23 +2211,61 @@
   
         <div class="row" style="display: flex; justify-content: center;">
           <div class="concentric-progress-bars">
-            <!-- Outer progress bar -->
             <div class="progress-bar outer" [attr.data-value]="100 + '%'">
-              <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + health_target_ytd + ''"></div>
+              <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + health_target_ytd + ' Cr'"></div>
             </div>
-          
-            <!-- Middle progress bar -->          
+                   
             <div class="progress-bar middle" [attr.data-value]="health_achv_per_ytd + '%'" >
-              <div class="progress" [ngStyle]="getMiddleProgressStyles(health_achv_per_ytd)" [title]="'Achievement: ' + health_achv_ytd + ''" ></div>
+              <div class="progress" [ngStyle]="getMiddleProgressStyles(health_achv_per_ytd)" [title]="'Achievement: ' + health_achv_ytd + ' Cr'" ></div>
             </div>
   
   
-          
-            <!-- Inner progress bar with center text -->
-            <div class="progress-bar inner" >
+            <div class="progress-bar inner"  (click)="openModal(health)">
               <div class="center-text">{{health_centerText_ytd}}</div>
             </div>
           </div>
+        </div> -->
+
+
+        <div class="row">
+
+          <div class="col-md-6" style="display: flex;  align-items: center;">
+
+            <div class="row" style="display: flex; justify-content: center;">
+              <h3>
+                Health
+              </h3>
+              <div class="concentric-progress-bars">
+                <div class="progress-bar outer" [attr.data-value]="100 + '%'">
+                  <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + health_target_ytd + ' Cr'"></div>
+                </div>
+                    
+                <div class="progress-bar middle" [attr.data-value]="health_achv_per_ytd + '%'" >
+                  <div class="progress" [ngStyle]="getMiddleProgressStyles(health_achv_per_ytd)" [title]="'Achievement: ' + health_achv_ytd + ' Cr'" ></div>
+                </div>
+                <div class="progress-bar inner"  (click)="openModal(health)">
+                  <div class="center-text">{{health_centerText_ytd}}</div>
+                </div>
+              </div>
+            </div>
+
+            
+
+          </div>
+
+          <div class="col-md-6">
+            <div class="row" style="max-height: 200px;">
+              <app-column-chart [id]="'health_ytd_cor'" [chartData]="health_ftm_cor" [height]="'200px'" style="width:100%; "></app-column-chart>
+            </div>
+
+            <div class="row" style="max-height: 200px;">
+              <app-column-chart [id]="'health_ytd_lr'" [chartData]="health_ftm_lr" [height]="'200px'"  style="width: 100%; "></app-column-chart>
+            </div>
+          </div>
+          
+
+
+
         </div>
   
   
@@ -1981,7 +2289,7 @@
                 <td>{{health_total_data.agent_performance.retail_sub_channels[(health_total_data.agent_performance.retail_sub_channels).length - 2]?.ytd?.growth_Percentage_over_lytd ?? 0}}%</td>
 
                 <td>{{health_total_data.agent_performance.retail_sub_channels[(health_total_data.agent_performance.retail_sub_channels).length - 2]?.contributingImdCountYtd?.growthOverLy_percentage ?? 0}}%</td>
-                <!-- <td>{{health_total_data.renewal.retail_sub_channels[(health_total_data.renewal.retail_sub_channels).length - 2]?.ytd_growth_over_lytd_RR ?? 0}}%</td> -->
+                <!-- <td>{{health_total_data.renewal.retail_sub_channels[(health_total_data.renewal.retail_sub_channels).length - 1]?.ytd_growth_over_lytd_RR ?? 0}}%</td> -->
                 <td>{{health_total_data.agent_performance.retail_sub_channels[(health_total_data.agent_performance.retail_sub_channels).length - 2]?.ytd?.growth_Percentage_over_lytd_NOP ?? 0}}%</td>
               </tr>
             </tbody>
@@ -2007,8 +2315,8 @@
               <tr  style="font-size:16px!important;">
                 <td class="gaugetable_firstCol" scope="row">RR %</td>
                 
-                <td class="" >{{health_total_data.renewal.retail_sub_channels[(health_total_data.renewal.retail_sub_channels).length - 2]?.ytd_RR ?? 0}}%</td>
-                <td class="" >{{health_total_data.renewal.retail_sub_channels[(health_total_data.renewal.retail_sub_channels).length - 2]?.lytd_RR ?? 0}}%</td>
+                <td class="" >{{health_total_data.renewal.retail_sub_channels[(health_total_data.renewal.retail_sub_channels).length - 1]?.ytd_RR ?? 0}}%</td>
+                <td class="" >{{health_total_data.renewal.retail_sub_channels[(health_total_data.renewal.retail_sub_channels).length - 1]?.lytd_RR ?? 0}}%</td>
 
               </tr>
             </tbody>
@@ -2030,30 +2338,65 @@
     <div class="row" style="display:flex; gap: 30px;">
       <div class="col" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius: 5px; padding: 30px!important;">
   
-        <div class="row" style="display: flex; justify-content: center;">
+        <!-- <div class="row" style="display: flex; justify-content: center;">
           <h3>
             FRH
           </h3>
-        </div>
+        </div> -->
         
   
-        <div class="row" style="display: flex; justify-content: center;">
+        <!-- <div class="row" style="display: flex; justify-content: center;">
           <div class="concentric-progress-bars">
-            <!-- Outer progress bar -->
+            
             <div class="progress-bar outer" [attr.data-value]="100 + '%'">
-              <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + frh_target_ytd + ''"></div>
+              <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + frh_target_ytd + ' Cr'"></div>
             </div>
           
-            <!-- Middle progress bar -->          
+                      
             <div class="progress-bar middle" [attr.data-value]="frh_achv_per_ytd + '%'" >
-              <div class="progress" [ngStyle]="getMiddleProgressStyles(frh_achv_per_ytd)" [title]="'Achievement: ' + frh_achv_ytd + ''" ></div>
+              <div class="progress" [ngStyle]="getMiddleProgressStyles(frh_achv_per_ytd)" [title]="'Achievement: ' + frh_achv_ytd + ' Cr'" ></div>
             </div>
           
-            <!-- Inner progress bar with center text -->
-            <div class="progress-bar inner" >
+            
+            <div class="progress-bar inner" (click)="openModal(frh)">
               <div class="center-text">{{frh_centerText_ytd}}</div>
             </div>
           </div>
+        </div> -->
+
+
+        <div class="row">
+
+          <div class="col-md-6" style="display: flex;  align-items: center; height:400px; ">
+
+            <div class="row" style="display: flex; justify-content: center;">
+              <h3>
+                FRH
+              </h3>
+
+              <div class="concentric-progress-bars">
+                <div class="progress-bar outer" [attr.data-value]="100 + '%'">
+                  <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + frh_target_ytd + ' Cr'"></div>
+                </div>
+                       
+                <div class="progress-bar middle" [attr.data-value]="frh_achv_per_ytd + '%'" >
+                  <div class="progress" [ngStyle]="getMiddleProgressStyles(frh_achv_per_ytd)" [title]="'Achievement: ' + frh_achv_ytd + ' Cr'" ></div>
+                </div>
+              
+                <div class="progress-bar inner"  (click)="openModal(frh)">
+                  <div class="center-text">{{frh_centerText_ytd}}</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="row" style="padding-top: 120px!important;">
+              <app-column-chart [id]="'frh_ytd_cor'" [chartData]="frh_ftm_cor" [height]="'200px'" style="width:100%; "></app-column-chart>
+            </div>
+          </div>
+
         </div>
   
   
@@ -2088,32 +2431,70 @@
   
       <div class="col" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius: 5px; padding: 30px!important;">
   
-        <div class="row" style="display: flex; justify-content: center;">
+        <!-- <div class="row" style="display: flex; justify-content: center;">
           <h3>
             Private Car
           </h3>
-        </div>
+        </div> -->
         
   
-        <div class="row" style="display: flex; justify-content: center;">
+        <!-- <div class="row" style="display: flex; justify-content: center;">
           <div class="concentric-progress-bars">
-            <!-- Outer progress bar -->
+            
             <div class="progress-bar outer" [attr.data-value]="100 + '%'">
-              <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + pvtcar_target_ytd + ''"></div>
+              <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + pvtcar_target_ytd + ' Cr'"></div>
             </div>
-          
-            <!-- Middle progress bar -->          
+                   
             <div class="progress-bar middle" [attr.data-value]="pvtcar_achv_per_ytd + '%'" >
-              <div class="progress" [ngStyle]="getMiddleProgressStyles(pvtcar_achv_per_ytd)" [title]="'Achievement: ' + pvtcar_achv_ytd + ''" ></div>
+              <div class="progress" [ngStyle]="getMiddleProgressStyles(pvtcar_achv_per_ytd)" [title]="'Achievement: ' + pvtcar_achv_ytd + ' Cr'" ></div>
             </div>
   
-  
-          
-            <!-- Inner progress bar with center text -->
             <div class="progress-bar inner"   (click)="openModal(pvtcar)">
               <div class="center-text">{{pvtcar_centerText_ytd}}</div>
             </div>
           </div>
+        </div> -->
+
+
+
+        <div class="row">
+
+          <div class="col-md-6" style="display: flex;  align-items: center;">
+
+            <div class="row" style="display: flex; justify-content: center;">
+              <h3>
+                Private Car
+              </h3>
+              <div class="concentric-progress-bars">
+                <div class="progress-bar outer" [attr.data-value]="100 + '%'">
+                  <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + pvtcar_target_ytd + ' Cr'"></div>
+                </div>         
+                <div class="progress-bar middle" [attr.data-value]="pvtcar_achv_per_ytd + '%'" >
+                  <div class="progress" [ngStyle]="getMiddleProgressStyles(pvtcar_achv_per_ytd)" [title]="'Achievement: ' + pvtcar_achv_ytd + ' Cr'" ></div>
+                </div>
+                <div class="progress-bar inner"  (click)="openModal(pvtcar)">
+                  <div class="center-text">{{pvtcar_centerText_ytd}}</div>
+                </div>
+              </div>
+            </div>
+
+            
+
+          </div>
+
+          <div class="col-md-6">
+            <div class="row" style="max-height: 200px;">
+              <app-column-chart [id]="'pvtcar_ytd_cor'" [chartData]="pvtcar_ftm_cor" [height]="'200px'" style="width:100%; "></app-column-chart>
+            </div>
+
+            <div class="row" style="max-height: 200px;">
+              <app-column-chart [id]="'pvtcar_ytd_lr'" [chartData]="pvtcar_ftm_lr" [height]="'200px'"  style="width: 100%; "></app-column-chart>
+            </div>
+          </div>
+          
+
+
+
         </div>
   
   
@@ -2137,7 +2518,7 @@
                 <td>{{pvtCar_total_data.agent_performance.retail_sub_channels[(pvtCar_total_data.agent_performance.retail_sub_channels).length - 2]?.ytd?.growth_Percentage_over_lytd ?? 0}}%</td>
 
                 <td>{{pvtCar_total_data.agent_performance.retail_sub_channels[(pvtCar_total_data.agent_performance.retail_sub_channels).length - 2]?.contributingImdCountYtd?.growthOverLy_percentage ?? 0}}%</td>
-                <!-- <td>{{pvtCar_total_data.renewal.retail_sub_channels[(pvtCar_total_data.renewal.retail_sub_channels).length - 2]?.ytd_growth_over_lytd_RR ?? 0}}%</td> -->
+                <!-- <td>{{pvtCar_total_data.renewal.retail_sub_channels[(pvtCar_total_data.renewal.retail_sub_channels).length - 1]?.ytd_growth_over_lytd_RR ?? 0}}%</td> -->
                 <td>{{pvtCar_total_data.agent_performance.retail_sub_channels[(pvtCar_total_data.agent_performance.retail_sub_channels).length - 2]?.ytd?.growth_Percentage_over_lytd_NOP ?? 0}}%</td>
               </tr>
             </tbody>
@@ -2163,8 +2544,8 @@
               <tr  style="font-size:16px!important;">
                 <td class="gaugetable_firstCol" scope="row">RR %</td>
                 
-                <td class="" >{{pvtCar_total_data.renewal.retail_sub_channels[(pvtCar_total_data.renewal.retail_sub_channels).length - 2]?.ytd_RR ?? 0}}%</td>
-                <td class="" >{{pvtCar_total_data.renewal.retail_sub_channels[(pvtCar_total_data.renewal.retail_sub_channels).length - 2]?.lytd_RR ?? 0}}%</td>
+                <td class="" >{{pvtCar_total_data.renewal.retail_sub_channels[(pvtCar_total_data.renewal.retail_sub_channels).length - 1]?.ytd_RR ?? 0}}%</td>
+                <td class="" >{{pvtCar_total_data.renewal.retail_sub_channels[(pvtCar_total_data.renewal.retail_sub_channels).length - 1]?.lytd_RR ?? 0}}%</td>
 
               </tr>
             </tbody>
@@ -2186,32 +2567,64 @@
     <div class="row" style="display:flex; gap: 30px;">
       <div class="col" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius: 5px; padding: 30px!important;">
   
-        <div class="row" style="display: flex; justify-content: center;">
+        <!-- <div class="row" style="display: flex; justify-content: center;">
           <h3>
             ROPC
           </h3>
-        </div>
+        </div> -->
         
   
-        <div class="row" style="display: flex; justify-content: center;">
+        <!-- <div class="row" style="display: flex; justify-content: center;">
           <div class="concentric-progress-bars">
-            <!-- Outer progress bar -->
+            
             <div class="progress-bar outer" [attr.data-value]="100 + '%'">
-              <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + ropc_target_ytd + ''"></div>
+              <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + ropc_target_ytd + ' Cr'"></div>
             </div>
           
-            <!-- Middle progress bar -->          
+                     
             <div class="progress-bar middle" [attr.data-value]="ropc_achv_per_ytd + '%'" >
-              <div class="progress" [ngStyle]="getMiddleProgressStyles(ropc_achv_per_ytd)" [title]="'Achievement: ' + ropc_achv_ytd + ''" ></div>
+              <div class="progress" [ngStyle]="getMiddleProgressStyles(ropc_achv_per_ytd)" [title]="'Achievement: ' + ropc_achv_ytd + ' Cr'" ></div>
             </div>
   
   
-          
-            <!-- Inner progress bar with center text -->
             <div class="progress-bar inner"  (click)="openModal(ropc)">
               <div class="center-text">{{ropc_centerText_ytd}}</div>
             </div>
           </div>
+        </div> -->
+
+
+        <div class="row">
+
+          <div class="col-md-6" style="display: flex;  align-items: center; height:400px; ">
+
+            <div class="row" style="display: flex; justify-content: center;">
+              <h3>
+                ROPC
+              </h3>
+
+              <div class="concentric-progress-bars">
+                <div class="progress-bar outer" [attr.data-value]="100 + '%'">
+                  <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + ropc_target_ytd + ' Cr'"></div>
+                </div>
+                         
+                <div class="progress-bar middle" [attr.data-value]="ropc_achv_per_ytd + '%'" >
+                  <div class="progress" [ngStyle]="getMiddleProgressStyles(ropc_achv_per_ytd)" [title]="'Achievement: ' + ropc_achv_ytd + ' Cr'" ></div>
+                </div>
+                <div class="progress-bar inner"   (click)="openModal(ropc)">
+                  <div class="center-text">{{ropc_centerText_ytd}}</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="row" style="padding-top: 120px!important;">
+              <app-column-chart [id]="'ropc_ytd_cor'" [chartData]="ropc_ftm_cor" [height]="'200px'" style="width:100%; "></app-column-chart>
+            </div>
+          </div>
+
         </div>
   
   
@@ -2246,32 +2659,71 @@
   
       <div class="col" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius: 5px; padding: 30px!important;">
   
-        <div class="row" style="display: flex; justify-content: center;">
+        <!-- <div class="row" style="display: flex; justify-content: center;">
           <h3>
             Property
           </h3>
-        </div>
+        </div> -->
         
   
-        <div class="row" style="display: flex; justify-content: center;">
+        <!-- <div class="row" style="display: flex; justify-content: center;">
           <div class="concentric-progress-bars">
-            <!-- Outer progress bar -->
+            
             <div class="progress-bar outer" [attr.data-value]="100 + '%'">
-              <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + property_target_ytd + ''"></div>
+              <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + property_target_ytd + ' Cr'"></div>
             </div>
-          
-            <!-- Middle progress bar -->          
+                   
             <div class="progress-bar middle" [attr.data-value]="property_achv_per_ytd + '%'" >
-              <div class="progress" [ngStyle]="getMiddleProgressStyles(property_achv_per_ytd)" [title]="'Achievement: ' + property_achv_ytd + ''" ></div>
+              <div class="progress" [ngStyle]="getMiddleProgressStyles(property_achv_per_ytd)" [title]="'Achievement: ' + property_achv_ytd + ' Cr'" ></div>
             </div>
   
   
-          
-            <!-- Inner progress bar with center text -->
             <div class="progress-bar inner"  (click)="openModal(property)">
               <div class="center-text">{{property_centerText_ytd}}</div>
             </div>
           </div>
+        </div> -->
+
+
+
+        <div class="row">
+
+          <div class="col-md-6" style="display: flex;  align-items: center;">
+
+            <div class="row" style="display: flex; justify-content: center;">
+              <h3>
+                Property
+              </h3>
+              <div class="concentric-progress-bars">
+                <div class="progress-bar outer" [attr.data-value]="100 + '%'">
+                  <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + property_target_ytd + ' Cr'"></div>
+                </div>       
+                <div class="progress-bar middle" [attr.data-value]="property_achv_per_ytd + '%'" >
+                  <div class="progress" [ngStyle]="getMiddleProgressStyles(property_achv_per_ytd)" [title]="'Achievement: ' + property_achv_ytd + ' Cr'" ></div>
+                </div>
+                <div class="progress-bar inner"  (click)="openModal(property)">
+                  <div class="center-text">{{property_centerText_ytd}}</div>
+                </div>
+              </div>
+            </div>
+
+            
+
+          </div>
+
+          <div class="col-md-6">
+            <div class="row" style="max-height: 200px;">
+              <app-column-chart [id]="'property_ftm_cor'" [chartData]="property_ftm_cor" [height]="'200px'" style="width:100%; "></app-column-chart>
+            </div>
+
+            <div class="row" style="max-height: 200px;">
+              <app-column-chart [id]="'property_ftm_lr'" [chartData]="property_ftm_lr" [height]="'200px'"  style="width: 100%; "></app-column-chart>
+            </div>
+          </div>
+          
+
+
+
         </div>
   
   
@@ -2295,7 +2747,7 @@
                 <td>{{property_total_data.agent_performance.retail_sub_channels[(property_total_data.agent_performance.retail_sub_channels).length - 2]?.ytd?.growth_Percentage_over_lytd ?? 0}}%</td>
 
                 <td>{{property_total_data.agent_performance.retail_sub_channels[(property_total_data.agent_performance.retail_sub_channels).length - 2]?.contributingImdCountYtd?.growthOverLy_percentage ?? 0}}%</td>
-                <!-- <td>{{property_total_data.renewal.retail_sub_channels[(property_total_data.renewal.retail_sub_channels).length - 2]?.ytd_growth_over_lytd_RR ?? 0}}%</td> -->
+                <!-- <td>{{property_total_data.renewal.retail_sub_channels[(property_total_data.renewal.retail_sub_channels).length - 1]?.ytd_growth_over_lytd_RR ?? 0}}%</td> -->
                 <td>{{property_total_data.agent_performance.retail_sub_channels[(property_total_data.agent_performance.retail_sub_channels).length - 2]?.ytd?.growth_Percentage_over_lytd_NOP ?? 0}}%</td>
               </tr>
             </tbody>
@@ -2320,8 +2772,8 @@
               <tr  style="font-size:16px!important;">
                 <td class="gaugetable_firstCol" scope="row">RR %</td>
                 
-                <td class="" >{{property_total_data.renewal.retail_sub_channels[(property_total_data.renewal.retail_sub_channels).length - 2]?.ytd_RR ?? 0}}%</td>
-                <td class="" >{{property_total_data.renewal.retail_sub_channels[(property_total_data.renewal.retail_sub_channels).length - 2]?.lytd_RR ?? 0}}%</td>
+                <td class="" >{{property_total_data.renewal.retail_sub_channels[(property_total_data.renewal.retail_sub_channels).length - 1]?.ytd_RR ?? 0}}%</td>
+                <td class="" >{{property_total_data.renewal.retail_sub_channels[(property_total_data.renewal.retail_sub_channels).length - 1]?.lytd_RR ?? 0}}%</td>
 
               </tr>
             </tbody>
@@ -2419,7 +2871,9 @@
           <!-- <img width="35px;" src="assets/image/graphrecommendation.png" alt="">
           &nbsp; &nbsp; -->
 
-          <span style="font-weight: bold; font-size: 18pt; position: relative; top: 10px;">Topline Performance</span>
+          <span style="font-weight: bold; font-size: 18pt; position: relative; top: -5px; left: 15px">Topline Performance</span>
+
+          <span style="font-weight: bold; font-size: 14px; font-weight: 500; cursor: pointer; margin-left: 20px;"><mat-icon title="Download" (click)="downloadPerformanceTable('topline')">download</mat-icon></span>
 
           <span style="position: absolute; right: 33px;">
               <!-- <mat-icon (click)="goBack(topline)" style="cursor: pointer;">arrow_back</mat-icon> -->
@@ -2447,7 +2901,7 @@
                 <thead class="thead_style" >
       
                     <tr class="firstHeaderRow">
-                        <th rowspan="3"  class ="ratailAsOnDate" >Retail as on {{topLine_table_data.retailAsOn}}</th>
+                        <th rowspan="3"  class ="ratailAsOnDate" >Retail as on {{topLine_table_data.retailAsOn}}<br/>All absolute values are in Crores</th>
                         <th colspan="30" class ="table_text_blue_1">TOPLINE</th>
                     </tr>
                     
@@ -2521,8 +2975,8 @@
                         <td class ="table_text">{{row.mtd.lastYearCurrentMonth_mtd}}</td>
 
 
-                        <!-- <td class ="table_text" [ngClass]="row.mtd.growthPercentage_lymtd > 0 ? 'green' : 'red'">{{row.mtd.growthPercentage_lymtd ?? 0}}%</td> -->
-                        <td class ="table_text" [ngClass]="row.mtd.growthPercentage_lmtd > 0 ? 'green' : 'red'">{{row.mtd.growthPercentage_lmtd ?? 0}}%</td>
+                        <td class ="table_text" [ngClass]="row.mtd.growthPercentage_lymtd > 0 ? 'green' : 'red'">{{row.mtd.growthPercentage_lymtd?? 0}}%</td>
+                        <!-- <td class ="table_text" [ngClass]="row.mtd.growthPercentage_lmtd > 0 ? 'green' : 'red'">{{row.mtd.growthPercentage_lmtd ?? 0}}%</td> -->
       
       
                         <td class ="table_text">{{row.percentageAchievement.mtd_on_aop_percentage}}%</td>
@@ -2577,8 +3031,8 @@
       
                         <td class ="table_text">{{topLine_table_data.retailStrategicInitiatives.mtd.currentMonth_mtd}}</td>
                         <td class ="table_text">{{topLine_table_data.retailStrategicInitiatives.mtd.lastYearCurrentMonth_mtd}}</td>
-                        <!-- <td class ="table_text" [ngClass]="topLine_table_data.retailStrategicInitiatives.mtd.growthPercentage_lymtd > 0 ? 'green' : 'red'">{{topLine_table_data.retailStrategicInitiatives.mtd.growthPercentage_lymtd ?? 0}}%</td> -->
-                        <td class ="table_text" [ngClass]="topLine_table_data.retailStrategicInitiatives.mtd.growthPercentage_lmtd > 0 ? 'green' : 'red'">{{topLine_table_data.retailStrategicInitiatives.mtd.growthPercentage_lmtd ?? 0}}%</td>
+                        <td class ="table_text" [ngClass]="topLine_table_data.retailStrategicInitiatives.mtd.growthPercentage_lymtd > 0 ? 'green' : 'red'">{{topLine_table_data.retailStrategicInitiatives.mtd.growthPercentage_lymtd ?? 0}}%</td>
+                        <!-- <td class ="table_text" [ngClass]="topLine_table_data.retailStrategicInitiatives.mtd.growthPercentage_lmtd > 0 ? 'green' : 'red'">{{topLine_table_data.retailStrategicInitiatives.mtd.growthPercentage_lmtd ?? 0}}%</td> -->
       
       
                         <td class ="table_text">{{topLine_table_data.retailStrategicInitiatives.percentageAchievement.mtd_on_aop_percentage}}%</td>
@@ -2628,8 +3082,8 @@
       
                     <td class ="table_text_blue">{{topLine_table_data.retailTotal.mtd.currentMonth_mtd}}</td>
                     <td class ="table_text_blue">{{topLine_table_data.retailTotal.mtd.lastYearCurrentMonth_mtd}}</td>
-                    <!-- <td class ="table_text_blue" [ngClass]="topLine_table_data.retailTotal.mtd.growthPercentage_lymtd > 0 ? 'green' : 'red'">{{topLine_table_data.retailTotal.mtd.growthPercentage_lymtd?topLine_table_data.retailTotal.mtd.growthPercentage_lymtd:0}}%</td> -->
-                    <td class ="table_text_blue" [ngClass]="topLine_table_data.retailTotal.mtd.growthPercentage_lmtd > 0 ? 'green' : 'red'">{{topLine_table_data.retailTotal.mtd.growthPercentage_lmtd?topLine_table_data.retailTotal.mtd.growthPercentage_lmtd:0}}%</td>
+                    <td class ="table_text_blue" [ngClass]="topLine_table_data.retailTotal.mtd.growthPercentage_lymtd > 0 ? 'green' : 'red'">{{topLine_table_data.retailTotal.mtd.growthPercentage_lymtd?topLine_table_data.retailTotal.mtd.growthPercentage_lymtd:0}}%</td>
+                    <!-- <td class ="table_text_blue" [ngClass]="topLine_table_data.retailTotal.mtd.growthPercentage_lmtd > 0 ? 'green' : 'red'">{{topLine_table_data.retailTotal.mtd.growthPercentage_lmtd?topLine_table_data.retailTotal.mtd.growthPercentage_lmtd:0}}%</td> -->
       
       
                     <td class ="table_text_blue">{{topLine_table_data.retailTotal.percentageAchievement.mtd_on_aop_percentage ?? 0}}%</td>
@@ -2725,7 +3179,9 @@
           <!-- <img width="35px;" src="assets/image/graphrecommendation.png" alt="">
           &nbsp; &nbsp; -->
 
-          <span style="font-weight: bold; font-size: 18pt; position: relative; top: 10px;">Health Performance</span>
+          <span style="font-weight: bold; font-size: 18pt; position: relative; top: -5px; left: 15px">Health Performance</span>
+
+          <span style="font-weight: bold; font-size: 14px; font-weight: 500; cursor: pointer; margin-left: 20px;"><mat-icon title="Download" (click)="downloadPerformanceTable('health')">download</mat-icon></span>
 
           <span style="position: absolute; right: 33px;">
               <!-- <mat-icon (click)="goBack(health)" style="cursor: pointer;">arrow_back</mat-icon> -->
@@ -2753,7 +3209,7 @@
               <thead class="thead_style" >
 
                   <tr class="firstHeaderRow">
-                      <th rowspan="3"  class ="ratailAsOnDate" >Retail as on {{health_table_data.retailAsOn}}</th>
+                      <th rowspan="3"  class ="ratailAsOnDate" >Retail as on {{health_table_data.retailAsOn}}<br/>All absolute values are in Crores</th>
                       <th colspan="24" class ="table_text_blue_1">HEALTH</th>
                   </tr>
                   
@@ -2816,7 +3272,8 @@
 
                       <td class ="table_text">{{row.mtd.currentMonth_mtd}}</td>
                       <td class ="table_text">{{row.mtd.lastYearCurrentMonth_mtd}}</td>
-                      <td class ="table_text" [ngClass]="growthBoxColor(row.mtd.growthPercentage_lmtd)">{{row.mtd.growthPercentage_lmtd?row.mtd.growthPercentage_lmtd:0}}%</td>
+                      <!-- <td class ="table_text" [ngClass]="growthBoxColor(row.mtd.growthPercentage_lmtd)">{{row.mtd.growthPercentage_lmtd?row.mtd.growthPercentage_lmtd:0}}%</td> -->
+                      <td class ="table_text" [ngClass]="growthBoxColor(row.mtd.growthPercentage_lymtd)">{{row.mtd.growthPercentage_lymtd?row.mtd.growthPercentage_lymtd:0}}%</td>
 
 
                       <td class ="table_text">{{row.percentageAchievement.mtd_on_aop_percentage ?? 0}}%</td>
@@ -2864,7 +3321,8 @@
 
                       <td class ="table_text">{{health_table_data.retailStrategicInitiatives.mtd.currentMonth_mtd}}</td>
                       <td class ="table_text">{{health_table_data.retailStrategicInitiatives.mtd.lastYearCurrentMonth_mtd}}</td>
-                      <td class ="table_text" [ngClass]="growthBoxColor(health_table_data.retailStrategicInitiatives.mtd.growthPercentage_lmtd)">{{health_table_data.retailStrategicInitiatives.mtd.growthPercentage_lmtd?health_table_data.retailStrategicInitiatives.mtd.growthPercentage_lmtd:0}}%</td>
+                      <!-- <td class ="table_text" [ngClass]="growthBoxColor(health_table_data.retailStrategicInitiatives.mtd.growthPercentage_lmtd)">{{health_table_data.retailStrategicInitiatives.mtd.growthPercentage_lmtd?health_table_data.retailStrategicInitiatives.mtd.growthPercentage_lmtd:0}}%</td> -->
+                      <td class ="table_text" [ngClass]="growthBoxColor(health_table_data.retailStrategicInitiatives.mtd.growthPercentage_lymtd)">{{health_table_data.retailStrategicInitiatives.mtd.growthPercentage_lymtd?health_table_data.retailStrategicInitiatives.mtd.growthPercentage_lymtd:0}}%</td>
 
 
                       <td class ="table_text">{{health_table_data.retailStrategicInitiatives.percentageAchievement.mtd_on_aop_percentage ?? 0}}%</td>
@@ -2907,7 +3365,8 @@
 
                   <td class ="table_text_blue">{{health_table_data.retailTotal.mtd.currentMonth_mtd}}</td>
                   <td class ="table_text_blue">{{health_table_data.retailTotal.mtd.lastYearCurrentMonth_mtd}}</td>
-                  <td class ="table_text_blue" [ngClass]="growthBoxColor(health_table_data.retailTotal.mtd.growthPercentage_lmtd)">{{health_table_data.retailTotal.mtd.growthPercentage_lmtd?health_table_data.retailTotal.mtd.growthPercentage_lmtd:0}}%</td>
+                  <!-- <td class ="table_text_blue" [ngClass]="growthBoxColor(health_table_data.retailTotal.mtd.growthPercentage_lmtd)">{{health_table_data.retailTotal.mtd.growthPercentage_lmtd?health_table_data.retailTotal.mtd.growthPercentage_lmtd:0}}%</td> -->
+                  <td class ="table_text_blue" [ngClass]="growthBoxColor(health_table_data.retailTotal.mtd.growthPercentage_lymtd)">{{health_table_data.retailTotal.mtd.growthPercentage_lymtd?health_table_data.retailTotal.mtd.growthPercentage_lymtd:0}}%</td>
 
 
                   <td class ="table_text_blue">{{health_table_data.retailTotal.percentageAchievement.mtd_on_aop_percentage ?? 0}}%</td>
@@ -2993,7 +3452,9 @@
           <!-- <img width="35px;" src="assets/image/graphrecommendation.png" alt="">
           &nbsp; &nbsp; -->
 
-          <span style="font-weight: bold; font-size: 18pt; position: relative; top: 10px;">FRH Performance</span>
+          <span style="font-weight: bold; font-size: 18pt; position: relative; top: -5px; left: 15px">FRH Performance</span>
+
+          <span style="font-weight: bold; font-size: 14px; font-weight: 500; cursor: pointer; margin-left: 20px;"><mat-icon title="Download" (click)="downloadPerformanceTable('frh')">download</mat-icon></span>
 
           <span style="position: absolute; right: 33px;">
               <!-- <mat-icon (click)="goBack(frh)" style="cursor: pointer;">arrow_back</mat-icon> -->
@@ -3021,7 +3482,7 @@
               <thead class="thead_style" >
 
                   <tr class="firstHeaderRow">
-                      <th rowspan="3"  class ="ratailAsOnDate" >Retail as on {{frh_table_data.retailAsOn}}</th>
+                      <th rowspan="3"  class ="ratailAsOnDate" >Retail as on {{frh_table_data.retailAsOn}}<br/>All absolute values are in Crores</th>
                       <th colspan="24" class ="table_text_blue_1">FRH</th>
                   </tr>
                   
@@ -3080,7 +3541,9 @@
 
                       <td class ="table_text">{{row.mtd.currentMonth_mtd}}</td>
                       <td class ="table_text">{{row.mtd.lastYearCurrentMonth_mtd}}</td>
-                      <td class ="table_text" [ngClass]="growthBoxColor(row.mtd.growthPercentage_lmtd)">{{row.mtd.growthPercentage_lmtd?row.mtd.growthPercentage_lmtd:0}}%</td>
+                      <!-- <td class ="table_text" [ngClass]="growthBoxColor(row.mtd.growthPercentage_lmtd)">{{row.mtd.growthPercentage_lmtd?row.mtd.growthPercentage_lmtd:0}}%</td> -->
+                      <td class ="table_text" [ngClass]="growthBoxColor(row.mtd.growthPercentage_lymtd)">{{row.mtd.growthPercentage_lymtd?row.mtd.growthPercentage_lymtd:0}}%</td>
+
                       <td class ="table_text">{{row.percentageAchievement.mtd_on_aop_percentage ?? 0}}%</td>
                       <td class ="table_text">{{row.percentageAchievement.mtd_on_projection_percentage ?? 0}}%</td>
 
@@ -3125,7 +3588,9 @@
 
                       <td class ="table_text">{{frh_table_data.retailStrategicInitiatives.mtd.currentMonth_mtd}}</td>
                       <td class ="table_text">{{frh_table_data.retailStrategicInitiatives.mtd.lastYearCurrentMonth_mtd}}</td>
-                      <td class ="table_text" [ngClass]="growthBoxColor(frh_table_data.retailStrategicInitiatives.mtd.growthPercentage_lmtd)">{{frh_table_data.retailStrategicInitiatives.mtd.growthPercentage_lmtd?frh_table_data.retailStrategicInitiatives.mtd.growthPercentage_lmtd:0}}%</td>
+                      <!-- <td class ="table_text" [ngClass]="growthBoxColor(frh_table_data.retailStrategicInitiatives.mtd.growthPercentage_lmtd)">{{frh_table_data.retailStrategicInitiatives.mtd.growthPercentage_lmtd?frh_table_data.retailStrategicInitiatives.mtd.growthPercentage_lmtd:0}}%</td> -->
+                      <td class ="table_text" [ngClass]="growthBoxColor(frh_table_data.retailStrategicInitiatives.mtd.growthPercentage_lymtd)">{{frh_table_data.retailStrategicInitiatives.mtd.growthPercentage_lymtd?frh_table_data.retailStrategicInitiatives.mtd.growthPercentage_lymtd:0}}%</td>
+
                       <td class ="table_text">{{frh_table_data.retailStrategicInitiatives.percentageAchievement.mtd_on_aop_percentage ?? 0}}%</td>
                       <td class ="table_text">{{frh_table_data.retailStrategicInitiatives.percentageAchievement.mtd_on_projection_percentage ?? 0}}%</td>
 
@@ -3167,7 +3632,10 @@
 
                       <td class ="table_text_blue">{{frh_table_data.retailTotal.mtd.currentMonth_mtd}}</td>
                       <td class ="table_text_blue">{{frh_table_data.retailTotal.mtd.lastYearCurrentMonth_mtd}}</td>
-                      <td class ="table_text_blue" [ngClass]="growthBoxColor(frh_table_data.retailTotal.mtd.growthPercentage_lmtd)">{{frh_table_data.retailTotal.mtd.growthPercentage_lmtd?frh_table_data.retailTotal.mtd.growthPercentage_lmtd:0}}%</td>
+                      <!-- <td class ="table_text_blue" [ngClass]="growthBoxColor(frh_table_data.retailTotal.mtd.growthPercentage_lmtd)">{{frh_table_data.retailTotal.mtd.growthPercentage_lmtd?frh_table_data.retailTotal.mtd.growthPercentage_lmtd:0}}%</td> -->
+                      <td class ="table_text_blue" [ngClass]="growthBoxColor(frh_table_data.retailTotal.mtd.growthPercentage_lymtd)">{{frh_table_data.retailTotal.mtd.growthPercentage_lymtd?frh_table_data.retailTotal.mtd.growthPercentage_lymtd:0}}%</td>
+
+
                       <td class ="table_text_blue">{{frh_table_data.retailTotal.percentageAchievement.mtd_on_aop_percentage ?? 0}}%</td>
                       <td class ="table_text_blue">{{frh_table_data.retailTotal.percentageAchievement.mtd_on_projection_percentage ?? 0}}%</td>
 
@@ -3246,7 +3714,9 @@
           <!-- <img width="35px;" src="assets/image/graphrecommendation.png" alt="">
           &nbsp; &nbsp; -->
 
-          <span style="font-weight: bold; font-size: 18pt; position: relative; top: 10px;">Private Car Performance</span>
+          <span style="font-weight: bold; font-size: 18pt; position: relative; top: -5px; left: 15px">Private Car Performance</span>
+
+          <span style="font-weight: bold; font-size: 14px; font-weight: 500; cursor: pointer; margin-left: 20px;"><mat-icon title="Download" (click)="downloadPerformanceTable('private_car')">download</mat-icon></span>
 
           <span style="position: absolute; right: 33px;">
               <!-- <mat-icon (click)="goBack(pvtcar)" style="cursor: pointer;">arrow_back</mat-icon> -->
@@ -3274,7 +3744,7 @@
               <thead class="thead_style" >
 
                   <tr class="firstHeaderRow">
-                      <th rowspan="3"  class =" ratailAsOnDate" >Retail as on {{pvtCar_table_data.retailAsOn}}</th>
+                      <th rowspan="3"  class =" ratailAsOnDate" >Retail as on {{pvtCar_table_data.retailAsOn}}<br/>All absolute values are in Crores</th>
                       <th colspan="24" class ="table_text_blue_1">PRIVATE CAR</th>
                   </tr>
                   
@@ -3337,7 +3807,8 @@
 
                       <td class ="table_text">{{row.mtd.currentMonth_mtd}}</td>
                       <td class ="table_text">{{row.mtd.lastYearCurrentMonth_mtd}}</td>
-                      <td class ="table_text" [ngClass]="growthBoxColor(row.mtd.growthPercentage_lmtd)">{{row.mtd.growthPercentage_lmtd?row.mtd.growthPercentage_lmtd:0}}%</td>
+                      <!-- <td class ="table_text" [ngClass]="growthBoxColor(row.mtd.growthPercentage_lmtd)">{{row.mtd.growthPercentage_lmtd?row.mtd.growthPercentage_lmtd:0}}%</td> -->
+                      <td class ="table_text" [ngClass]="growthBoxColor(row.mtd.growthPercentage_lymtd)">{{row.mtd.growthPercentage_lymtd?row.mtd.growthPercentage_lymtd:0}}%</td>
 
 
                       <td class ="table_text">{{row.percentageAchievement.mtd_on_aop_percentage ?? 0}}%</td>
@@ -3385,7 +3856,8 @@
 
                       <td class ="table_text">{{pvtCar_table_data.retailStrategicInitiatives.mtd.currentMonth_mtd}}</td>
                       <td class ="table_text">{{pvtCar_table_data.retailStrategicInitiatives.mtd.lastYearCurrentMonth_mtd}}</td>
-                      <td class ="table_text" [ngClass]="growthBoxColor(pvtCar_table_data.retailStrategicInitiatives.mtd.growthPercentage_lmtd)">{{pvtCar_table_data.retailStrategicInitiatives.mtd.growthPercentage_lmtd?pvtCar_table_data.retailStrategicInitiatives.mtd.growthPercentage_lmtd:0}}%</td>
+                      <!-- <td class ="table_text" [ngClass]="growthBoxColor(pvtCar_table_data.retailStrategicInitiatives.mtd.growthPercentage_lmtd)">{{pvtCar_table_data.retailStrategicInitiatives.mtd.growthPercentage_lmtd?pvtCar_table_data.retailStrategicInitiatives.mtd.growthPercentage_lmtd:0}}%</td> -->
+                      <td class ="table_text" [ngClass]="growthBoxColor(pvtCar_table_data.retailStrategicInitiatives.mtd.growthPercentage_lymtd)">{{pvtCar_table_data.retailStrategicInitiatives.mtd.growthPercentage_lymtd?pvtCar_table_data.retailStrategicInitiatives.mtd.growthPercentage_lymtd:0}}%</td>
 
 
                       <td class ="table_text">{{pvtCar_table_data.retailStrategicInitiatives.percentageAchievement.mtd_on_aop_percentage ?? 0}}%</td>
@@ -3428,7 +3900,8 @@
 
                   <td class ="table_text_blue">{{pvtCar_table_data.retailTotal.mtd.currentMonth_mtd}}</td>
                   <td class ="table_text_blue">{{pvtCar_table_data.retailTotal.mtd.lastYearCurrentMonth_mtd}}</td>
-                  <td class ="table_text_blue" [ngClass]="growthBoxColor(pvtCar_table_data.retailTotal.mtd.growthPercentage_lmtd)">{{pvtCar_table_data.retailTotal.mtd.growthPercentage_lmtd?pvtCar_table_data.retailTotal.mtd.growthPercentage_lmtd:0}}%</td>
+                  <!-- <td class ="table_text_blue" [ngClass]="growthBoxColor(pvtCar_table_data.retailTotal.mtd.growthPercentage_lmtd)">{{pvtCar_table_data.retailTotal.mtd.growthPercentage_lmtd?pvtCar_table_data.retailTotal.mtd.growthPercentage_lmtd:0}}%</td> -->
+                  <td class ="table_text_blue" [ngClass]="growthBoxColor(pvtCar_table_data.retailTotal.mtd.growthPercentage_lymtd)">{{pvtCar_table_data.retailTotal.mtd.growthPercentage_lymtd?pvtCar_table_data.retailTotal.mtd.growthPercentage_lymtd:0}}%</td>
 
 
                   <td class ="table_text_blue">{{pvtCar_table_data.retailTotal.percentageAchievement.mtd_on_aop_percentage ?? 0}}%</td>
@@ -3512,7 +3985,9 @@
           <!-- <img width="35px;" src="assets/image/graphrecommendation.png" alt="">
           &nbsp; &nbsp; -->
 
-          <span style="font-weight: bold; font-size: 18pt; position: relative; top: 10px;">ROPC Performance</span>
+          <span style="font-weight: bold; font-size: 18pt; position: relative; top: -5px; left: 15px">ROPC Performance</span>
+
+          <span style="font-weight: bold; font-size: 14px; font-weight: 500; cursor: pointer; margin-left: 20px;"><mat-icon title="Download" (click)="downloadPerformanceTable('ropc')">download</mat-icon></span>
 
           <span style="position: absolute; right: 33px;">
               <!-- <mat-icon (click)="goBack(ropc)" style="cursor: pointer;">arrow_back</mat-icon> -->
@@ -3540,7 +4015,7 @@
               <thead class="thead_style" >
 
                   <tr class="firstHeaderRow">
-                      <th rowspan="3"  class =" ratailAsOnDate" >Retail as on {{ropc_table_data.retailAsOn}}</th>
+                      <th rowspan="3"  class =" ratailAsOnDate" >Retail as on {{ropc_table_data.retailAsOn}}<br/>All absolute values are in Crores</th>
                       <th colspan="18" class ="table_text_blue_1">ROPC</th>
                   </tr>
                   
@@ -3596,7 +4071,9 @@
 
                       <td class ="table_text">{{row.mtd.currentMonth_mtd}}</td>
                       <td class ="table_text">{{row.mtd.lastYearCurrentMonth_mtd}}</td>
-                      <td class ="table_text" [ngClass]="growthBoxColor(row.mtd.growthPercentage_lmtd)">{{row.mtd.growthPercentage_lmtd?row.mtd.growthPercentage_lmtd:0}}%</td>
+                      <!-- <td class ="table_text" [ngClass]="growthBoxColor(row.mtd.growthPercentage_lmtd)">{{row.mtd.growthPercentage_lmtd?row.mtd.growthPercentage_lmtd:0}}%</td> -->
+                      <td class ="table_text" [ngClass]="growthBoxColor(row.mtd.growthPercentage_lymtd)">{{row.mtd.growthPercentage_lymtd?row.mtd.growthPercentage_lymtd:0}}%</td>
+
                       <td class ="table_text">{{row.percentageAchievement.mtd_on_aop_percentage ?? 0}}%</td>
 
 
@@ -3641,7 +4118,11 @@
 
                       <td class ="table_text">{{ropc_table_data.retailStrategicInitiatives.mtd.currentMonth_mtd}}</td>
                       <td class ="table_text">{{ropc_table_data.retailStrategicInitiatives.mtd.lastYearCurrentMonth_mtd}}</td>
-                      <td class ="table_text" [ngClass]="growthBoxColor(ropc_table_data.retailStrategicInitiatives.mtd.growthPercentage_lmtd)">{{ropc_table_data.retailStrategicInitiatives.mtd.growthPercentage_lmtd?ropc_table_data.retailStrategicInitiatives.mtd.growthPercentage_lmtd:0}}%</td>
+                      <!-- <td class ="table_text" [ngClass]="growthBoxColor(ropc_table_data.retailStrategicInitiatives.mtd.growthPercentage_lmtd)">{{ropc_table_data.retailStrategicInitiatives.mtd.growthPercentage_lmtd?ropc_table_data.retailStrategicInitiatives.mtd.growthPercentage_lmtd:0}}%</td> -->
+                      <td class ="table_text" [ngClass]="growthBoxColor(ropc_table_data.retailStrategicInitiatives.mtd.growthPercentage_lymtd)">{{ropc_table_data.retailStrategicInitiatives.mtd.growthPercentage_lymtd?ropc_table_data.retailStrategicInitiatives.mtd.growthPercentage_lymtd:0}}%</td>
+
+
+
                       <td class ="table_text">{{ropc_table_data.retailStrategicInitiatives.percentageAchievement.mtd_on_aop_percentage ?? 0}}%</td>
 
 
@@ -3680,7 +4161,11 @@
 
                   <td class ="table_text_blue">{{ropc_table_data.retailTotal.mtd.currentMonth_mtd}}</td>
                   <td class ="table_text_blue">{{ropc_table_data.retailTotal.mtd.lastYearCurrentMonth_mtd}}</td>
-                  <td class ="table_text_blue" [ngClass]="growthBoxColor(ropc_table_data.retailTotal.mtd.growthPercentage_lmtd)">{{ropc_table_data.retailTotal.mtd.growthPercentage_lmtd?ropc_table_data.retailTotal.mtd.growthPercentage_lmtd:0}}%</td>
+                  <!-- <td class ="table_text_blue" [ngClass]="growthBoxColor(ropc_table_data.retailTotal.mtd.growthPercentage_lmtd)">{{ropc_table_data.retailTotal.mtd.growthPercentage_lmtd?ropc_table_data.retailTotal.mtd.growthPercentage_lmtd:0}}%</td> -->
+                  <td class ="table_text_blue" [ngClass]="growthBoxColor(ropc_table_data.retailTotal.mtd.growthPercentage_lymtd)">{{ropc_table_data.retailTotal.mtd.growthPercentage_lymtd?ropc_table_data.retailTotal.mtd.growthPercentage_lymtd:0}}%</td>
+
+
+
                   <td class ="table_text_blue">{{ropc_table_data.retailTotal.percentageAchievement.mtd_on_aop_percentage ?? 0}}%</td>
 
 
@@ -3758,7 +4243,9 @@
           <!-- <img width="35px;" src="assets/image/graphrecommendation.png" alt="">
           &nbsp; &nbsp; -->
 
-          <span style="font-weight: bold; font-size: 18pt; position: relative; top: 10px;">Property Performance</span>
+          <span style="font-weight: bold; font-size: 18pt; position: relative; top: -5px; left: 15px">Property Performance</span>
+
+          <span style="font-weight: bold; font-size: 14px; font-weight: 500; cursor: pointer; margin-left: 20px;"><mat-icon title="Download" (click)="downloadPerformanceTable('property')">download</mat-icon></span>
 
           <span style="position: absolute; right: 33px;">
               <!-- <mat-icon (click)="goBack(property)" style="cursor: pointer;">arrow_back</mat-icon> -->
@@ -3786,7 +4273,7 @@
               <thead class="thead_style" >
 
                   <tr class="firstHeaderRow">
-                      <th rowspan="3"  class =" ratailAsOnDate" >Retail as on {{property_table_data.retailAsOn}}</th>
+                      <th rowspan="3"  class =" ratailAsOnDate" >Retail as on {{property_table_data.retailAsOn}}<br/>All absolute values are in Crores</th>
                       <th colspan="24" class ="table_text_blue_1">PROPERTY</th>
                   </tr>
                   
@@ -3849,7 +4336,8 @@
 
                       <td class ="table_text">{{row.mtd.currentMonth_mtd}}</td>
                       <td class ="table_text">{{row.mtd.lastYearCurrentMonth_mtd}}</td>
-                      <td class ="table_text" [ngClass]="growthBoxColor(row.mtd.growthPercentage_lmtd)">{{row.mtd.growthPercentage_lmtd?row.mtd.growthPercentage_lmtd:0}}%</td>
+                      <!-- <td class ="table_text" [ngClass]="growthBoxColor(row.mtd.growthPercentage_lmtd)">{{row.mtd.growthPercentage_lmtd?row.mtd.growthPercentage_lmtd:0}}%</td> -->
+                      <td class ="table_text" [ngClass]="growthBoxColor(row.mtd.growthPercentage_lymtd)">{{row.mtd.growthPercentage_lymtd?row.mtd.growthPercentage_lymtd:0}}%</td>
 
 
                       <td class ="table_text">{{row.percentageAchievement.mtd_on_aop_percentage ?? 0}}%</td>
@@ -3897,7 +4385,8 @@
 
                       <td class ="table_text">{{property_table_data.retailStrategicInitiatives.mtd.currentMonth_mtd}}</td>
                       <td class ="table_text">{{property_table_data.retailStrategicInitiatives.mtd.lastYearCurrentMonth_mtd}}</td>
-                      <td class ="table_text" [ngClass]="growthBoxColor(property_table_data.retailStrategicInitiatives.mtd.growthPercentage_lmtd)">{{property_table_data.retailStrategicInitiatives.mtd.growthPercentage_lmtd?property_table_data.retailStrategicInitiatives.mtd.growthPercentage_lmtd:0}}%</td>
+                      <!-- <td class ="table_text" [ngClass]="growthBoxColor(property_table_data.retailStrategicInitiatives.mtd.growthPercentage_lmtd)">{{property_table_data.retailStrategicInitiatives.mtd.growthPercentage_lmtd?property_table_data.retailStrategicInitiatives.mtd.growthPercentage_lmtd:0}}%</td> -->
+                      <td class ="table_text" [ngClass]="growthBoxColor(property_table_data.retailStrategicInitiatives.mtd.growthPercentage_lymtd)">{{property_table_data.retailStrategicInitiatives.mtd.growthPercentage_lymtd?property_table_data.retailStrategicInitiatives.mtd.growthPercentage_lymtd:0}}%</td>
 
 
                       <td class ="table_text">{{property_table_data.retailStrategicInitiatives.percentageAchievement.mtd_on_aop_percentage ?? 0}}%</td>
@@ -3940,7 +4429,8 @@
 
                   <td class ="table_text_blue">{{property_table_data.retailTotal.mtd.currentMonth_mtd}}</td>
                   <td class ="table_text_blue">{{property_table_data.retailTotal.mtd.lastYearCurrentMonth_mtd}}</td>
-                  <td class ="table_text_blue" [ngClass]="growthBoxColor(property_table_data.retailTotal.mtd.growthPercentage_lmtd)">{{property_table_data.retailTotal.mtd.growthPercentage_lmtd?property_table_data.retailTotal.mtd.growthPercentage_lmtd:0}}%</td>
+                  <!-- <td class ="table_text_blue" [ngClass]="growthBoxColor(property_table_data.retailTotal.mtd.growthPercentage_lmtd)">{{property_table_data.retailTotal.mtd.growthPercentage_lmtd?property_table_data.retailTotal.mtd.growthPercentage_lmtd:0}}%</td> -->
+                  <td class ="table_text_blue" [ngClass]="growthBoxColor(property_table_data.retailTotal.mtd.growthPercentage_lymtd)">{{property_table_data.retailTotal.mtd.growthPercentage_lymtd?property_table_data.retailTotal.mtd.growthPercentage_lymtd:0}}%</td>
 
 
                   <td class ="table_text_blue">{{property_table_data.retailTotal.percentageAchievement.mtd_on_aop_percentage ?? 0}}%</td>

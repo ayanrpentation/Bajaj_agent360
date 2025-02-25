@@ -130,6 +130,10 @@ export class LoginComponent implements OnInit {
 
                     // sessionStorage.setItem("openedPageName", 'agentInsight');
                     sessionStorage.setItem("openedPageName", 'performance');
+
+
+                    // Set session start time
+                    sessionStorage.setItem("lastActivityTime", Date.now().toString());
                     
                     // console.log("go to insights")
 

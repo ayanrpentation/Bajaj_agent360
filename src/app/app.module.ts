@@ -117,6 +117,8 @@ import { Ng2GoogleChartsModule } from 'ng2-google-charts';
 import { SegmentationComponent } from './segmentation/segmentation.component';
 import { ScoreCardComponent } from './score-card/score-card.component';
 import { NgApexchartsModule } from "ng-apexcharts";
+// import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { SessionTimeoutInterceptor } from './session-timeout.interceptor';
 
 
 
@@ -147,6 +149,7 @@ import { GwpPerformancesComponent } from './gwp-performances/gwp-performances.co
 import { ImdPerformancesComponent } from './imd-performances/imd-performances.component';
 import { TryApexComponent } from './try-apex/try-apex.component';
 import { ColumnChartComponent } from './column-chart/column-chart.component';
+import { ScorecardNewComponent } from './scorecard-new/scorecard-new.component';
 // import { CircleGaugeComponent } from './circle-gauge/circle-gauge.component';
 
 
@@ -223,6 +226,7 @@ const notifierDefaultOptions: NotifierOptions = {
     ImdPerformancesComponent,
     TryApexComponent,
     ColumnChartComponent,
+    ScorecardNewComponent,
     // CircleGaugeComponent,
   
     
@@ -287,6 +291,13 @@ const notifierDefaultOptions: NotifierOptions = {
     //   useClass: IntercepterService,
     //   multi: true
     // }, 
+
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SessionTimeoutInterceptor,
+      multi: true
+    },
+    
     MultilevelMenuService],
   bootstrap: [AppComponent]
 })

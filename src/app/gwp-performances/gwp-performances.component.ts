@@ -51,17 +51,27 @@ export class GwpPerformancesComponent implements OnInit,AfterViewInit {
   topline_total_data: any;
   topline_mtd_cor: any;
   topline_mtd_lr: any;
+  topline_ftm_cor: any;
+  topline_ftm_lr: any;
+
+
 
   health_table_data: any;
   health_total_data: any;
   health_mtd_cor: any;
   health_mtd_lr: any;
+  health_ftm_cor: any;
+  health_ftm_lr: any;
+
+
 
   frh_table_data: any;
   frh_total_data: any;
 
   frh_mtd_cor: any;
   frh_mtd_lr: any;
+  frh_ftm_cor: any;
+  frh_ftm_lr: any;
 
 
 
@@ -70,6 +80,8 @@ export class GwpPerformancesComponent implements OnInit,AfterViewInit {
 
   pvtcar_mtd_cor: any;
   pvtcar_mtd_lr: any;
+  pvtcar_ftm_cor: any;
+  pvtcar_ftm_lr: any;
 
 
 
@@ -78,6 +90,8 @@ export class GwpPerformancesComponent implements OnInit,AfterViewInit {
 
   ropc_mtd_cor: any;
   ropc_mtd_lr: any;
+  ropc_ftm_cor: any;
+  ropc_ftm_lr: any;
 
 
 
@@ -86,6 +100,8 @@ export class GwpPerformancesComponent implements OnInit,AfterViewInit {
   property_total_data: any;
   property_mtd_cor: any;
   property_mtd_lr: any;
+  property_ftm_cor: any;
+  property_ftm_lr: any;
 
 
 
@@ -143,6 +159,15 @@ export class GwpPerformancesComponent implements OnInit,AfterViewInit {
   mainChannel_dropdownList = [] as any;
   mainChannel_selectedItems = [] as any;
   mainChannel_dropdownSettings: IDropdownSettings = {} as any
+
+
+  lob_dropdownList = [] as any;
+  lob_selectedItems = [] as any;
+  lob_dropdownSettings: IDropdownSettings = {} as any
+
+  product_dropdownList = [] as any;
+  product_selectedItems = [] as any;
+  product_dropdownSettings: IDropdownSettings = {} as any
 
 
   ngAfterViewInit(): void {
@@ -302,8 +327,8 @@ export class GwpPerformancesComponent implements OnInit,AfterViewInit {
       //   { name: 'CY', data: [2], type: 'column' }
       // ],
       series: [
-        { name: 'CY', data: [this.topline_total_data.profit_loss_current_year.data[0].COR], type: 'column', color: '#1f5cc7' },
-        { name: 'LY', data: [this.topline_total_data.profit_loss_old_year.data[0].COR], type: 'column',  color: this.topline_total_data.profit_loss_old_year.data[0].COR > this.topline_total_data.profit_loss_current_year.data[0].COR? '#00e272': '#F87171' },
+        { name: 'CY', data: [this.topline_total_data.profit_loss_current_year.data[0].COR], type: 'column', color: this.topline_total_data.profit_loss_old_year.data[0].COR > this.topline_total_data.profit_loss_current_year.data[0].COR? '#00e272': '#F87171' },
+        { name: 'LY', data: [this.topline_total_data.profit_loss_old_year.data[0].COR], type: 'column',  color: '#1f5cc7'},
       ]
     };
     this.topline_mtd_lr = {
@@ -352,6 +377,40 @@ export class GwpPerformancesComponent implements OnInit,AfterViewInit {
 
     // this.topLine_growDegrow_lm_ftm = this.topLine_table_data.retailTotal.contributingImdCountFtm.growthOverLm_percentage || 0 as any;
     // this.topLine_growDegrow_ly_ftm = this.topLine_table_data.retailTotal.contributingImdCountMtdFtm.growthOverLy_percentage || 0 as any;
+    this.topline_ftm_cor = {
+      title: 'COR',
+      level_data: [''],
+      x_axis_name: "",
+      y_axis_name: "",
+      height: 210,
+      // series: [
+      //   { name: 'LY', data: [5], type: 'column' },
+      //   { name: 'CY', data: [2], type: 'column' }
+      // ],
+      series: [
+        { name: 'CY', data: [this.topline_total_data.profit_loss_current_year.data[0].COR], type: 'column', color: this.topline_total_data.profit_loss_old_year.data[0].COR > this.topline_total_data.profit_loss_current_year.data[0].COR? '#00e272': '#F87171' },
+        { name: 'LY', data: [this.topline_total_data.profit_loss_old_year.data[0].COR], type: 'column',  color: '#1f5cc7'},
+      ]
+    };
+    this.topline_ftm_lr = {
+      title: 'Loss Ratio',
+      level_data: [''],
+      x_axis_name: "",
+      y_axis_name: "",
+      height: 210,
+      // bandingData: {
+      //   Aplus: [5],
+      //   A: [2]
+      // },
+      series: [
+        { name: 'CY', data: [this.topline_total_data.profit_loss_current_year.data[0]['Claim Ratio']], type: 'column',  color: this.topline_total_data.profit_loss_old_year.data[0]['Claim Ratio'] > this.topline_total_data.profit_loss_current_year.data[0]['Claim Ratio']? '#00e272': '#F87171' },
+        { name: 'LY', data: [this.topline_total_data.profit_loss_old_year.data[0]['Claim Ratio']], type: 'column' , color: '#1f5cc7'},
+      ]
+    };
+
+
+
+
 
 
 
@@ -442,8 +501,8 @@ export class GwpPerformancesComponent implements OnInit,AfterViewInit {
       y_axis_name: "",
       height: 210,
       series: [
-        { name: 'CY', data: [this.health_total_data.profit_loss_current_year.data[0].COR], type: 'column', color: '#1f5cc7' },
-        { name: 'LY', data: [this.health_total_data.profit_loss_old_year.data[0].COR], type: 'column',  color: this.health_total_data.profit_loss_old_year.data[0].COR > this.health_total_data.profit_loss_current_year.data[0].COR? '#00e272': '#F87171' },
+        { name: 'CY', data: [this.health_total_data.profit_loss_current_year.data[0].COR], type: 'column', color: this.health_total_data.profit_loss_old_year.data[0].COR > this.health_total_data.profit_loss_current_year.data[0].COR? '#00e272': '#F87171' },
+        { name: 'LY', data: [this.health_total_data.profit_loss_old_year.data[0].COR], type: 'column',  color: '#1f5cc7'},
       ]
     };
     this.health_mtd_lr = {
@@ -480,6 +539,33 @@ export class GwpPerformancesComponent implements OnInit,AfterViewInit {
     }else{
       this.health_centerText_ftm = '0%'; // when target = 0
     }
+
+    this.health_ftm_cor = {
+      title: 'COR',
+      level_data: [''],
+      x_axis_name: "",
+      y_axis_name: "",
+      height: 210,
+      series: [
+        { name: 'CY', data: [this.health_total_data.profit_loss_current_year.data[0].COR], type: 'column', color: this.health_total_data.profit_loss_old_year.data[0].COR > this.health_total_data.profit_loss_current_year.data[0].COR? '#00e272': '#F87171' },
+        { name: 'LY', data: [this.health_total_data.profit_loss_old_year.data[0].COR], type: 'column',  color: '#1f5cc7'},
+      ]
+    };
+    this.health_ftm_lr = {
+      title: 'Loss Ratio',
+      level_data: [''],
+      x_axis_name: "",
+      y_axis_name: "",
+      height: 210,
+      series: [
+        { name: 'CY', data: [this.health_total_data.profit_loss_current_year.data[0]['Claim Ratio']], type: 'column',  color: this.health_total_data.profit_loss_old_year.data[0]['Claim Ratio'] > this.health_total_data.profit_loss_current_year.data[0]['Claim Ratio']? '#00e272': '#F87171' },
+        { name: 'LY', data: [this.health_total_data.profit_loss_old_year.data[0]['Claim Ratio']], type: 'column' , color: '#1f5cc7'},
+      ]
+    };
+
+
+
+
 
 
 
@@ -558,7 +644,7 @@ export class GwpPerformancesComponent implements OnInit,AfterViewInit {
 
      
     this.frh_mtd_cor = {
-      title: 'COR',
+      title: 'Loss Ratio',
       level_data: [''],
       x_axis_name: "",
       y_axis_name: "",
@@ -604,6 +690,31 @@ export class GwpPerformancesComponent implements OnInit,AfterViewInit {
     }else{
       this.frh_centerText_ftm = "0%";
     }
+
+    this.frh_ftm_cor = {
+      title: 'Loss Ratio',
+      level_data: [''],
+      x_axis_name: "",
+      y_axis_name: "",
+      height: 210,
+      series: [
+        { name: 'CY', data: [this.frh_total_data.cor_current_year.data[0]['Overall LR']], type: 'column',  color: this.frh_total_data.cor_old_year.data[0].COR > this.frh_total_data.cor_current_year.data[0].COR? '#00e272': '#F87171' },
+        { name: 'LY', data: [this.frh_total_data.cor_old_year.data[0]['Overall LR']], type: 'column' , color: '#1f5cc7'},
+      ]
+    };
+    // this.frh_mtd_lr = {
+    //   title: 'Loss Ratio',
+    //   level_data: [''],
+    //   x_axis_name: "",
+    //   y_axis_name: "",
+    //   height: 210,
+    //   series: [
+    //     { name: 'CY', data: [this.frh_total_data.profit_loss_current_year.data[0].COR], type: 'column', color: '#1f5cc7' },
+    //     { name: 'LY', data: [this.frh_total_data.profit_loss_old_year.data[0].COR], type: 'column',  color: this.frh_total_data.profit_loss_old_year.data[0].COR > this.frh_total_data.profit_loss_current_year.data[0].COR? '#00e272': '#F87171' },
+    //   ]
+    // };
+
+
 
 
 
@@ -696,8 +807,8 @@ export class GwpPerformancesComponent implements OnInit,AfterViewInit {
       //   { name: 'CY', data: [2], type: 'column' }
       // ],
       series: [
-        { name: 'CY', data: [this.pvtCar_total_data.profit_loss_current_year.data[0].COR], type: 'column' , color: '#1f5cc7'},
-        { name: 'LY', data: [this.pvtCar_total_data.profit_loss_old_year.data[0].COR], type: 'column',  color: this.pvtCar_total_data.profit_loss_old_year.data[0].COR > this.pvtCar_total_data.profit_loss_current_year.data[0].COR? '#00e272': '#F87171' },
+        { name: 'CY', data: [this.pvtCar_total_data.profit_loss_current_year.data[0].COR], type: 'column', color: this.pvtCar_total_data.profit_loss_old_year.data[0].COR > this.pvtCar_total_data.profit_loss_current_year.data[0].COR? '#00e272': '#F87171' },
+        { name: 'LY', data: [this.pvtCar_total_data.profit_loss_old_year.data[0].COR], type: 'column',  color: '#1f5cc7'},
       ]
     };
 
@@ -734,6 +845,37 @@ export class GwpPerformancesComponent implements OnInit,AfterViewInit {
     }else{
       this.pvtcar_centerText_ftm = "0%"
     }
+
+    this.pvtcar_ftm_cor = {
+      title: 'COR',
+      level_data: [''],
+      x_axis_name: "",
+      y_axis_name: "",
+      height: 210,
+      // series: [
+      //   { name: 'LY', data: [5], type: 'column' },
+      //   { name: 'CY', data: [2], type: 'column' }
+      // ],
+      series: [
+        { name: 'CY', data: [this.pvtCar_total_data.profit_loss_current_year.data[0].COR], type: 'column', color: this.pvtCar_total_data.profit_loss_old_year.data[0].COR > this.pvtCar_total_data.profit_loss_current_year.data[0].COR? '#00e272': '#F87171' },
+        { name: 'LY', data: [this.pvtCar_total_data.profit_loss_old_year.data[0].COR], type: 'column',  color: '#1f5cc7'},
+      ]
+    };
+
+    this.pvtcar_ftm_lr = {
+      title: 'Loss Ratio',
+      level_data: [''],
+      x_axis_name: "",
+      y_axis_name: "",
+      height: 210,
+      series: [
+        { name: 'CY', data: [this.pvtCar_total_data.profit_loss_current_year.data[0]['Claim Ratio']], type: 'column',  color: this.pvtCar_total_data.profit_loss_old_year.data[0]['Claim Ratio'] > this.pvtCar_total_data.profit_loss_current_year.data[0]['Claim Ratio']? '#00e272': '#F87171' },
+        { name: 'LY', data: [this.pvtCar_total_data.profit_loss_old_year.data[0]['Claim Ratio']], type: 'column' , color: '#1f5cc7'},
+      ]
+    };
+
+
+
 
 
 
@@ -817,7 +959,7 @@ export class GwpPerformancesComponent implements OnInit,AfterViewInit {
 
 
       this.ropc_mtd_cor = {
-        title: 'COR',
+        title: 'Loss Ratio',
         level_data: [''],
         x_axis_name: "",
         y_axis_name: "",
@@ -827,8 +969,9 @@ export class GwpPerformancesComponent implements OnInit,AfterViewInit {
         //   A: [2]
         // },
         series: [
-          { name: 'CY', data: [this.ropc_total_data.cor_current_year.data[0]['Overall LR']], type: 'column', color: '#1f5cc7' },
-          { name: 'LY', data: [this.ropc_total_data.cor_old_year.data[0]['Overall LR']], type: 'column',  color: this.ropc_total_data.cor_old_year.data[0].COR > this.ropc_total_data.cor_current_year.data[0].COR? '#00e272': '#F87171'},
+          { name: 'CY', data: [this.ropc_total_data.cor_current_year.data[0]['Overall LR']], type: 'column', color: this.ropc_total_data.cor_old_year.data[0].COR > this.ropc_total_data.cor_current_year.data[0].COR? '#00e272': '#F87171' },
+          { name: 'LY', data: [this.ropc_total_data.cor_old_year.data[0]['Overall LR']], type: 'column',  color: '#1f5cc7'},
+          
         ]
       };
 
@@ -867,25 +1010,62 @@ export class GwpPerformancesComponent implements OnInit,AfterViewInit {
       this.ropc_achv_ftm = this.ropc_table_data.retailTotal.ftm.currentMonth_ftm as any;
       this.ropc_achv_per_ftm = this.ropc_table_data.retailTotal.ftm.ftm_on_aop_percentage;
       this.ropc_centerText_ftm =  String(this.ropc_achv_per_ftm.toFixed(1)) + '%';
+
+      this.ropc_ftm_cor = {
+        title: 'Loss Ratio',
+        level_data: [''],
+        x_axis_name: "",
+        y_axis_name: "",
+        height: 210,
+        // bandingData: {
+        //   Aplus: [5],
+        //   A: [2]
+        // },
+        series: [
+          { name: 'CY', data: [this.ropc_total_data.cor_current_year.data[0]['Overall LR']], type: 'column', color: this.ropc_total_data.cor_old_year.data[0].COR > this.ropc_total_data.cor_current_year.data[0].COR? '#00e272': '#F87171' },
+          { name: 'LY', data: [this.ropc_total_data.cor_old_year.data[0]['Overall LR']], type: 'column',  color: '#1f5cc7'},
+          
+        ]
+      };
+
+
+      // this.ropc_ftm_lr = {
+      //   title: 'Loss Ratio',
+      //   level_data: [''],
+      //   x_axis_name: "",
+      //   y_axis_name: "",
+      //   height: 210,
+      //   // series: [
+      //   //   { name: 'LY', data: [5], type: 'column' },
+      //   //   { name: 'CY', data: [2], type: 'column' }
+      //   // ],
+      //   series: [
+      //     { name: 'CY', data: [this.ropc_total_data.profit_loss_current_year.data[0].COR], type: 'column', color: '#1f5cc7' },
+      //     { name: 'LY', data: [this.ropc_total_data.profit_loss_old_year.data[0].COR], type: 'column',  color: this.ropc_total_data.profit_loss_old_year.data[0].COR > this.ropc_total_data.profit_loss_current_year.data[0].COR? '#00e272': '#F87171'},
+      //   ]
+      // };
+
+
+
+      
+      
+      
+      
+          // ytd case  --------------
+          this.ropc_target_ytd = this.ropc_table_data.retailTotal.ytd.cy as any;
+          this.ropc_achv_ytd = this.ropc_table_data.retailTotal.ytd.ly as any;
+          if(this.ropc_target_ytd!=0){
+            this.ropc_achv_per_ytd = 100 * this.ropc_achv_ytd / this.ropc_target_ytd as any;
+      
+          }else{
+            this.ropc_achv_per_ytd = 0;
+          }
+          this.ropc_achv_per_ytd = this.ropc_table_data.retailTotal.ytd.achd_aop_percentage;
+          // if(this.ropc_target_ytd != 0){
+          //   this.ropc_centerText_ytd = String(this.ropc_achv_per_ytd.toFixed(1)) + '%';
+          // }
+          this.ropc_centerText_ytd = String(this.ropc_achv_per_ytd) + '%';
     }
-
-
-
-
-    // ytd case  --------------
-    this.ropc_target_ytd = this.ropc_table_data.retailTotal.ytd.cy as any;
-    this.ropc_achv_ytd = this.ropc_table_data.retailTotal.ytd.ly as any;
-    if(this.ropc_target_ytd!=0){
-      this.ropc_achv_per_ytd = 100 * this.ropc_achv_ytd / this.ropc_target_ytd as any;
-
-    }else{
-      this.ropc_achv_per_ytd = 0;
-    }
-    this.ropc_achv_per_ytd = this.ropc_table_data.retailTotal.ytd.achd_aop_percentage;
-    // if(this.ropc_target_ytd != 0){
-    //   this.ropc_centerText_ytd = String(this.ropc_achv_per_ytd.toFixed(1)) + '%';
-    // }
-    this.ropc_centerText_ytd = String(this.ropc_achv_per_ytd) + '%';
   }
 
 
@@ -955,8 +1135,8 @@ export class GwpPerformancesComponent implements OnInit,AfterViewInit {
       //   { name: 'CY', data: [2], type: 'column' }
       // ],
       series: [
-        { name: 'CY', data: [this.property_total_data.profit_loss_current_year.data[0].COR], type: 'column' , color: '#1F5CC7'},
-        { name: 'LY', data: [this.property_total_data.profit_loss_old_year.data[0].COR], type: 'column', color: this.property_total_data.profit_loss_old_year.data[0].COR > this.property_total_data.profit_loss_current_year.data[0].COR? '#00e272': '#F87171'},
+        { name: 'CY', data: [this.property_total_data.profit_loss_current_year.data[0].COR], type: 'column', color: this.property_total_data.profit_loss_old_year.data[0].COR > this.property_total_data.profit_loss_current_year.data[0].COR? '#00e272': '#F87171' },
+        { name: 'LY', data: [this.property_total_data.profit_loss_old_year.data[0].COR], type: 'column',  color: '#1f5cc7'},
       ]
     };
 
@@ -995,6 +1175,34 @@ export class GwpPerformancesComponent implements OnInit,AfterViewInit {
       this.property_centerText_ftm = "0%"
     }
     this.property_centerText_ftm = String(this.property_achv_per_ftm.toFixed(1)) + '%';
+
+    this.property_ftm_cor = {
+      title: 'COR',
+      level_data: [''],
+      x_axis_name: "",
+      y_axis_name: "",
+      height: 210,
+      // series: [
+      //   { name: 'LY', data: [5], type: 'column' },
+      //   { name: 'CY', data: [2], type: 'column' }
+      // ],
+      series: [
+        { name: 'CY', data: [this.property_total_data.profit_loss_current_year.data[0].COR], type: 'column', color: this.property_total_data.profit_loss_old_year.data[0].COR > this.property_total_data.profit_loss_current_year.data[0].COR? '#00e272': '#F87171' },
+        { name: 'LY', data: [this.property_total_data.profit_loss_old_year.data[0].COR], type: 'column',  color: '#1f5cc7'},
+      ]
+    };
+
+    this.property_ftm_lr = {
+      title: 'Loss Ratio',
+      level_data: [''],
+      x_axis_name: "",
+      y_axis_name: "",
+      height: 210,
+      series: [
+        { name: 'CY', data: [this.property_total_data.profit_loss_current_year.data[0]['Claim Ratio']], type: 'column',  color: this.property_total_data.profit_loss_old_year.data[0]['Claim Ratio'] > this.property_total_data.profit_loss_current_year.data[0]['Claim Ratio']? '#00e272': '#F87171' },
+        { name: 'LY', data: [this.property_total_data.profit_loss_old_year.data[0]['Claim Ratio']], type: 'column' , color: '#1f5cc7'},
+      ]
+    };
 
 
 
@@ -1234,6 +1442,28 @@ export class GwpPerformancesComponent implements OnInit,AfterViewInit {
     //   itemsShowLimit: 3,
     //   allowSearchFilter: true
     // }
+
+
+    this.product_dropdownSettings = {
+      singleSelection: false,
+      idField: 'PRODUCT',
+      textField: 'PRODUCT',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    }
+
+
+    this.lob_dropdownSettings = {
+      singleSelection: false,
+      idField: 'LOB',
+      textField: 'LOB',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    }
   }
 
 
@@ -1276,6 +1506,8 @@ export class GwpPerformancesComponent implements OnInit,AfterViewInit {
       selected_zone: this.zone_selectedItems,
       selected_state: this.state_selectedItems,
       selected_location: this.location_selectedItems,
+      selected_lob: this.lob_selectedItems,
+      selected_product: this.product_selectedItems,
     }
     this.rest.getallFilters(data).subscribe((res: any) => {
       if (res.success) {
@@ -1482,6 +1714,8 @@ export class GwpPerformancesComponent implements OnInit,AfterViewInit {
         lastYearCurrentMonth_mtd: subChannel.mtd?.lastYearCurrentMonth_mtd || 0, 
         growthPercentage: subChannel.mtd?.growthPercentage || 0,
         growthPercentage_lmtd: subChannel.mtd?.growthPercentage_lmtd || 0,
+        growthPercentage_lymtd: subChannel.mtd?.growthPercentage_lymtd || 0,
+
       },
       percentageAchievement: { 
         mtd_on_aop_percentage: subChannel.percentageAchievement?.mtd_on_aop_percentage || 0, 
@@ -1611,6 +1845,8 @@ export class GwpPerformancesComponent implements OnInit,AfterViewInit {
       selected_state: this.state_selectedItems,
       selected_location: this.location_selectedItems,
       monthYear: this.month_selectedItems,
+      selected_lob: this.lob_selectedItems,
+      selected_product: this.product_selectedItems,
     };
   
     return new Promise<void>((resolve, reject) => {
@@ -1684,6 +1920,8 @@ export class GwpPerformancesComponent implements OnInit,AfterViewInit {
       selected_state: this.state_selectedItems,
       selected_location: this.location_selectedItems,
       monthYear: this.month_selectedItems,
+      selected_lob: this.lob_selectedItems,
+      selected_product: this.product_selectedItems,
     };
   
     return new Promise<void>((resolve, reject) => {
@@ -1753,6 +1991,8 @@ export class GwpPerformancesComponent implements OnInit,AfterViewInit {
       selected_state: this.state_selectedItems,
       selected_location: this.location_selectedItems,
       monthYear: this.month_selectedItems,
+      selected_lob: this.lob_selectedItems,
+      selected_product: this.product_selectedItems,
     };
   
     return new Promise<void>((resolve, reject) => {
@@ -1825,6 +2065,8 @@ export class GwpPerformancesComponent implements OnInit,AfterViewInit {
       selected_state: this.state_selectedItems,
       selected_location: this.location_selectedItems,
       monthYear: this.month_selectedItems,
+      selected_lob: this.lob_selectedItems,
+      selected_product: this.product_selectedItems,
     };
   
     return new Promise<void>((resolve, reject) => {
@@ -1895,6 +2137,8 @@ export class GwpPerformancesComponent implements OnInit,AfterViewInit {
       selected_state: this.state_selectedItems,
       selected_location: this.location_selectedItems,
       monthYear: this.month_selectedItems,
+      selected_lob: this.lob_selectedItems,
+      selected_product: this.product_selectedItems,
     };
   
     return new Promise<void>((resolve, reject) => {
@@ -1937,6 +2181,8 @@ export class GwpPerformancesComponent implements OnInit,AfterViewInit {
       selected_state: this.state_selectedItems,
       selected_location: this.location_selectedItems,
       monthYear: this.month_selectedItems,
+      selected_lob: this.lob_selectedItems,
+      selected_product: this.product_selectedItems,
     }
     return new Promise<void>((resolve, reject) => {
 
@@ -2438,6 +2684,50 @@ export class GwpPerformancesComponent implements OnInit,AfterViewInit {
 
     // Render the chart
     Highcharts.chart('agentFlagwiseBanding', chartOptions);
+
+  }
+
+
+
+
+
+
+
+
+
+
+  async downloadPerformanceTable(tableName:any): Promise<void>{
+    const data = {
+      user_agent_id: this.userAgentId,
+      userAgentId: this.userAgentId,
+      selected_channel: this.imdChannel_selectedItems,
+      selected_subchannel: this.subChannelCodeName_selectedItems,
+      selected_zone: this.zone_selectedItems,
+      selected_state: this.state_selectedItems,
+      selected_location: this.location_selectedItems,
+      monthYear: this.month_selectedItems,
+      tableFlag: tableName,
+      selected_lob: this.lob_selectedItems,
+      selected_product: this.product_selectedItems,
+    };
+
+    return new Promise<void>((resolve, reject)=>{
+      this.rest.downloadPerformanceTable(data).subscribe({
+        next: (res: any) => {
+          if(res.success){
+
+          const url = this.rest.file_path + "/dashboard_excels/" + res.file;        
+          window.open(url, "_blank");
+
+          }
+          resolve();
+        },
+        error: (error) => {
+          console.error('Error in downloadPerformanceTable:', error);
+          reject(error);
+        }
+      })
+    })
 
   }
 

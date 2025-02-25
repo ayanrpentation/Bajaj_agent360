@@ -160,19 +160,29 @@
 
 
 
-                <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4" style="width:600px; border: 2px solid #b9acff; overflow: hidden;">
-                    <div class="input-group">
+                <div class="p-1 ">
+                    <div class="input-group bg-light rounded rounded-pill shadow-sm mb-4" style="width:600px; border: 2px solid #b9acff; overflow: hidden;">
                       
     
-                      <input type="search"  [(ngModel)]="searchImdCode" placeholder="Search your {{projectName}} here" aria-describedby="button-addon2" class="form-control border-0 bg-light" style="font-size: 18px; text-align: center; text-indent: 30px;">
+                      <input type="search"  [(ngModel)]="searchImdCode" placeholder="Search your {{projectName}} here" aria-describedby="button-addon2" class="form-control border-0 bg-light" style="font-size: 18px; text-align: center; text-indent: 30px;" (input)="onSearchChange()">
     
                       <div class="input-group-prepend ">
     
-                        <button id="button-addon2" type="submit" class="btn btn-link" style="color: #6c5bca;"  title="Search your {{projectName}} here" (click)="seachBtnClicked_afterLoad=true;getImdDetails(searchImdCode); getScoreCardDetails(searchImdCode);getRecommendations(searchImdCode); getTotalGraph_rep(searchImdCode); getLRvsCAQGraphs(searchImdCode); getLobPieGraphs(searchImdCode); getOnePagerdataYTD(searchImdCode); getOnePagerdataMOM(searchImdCode); ytdFlag = false"><i class="fa fa-search"></i></button>
+                        <!-- <button id="button-addon2" type="submit" class="btn btn-link" style="color: #6c5bca;"  title="Search your {{projectName}} here" (click)="seachBtnClicked_afterLoad=true;getImdDetails(searchImdCode); getScoreCardDetails(searchImdCode);getRecommendations(searchImdCode); getTotalGraph_rep(searchImdCode); getLRvsCAQGraphs(searchImdCode); getLobPieGraphs(searchImdCode); getOnePagerdataYTD(searchImdCode); getOnePagerdataMOM(searchImdCode); ytdFlag = false"><i class="fa fa-search"></i></button> -->
+
+                        <button id="button-addon2" type="submit" class="btn btn-link" style="color: #6c5bca;"  title="Search your {{projectName}} here" (click)="seachBtnClicked_afterLoad=true; ytdFlag = false; getImdDetails(searchImdCode);"><i class="fa fa-search"></i></button>
     
                       </div>
                     </div>
+
+                    <!-- Autocomplete Dropdown -->
+                    <ul *ngIf="filteredImdNames.length > 0" class="autocomplete-list">
+                        <li *ngFor="let imd of filteredImdNames" (click)="selectImdCode(imd)">
+                        {{ imd }}
+                        </li>
+                    </ul>
                 </div>
+                
 
 
                 &nbsp; &nbsp;
@@ -279,15 +289,18 @@
 
                     <div class="col-3" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">
 
-                        <span *ngIf="imdsearched">{{imdInfo.INTERMEDIARY_ID}} - {{imdInfo.INTERMEDIARY_NAME | titlecase}}</span>
+                        <!-- <span >{{imdInfo.INTERMEDIARY_ID}} - {{imdInfo.INTERMEDIARY_NAME | titlecase}}</span> -->
                         <!-- <span *ngIf="imdsearched">{{imdInfo.INTERMEDIARY_ID}} - Dummy IMD</span> -->
+
+                        <span  *ngIf="imdsearched">{{imdInfo.name | titlecase}}</span>
 
                     </div>
                     &nbsp;&nbsp;
 
                     <div class="col-2 agentInfoGap">Vintage</div>
 
-                    <div class="col-3" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">{{imdInfo.AGENT_VINTAGE}}</div>
+                    <!-- <div class="col-3" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">{{imdInfo.AGENT_VINTAGE}}</div> -->
+                    <div class="col-3" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">{{imdInfo.vintage}}</div>
 
                 </div>
 
@@ -320,25 +333,30 @@
 
                 <div class="row" style="padding:0">
                     <div class="col-5 agentInfoGap">ZH Name</div>
-                    <div class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">{{imdInfo.ZH_NAME}}</div>
+                    <!-- <div class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">{{imdInfo.ZH_NAME}}</div> -->
+                    <div class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">{{imdInfo.spoc_info.zh_name}}</div>
                     <!-- <div class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">Dummy ZH</div> -->
                 </div>
 
                 <div class="row" style="padding:0">
                     <div class="col-5 agentInfoGap">CH Name</div>
-                    <div class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">{{imdInfo.CH_NAME}}</div>
+                    <!-- <div class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">{{imdInfo.CH_NAME}}</div> -->
+                    <div class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">{{imdInfo.spoc_info.ch_name}}</div>
                     <!-- <div class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">Dummy CH</div> -->
                 </div>
 
                 <div class="row" style="padding:0">
                     <div class="col-5 agentInfoGap">RM Name</div>
-                    <div class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">{{imdInfo.RM_NAME}}</div>
+                    <!-- <div class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">{{imdInfo.RM_NAME}}</div> -->
+                    <div class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">{{imdInfo.spoc_info.rm_name}}</div>
                     <!-- <div class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">Dummy RM</div> -->
                 </div>
 
                 <div class="row" style="padding:0">
-                    <div class="col-5 agentInfoGap">Sub Channel</div>
-                    <div class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">{{imdInfo.SUB_CHANNEL | titlecase}}</div>
+                    <div class="col-5 agentInfoGap">Channel</div>
+                    <!-- <div class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">{{imdInfo.SUB_CHANNEL | titlecase}}</div> -->
+                    <div class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">{{imdInfo.spoc_info.channel | titlecase}}</div>
+
                 </div>
 
             </div>
@@ -352,22 +370,26 @@
 
                 <div class="row" style="display: flex; justify-content: center;">
                     <div class="col-5 agentInfoGap">Location</div>
-                    <div class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">{{imdInfo.LOCATION | titlecase}}</div>
+                    <!-- <div class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">{{imdInfo.LOCATION | titlecase}}</div> -->
+                    <div class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">{{imdInfo.geo_info.location | titlecase}}</div>
                 </div>
 
                 <div class="row" style="display: flex; justify-content: center;">
                     <div class="col-5 agentInfoGap">Gender</div>
-                    <div class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">{{imdInfo.GENDER}}</div>
+                    <!-- <div class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">{{imdInfo.GENDER}}</div> -->
+                    <div class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">{{imdInfo.geo_info.gender}}</div>
                 </div>
 
                 <div class="row" style="display: flex; justify-content: center;">
                     <div class="col-5 agentInfoGap">Marital Status</div>
-                    <div class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">{{imdInfo.MARRIED_STATUS}}</div>
+                    <!-- <div class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">{{imdInfo.MARRIED_STATUS}}</div> -->
+                    <div class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">{{imdInfo.geo_info.marital_status}}</div>
                 </div>
 
                 <div class="row" style="display: flex; justify-content: center;">
                     <div class="col-5 agentInfoGap">Background</div>
-                    <div class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">{{imdInfo.AGENT_BACKGROUND}}</div>
+                    <!-- <div class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">{{imdInfo.AGENT_BACKGROUND}}</div> -->
+                    <div class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">{{imdInfo.geo_info.license_type}}</div>
                 </div>
 
             </div>
@@ -384,26 +406,42 @@
 
 
                     <div class="col-2" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'" >
-                        <span *ngIf="imdsearched">{{imdInfo.BANDING}}</span>
+                        <!-- <span *ngIf="imdsearched">{{imdInfo.BANDING}}</span> -->
+                        <span *ngIf="imdsearched">{{imdInfo.perf_info.Bucket_Score[0]}}</span>
                     </div>
 
 
 
 
-                    <div *ngIf="imdInfo.TOTAL<1" class="col-4" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'" style="background-color: #ffc7bd;background: linear-gradient(45deg, #ffc7bd, white); ">
-                        <span *ngIf="imdsearched">{{imdInfo.TOTAL}}</span>
-                    </div>
-
-                    <div *ngIf="imdInfo.TOTAL==1" class="col-4" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'" >
-                        <span *ngIf="imdsearched">{{imdInfo.TOTAL}}</span>
-                    </div>
-
-                    <div *ngIf="imdInfo.TOTAL>1" class="col-4" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'" style="background-color: #bdffbd;background: linear-gradient(45deg, #bdffbd, white);">
-                        <span *ngIf="imdsearched">{{imdInfo.TOTAL}}</span>
-                    </div>
-                    <!-- <div class="col-4" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'" style="border-left: 3px solid #ffffff;">
+                    <!-- <div *ngIf="imdInfo.TOTAL<1" class="col-4" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'" style="background-color: #ffc7bd;background: linear-gradient(45deg, #ffc7bd, white); ">
                         <span *ngIf="imdsearched">{{imdInfo.TOTAL}}</span>
                     </div> -->
+                    <div *ngIf="imdInfo.perf_info.Bucket_Score[1]<1" class="col-4" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'" style="background-color: #ffc7bd;background: linear-gradient(45deg, #ffc7bd, white); ">
+                        <span *ngIf="imdsearched">{{imdInfo.perf_info.Bucket_Score[1]}}</span>
+                    </div>
+
+
+
+
+                    <!-- <div *ngIf="imdInfo.TOTAL==1" class="col-4" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'" >
+                        <span *ngIf="imdsearched">{{imdInfo.TOTAL}}</span>
+                    </div> -->
+                    <div *ngIf="imdInfo.perf_info.Bucket_Score[1]==1" class="col-4" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'" >
+                        <span *ngIf="imdsearched">{{imdInfo.perf_info.Bucket_Score[1]}}</span>
+                    </div>
+
+
+
+
+                    <!-- <div *ngIf="imdInfo.TOTAL>1" class="col-4" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'" style="background-color: #bdffbd;background: linear-gradient(45deg, #bdffbd, white);">
+                        <span *ngIf="imdsearched">{{imdInfo.TOTAL}}</span>
+                    </div> -->
+
+                    <div *ngIf="imdInfo.perf_info.Bucket_Score[1]>1" class="col-4" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'" style="background-color: #bdffbd;background: linear-gradient(45deg, #bdffbd, white);">
+                        <span *ngIf="imdsearched">{{imdInfo.perf_info.Bucket_Score[1]}}</span>
+                    </div>
+
+
                 </div>
 
 
@@ -413,24 +451,24 @@
                     <!-- <div class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">
                         <span *ngIf="imdsearched">{{imdInfo.CY_COR}}%</span></div> -->
 
-                        <div *ngIf="imdInfo.CY_COR>100" class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'" style=" background: linear-gradient(45deg, #ff8e88, white); ">
-                            <span *ngIf="imdsearched">{{imdInfo.CY_COR}}%</span>
+                        <div *ngIf="imdInfo.perf_info['COR']>100" class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'" style=" background: linear-gradient(45deg, #ff8e88, white); ">
+                            <span *ngIf="imdsearched">{{imdInfo.perf_info['COR']}}%</span>
 
                             
                         </div>
     
-                        <div *ngIf="imdInfo.CY_COR <100 && imdInfo.CY_COR >0" class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'" style="background-color: #ff964f;    background: linear-gradient(45deg, #ff964f, white);">
-                            <span *ngIf="imdsearched">{{imdInfo.CY_COR}}%</span>
+                        <div *ngIf="imdInfo.perf_info.COR <100 && imdInfo.perf_info.COR >0" class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'" style="background-color: #ff964f;    background: linear-gradient(45deg, #ff964f, white);">
+                            <span *ngIf="imdsearched">{{imdInfo.perf_info.COR}}%</span>
 
                             <!-- <meter id="disk_d" min="-300" max="300" [value]="imdInfo.CY_COR" style="background-color: #ff964f;">{{imdInfo.CY_COR}}%</meter> -->
                         </div>
     
-                        <div *ngIf="imdInfo.CY_COR < 0" class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'" style="background-color: #8bff8b;    background: linear-gradient(45deg, #8bff8b, white);">
-                            <span *ngIf="imdsearched">{{imdInfo.CY_COR}}%</span>
+                        <div *ngIf="imdInfo.perf_info.COR < 0" class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'" style="background-color: #8bff8b;    background: linear-gradient(45deg, #8bff8b, white);">
+                            <span *ngIf="imdsearched">{{imdInfo.perf_info.COR}}%</span>
                         </div>
 
-                        <div *ngIf="imdInfo.CY_COR == 0" class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'" style="background-color: #8bff8b;    background: linear-gradient(45deg, #8bff8b, white);">
-                            <span *ngIf="imdsearched">{{imdInfo.CY_COR}}%</span>
+                        <div *ngIf="imdInfo.perf_info.COR == 0" class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'" style="background-color: #8bff8b;    background: linear-gradient(45deg, #8bff8b, white);">
+                            <span *ngIf="imdsearched">{{imdInfo.perf_info.COR}}%</span>
                         </div>
 
 
@@ -450,16 +488,16 @@
                         </div> -->
 
 
-                        <div *ngIf="imdInfo.LOSS_RATIO >= 100" class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'" style="background-color: #ff8e88;   background: linear-gradient(45deg, #ff8e88, white);">
-                            <span *ngIf="imdsearched">{{imdInfo.LOSS_RATIO}}%</span>
+                        <div *ngIf="imdInfo.perf_info.LR >= 100" class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'" style="background-color: #ff8e88;   background: linear-gradient(45deg, #ff8e88, white);">
+                            <span *ngIf="imdsearched">{{imdInfo.perf_info.LR}}%</span>
                         </div>
     
-                        <div *ngIf="imdInfo.LOSS_RATIO < 100 && imdInfo.LOSS_RATIO >=0" class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'"  style="background-color: #ff964f;  background: linear-gradient(45deg, #ff964f, white);">
-                            <span *ngIf="imdsearched">{{imdInfo.LOSS_RATIO}}%</span>
+                        <div *ngIf="imdInfo.perf_info.LR < 100 && imdInfo.perf_info.LR >=0" class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'"  style="background-color: #ff964f;  background: linear-gradient(45deg, #ff964f, white);">
+                            <span *ngIf="imdsearched">{{imdInfo.perf_info.LR}}%</span>
                         </div>
     
-                        <div *ngIf="imdInfo.LOSS_RATIO < 0" class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'" style="background-color: #8bff8b;  background: linear-gradient(45deg, #8bff8b, white);">
-                            <span *ngIf="imdsearched">{{imdInfo.LOSS_RATIO}}%</span>
+                        <div *ngIf="imdInfo.perf_info.LR < 0" class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'" style="background-color: #8bff8b;  background: linear-gradient(45deg, #8bff8b, white);">
+                            <span *ngIf="imdsearched">{{imdInfo.perf_info.LR}}%</span>
                         </div>
                 </div>
 
@@ -468,22 +506,15 @@
 
                 <div class="row" style="display: flex; justify-content: right; padding:0">
                     <div class="col-5 agentInfoGap">Acquisition Cost Ratio</div>
-                    <!-- <div class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'">
-                        <span *ngIf="imdsearched">{{imdInfo.COMMISSION_RATIO}}%</span>
-                        </div> -->
 
 
 
-                        <div *ngIf="imdInfo.COMMISSION_RATIO>100" class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'" style="background-color: #ff8e88;   background: linear-gradient(45deg, #ff8e88, white); ">
-                            <span *ngIf="imdsearched">{{imdInfo.COMMISSION_RATIO}}%</span>
+                        <div *ngIf="imdInfo.perf_info.ACR>100" class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'" style="background-color: #ff8e88;   background: linear-gradient(45deg, #ff8e88, white); ">
+                            <span *ngIf="imdsearched">{{imdInfo.perf_info.ACR}}%</span>
                         </div>
     
-                        <!-- <div *ngIf="imdInfo.COMMISSION_RATIO <300 && imdInfo.COMMISSION_RATIO >-300" class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'" style="background-color: #ff964f;">
-                            <span *ngIf="imdsearched">{{imdInfo.COMMISSION_RATIO}}%</span>
-                        </div> -->
-    
-                        <div *ngIf="imdInfo.COMMISSION_RATIO<100" class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'" style="background-color: #8bff8b;  background: linear-gradient(45deg, #8bff8b, white);">
-                            <span *ngIf="imdsearched">{{imdInfo.COMMISSION_RATIO}}%</span>
+                        <div *ngIf="imdInfo.perf_info.ACR<100" class="col-6" [ngClass]="imdsearched == true?'agentInfoGapValue':'agentInfoGapValue1'" style="background-color: #8bff8b;  background: linear-gradient(45deg, #8bff8b, white);">
+                            <span *ngIf="imdsearched">{{imdInfo.perf_info.ACR}}%</span>
                         </div>
                 </div>
 

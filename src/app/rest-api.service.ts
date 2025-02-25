@@ -88,6 +88,22 @@ export class RestApiService {
   getImdDetails(data: any): any {
     return this.http.post(this.API_ROOT + '/app/getImdDetails', JSON.stringify(data), httpOptions);
   }
+
+
+
+
+
+
+  
+  scorecardBasicDetails(data: any): any {
+    return this.http.post(this.API_ROOT + '/scorecard/getBasicDetails', JSON.stringify(data), httpOptions);
+  }
+
+
+
+
+
+
   getScoreCardDetails(data: any): any {
     return this.http.post(this.API_ROOT + '/app/getScoreCardDetails', JSON.stringify(data), httpOptions);
   }
@@ -194,6 +210,10 @@ export class RestApiService {
 
   getallFilters(data:any): any {
     return this.http.post(this.API_ROOT + '/filters/getFilters', JSON.stringify(data), httpOptions);
+  }
+
+  allIMDs(data:any): any {
+    return this.http.post(this.API_ROOT + '/filters/allIMDs', JSON.stringify(data), httpOptions);
   }
 
   
@@ -480,6 +500,14 @@ subChannelwisePieChart(data: any): any {
   // }
 
 
+
+  downloadPerformanceTable(data : any){
+    return this.http.post(this.API_ROOT + '/ddo/ddoCommon',JSON.stringify(data),  httpOptions);
+  }
+
+  delete_ddos(data : any){
+    return this.http.post(this.API_ROOT + '/ddo/delete_ddos',JSON.stringify(data),  httpOptions);
+  }
 
 
   toplinePerformance(data : any){

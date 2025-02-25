@@ -55,12 +55,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
 
   // loader status
-  bandtendTableStatus: boolean = true
-  indiaMapStatus:boolean = true;
-  lobContributionStatus: boolean = true;
+  bandtendTableStatus: boolean = false
+  indiaMapStatus:boolean = false;
+  lobContributionStatus: boolean = false;
   zonewiseBandingStatus: boolean = true;
-  vintagewiseBandingStatus: boolean = true;
-  lobwiseBandingStatus: boolean = true;
+  vintagewiseBandingStatus: boolean = false;
+  lobwiseBandingStatus: boolean = false;
 
 
 
@@ -312,7 +312,16 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   category_dropdownSettings: IDropdownSettings = {} as any
 
 
-  
+
+  showSingleline = true; // how you wanna watch the filters
+
+  lob_dropdownList = [] as any;
+  lob_selectedItems = [] as any;
+  lob_dropdownSettings: IDropdownSettings = {} as any
+
+  product_dropdownList = [] as any;
+  product_selectedItems = [] as any;
+  product_dropdownSettings: IDropdownSettings = {} as any
 
   month_dropdownList = [] as any;
   month_selectedItems = [] as any;
@@ -913,9 +922,14 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     //   console.log(err)
     // }
     let filterflag_exceptMonth = 1
-    if(this.imdChannel_selectedItems.length == 0 && this.subChannelCodeName_selectedItems.length == 0 && this.zone_selectedItems.length == 0 && this.state_selectedItems == 0 && this.location_selectedItems == 0){
-      filterflag_exceptMonth = 0
+    try{
+      if(this.imdChannel_selectedItems.length == 0 && this.subChannelCodeName_selectedItems.length == 0 && this.zone_selectedItems.length == 0 && this.state_selectedItems == 0 && this.location_selectedItems == 0){
+        filterflag_exceptMonth = 0
+      }
+    }catch(err:any){
+      console.log("error", err);
     }
+    
 
     
 
@@ -932,6 +946,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       // year_month: this.convertDateFormat(this.month_selectedItems[0].monthVal),
       state: state,
       zone: zone,
+      selected_lob: this.lob_selectedItems,
+      selected_product: this.product_selectedItems,
     }
 
     // console.log("this.month_selectedItems>>>",this.month_selectedItems);
@@ -942,6 +958,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         if(res.success){
           this.vintagewiseBandingStatus = false;
           this.prepare_vintageWisebandingGraph(res.level_data, res.bandingData)
+
+
+        // this.prepareBackgroundWiseAgentCount_columnChart(this.insights_api_new_fullData.agent_background_count[0].level_data, this.insights_api_new_fullData.agent_background_count[0].imdData);
   
         }else{
           console.log('error in vintage_wise_band_count')
@@ -978,7 +997,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       xAxis: {
           categories: levelData, // Equivalent to `labels` in Chart.js
           title: {
-              text: 'Agent Vintage', // X-axis title
+              text: 'Agent Vintage (in Months)', // X-axis title
               style: {
                   fontWeight: 'bold',
                   fontSize: '13px',
@@ -1152,7 +1171,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       selected_state: this.state_selectedItems,
       selected_location: this.location_selectedItems,
       monthYear: this.month_selectedItems,
-      // filterFlag_excptMonth: filterflag_exceptMonth
+      // filterFlag_excptMonth: filterflag_exceptMonth,
+      selected_lob: this.lob_selectedItems,
+      selected_product: this.product_selectedItems,
     }
 
     this.rest.getcomparison_ly(data).subscribe((res: any) => {
@@ -1204,7 +1225,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       selected_state: this.state_selectedItems,
       selected_location: this.location_selectedItems,
       monthYear: this.month_selectedItems,
-      filterFlag_excptMonth: filterflag_exceptMonth
+      filterFlag_excptMonth: filterflag_exceptMonth,
+      selected_lob: this.lob_selectedItems,
+      selected_product: this.product_selectedItems,
     }
 
     // console.log("this.month_selectedItems>>>",this.month_selectedItems);
@@ -1474,6 +1497,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   //     selected_state: this.state_selectedItems,
   //     selected_location: this.location_selectedItems,
   //     monthYear: this.month_selectedItems,
+      // selected_lob: this.lob_selectedItems,
+      // selected_product: this.product_selectedItems,
   //   }
 
   //   // console.log("this.month_selectedItems>>>",this.month_selectedItems);
@@ -3065,6 +3090,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       selected_location: this.location_selectedItems,
       monthYear: this.month_selectedItems,
       limit: this.limit,
+      selected_lob: this.lob_selectedItems,
+      selected_product: this.product_selectedItems,
 
 
     }
@@ -3092,6 +3119,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       selected_location: this.location_selectedItems,
       monthYear: this.month_selectedItems,
       limit: this.limit,
+      selected_lob: this.lob_selectedItems,
+      selected_product: this.product_selectedItems,
 
 
     }
@@ -3153,6 +3182,27 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       singleSelection: true,
       idField: 'monthVal',
       textField: 'monthName',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    }
+
+    this.product_dropdownSettings = {
+      singleSelection: false,
+      idField: 'PRODUCT',
+      textField: 'PRODUCT',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    }
+
+
+    this.lob_dropdownSettings = {
+      singleSelection: false,
+      idField: 'LOB',
+      textField: 'LOB',
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       itemsShowLimit: 3,
@@ -3423,6 +3473,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       selected_zone: this.zone_selectedItems,
       selected_state: this.state_selectedItems,
       selected_location: this.location_selectedItems,
+      selected_lob: this.lob_selectedItems,
+      selected_product: this.product_selectedItems,
     }
     this.rest.getallFilters(data).subscribe((res: any) => {
       if (res.success) {
@@ -3434,6 +3486,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
           this.state_dropdownList = res.data.states;
           this.location_dropdownList = res.data.locations;
           this.imdChannel_dropdownList = res.data.channels;
+
+          this.lob_dropdownList = res.data.lobs;
+          this.product_dropdownList = res.data.products;
 
 
           console.log("zone_dropdownList--", this.zone_dropdownList);
@@ -4076,6 +4131,8 @@ getStateWiseLOBDistPie(zone:any, state: any){
     monthYear: this.month_selectedItems,
     state: this.state_branding_pie,
     zone: zone,
+    selected_lob: this.lob_selectedItems,
+    selected_product: this.product_selectedItems,
   }
 
   this.rest.getStateWiseLOBDistPie(data).subscribe((res: any) => {
@@ -4876,7 +4933,10 @@ create_BackgroundWiseAgentCount_columnChart(level_data:any, imdData: any){
         };
         
         // Render the chart
-        Highcharts.chart('getAgentBackgroundDistBar_chart', chartOptions);
+        setTimeout(()=>{
+          Highcharts.chart('getAgentBackgroundDistBar_chart', chartOptions)
+        }, 1000)
+        // Highcharts.chart('getAgentBackgroundDistBar_chart', chartOptions);
 
         this.visibleContentById('getAgentBackgroundDistBar_chart')
 
@@ -4886,6 +4946,7 @@ create_BackgroundWiseAgentCount_columnChart(level_data:any, imdData: any){
 
 
 
+insights_api_new_fullData: any;
 insights_api_new(zone:any, state: any){
   // this.indiaMapStatus = true;
   // this.lobContributionStatus = true;
@@ -4898,6 +4959,7 @@ insights_api_new(zone:any, state: any){
   //   yearMonth = this.convertDateFormat(this.month_selectedItems[0].monthVal)
   // }
   
+
 
   const dataValue = {
 
@@ -4912,6 +4974,8 @@ insights_api_new(zone:any, state: any){
     // year_month: yearMonth,
     state: state,
     zone: zone,
+    selected_lob: this.lob_selectedItems,
+    selected_product: this.product_selectedItems,
 
   } as any;
 
@@ -5996,7 +6060,7 @@ insights_api_new(zone:any, state: any){
         ]
       }
 
-
+      this.insights_api_new_fullData = res;
       // for no selected month
       if(this.month_selectedItems.length == 0){
         this.indiaMapStatus = false;
@@ -6010,7 +6074,10 @@ insights_api_new(zone:any, state: any){
         this.month_selectedItems = this.makeSelectedMonthFromZonewiseBrandingGraph_data(res.zone_wise_banding_bar);
         let noSelectionMonth = this.makeSelectedMonthFromZonewiseBrandingGraph_data(res.zone_wise_banding_bar);
 
-        console.log("++++++++++++++++++++++++++++++++++++++++!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        console.log("++++++++++++++++++++++++++++++++++++++++22222222222222222222222222222222222")
+        setTimeout(()=>{
+          this.prepareLobWiseBranding_columnChart(res.lob_wise_banding_count,  String(this.convertDateFormat(noSelectionMonth[0].monthVal)));
+        },1000)
         this.vintage_wise_band_count(zone, state);
 
         // this.month_selectedItems = [
@@ -6034,12 +6101,28 @@ insights_api_new(zone:any, state: any){
         // this.prepareLobWiseBranding_columnChart(res.lob_wise_banding_count,  String(this.convertDateFormat(this.month_selectedItems[0].monthVal)));
 
 
+        // this.prepareBackgroundWiseAgentCount_columnChart(res.agent_background_count[0].level_data, res.agent_background_count[0].imdData)
+        try{
+          // console.log("************-->", this.month_selectedItems)
+          this.prepareBackgroundWiseAgentCount_columnChart(res.agent_background_count[0].level_data, res.agent_background_count[0].imdData);
+        }catch(err:any){
+          console.log("error--->")
+        }
+
+
         // New Code to ensure month passed 
-        this.prepare_zonewiseBandingGraph(res.zone_wise_banding_bar,  String(this.convertDateFormat(noSelectionMonth[0].monthVal)));
-        this.prepareLobWiseBranding_columnChart(res.lob_wise_banding_count,  String(this.convertDateFormat(noSelectionMonth[0].monthVal)));
+        // this.prepare_zonewiseBandingGraph(res.zone_wise_banding_bar,  String(this.convertDateFormat(noSelectionMonth[0].monthVal)));
+        // this.prepareLobWiseBranding_columnChart(res.lob_wise_banding_count,  String(this.convertDateFormat(noSelectionMonth[0].monthVal)));
+        try{
+          // console.log("************-->", this.month_selectedItems)
+          this.prepare_zonewiseBandingGraph(res.zone_wise_banding_bar,  String(this.convertDateFormat(noSelectionMonth[0].monthVal)));
+        }catch(err:any){
+          console.log("error--->")
+        }
+
+        
 
 
-        this.prepareBackgroundWiseAgentCount_columnChart(res.agent_background_count[0].level_data, res.agent_background_count[0].imdData)
 
 
 
@@ -6055,18 +6138,42 @@ insights_api_new(zone:any, state: any){
         this.prepareLOB_contribution_piechart(res.state_wise_lob_count);
         this.showAsonmonth = true;
 
-        console.log("++++++++++++++++++++++++++++++++++++++++!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        console.log("++++++++++++++++++++++++++++++++++++++++!1111111111111111111111111111")
+        setTimeout(()=>{
+          console.log("call krar smy")
+          this.prepareLobWiseBranding_columnChart(res.lob_wise_banding_count,  String(this.convertDateFormat(this.month_selectedItems[0].monthVal)))
+        },1000)
       this.vintage_wise_band_count(zone, state);
         
 
 
-        // checked ok with current data structure
-        this.prepare_zonewiseBandingGraph(res.zone_wise_banding_bar,  String(this.convertDateFormat(this.month_selectedItems[0].monthVal)));
+        
 
         // issue possible in data 
-        this.prepareLobWiseBranding_columnChart(res.lob_wise_banding_count,  String(this.convertDateFormat(this.month_selectedItems[0].monthVal)))
+        // this.prepareLobWiseBranding_columnChart(res.lob_wise_banding_count,  String(this.convertDateFormat(this.month_selectedItems[0].monthVal)))
 
-        this.prepareBackgroundWiseAgentCount_columnChart(res.agent_background_count[0].level_data, res.agent_background_count[0].imdData)
+        // console.log("call krar age")
+        // checked ok with current data structure
+        try{
+          console.log("************-->", this.month_selectedItems)
+          this.prepare_zonewiseBandingGraph(res.zone_wise_banding_bar,  String(this.convertDateFormat(this.month_selectedItems[0].monthVal)));
+        }catch(err:any){
+          console.log("error--->")
+        }
+
+
+        try{
+          // console.log("************-->", this.month_selectedItems)
+          this.prepareBackgroundWiseAgentCount_columnChart(res.agent_background_count[0].level_data, res.agent_background_count[0].imdData);
+        }catch(err:any){
+          console.log("error--->")
+        }
+        
+
+        
+
+
+        
       }
 
       
@@ -6297,6 +6404,8 @@ getStatewiseGwp(){
     selected_location: this.location_selectedItems,
     monthYear: this.month_selectedItems,
     year_month: this.convertDateFormat(this.month_selectedItems[0].monthVal),
+    selected_lob: this.lob_selectedItems,
+    selected_product: this.product_selectedItems,
 
   } as any;
 
@@ -6953,6 +7062,8 @@ zoneWiseBranding() {
     selected_state: this.state_selectedItems,
     selected_location: this.location_selectedItems,
     monthYear: this.month_selectedItems,
+    selected_lob: this.lob_selectedItems,
+    selected_product: this.product_selectedItems,
   }
 
   // let bar1manipulate_pix = 
@@ -7212,7 +7323,7 @@ customAPIcall(event: any){
   const clickedZone = event.point.category
   console.log("clickedZone  ",clickedZone)
 
-  this.brandingPiechart_status = true
+  // this.brandingPiechart_status = true
   this.pieChartFor = 'zone'
   this.state_branding_pie = ''
 
@@ -7247,7 +7358,7 @@ customAPIcall(event: any){
 
 
 getBandingPie_hc(zone:any, state: any){
-
+  this.brandingPiechart_status = true;
   
   
   const data = {
@@ -7261,6 +7372,8 @@ getBandingPie_hc(zone:any, state: any){
     monthYear: this.month_selectedItems,
     state: this.state_branding_pie,
     zone: zone,
+    selected_lob: this.lob_selectedItems,
+    selected_product: this.product_selectedItems,
   }
 
   this.rest.getBandingPie(data).subscribe((res: any) => {
@@ -7386,8 +7499,9 @@ getBandingPie_hc(zone:any, state: any){
         
       }
 
-
-      Highcharts.chart('getBandingPie_chart_hc', chartOptions);
+      
+      setTimeout(()=>{Highcharts.chart('getBandingPie_chart_hc', chartOptions)},1000)
+      // Highcharts.chart('getBandingPie_chart_hc', chartOptions);
       this.visibleContentById('getBandingPie_chart_hc')
 
       
@@ -7581,6 +7695,8 @@ filteBtn(){
 
         indMapState: indMapState,
         zoneWiseBanding_zone: zoneWiseBanding_zone,
+        selected_lob: this.lob_selectedItems,
+        selected_product: this.product_selectedItems,
     }
 
     // let barDataPositionassist_1 = this.windowWidth * (3.784/100)
@@ -7781,6 +7897,8 @@ filteBtn(){
 
         indMapState: indMapState,
         zoneWiseBanding_zone: zoneWiseBanding_zone,
+        selected_lob: this.lob_selectedItems,
+        selected_product: this.product_selectedItems,
     }
 
     let barDataPositionassist_1 = this.windowWidth * (3.784/100)
@@ -8299,6 +8417,8 @@ filteBtn(){
   //     monthYear: this.month_selectedItems,
   //     state: this.state_branding_pie,
   //     zone: zone,
+      // selected_lob: this.lob_selectedItems,
+      // selected_product: this.product_selectedItems,
   //   }
   
   //   this.rest.getStateWiseLOBDistPie(data).subscribe((res: any) => {
@@ -8459,6 +8579,8 @@ filteBtn(){
 
       indMapState: indMapState,
       zoneWiseBanding_zone: zoneWiseBanding_zone,
+      selected_lob: this.lob_selectedItems,
+      selected_product: this.product_selectedItems,
     }
 
 
@@ -8858,7 +8980,9 @@ filteBtn(){
       selected_state: this.state_selectedItems,
       selected_location: this.location_selectedItems,
       monthYear: this.month_selectedItems,
-      filterFlag_excptMonth: filterflag_exceptMonth
+      filterFlag_excptMonth: filterflag_exceptMonth,
+      selected_lob: this.lob_selectedItems,
+      selected_product: this.product_selectedItems,
     }
 
 
@@ -8914,6 +9038,8 @@ filteBtn(){
 
   formatNumber(inputString: any) {
     try {
+
+      // let input = String(inputString) || '';
       // Remove spaces and '%' sign
       const sanitizedString = inputString.replace(/\s+|%/g, '');
       

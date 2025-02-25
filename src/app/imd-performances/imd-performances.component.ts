@@ -94,6 +94,14 @@ export class ImdPerformancesComponent implements OnInit {
   mainChannel_selectedItems = [] as any;
   mainChannel_dropdownSettings: IDropdownSettings = {} as any
 
+  lob_dropdownList = [] as any;
+  lob_selectedItems = [] as any;
+  lob_dropdownSettings: IDropdownSettings = {} as any
+
+  product_dropdownList = [] as any;
+  product_selectedItems = [] as any;
+  product_dropdownSettings: IDropdownSettings = {} as any
+
 
 
 
@@ -325,6 +333,27 @@ export class ImdPerformancesComponent implements OnInit {
     //   itemsShowLimit: 3,
     //   allowSearchFilter: true
     // }
+
+    this.product_dropdownSettings = {
+      singleSelection: false,
+      idField: 'PRODUCT',
+      textField: 'PRODUCT',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    }
+
+
+    this.lob_dropdownSettings = {
+      singleSelection: false,
+      idField: 'LOB',
+      textField: 'LOB',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    }
   }
 
 
@@ -543,6 +572,8 @@ export class ImdPerformancesComponent implements OnInit {
       selected_state: this.state_selectedItems,
       selected_location: this.location_selectedItems,
       monthYear: this.month_selectedItems,
+      selected_lob: this.lob_selectedItems,
+      selected_product: this.product_selectedItems,
     };
 
     return new Promise<void>((resolve, reject) => {
@@ -766,6 +797,8 @@ export class ImdPerformancesComponent implements OnInit {
       selected_state: this.state_selectedItems,
       selected_location: this.location_selectedItems,
       monthYear: this.month_selectedItems,
+      selected_lob: this.lob_selectedItems,
+      selected_product: this.product_selectedItems,
     };
 
     return new Promise<void>((resolve, reject) => {
@@ -929,6 +962,57 @@ export class ImdPerformancesComponent implements OnInit {
     });
   }
 
+
+
+
+
+
+
+
+
+
+
+
+  async downloadPerformanceTable(tableName:any): Promise<void>{
+    const data = {
+      user_agent_id: this.userAgentId,
+      userAgentId: this.userAgentId,
+      selected_channel: this.imdChannel_selectedItems,
+      selected_subchannel: this.subChannelCodeName_selectedItems,
+      selected_zone: this.zone_selectedItems,
+      selected_state: this.state_selectedItems,
+      selected_location: this.location_selectedItems,
+      monthYear: this.month_selectedItems,
+      tableFlag: tableName,
+      selected_lob: this.lob_selectedItems,
+      selected_product: this.product_selectedItems,
+    };
+
+    return new Promise<void>((resolve, reject)=>{
+      this.rest.downloadPerformanceTable(data).subscribe({
+        next: (res: any) => {
+          if(res.success){
+            const url = this.rest.file_path + "/dashboard_excels/" + res.file;        
+            window.open(url, "_blank");
+          }
+          resolve();
+        },
+        error: (error) => {
+          console.error('Error in downloadPerformanceTable:', error);
+          reject(error);
+        }
+      })
+    })
+
+  }
+
+
+
+
+
+
+
+  
 
 
 }

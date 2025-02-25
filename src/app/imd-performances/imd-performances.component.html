@@ -26,9 +26,24 @@
   </div>
 
   <div class="row">
+
     <div
       class="col"
-      style="padding: 10px !important; padding-bottom: 0px !important; padding-left: 0!important;"
+      style="padding: 10px !important; padding-bottom: 0px !important;  padding-left: 0!important;"
+    >
+      <ng-multiselect-dropdown
+        [placeholder]="'Channel'"
+        [settings]="imdChannel_dropdownSettings"
+        [data]="imdChannel_dropdownList"
+        [(ngModel)]="imdChannel_selectedItems"
+      >
+      </ng-multiselect-dropdown>
+    </div>
+
+
+    <div
+      class="col"
+      style="padding: 10px !important; padding-bottom: 0px !important;"
     >
       
       <!-- <ng-multiselect-dropdown
@@ -87,7 +102,7 @@
       </ng-multiselect-dropdown>
     </div>
 
-    <div
+    <!-- <div
       class="col"
       style="padding: 10px !important; padding-bottom: 0px !important"
     >
@@ -98,7 +113,7 @@
         [(ngModel)]="imdChannel_selectedItems"
       >
       </ng-multiselect-dropdown>
-    </div>
+    </div> -->
 
     <div
       class="col"
@@ -183,12 +198,12 @@
           <div class="concentric-progress-bars">
             <!-- Outer progress bar -->
             <div class="progress-bar outer" [attr.data-value]="100 + '%'">
-              <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + activation_target + ''"></div>
+              <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + activation_target + ' Cr'"></div>
             </div>
           
             <!-- Middle progress bar -->          
             <div class="progress-bar middle" [attr.data-value]="activation_achv_per + '%'" >
-              <div class="progress" [ngStyle]="getMiddleProgressStyles(activation_achv_per)" [title]="'Achievement: ' + activation_achv + ''" ></div>
+              <div class="progress" [ngStyle]="getMiddleProgressStyles(activation_achv_per)" [title]="'Achievement: ' + activation_achv + ' Cr'" ></div>
             </div>
           
             <!-- Inner progress bar with center text -->
@@ -259,12 +274,12 @@
           <div class="concentric-progress-bars">
             <!-- Outer progress bar -->
             <div class="progress-bar outer" [attr.data-value]="100 + '%'">
-              <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + recruitment_target + ''"></div>
+              <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + recruitment_target + ' Cr'"></div>
             </div>
           
             <!-- Middle progress bar -->          
             <div class="progress-bar middle" [attr.data-value]="recruitment_achv_per + '%'" >
-              <div class="progress" [ngStyle]="getMiddleProgressStyles(recruitment_achv_per)" [title]="'Achievement: ' + recruitment_achv + ''" ></div>
+              <div class="progress" [ngStyle]="getMiddleProgressStyles(recruitment_achv_per)" [title]="'Achievement: ' + recruitment_achv + ' Cr'" ></div>
             </div>
   
   
@@ -351,12 +366,12 @@
           <div class="concentric-progress-bars">
             <!-- Outer progress bar -->
             <div class="progress-bar outer" [attr.data-value]="100 + '%'">
-              <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + activation_target_ftm + ''"></div>
+              <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + activation_target_ftm + ' Cr'"></div>
             </div>
           
             <!-- Middle progress bar -->          
             <div class="progress-bar middle" [attr.data-value]="activation_achv_per_ftm + '%'" >
-              <div class="progress" [ngStyle]="getMiddleProgressStyles(activation_achv_per_ftm)" [title]="'Achievement: ' + activation_achv_ftm + ''" ></div>
+              <div class="progress" [ngStyle]="getMiddleProgressStyles(activation_achv_per_ftm)" [title]="'Achievement: ' + activation_achv_ftm + ' Cr'" ></div>
             </div>
           
             <!-- Inner progress bar with center text -->
@@ -427,12 +442,12 @@
           <div class="concentric-progress-bars">
             <!-- Outer progress bar -->
             <div class="progress-bar outer" [attr.data-value]="100 + '%'">
-              <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + recruitment_target_ftm + ''"></div>
+              <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + recruitment_target_ftm + ' Cr'"></div>
             </div>
           
             <!-- Middle progress bar -->          
             <div class="progress-bar middle" [attr.data-value]="recruitment_achv_per_ftm + '%'" >
-              <div class="progress" [ngStyle]="getMiddleProgressStyles(recruitment_achv_per_ftm)" [title]="'Achievement: ' + recruitment_achv_ftm + ''" ></div>
+              <div class="progress" [ngStyle]="getMiddleProgressStyles(recruitment_achv_per_ftm)" [title]="'Achievement: ' + recruitment_achv_ftm + ' Cr'" ></div>
             </div>
   
   
@@ -466,7 +481,7 @@
                 <td class="gaugetable_firstCol" scope="row">FTM</td>
   
                 <td>{{recruitment_total_data.retail_sub_channels[recruitment_total_data.retail_sub_channels.length-1].ftm_count}}</td>
-                <td>{{recruitment_total_data.retail_sub_channels[recruitment_total_data.retail_sub_channels.length-1].growth_over_lftm}}</td>
+                <td>{{recruitment_total_data.retail_sub_channels[recruitment_total_data.retail_sub_channels.length-1].growth_over_lftm?? 0}}%</td>
                 <!-- <td>24</td>
                 <td>58</td>
                 <td>33</td>
@@ -477,7 +492,7 @@
                 <td class="gaugetable_firstCol"  scope="row">LYFTM</td>
   
                 <td>{{recruitment_total_data.retail_sub_channels[recruitment_total_data.retail_sub_channels.length-1].lyftm_count}}</td>
-                <td>{{recruitment_total_data.retail_sub_channels[recruitment_total_data.retail_sub_channels.length-1].growth_over_lyftm}}</td>
+                <td>{{recruitment_total_data.retail_sub_channels[recruitment_total_data.retail_sub_channels.length-1].growth_over_lyftm?? 0}}%</td>
                 <!-- <td>33</td>
                 <td>24</td>
                 <td>57</td>
@@ -520,12 +535,12 @@
           <div class="concentric-progress-bars">
             <!-- Outer progress bar -->
             <div class="progress-bar outer" [attr.data-value]="100 + '%'">
-              <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + activation_target_ytd + ''"></div>
+              <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + activation_target_ytd + ' Cr'"></div>
             </div>
           
             <!-- Middle progress bar -->          
             <div class="progress-bar middle" [attr.data-value]="activation_achv_per_ytd + '%'" >
-              <div class="progress" [ngStyle]="getMiddleProgressStyles(activation_achv_per_ytd)" [title]="'Achievement: ' + activation_achv_ytd + ''" ></div>
+              <div class="progress" [ngStyle]="getMiddleProgressStyles(activation_achv_per_ytd)" [title]="'Achievement: ' + activation_achv_ytd + ' Cr'" ></div>
             </div>
           
             <!-- Inner progress bar with center text -->
@@ -557,7 +572,7 @@
                 <td class="gaugetable_firstCol" scope="row">YTD</td>
   
                 <td>{{activation_total_data.retail_sub_channels[activation_total_data.retail_sub_channels.length-1].ytd_count}}</td>
-                <td>{{activation_total_data.retail_sub_channels[activation_total_data.retail_sub_channels.length-1].growth_over_lytd}}</td>
+                <td>{{activation_total_data.retail_sub_channels[activation_total_data.retail_sub_channels.length-1].growth_over_lytd?? 0}}%</td>
                 <!-- <td>24</td>
                 <td>58</td>
                 <td>33</td>
@@ -567,7 +582,7 @@
               <tr  style="font-size:16px!important;">
                 <td class="gaugetable_firstCol"  scope="row">LYTD</td>
   
-                <td>{{activation_total_data.retail_sub_channels[activation_total_data.retail_sub_channels.length-1].lytd_count}}</td>
+                <td>{{activation_total_data.retail_sub_channels[activation_total_data.retail_sub_channels.length-1].lytd_count?? 0}}</td>
                 <td>-</td>
                 <!-- <td>33</td>
                 <td>24</td>
@@ -596,12 +611,12 @@
           <div class="concentric-progress-bars">
             <!-- Outer progress bar -->
             <div class="progress-bar outer" [attr.data-value]="100 + '%'">
-              <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + recruitment_target_ytd + ''"></div>
+              <div class="progress" [ngStyle]="{'--progress': 100}" [title]="'Target: ' + recruitment_target_ytd + ' Cr'"></div>
             </div>
           
             <!-- Middle progress bar -->          
             <div class="progress-bar middle" [attr.data-value]="recruitment_achv_per_ytd + '%'" >
-              <div class="progress" [ngStyle]="getMiddleProgressStyles(recruitment_achv_per_ytd)" [title]="'Achievement: ' + recruitment_achv_ytd + ''" ></div>
+              <div class="progress" [ngStyle]="getMiddleProgressStyles(recruitment_achv_per_ytd)" [title]="'Achievement: ' + recruitment_achv_ytd + ' Cr'" ></div>
             </div>
   
   
@@ -635,7 +650,7 @@
                 <td class="gaugetable_firstCol" scope="row">YTD</td>
   
                 <td>{{recruitment_total_data.retail_sub_channels[recruitment_total_data.retail_sub_channels.length-1].ytd_count}}</td>
-                <td>{{recruitment_total_data.retail_sub_channels[recruitment_total_data.retail_sub_channels.length-1].growth_over_lytd}}</td>
+                <td>{{recruitment_total_data.retail_sub_channels[recruitment_total_data.retail_sub_channels.length-1].growth_over_lytd?? 0}}%</td>
                 <!-- <td>24</td>
                 <td>58</td>
                 <td>33</td>
@@ -645,7 +660,7 @@
               <tr  style="font-size:16px!important;">
                 <td class="gaugetable_firstCol"  scope="row">LYTD</td>
   
-                <td>{{recruitment_total_data.retail_sub_channels[recruitment_total_data.retail_sub_channels.length-1].lytd_count}}</td>
+                <td>{{recruitment_total_data.retail_sub_channels[recruitment_total_data.retail_sub_channels.length-1].lytd_count?? 0}}</td>
                 <td>-</td>
                 <!-- <td>33</td>
                 <td>24</td>
@@ -726,7 +741,9 @@
           <!-- <img width="35px;" src="assets/image/graphrecommendation.png" alt="">
           &nbsp; &nbsp; -->
 
-          <span style="font-weight: bold; font-size: 18pt; position: relative; top: 10px;">Activation Performance</span>
+          <span style="font-weight: bold; font-size: 18pt; position: relative; top: -5px; left: 15px">Activation Performance</span>
+
+          <span style="font-weight: bold; font-size: 14px; font-weight: 500; cursor: pointer; margin-left: 20px;"><mat-icon title="Download" (click)="downloadPerformanceTable('activation')">download</mat-icon></span>
 
           <span style="position: absolute; right: 33px;">
               <!-- <mat-icon (click)="goBack(activation)" style="cursor: pointer;">arrow_back</mat-icon> -->
@@ -756,7 +773,7 @@
               <thead class="thead_style" >
 
                   <tr class="firstHeaderRow">
-                      <th rowspan="3"  class =" ratailAsOnDate" >Retail as on {{activation_table_data.retailAsOn}}</th>
+                      <th rowspan="3"  class =" ratailAsOnDate" >Retail as on {{activation_table_data.retailAsOn}}<br/>All absolute values are in Crores</th>
                       <th colspan="11" class ="table_text_blue_1">ACTIVATION</th>
                   </tr>
                   
@@ -944,7 +961,9 @@
           <!-- <img width="35px;" src="assets/image/graphrecommendation.png" alt="">
           &nbsp; &nbsp; -->
 
-          <span style="font-weight: bold; font-size: 18pt; position: relative; top: 10px;">Recruitment Performance</span>
+          <span style="font-weight: bold; font-size: 18pt; position: relative; top: -5px; left: 15px">Recruitment Performance</span>
+
+          <span style="font-weight: bold; font-size: 14px; font-weight: 500; cursor: pointer; margin-left: 20px;"><mat-icon title="Download" (click)="downloadPerformanceTable('recruitment')">download</mat-icon></span>
 
           <span style="position: absolute; right: 33px;">
               <!-- <mat-icon (click)="goBack(activation)" style="cursor: pointer;">arrow_back</mat-icon> -->
@@ -975,7 +994,7 @@
               <thead class="thead_style" >
 
                   <tr class="firstHeaderRow">
-                      <th rowspan="3"  class =" ratailAsOnDate" >Retail as on {{recruitment_table_data.retailAsOn}}</th>
+                      <th rowspan="3"  class =" ratailAsOnDate" >Retail as on {{recruitment_table_data.retailAsOn}}<br/>All absolute values are in Crores</th>
                       <th colspan="8" class ="table_text_blue_1">RECRUITMENT</th>
                   </tr>
                   

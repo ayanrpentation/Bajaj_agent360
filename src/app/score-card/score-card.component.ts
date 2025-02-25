@@ -26,6 +26,9 @@ import { PrintService } from '../print.service';
 })
 export class ScoreCardComponent implements OnInit {
 
+  userName = this.common.getUserName();
+  userAgentId = this.common.getUserAgentId();
+
   projectName = sessionStorage.getItem('projectName') as any;
   projectName_plural = sessionStorage.getItem('projectName_plural') as any;
 
@@ -242,6 +245,36 @@ export class ScoreCardComponent implements OnInit {
 
 
 
+  // filteredImdNames = ['10000018', '10000019', '10000017'] as any;
+  // selectImdCode(imd:any){
+
+  // }
+
+  // searchImdCode: string = '';
+  // projectName: string = 'Project';
+  
+  // Sample IMD names (You can fetch from API in real scenario)
+  imdNames: string[] = [];
+  
+  filteredImdNames: string[] = [];
+
+  onSearchChange() {
+    if (this.searchImdCode) {
+      this.filteredImdNames = this.imdNames.filter(name =>
+        name.toLowerCase().includes(this.searchImdCode.toLowerCase())
+      );
+    } else {
+      this.filteredImdNames = [];
+    }
+  }
+
+  selectImdCode(imd: string) {
+    this.searchImdCode = imd;
+    this.filteredImdNames = [];
+  }
+
+
+
 
 
 
@@ -285,6 +318,12 @@ export class ScoreCardComponent implements OnInit {
   // }
 
 
+  transformMonth(input:any) {
+    const [month, year] = input.split('-');
+    return `${parseInt(month, 10)}-${year}`;
+  }
+
+
   searchecMonth = this.formatMonth(this.month_selectedItems_singleselect);
   formatMonth(input:any) {
     console.log("input month--->", input)
@@ -307,7 +346,7 @@ export class ScoreCardComponent implements OnInit {
     const monthVal = `${String(currentDate.getMonth() ).padStart(2, '0')}-${currentDate.getFullYear()}`;
     const monthName = `${currentDate.toLocaleString('default', { month: 'short' }).toUpperCase()} ${currentDate.getFullYear()}`;
 
-    this.month_selectedItems_singleselect = monthVal
+    this.month_selectedItems_singleselect = this.transformMonth(monthVal)
     console.log('this.month_selectedItems_singleselect---> ', this.month_selectedItems_singleselect)
     this.searchecMonth = this.formatMonth(this.month_selectedItems_singleselect);
 
@@ -318,13 +357,14 @@ export class ScoreCardComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.getMonthYearList()
+    this.getMonthYearList();
+    this.getAllImd();
     
     // this.month_selectedItems = sessionStorage.getItem('selectedMonthYear');
     // this.month_selectedItems = JSON.parse(this.month_selectedItems);
 
     this.month_selectedItems =this.getCurrentMonthYear()
-    // console.log("this.month_selectedItems", this.month_selectedItems)
+    console.log("this.month_selectedItems", this.month_selectedItems)
 
 
     // console.log("month_selectedItems----->>  ", this.month_selectedItems)
@@ -401,14 +441,27 @@ export class ScoreCardComponent implements OnInit {
     const data = {
       imdCode: imdCode,
       monthYear: this.month_selectedItems,
+
+      imd_code : imdCode,
+      ytdFlag : this.ytdFlag,
       
     }
-    this.rest.getImdDetails(data).subscribe((res: any) => {
+    this.rest.scorecardBasicDetails(data).subscribe((res:any)=>{
+    // this.rest.getImdDetails(data).subscribe((res: any) => {
       if (res.success) {
-        this.imdInfo = res.result;
-        this.style_var_comm = "background: linear-gradient(45deg, " + res.result.COMMISSION_RATIO_COLOR + ", white);"
-        this.style_var_loss = "background: linear-gradient(45deg, " + res.result.LOSS_RATIO_COLOR + ", white);"
-        this.style_var_cor = "background: linear-gradient(45deg, " + res.result.CY_COR_COLOR + ", white);"
+        // this.imdInfo = res.result;
+        this.imdInfo = res.data;
+
+        this.imdsearched = true;
+
+
+        // this.style_var_comm = "background: linear-gradient(45deg, " + res.result.COMMISSION_RATIO_COLOR + ", white);"
+        // this.style_var_loss = "background: linear-gradient(45deg, " + res.result.LOSS_RATIO_COLOR + ", white);"
+        // this.style_var_cor = "background: linear-gradient(45deg, " + res.result.CY_COR_COLOR + ", white);"
+
+
+
+
         // this.style_var_comm = "display: block; padding-top: 5px; font-weight: bold; padding:1%; color: " + res.result.COMMISSION_RATIO_COLOR + " !important"
         // this.style_var_loss = "display: block; padding-top: 5px; font-weight: bold; padding:1%; color: " + res.result.LOSS_RATIO_COLOR + " !important"
         // this.style_var_cor = "display: block; padding-top: 5px; font-weight: bold; padding:1%; color: " + res.result.CY_COR_COLOR + " !important"
@@ -416,11 +469,32 @@ export class ScoreCardComponent implements OnInit {
         // this.comparisonColumns = res.columns;
 
         // return this.zone_dropdownList
-        this.imdsearched = true;
+        
       } else {
-        this.imdsearched = false;
+
+        this.imdsearched = true;
+        // this.imdsearched = false;
+
         this.imdInfo = [];
         this.monthName = '';
+      }
+    });
+  }
+
+
+
+  extractImdNumbers(imdList: string[]): string[] {
+    return imdList.map(item => item.split('-')[0]);
+  }
+  getAllImd() {
+    const data = {
+      userAgentId: this.userAgentId  
+    }
+    this.rest.allIMDs(data).subscribe((res:any)=>{
+      if (res.success) {
+        this.imdNames = this.extractImdNumbers(res.data);
+        
+      } else {
       }
     });
   }
