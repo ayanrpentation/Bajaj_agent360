@@ -170,7 +170,7 @@
     
                         <!-- <button id="button-addon2" type="submit" class="btn btn-link" style="color: #6c5bca;"  title="Search your {{projectName}} here" (click)="seachBtnClicked_afterLoad=true;getImdDetails(searchImdCode); getScoreCardDetails(searchImdCode);getRecommendations(searchImdCode); getTotalGraph_rep(searchImdCode); getLRvsCAQGraphs(searchImdCode); getLobPieGraphs(searchImdCode); getOnePagerdataYTD(searchImdCode); getOnePagerdataMOM(searchImdCode); ytdFlag = false"><i class="fa fa-search"></i></button> -->
 
-                        <button id="button-addon2" type="submit" class="btn btn-link" style="color: #6c5bca;"  title="Search your {{projectName}} here" (click)="seachBtnClicked_afterLoad=true; ytdFlag = false; getImdDetails(searchImdCode);"><i class="fa fa-search"></i></button>
+                        <button id="button-addon2" type="submit" class="btn btn-link" style="color: #6c5bca;"  title="Search your {{projectName}} here" (click)="seachBtnClicked_afterLoad=true; ytdFlag = false; getImdDetails(searchImdCode);getMetricTable(searchImdCode); getOnePagerdataYTD(searchImdCode); getOnePagerdataMOM(searchImdCode);"><i class="fa fa-search"></i></button>
     
                       </div>
                     </div>
@@ -554,7 +554,7 @@
 
         <div  *ngIf="imdsearched" class="row">
 
-            <div class="col-6" style="padding: 0; padding-right: 10px;">
+            <!-- <div class="col-6" style="padding: 0; padding-right: 10px;">
                 <table class="table table-hover" style="text-align: center; justify-items: center; font-size: 18px!important;">
 
 
@@ -686,22 +686,6 @@
                                     (click)="openModal(winbackBox,1);getSELLScoreDetailsYtd(imdInfo.INTERMEDIARY_ID, 'winback');getSELLGraphs(imdInfo.INTERMEDIARY_ID, 'winback');">open_with</mat-icon>
                             </td>
                         </tr>
-                        <!-- <tr class='highlighRow' style="padding: 0;">
-                                        <td class="tableColumnStyle" style="padding: 0; font-weight: bold;">COR</td>
-                                        <td class="tableColumnStyle" style="padding: 0; ">{{scorecardDetails.CY_COR}}</td>
-                                        <td class="tableColumnStyle" style="padding: 0; ">
-                                            {{scorecardDetails.PROFITABILITY_SCORE}}</td>
-                                        <td class="tableColumnStyle" style="padding: 0; ">
-                                            {{scoreConfig.PROFITABILITY_SCORE}}</td>
-    
-                                        <td class="tableColumnStyle" style="width:5%; padding: 0; ">
-                                            <mat-icon style="font-size: 12pt;
-                                                            
-                                                            position: relative;
-                                                            top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
-                                                (click)="openModal(corBox,1);getCORScoreDetails(imdInfo.INTERMEDIARY_ID);this.getCORGraphs(imdInfo.INTERMEDIARY_ID);">open_with</mat-icon>
-                                        </td>
-                                    </tr> -->
     
     
     
@@ -781,6 +765,228 @@
                             </td>
     
                         </tr>
+    
+                    </tbody>
+                   
+                </table>
+            </div> -->
+
+
+
+
+
+
+
+
+
+            <div class="col-6" style="padding: 0; padding-right: 10px;">
+                <table class="table table-hover" style="text-align: center; justify-items: center; font-size: 18px!important;">
+
+
+                    <thead>
+                        <tr style="background: #fada5a; color:black ; font-size: 18px; font-weight: bold;">
+    
+                            <th class="tableColumnStyle"  >Metrics</th>
+                            <th class="tableColumnStyle"  >Actuals</th>
+                            <th class="tableColumnStyle"  >Score</th>
+                            <th class="tableColumnStyle"  >Max</th>
+                            <th class="tableColumnStyle"></th>
+    
+                        </tr>
+    
+                    </thead>
+    
+                    <tbody>
+                        <tr  *ngFor="let row of metricsTableData; let i = index" class='highlighRow' [ngClass]="{ 'highlight': i % 2 === 0 }">
+                            <td class="tableColumnStyle" style="font-weight: bold; text-align: left; margin-left: 30px;">{{row.key_name}}</td>
+                            <td class="tableColumnStyle" >{{row.actual}}</td>
+                            <td class="tableColumnStyle" >{{row.score}}</td>
+                            <td class="tableColumnStyle" >{{row.max}}</td>
+
+                            <td class="tableColumnStyle" style="width:5%; ">
+                                <mat-icon style="font-size: 12pt; position: relative; top: 4px; color:rgb(105, 104, 104); cursor: pointer;">open_with</mat-icon>
+                            </td>
+                            <!-- <td *ngIf="ytdFlag == true" class="tableColumnStyle" style="width:5%; ">
+                                <mat-icon  style="font-size: 12pt; position: relative; top: 4px; color:rgb(105, 104, 104); cursor: pointer;">open_with</mat-icon>
+                            </td> -->
+
+                        </tr>
+    
+                        <!-- <tr style="padding: 0;">
+                            <td class="tableColumnStyle" style=" font-weight: bold; text-align: left; margin-left: 30px;">NOP</td>
+                            <td class="tableColumnStyle" >{{getComma(scorecardDetails.NOP)}}</td>
+                            <td class="tableColumnStyle" >
+                                {{scorecardDetails.NOP_FINAL_SCORE}}</td>
+                            <td class="tableColumnStyle" >{{scoreConfig.NOP_FINAL_SCORE}}
+                            </td>
+    
+                            <td *ngIf="ytdFlag != true" class="tableColumnStyle" style="width:5%; ">
+                                <mat-icon style="font-size: 12pt; position: relative; top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                    (click)="openModal(nopBox,1);getNOPScoreDetails(imdInfo.INTERMEDIARY_ID);this.getNOPGraphs(imdInfo.INTERMEDIARY_ID);">open_with</mat-icon>
+                            </td>
+                            <td *ngIf="ytdFlag == true" class="tableColumnStyle" style="width:5%;  ">
+                                <mat-icon style="font-size: 12pt; position: relative; top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                    (click)="openModal(nopBox,1);getNOPScoreDetailsYtd(imdInfo.INTERMEDIARY_ID);this.getNOPGraphs(imdInfo.INTERMEDIARY_ID);">open_with</mat-icon>
+                            </td>
+    
+                        </tr>
+    
+                        <tr class='highlighRow' style="padding: 0;">
+                            <td class="tableColumnStyle" style=" font-weight: bold; text-align: left; margin-left: 30px;">NOP Renewal Ratio%</td>
+                            <td class="tableColumnStyle" >{{scorecardDetails.RENEWAL_RATIO}} %
+                            </td>
+                            <td class="tableColumnStyle" >{{scorecardDetails.NOP_RR_SCORE}}
+                            </td>
+                            <td class="tableColumnStyle" >{{scoreConfig.NOP_RR_SCORE}}</td>
+    
+                            <td *ngIf="ytdFlag != true" class="tableColumnStyle" style="width:5%; ">
+                                <mat-icon style="font-size: 12pt; position: relative; top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                    (click)="openModal(noprrBox,1);getNOPRRScoreDetails(imdInfo.INTERMEDIARY_ID);this.getNOPRRGraphs(imdInfo.INTERMEDIARY_ID);">open_with</mat-icon>
+                            </td>
+                            <td *ngIf="ytdFlag == true" class="tableColumnStyle" style="width:5%;">
+                                <mat-icon style="font-size: 12pt; position: relative; top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                    (click)="openModal(noprrBox,1);getNOPRRScoreDetailsYtd(imdInfo.INTERMEDIARY_ID);this.getNOPRRGraphs(imdInfo.INTERMEDIARY_ID);">open_with</mat-icon>
+                            </td>
+    
+                        </tr>
+    
+    
+                        <tr >
+                            <td class="tableColumnStyle" style=" font-weight: bold; text-align: left; margin-left: 30px;">Cross Sell</td>
+                            <td class="tableColumnStyle" >
+                                {{getComma(scorecardDetails.CROSS_SELL_POL)}}</td>
+                            <td class="tableColumnStyle" >
+                                {{scorecardDetails.CROSS_SELL_SCORE}}</td>
+                            <td class="tableColumnStyle" >{{scoreConfig.CROSS_SELL_SCORE}}
+                            </td>
+    
+                            <td *ngIf="ytdFlag != true" class="tableColumnStyle" style="width:5%; ">
+                                <mat-icon style="font-size: 12pt; position: relative; top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                    (click)="openModal(csellBox,1);getSELLScoreDetails(imdInfo.INTERMEDIARY_ID, 'cross sell');getSELLGraphs(imdInfo.INTERMEDIARY_ID, 'cross sell');">open_with</mat-icon>
+                            </td>
+    
+                            <td *ngIf="ytdFlag == true" class="tableColumnStyle" style="width:5%; ">
+                                <mat-icon style="font-size: 12pt; position: relative; top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                    (click)="openModal(csellBox,1);getSELLScoreDetailsYtd(imdInfo.INTERMEDIARY_ID, 'cross sell');getSELLGraphs(imdInfo.INTERMEDIARY_ID, 'cross sell');">open_with</mat-icon>
+                            </td>
+                        </tr>
+    
+    
+                        <tr class='highlighRow' >
+                            <td class="tableColumnStyle" style=" font-weight: bold; text-align: left; margin-left: 30px;">Upsell</td>
+                            <td class="tableColumnStyle" >{{getComma(scorecardDetails.UP_SELL_POL)}}
+                            </td>
+                            <td class="tableColumnStyle" >{{scorecardDetails.UP_SELL_SCORE}}
+                            </td>
+                            <td class="tableColumnStyle" >{{scoreConfig.UP_SELL_SCORE}}</td>
+    
+                            <td *ngIf="ytdFlag != true" class="tableColumnStyle" style="width:5%; ">
+                                <mat-icon style="font-size: 12pt; position: relative; top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                    (click)="openModal(upsellBox,1);getSELLScoreDetails(imdInfo.INTERMEDIARY_ID, 'upsell');getSELLGraphs(imdInfo.INTERMEDIARY_ID, 'upsell');">open_with</mat-icon>
+                            </td>
+                            <td *ngIf="ytdFlag == true" class="tableColumnStyle" style="width:5%; ">
+                                <mat-icon style="font-size: 12pt; position: relative; top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                    (click)="openModal(upsellBox,1);getSELLScoreDetailsYtd(imdInfo.INTERMEDIARY_ID, 'upsell');getSELLGraphs(imdInfo.INTERMEDIARY_ID, 'upsell');">open_with</mat-icon>
+                            </td>
+    
+                        </tr>
+    
+                        <tr style="padding: 0;">
+                            <td class="tableColumnStyle" style=" font-weight: bold; text-align: left; margin-left: 30px;">Winback</td>
+                            <td class="tableColumnStyle" >{{getComma(scorecardDetails.WINBACK_POL)}}
+                            </td>
+                            <td class="tableColumnStyle" >{{scorecardDetails.WINBACK_SCORE}}
+                            </td>
+                            <td class="tableColumnStyle" >{{scoreConfig.WINBACK_SCORE}}</td>
+    
+                            <td *ngIf="ytdFlag != true" class="tableColumnStyle" style="width:5%; ">
+                                <mat-icon style="font-size: 12pt; position: relative; top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                    (click)="openModal(winbackBox,1);getSELLScoreDetails(imdInfo.INTERMEDIARY_ID, 'winback');getSELLGraphs(imdInfo.INTERMEDIARY_ID, 'winback');">open_with</mat-icon>
+                            </td>
+                            <td *ngIf="ytdFlag == true" class="tableColumnStyle" style="width:5%; ">
+                                <mat-icon style="font-size: 12pt; position: relative; top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                    (click)="openModal(winbackBox,1);getSELLScoreDetailsYtd(imdInfo.INTERMEDIARY_ID, 'winback');getSELLGraphs(imdInfo.INTERMEDIARY_ID, 'winback');">open_with</mat-icon>
+                            </td>
+                        </tr>
+    
+    
+    
+                        <tr class='highlighRow' >
+                            <td class="tableColumnStyle" style=" font-weight: bold; text-align: left; margin-left: 30px;">Digital Touch Point</td>
+                            <td class="tableColumnStyle" style="padding: 0; ">
+                                {{scorecardDetails.DIGITAL_ACTIVENESS}} %</td>
+                            <td class="tableColumnStyle" >{{scorecardDetails.DTP_SCORE}}
+                            </td>
+                            <td class="tableColumnStyle" >{{scoreConfig.DTP_SCORE}}</td>
+    
+                            <td *ngIf="ytdFlag != true" class="tableColumnStyle" style="width:5%; ">
+                                <mat-icon style="font-size: 12pt; position: relative; top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                    (click)="openModal(digitalBox,1);getDTPScoreDetails(imdInfo.INTERMEDIARY_ID);getDTPGraphs(imdInfo.INTERMEDIARY_ID);">open_with</mat-icon>
+                            </td>
+                            <td *ngIf="ytdFlag == true" class="tableColumnStyle" style="width:5%;  ">
+                                <mat-icon style="font-size: 12pt; position: relative; top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                    (click)="openModal(digitalBox,1);getDTPScoreDetailsYtd(imdInfo.INTERMEDIARY_ID);getDTPGraphs(imdInfo.INTERMEDIARY_ID);">open_with</mat-icon>
+                            </td>
+    
+                        </tr>
+    
+                        <tr >
+                            <td class="tableColumnStyle" style=" font-weight: bold; text-align: left; margin-left: 30px;">Physical Touch Point</td>
+                            <td class="tableColumnStyle" >{{getComma(scorecardDetails.MEETING_COUNT)}}
+                            </td>
+                            <td class="tableColumnStyle" >{{scorecardDetails.PTP_SCORE}}
+                            </td>
+                            <td class="tableColumnStyle" >{{scoreConfig.PTP_SCORE}}</td>
+    
+                            <td *ngIf="ytdFlag != true" class="tableColumnStyle" style="width:5%; ">
+                                <mat-icon style="font-size: 12pt; position: relative; top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                    (click)="openModal(physicalBox,1);getPTPScoreDetails(imdInfo.INTERMEDIARY_ID);this.getPTPGraphs(imdInfo.INTERMEDIARY_ID);">open_with</mat-icon>
+                            </td>
+                            <td *ngIf="ytdFlag == true" class="tableColumnStyle" style="width:5%; ">
+                                <mat-icon style="font-size: 12pt; position: relative; top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                    (click)="openModal(physicalBox,1);getPTPScoreDetailsYtd(imdInfo.INTERMEDIARY_ID);this.getPTPGraphs(imdInfo.INTERMEDIARY_ID);">open_with</mat-icon>
+                            </td>
+    
+                        </tr>
+    
+                        <tr class='highlighRow' >
+                            <td class="tableColumnStyle" style=" font-weight: bold;  text-align: left; margin-left: 30px;">Campaign Eligibility</td>
+                            <td class="tableColumnStyle" >
+                                {{scorecardDetails.CY_ELIGIBILITY_PER}} %</td>
+                            <td class="tableColumnStyle" >
+                                {{scorecardDetails.CAMPAIGN_SCORE}}</td>
+                            <td class="tableColumnStyle" >{{scoreConfig.CAMPAIGN_SCORE}}
+                            </td>
+    
+                            <td *ngIf="ytdFlag != true" class="tableColumnStyle" style="width:5%; ">
+                                <mat-icon style="font-size: 12pt; position: relative; top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                    (click)="openModal(campaignBox,1);getCampaignScoreDetails(imdInfo.INTERMEDIARY_ID); this.getCampaignGraphs(imdInfo.INTERMEDIARY_ID);">open_with</mat-icon>
+                            </td>
+                            <td *ngIf="ytdFlag == true" class="tableColumnStyle" style="width:5%;  ">
+                                <mat-icon style="font-size: 12pt; position: relative; top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                    (click)="openModal(campaignBox,1);getCampaignScoreDetailsYtd(imdInfo.INTERMEDIARY_ID); this.getCampaignGraphs(imdInfo.INTERMEDIARY_ID);">open_with</mat-icon>
+                            </td>
+    
+                        </tr>
+    
+                        <tr style="padding: 0;">
+                            <td class="tableColumnStyle" style=" font-weight: bold;  text-align: left; margin-left: 30px;">LOB</td>
+                            <td class="tableColumnStyle" >{{scorecardDetails.LOB}}</td>
+                            <td class="tableColumnStyle" >
+                                {{scorecardDetails.LOB_MAIN_SCORE}}</td>
+                            <td class="tableColumnStyle" >{{scoreConfig.LOB_MAIN_SCORE}}
+                            </td>
+    
+                            <td *ngIf="ytdFlag != true" class="tableColumnStyle" style="width:5%;  ">
+                                <mat-icon style="font-size: 12pt;  position: relative; top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                    (click)="openModal(lobBox,1);getLOBScoreDetails(imdInfo.INTERMEDIARY_ID); this.getLOBGraphs(imdInfo.INTERMEDIARY_ID);">open_with</mat-icon>
+                            </td>
+                            <td *ngIf="ytdFlag == true" class="tableColumnStyle" style="width:5%; ">
+                                <mat-icon style="font-size: 12pt;  position: relative; top: 4px; color:rgb(105, 104, 104); cursor: pointer;"
+                                    (click)="openModal(lobBox,1);getLOBScoreDetailsYtd(imdInfo.INTERMEDIARY_ID); this.getLOBGraphs(imdInfo.INTERMEDIARY_ID);">open_with</mat-icon>
+                            </td>
+    
+                        </tr> -->
     
                     </tbody>
                    

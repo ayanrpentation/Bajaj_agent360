@@ -98,6 +98,23 @@ export class RestApiService {
   scorecardBasicDetails(data: any): any {
     return this.http.post(this.API_ROOT + '/scorecard/getBasicDetails', JSON.stringify(data), httpOptions);
   }
+  getMetricTable(data: any): any {
+    return this.http.post(this.API_ROOT + '/scorecard/getMetricTable', JSON.stringify(data), httpOptions);
+  }
+
+  getOnePagerdataMOM_scorecard(data:any): any{
+    return this.http.post(this.API_ROOT + '/scorecard/getOnePagerdataMOM',JSON.stringify(data),  httpOptions);
+  }
+  getOnePagerdataYTD_scorecard(data:any): any{
+    return this.http.post(this.API_ROOT + '/scorecard/getOnePagerdataYTD',JSON.stringify(data),  httpOptions);
+  }
+
+  getTotalGraph_scorecard(data: any): any {
+    return this.http.post(this.API_ROOT + '/scorecard/getTotalScoreGraph', JSON.stringify(data), httpOptions);
+  }
+  getLRvsCAQGraphs_scorecard(data: any): any {
+    return this.http.post(this.API_ROOT + '/scorecard/getLRvsCAQGraphs', JSON.stringify(data), httpOptions);
+  }
 
 
 

@@ -36,6 +36,76 @@ export class ScoreCardComponent implements OnInit {
     moveItemInArray(this.onePagerYtdDataList_except_total, event.previousIndex, event.currentIndex);
   }
 
+
+
+
+  // metricsTableData = [] as any;
+  metricsTableData = [
+    {
+      "key_name":"GWP",
+      "actual":"22,76,438",
+      "score": "23",
+      "max": "40",
+    },
+      {
+      "key_name":"NOP",
+      "actual":"22,76,438",
+      "score": "23",
+      "max": "40",
+    },
+      {
+      "key_name":"NOP RR%",
+      "actual":"28%",
+      "score": "23",
+      "max": "40",
+    },
+      {
+      "key_name":"Cross Sell",
+      "actual":"22,76,438",
+      "score": "23",
+      "max": "40",
+    },
+      {
+      "key_name":"Upsell",
+      "actual":"22,76,438",
+      "score": "23",
+      "max": "40",
+    },
+      {
+      "key_name":"Winback",
+      "actual":"22,76,438",
+      "score": "23",
+      "max": "40",
+    },
+      {
+      "key_name":"Digital TP",
+      "actual":"2.5%",
+      "score": "23",
+      "max": "40",
+    },
+      {
+      "key_name":"Physical TP",
+      "actual":"22,76,438",
+      "score": "23",
+      "max": "40",
+    },
+      {
+      "key_name":"Campaign E",
+      "actual":"2.38%",
+      "score": "23",
+      "max": "40",
+    },
+      {
+      "key_name":"LOB",
+      "actual":"Multiline",
+      "score": "23",
+      "max": "40",
+    },
+  ] as any;
+
+
+
+
   // this is for sorting func in YTD Care Advisor Report Card
   show_LOB_asc = true as boolean;
   show_topline_lfy_asc = true as boolean;
@@ -482,6 +552,77 @@ export class ScoreCardComponent implements OnInit {
   }
 
 
+  getMetricTable(imdCode: any) {
+    const data = {
+      imdCode: imdCode,
+      monthYear: this.month_selectedItems,
+
+      imd_code : imdCode,
+      ytdFlag : this.ytdFlag,      
+    }
+    // let res1 = {
+    //   "consistency": 0,
+    //   "metricsTableData": [
+    //     {
+    //       "actual": "2,60,062",
+    //       "key_name": "GWP",
+    //       "max": 10.0,
+    //       "score": 6.0
+    //     },
+    //     {
+    //       "actual": "24",
+    //       "key_name": "NOP",
+    //       "max": 5.0,
+    //       "score": 2.0
+    //     },
+    //     {
+    //       "actual": "3",
+    //       "key_name": "Renewed NOP",
+    //       "max": 5.0,
+    //       "score": 1.0
+    //     },
+    //     {
+    //       "actual": "1.5%",
+    //       "key_name": "Renewal Ratio",
+    //       "max": 5.0,
+    //       "score": 0.71
+    //     },
+    //     {
+    //       "actual": "0",
+    //       "key_name": "Cross Sell",
+    //       "max": 5.0,
+    //       "score": 0.0
+    //     },
+    //     {
+    //       "actual": "0",
+    //       "key_name": "Winback",
+    //       "max": 5.0,
+    //       "score": 0.0
+    //     },
+    //     {
+    //       "actual": "0",
+    //       "key_name": "Physical Meeting",
+    //       "max": 5.0,
+    //       "score": 0.0
+    //     }
+    //   ],
+    //   "status": 1,
+    //   "success": true
+    // };
+    // this.metricsTableData = res1.metricsTableData;
+
+
+
+    this.rest.getMetricTable(data).subscribe((res:any)=>{
+      if (res.success) {
+        this.metricsTableData = res.metricsTableData;
+        
+      } else {
+      }
+    });
+  }
+
+
 
   extractImdNumbers(imdList: string[]): string[] {
     return imdList.map(item => item.split('-')[0]);
@@ -713,7 +854,7 @@ export class ScoreCardComponent implements OnInit {
       monthYear: this.month_selectedItems,
 
     }
-    this.rest.getTotalGraph(data).subscribe((res: any) => {
+    this.rest.getTotalGraph_scorecard(data).subscribe((res: any) => {
       if (res.success) {
         this.totalChart_rep_status = true
         let chartStatus1 = Chart.getChart("totalChart_rep"); // <canvas> id
@@ -739,7 +880,7 @@ export class ScoreCardComponent implements OnInit {
               //     1.1,
               //     0.9
               // ],
-              "data": res.totalData,
+              "data": res.data.totalData,
               "color": "rgb(153, 102, 255)"
           }
         ] as any
@@ -760,7 +901,7 @@ export class ScoreCardComponent implements OnInit {
             text: ''
           },
           xAxis: {
-            categories: res.totalLevel,
+            categories: res.data.totalLevel,
             labels: {
               style: {
                 fontSize: '12px' // Font size for x-axis labels
@@ -883,7 +1024,7 @@ export class ScoreCardComponent implements OnInit {
       monthYear: this.month_selectedItems,
 
     }
-    this.rest.getLRvsCAQGraphs(data).subscribe((res: any) => {
+    this.rest.getLRvsCAQGraphs_scorecard(data).subscribe((res: any) => {
       if (res.success) {
         this.lrVsCaqGraph_status = true
         // console.log("res>>>>>",res)
@@ -911,20 +1052,20 @@ export class ScoreCardComponent implements OnInit {
               //     1.1,
               //     0.9
               // ],
-              "data": res.lrData,
+              "data": res.data.lrData,
               // "color": "rgb(153, 102, 255)",
               "color": "orange"
           },
           {
             "type": "line",
             "name": "CAQ",
-            "data": res.caqData,
+            "data": res.data.caqData,
             "color": "blue"
           },
           {
             "type": "line",
             "name": "COR",
-            "data": res.corData,
+            "data": res.data.corData,
             // "color": "grey",
             "color": "rgb(153, 102, 255)",
           }
@@ -948,7 +1089,7 @@ export class ScoreCardComponent implements OnInit {
             text: ''
           },
           xAxis: {
-            categories: res.graphLevel,
+            categories: res.data.graphLevel,
             labels: {
               style: {
                 fontSize: '12px' // Font size for x-axis labels
@@ -2322,12 +2463,12 @@ export class ScoreCardComponent implements OnInit {
       imdCode:imdCode,
       monthYear: this.month_selectedItems,
     }
-    this.rest.getOnePagerdataMOM(data).subscribe((res: any) => {
+    this.rest.getOnePagerdataMOM_scorecard(data).subscribe((res: any) => {
       if (res.success) {
         // console.log("res>>>",res)
-        this.onePagerMomDataList = res.result;
+        this.onePagerMomDataList = res.data.result;
         // console.log("onePagerMomDataList--->", this.onePagerMomDataList)
-        this.onePagerMomColList = res.columns;
+        this.onePagerMomColList = res.data.columns;
         // console.log("onePagerMomDataList---00>>>", this.onePagerMomColList)
       } else {
         // this.notifier.notify('error', res.message);
@@ -2350,12 +2491,10 @@ export class ScoreCardComponent implements OnInit {
       imdCode:imdCode,
       monthYear: this.month_selectedItems,
     }
-    this.rest.getOnePagerdataYTD(data).subscribe((res: any) => {
+    this.rest.getOnePagerdataYTD_scorecard(data).subscribe((res: any) => {
       if (res.success) {
         console.log("getOnePagerdataYTDres>>>",res)
-        this.onePagerYtdDataList = res.result;
-        // this.onePagerYtdDataList_total = this.onePagerYtdDataList[this.onePagerYtdDataList.length - 1]
-        // this.onePagerYtdDataList_except_total_mainCopy = ;
+        this.onePagerYtdDataList = res.data.result;
 
         
         for (let item of this.onePagerYtdDataList) {
@@ -2368,19 +2507,13 @@ export class ScoreCardComponent implements OnInit {
             this.onePagerYtdDataList_except_total.push(item);
           }
         }
-
-        // this.onePagerYtdDataList_except_total_mainCopy = this.onePagerYtdDataList_except_total
-
         this.orderby_YTD_Care_Advisor_Report_Card('LOB','asc')
-
-        // console.log("onePagerYtdDataList_total>>>",this.onePagerYtdDataList_total)
-        // console.log("onePagerYtdDataList_except_total>>>",this.onePagerYtdDataList_except_total)
 
         this.getTotalGraph_rep(this.searchImdCode);
         this.getLRvsCAQGraphs(this.searchImdCode);
-        this.getLobPieGraphs(this.searchImdCode);
-        this.getLobPieGraphs_highchart(this.searchImdCode);
-        this.channelWiseDegrowContri(this.searchImdCode)
+        // this.getLobPieGraphs(this.searchImdCode);
+        // this.getLobPieGraphs_highchart(this.searchImdCode);
+        // this.channelWiseDegrowContri(this.searchImdCode)
       } else {
         // this.notifier.notify('error', res.message);
 

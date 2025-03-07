@@ -60,11 +60,18 @@ export class SessionTimeoutInterceptor implements HttpInterceptor {
         return next.handle(req); // Prevent API execution after logout
       }
     }
+    // else{
+    //   this.logout();
+    //   sessionStorage.clear();
+    //   localStorage.clear();
+    // }
 
-    // Update the last activity time on every request
+    
     sessionStorage.setItem('lastActivityTime', Date.now().toString());
 
     return next.handle(req);
+
+    // Update the last activity time on every request
   }
 
   private logout(): void {
